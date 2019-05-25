@@ -1,3 +1,4 @@
+
 .card-columns {
   margin: auto;
   max-width: 85%;
@@ -11,6 +12,15 @@
     box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15) !important;
   }
 }
+
+.container {
+  .card {
+    border: none;
+    border-radius: 0.85rem !important;
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15) !important;
+  }
+}
+
 
 footer {
   border-top: 1px solid #eaeaea;
