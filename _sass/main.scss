@@ -14,14 +14,17 @@
 
 footer {
   border-top: 1px solid #eaeaea;
-  color: #777;
+
+  small {
+    color: #959da5;
+  }
 
   a {
-    color: #777;
+    color: #c6cbd1;
+  }
 
-    &:hover {
-      color: #222;
-    }
+  a:hover {
+    color: #959da5;
   }
 
   .row {
