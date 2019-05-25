@@ -2,7 +2,20 @@
 layout: default
 title: Photo
 ---
-<img src="assets/img/sanfrancisco.jpg" class="card-img-top" alt="{{ image.basename }}">
+<!--<img src="assets/img/sanfrancisco.jpg" alt="{{ image.basename }}">-->
+
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item align-middle align-items-center active">
+            <img src="assets/img/sanfrancisco.jpg" class="d-block w-100" alt="{{ image.basename }}">
+
+            <div class="carousel-caption">
+                <h1>Photography</h1>
+<!--                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>-->
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="card-columns mt-4">
 

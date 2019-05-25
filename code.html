@@ -2,3 +2,8 @@
 layout: default
 title: Code
 ---
+
+{% for note in site.notes %}
+<!--{% include post_card.html %}-->
+{{ note }}
+{% endfor %}
