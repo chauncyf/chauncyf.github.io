@@ -2,16 +2,14 @@
 layout: default
 title: Photo
 ---
-<!--<img src="assets/img/sanfrancisco.jpg" alt="{{ image.basename }}">-->
 
-<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+<div class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">
         <div class="carousel-item align-middle align-items-center active">
-            <img src="assets/img/sanfrancisco.jpg" class="d-block w-100" alt="{{ image.basename }}">
-
+            <img src="assets/DSC01881P.jpg" class="d-block w-100" alt="{{ image.basename }}">
             <div class="carousel-caption">
                 <h1>Photography</h1>
-<!--                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>-->
+                <!--                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>-->
             </div>
         </div>
     </div>
@@ -19,7 +17,8 @@ title: Photo
 
 <div class="card-columns mt-4">
 
-    {% assign images = site.static_files | where: "image", true | where_exp: "image", "image.basename != 'sanfrancisco'" %}
+    {% assign images = site.static_files | where: "image", true | where_exp: "image", "image.basename != 'sanfrancisco'"
+    %}
     {% for image in images %}
 
     <div class="card shadow-sm" style="cursor: pointer" data-toggle="modal" data-target="#{{ image.basename }}">
@@ -29,23 +28,24 @@ title: Photo
         </div>
     </div>
 
-    <div class="modal fade" id="{{ image.basename }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal fade" id="{{ image.basename }}" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
             <div class="modal-content">
-<!--                <div class="modal-header">-->
-<!--                    <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>-->
-<!--                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
-<!--                        <span aria-hidden="true">&times;</span>-->
-<!--                    </button>-->
-<!--                </div>-->
+                <!--                <div class="modal-header">-->
+                <!--                    <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>-->
+                <!--                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+                <!--                        <span aria-hidden="true">&times;</span>-->
+                <!--                    </button>-->
+                <!--                </div>-->
                 <div class="modal-body p-0">
                     <img src="{{ image.path }}" class="card-img-top" alt="{{ image.basename }}">
                 </div>
                 <div class="modal-footer">
                     <p class="card-text">{{ image.basename }}</p>
 
-<!--                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
-<!--                    <button type="button" class="btn btn-primary">Save changes</button>-->
+                    <!--                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+                    <!--                    <button type="button" class="btn btn-primary">Save changes</button>-->
                 </div>
             </div>
         </div>
