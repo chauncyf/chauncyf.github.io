@@ -1,9 +1,31 @@
 .card-columns {
-  max-width: 85%;
   margin: auto;
+  max-width: 85%;
 
   .card {
     border: none;
     border-radius: 0.85rem !important;
+  }
+
+  .card:hover {
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15) !important;
+  }
+}
+
+footer {
+  border-top: 1px solid #eaeaea;
+  color: #777;
+
+  a {
+    color: #777;
+
+    &:hover {
+      color: #222;
+    }
+  }
+
+  .row {
+    margin: auto;
+    max-width: 90%;
   }
 }

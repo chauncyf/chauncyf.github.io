@@ -7,13 +7,6 @@ title: Blog
 
 <div class="card-columns my-5">
     {% for post in site.posts %}
-    <div class="card mb-3 shadow">
-        <!--        <img src="..." class="card-img-top" alt="...">-->
-        <div class="card-body">
-            <h5 class="card-title"><a href="{{ post.url }}">{{ post.title }}</a></h5>
-            <p class="card-text">{{ post.excerpt }}</p>
-            <!--            <a href="#" class="btn btn-primary">Go somewhere</a>-->
-        </div>
-    </div>
+    {% include post_card.html %}
     {% endfor %}
 </div>
