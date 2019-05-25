@@ -25,18 +25,26 @@
   }
 }
 
-.carousel-caption {
-  top: 50%;
-  transform: translateY(-50%);
-  bottom: initial;
-
-  h1 {
-    position: absolute;
-    margin: 0;
-    left: 50%;
+.carousel {
+  img {
+    filter: brightness(80%);
+  }
+  .carousel-caption {
     top: 50%;
-    transform: translate(-50%, -50%);
+    transform: translateY(-50%);
+    bottom: initial;
 
+    h1 {
+      font-family: 'Roboto Slab', serif;
+      letter-spacing: 4px;
+      font-size: 3.5rem;
+
+      position: absolute;
+      margin: 0;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
   }
 }
 
