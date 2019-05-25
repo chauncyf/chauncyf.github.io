@@ -32,6 +32,10 @@ plugins:
 
 defaults:
   - scope:
+      path: "assets/img"
+    values:
+      image: true
+  - scope:
       path: ""
       type: "posts"
     values:

@@ -3,7 +3,7 @@
 - name: Photo
   link: /photo.html
 - name: Word
-  link: /blog.html
+  link: /word.html
 - name: Code
   link: /code.html
 #- name: About
