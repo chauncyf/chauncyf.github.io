@@ -7,8 +7,8 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             {% for item in site.data.nav %}
-            <li class="nav-item active">
-                <a class="nav-link" href="{{ item.link }}" {% if page.url == item.link %}active{% endif %}>{{ item.name }}</a>
+            <li class="nav-item {% if page.url == item.link %}active{% endif %}">
+                <a class="nav-link" href="{{ item.link }}">{{ item.name }}</a>
             </li>
             {% endfor %}
 <!--            <li class="nav-item active">-->

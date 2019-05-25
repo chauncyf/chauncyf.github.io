@@ -2,13 +2,26 @@
 layout: default
 title: Blog
 ---
-<h1>Latest Posts</h1>
+<!--<h1>Latest Posts</h1>-->
 
-<ul>
+<!--<ul>-->
+<!--    {% for post in site.posts %}-->
+<!--    <li>-->
+<!--        <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>-->
+<!--        <p>{{ post.excerpt }}</p>-->
+<!--    </li>-->
+<!--    {% endfor %}-->
+<!--</ul>-->
+
+<div class="card-columns my-5">
     {% for post in site.posts %}
-    <li>
-        <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
-        <p>{{ post.excerpt }}</p>
-    </li>
+    <div class="card mb-3 shadow">
+        <!--        <img src="..." class="card-img-top" alt="...">-->
+        <div class="card-body">
+            <h5 class="card-title"><a href="{{ post.url }}">{{ post.title }}</a></h5>
+            <p class="card-text">{{ post.excerpt }}</p>
+            <!--            <a href="#" class="btn btn-primary">Go somewhere</a>-->
+        </div>
+    </div>
     {% endfor %}
-</ul>
+</div>
