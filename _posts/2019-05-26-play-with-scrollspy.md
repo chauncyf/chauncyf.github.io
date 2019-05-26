@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Play With Scrollspy
+title: Play with Scrollspy
 date: 2019-05-26 04:12 -0400
 author: Chauncy
 category: 
@@ -26,3 +26,9 @@ bootstrap里面的提供的position只有fixed top, fixed bottom, sticky top。�
 最后还是万能的stack overflow救了我，[Make column fixed position in bootstrap](https://stackoverflow.com/a/33187655/10308485)  
 折腾这么久，没想到`sticky-top`其实就是我想要的效果...能不能好好取名了  
 `There are only two hard things in Computer Science` : )  
+
+<p><hide>
+关掉ide的那一瞬间  
+一阵空虚感袭来  
+我好想你  
+</hide></p>
