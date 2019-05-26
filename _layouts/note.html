@@ -1,8 +1,4 @@
 <!doctype html>
-<!-- -&#45;&#45;-->
-<!--layout: default-->
-<!-- -&#45;&#45;-->
-
 <html lang="en">
 <head>
     <!-- Required meta tags -->
@@ -26,21 +22,17 @@
 <body id="scrollspy" data-spy="scroll" data-target="#navbar-scroll">
 {% include nav.html %}
 
-<!--<div class="container">-->
 <div class="row">
-    <div class="col col-4">
+    <div class="col col-4 position-relative">
         <nav class="navbar navbar-light bg-light" id="navbar-scroll">
-            <!--                        <a class="navbar-brand" href="#">Navbar</a>-->
-            <nav class="nav nav-pills flex-column" id="navbar-pill">
-
-            </nav>
+            <a class="navbar-brand" href="#">{{ page.title }}</a>
+            <nav class="nav nav-pills flex-column" id="navbar-pill"></nav>
         </nav>
     </div>
     <div class="col-8">
         {{ content }}
     </div>
 </div>
-<!--    </div>-->
 
 {% include footer.html %}
 
@@ -55,69 +47,41 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-
 <script>
-    $(document).ready(function () {
-        $('#scrollspy').scrollspy({target: '#navbar-scroll'})
-    })
+    function generate_nav() {
+        let res = ``;
+        let preTag;
+        $("h2, h3").each(function () {
+            let curTag = $(this).prop("tagName");
 
-    // $('[data-spy="scroll"]').each(function () {
-    //     var $spy = $(this).scrollspy('refresh')
-    // })
-
-    let preTag;
-    let res = ``;
-    $("h2, h3").each(function () {
-        let curTag = $(this).prop("tagName");
-
-        if (curTag === 'H2') {
-            console.log('yess')
-            if (preTag === 'H3') {
-                res += `</nav> <a class=\"nav-link\" href=\"#${$(this).prop("id")}\">${$(this).text()}</a>`
-            } else {
-                res += `<a class=\"nav-link\" href=\"#${$(this).prop("id")}\">${$(this).text()}</a>`
+            if (curTag === 'H2') {
+                if (preTag === 'H3') {
+                    res += `</nav> <a class=\"nav-link\" href=\"#${$(this).prop("id")}\">${$(this).text()}</a>`
+                } else {
+                    res += `<a class=\"nav-link\" href=\"#${$(this).prop("id")}\">${$(this).text()}</a>`
+                }
             }
-        }
-        if (curTag === 'H3') {
-            if (preTag === 'H2') {
-                console.log('adddd')
-                res += `<nav class="nav nav-pills flex-column"> <a class=\"nav-link ml-3 my-1\" href=\"#${$(this).prop("id")}\">${$(this).text()}</a>`
-            } else {
-                res += `<a class=\"nav-link ml-3 my-1\" href=\"#${$(this).prop("id")}\">${$(this).text()}</a>`
+            if (curTag === 'H3') {
+                if (preTag === 'H2') {
+                    res += `<nav class="nav nav-pills flex-column"> <a class=\"nav-link ml-3 my-1\" href=\"#${$(this).prop("id")}\">${$(this).text()}</a>`
+                } else {
+                    res += `<a class=\"nav-link ml-3 my-1\" href=\"#${$(this).prop("id")}\">${$(this).text()}</a>`
+                }
             }
+            preTag = curTag;
+            // console.log($(this).prop("tagName"));
+            // console.log($(this).attr("id"));
+        });
+        if (preTag === 'H3') {
+            res += `</nav>`
         }
-        preTag = curTag;
-
-        // console.log($(this).prop("tagName"));
-        // console.log($(this).attr("id"));
-    });
-
-    if (preTag === 'H3') {
-        res += `</nav>`
+        $('#navbar-pill').append(res)
     }
-    $('#navbar-pill').append(res)
 
-
+    $(document).ready(function () {
+        generate_nav();
+        $('#scrollspy').scrollspy({target: '#navbar-scroll'})
+    });
 </script>
-
-<!--<nav class="nav nav-pills flex-column">-->
-<!--    <a class="nav-link" href="#item-1">Item 1</a>-->
-<!--    <nav class="nav nav-pills flex-column">-->
-<!--        <a class="nav-link ml-3 my-1" href="#item-1-1">Item 1-1</a>-->
-<!--        <a class="nav-link ml-3 my-1" href="#item-1-2">Item 1-2</a>-->
-<!--    </nav>-->
-<!--    <a class="nav-link" href="#item-2">Item 2</a>-->
-<!--    <a class="nav-link" href="#item-3">Item 3</a>-->
-<!--    <nav class="nav nav-pills flex-column">-->
-<!--        <a class="nav-link ml-3 my-1" href="#item-3-1">Item 3-1</a>-->
-<!--        <a class="nav-link ml-3 my-1" href="#item-3-2">Item 3-2</a>-->
-<!--    </nav>-->
-<!--</nav>-->
-
 </body>
 </html>
-
-<!--<div class="container">-->
-<!--    <h1>{{ page.title }}</h1>-->
-<!--    {{ content }}-->
-<!--</div>-->

@@ -69,10 +69,11 @@
 
 #scrollspy {
   position: relative;
+  align-items: stretch;
 }
 
 #navbar-scroll {
-  position: fixed;
+  //position: fixed;
 }
 
 footer {
