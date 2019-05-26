@@ -17,6 +17,22 @@
   }
 }
 
+.button-card {
+  //color: black !important;
+  text-decoration: none;
+
+  .card-text {
+    color: #212529;
+    p {
+      margin: 0;
+    }
+  }
+}
+
+.button-card:hover {
+  text-decoration: none !important;
+}
+
 .container {
   .card {
     border: none;

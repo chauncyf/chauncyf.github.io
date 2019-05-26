@@ -15,7 +15,8 @@ title: Code
     </div>
 </div>
 
-{% for note in site.notes %}
-<!--{% include post_card.html %}-->
-<p>{{ note }}</p>
-{% endfor %}
+<div class="card-columns my-5">
+    {% for post in site.notes %}
+    {% include post_card.html %}
+    {% endfor %}
+</div>

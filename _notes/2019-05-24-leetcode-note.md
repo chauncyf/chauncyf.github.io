@@ -1,5 +1,4 @@
 ---
-layout: note
 author: Chauncy
 categories: coding
 ---

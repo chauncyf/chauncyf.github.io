@@ -30,18 +30,22 @@ plugins:
   - jekyll-sitemap
   - jekyll-seo-tag
 
+collections:
+  notes:
+    output: true
+
 defaults:
   - scope:
       path: "assets/img"
     values:
       image: true
   - scope:
-      path: ""
+      path: "_posts"
       type: "posts"
     values:
       layout: "post"
   - scope:
-      path: ""
+      path: "_notes"
       type: "notes"
     values:
       layout: "note"
