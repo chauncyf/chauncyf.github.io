@@ -56,6 +56,18 @@ defaults:
     values:
       layout: "default"
 
+jekyll_compose:
+  draft_default_front_matter:
+    description:
+    image:
+    category:
+    tags:
+  post_default_front_matter:
+    author: Chauncy
+    category:
+    tags:
+    image:
+
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
 # to override the default setting.
