@@ -1,3 +1,4 @@
+
 .card-columns {
   margin: auto;
   max-width: 85%;
@@ -30,17 +31,25 @@
   }
 }
 
+
 .button-card:hover {
   text-decoration: none !important;
 }
 
 .container {
+  margin-top: 1.5rem;
+
   .card {
     border: none;
     border-radius: 0.85rem !important;
-    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15) !important;
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15);
+  }
+
+  .card-body {
+    padding: 2.5rem;
   }
 }
+
 
 .carousel {
   img {
@@ -90,6 +99,8 @@ hide {
 footer {
   border-top: 1px solid #eaeaea;
 
+  margin: 3rem 0 1rem;
+
   small {
     color: #959da5;
   }
@@ -106,4 +117,52 @@ footer {
     margin: auto;
     max-width: 90%;
   }
+}
+
+// Extra small devices (portrait phones, less than 576px)
+// No media query for `xs` since this is the default in Bootstrap
+
+// Small devices (landscape phones, 576px and up)
+@media (max-width: 576px) {
+  //.container {
+  //  margin-top: 0 !important;
+  //  padding-left: 0 !important;
+  //  padding-right: 0 !important;
+  //}
+  //.card {
+  //  box-shadow: none !important;
+  //}
+  //.card-body {
+  //  padding: 1.5rem 1.25rem !important;
+  //}
+  //
+  //footer {
+  //  margin: 0 !important;
+  //}
+}
+
+// Medium devices (tablets, 768px and up)
+@media (max-width: 768px) {
+  .container {
+    .card {
+      box-shadow: none !important;
+    }
+
+    .card-body {
+      padding: 0 !important;
+    }
+  }
+  footer {
+    margin: 1.5rem 0 0 !important;
+  }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+
 }
