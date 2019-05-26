@@ -23,6 +23,7 @@
 
   .card-text {
     color: #212529;
+
     p {
       margin: 0;
     }
@@ -63,6 +64,15 @@
       transform: translate(-50%, -50%);
     }
   }
+}
+
+
+#scrollspy {
+  position: relative;
+}
+
+#navbar-scroll {
+  position: fixed;
 }
 
 footer {

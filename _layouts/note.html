@@ -1,44 +1,158 @@
----
-layout: default
----
+<!doctype html>
+<!-- -&#45;&#45;-->
+<!--layout: default-->
+<!-- -&#45;&#45;-->
 
-<!--<nav id="navbar-example3" class="navbar navbar-light bg-light">-->
-<!--    <a class="navbar-brand" href="#">Navbar</a>-->
-<!--    <nav class="nav nav-pills flex-column">-->
-<!--        <a class="nav-link" href="#item-1">Item 1</a>-->
-<!--        <nav class="nav nav-pills flex-column">-->
-<!--            <a class="nav-link ml-3 my-1" href="#item-1-1">Item 1-1</a>-->
-<!--            <a class="nav-link ml-3 my-1" href="#item-1-2">Item 1-2</a>-->
-<!--        </nav>-->
-<!--        <a class="nav-link" href="#item-2">Item 2</a>-->
-<!--        <a class="nav-link" href="#item-3">Item 3</a>-->
-<!--        <nav class="nav nav-pills flex-column">-->
-<!--            <a class="nav-link ml-3 my-1" href="#item-3-1">Item 3-1</a>-->
-<!--            <a class="nav-link ml-3 my-1" href="#item-3-2">Item 3-2</a>-->
-<!--        </nav>-->
-<!--    </nav>-->
-<!--</nav>-->
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<!--<body style="position: relative">-->
-<!--<div data-spy="scroll" data-target="#navbar-example3" data-offset="0">-->
-<!--    <h4 id="item-1">Item 1</h4>-->
-<!--    <p>...</p>-->
-<!--    <h5 id="item-1-1">Item 1-1</h5>-->
-<!--    <p>...</p>-->
-<!--    <h5 id="item-1-2">Item 1-2</h5>-->
-<!--    <p>...</p>-->
-<!--    <h4 id="item-2">Item 2</h4>-->
-<!--    <p>...</p>-->
-<!--    <h4 id="item-3">Item 3</h4>-->
-<!--    <p>...</p>-->
-<!--    <h5 id="item-3-1">Item 3-1</h5>-->
-<!--    <p>...</p>-->
-<!--    <h5 id="item-3-2">Item 3-2</h5>-->
-<!--    <p>...</p>-->
-<!--</div>-->
-<!--</body>-->
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+          integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 
-<div class="container">
-    <h1>{{ page.title }}</h1>
-    <p>{{ content }}</p>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:100&display=swap" rel="stylesheet">
+
+    {% feed_meta %}
+    {% seo %}
+    <title>{{ page.title }}</title>
+</head>
+
+<body id="scrollspy" data-spy="scroll" data-target="#navbar-scroll">
+{% include nav.html %}
+
+<!--<div class="container">-->
+    <div class="row">
+        <div class="col col-2">
+            <nav class="navbar navbar-light bg-light" id="navbar-scroll">
+                <a class="navbar-brand" href="#">Navbar</a>
+                <nav class="nav nav-pills flex-column">
+                    <a class="nav-link" href="#item-1">Item 1</a>
+                    <nav class="nav nav-pills flex-column">
+                        <a class="nav-link ml-3 my-1" href="#item-1-1">Item 1-1</a>
+                        <a class="nav-link ml-3 my-1" href="#item-1-2">Item 1-2</a>
+                    </nav>
+                    <a class="nav-link" href="#item-2">Item 2</a>
+                    <a class="nav-link" href="#item-3">Item 3</a>
+                    <nav class="nav nav-pills flex-column">
+                        <a class="nav-link ml-3 my-1" href="#item-3-1">Item 3-1</a>
+                        <a class="nav-link ml-3 my-1" href="#item-3-2">Item 3-2</a>
+                    </nav>
+                </nav>
+            </nav>
+        </div>
+        <div class="col-4">
+            <div>
+                <h4 id="item-1">Item 1</h4>
+                <p>Given a string, find the length of the longest substring without repeating characters.</p>
+                <h5 id="item-1-1">Item 1-1</h5>
+                <p>Given a string, find the length of the longest substring without repeating characters.</p>
+                <h5 id="item-1-2">Item 1-2</h5>
+                <p>Given a string, find the length of the longest substring without repeating characters.
+
+                    Example 2:
+                    Input: "bbbbb"
+                    Output:
+                    Example 2:
+                    Input: "bbbbb"
+                    Output: 1
+                    Example 2:
+                    Input: "bbbbb"
+                    Output: 1
+                    Example 2:
+                    Input: "bbbbb"
+                    Output: 1
+                    Explanation: The answer is "b", with the length of 1.</p>
+                <h4 id="item-2">Item 2</h4>
+                <p>Given a string, find the length of the longest substring without repeating characters.
+
+                    Example 1:
+                    Example 2:
+                    Input: "bbbbb"
+                    Output: 1
+                    Example 2:
+                    Input: "bbbbb"
+                    Output: 1
+                    Input: "abcabcbb"
+                    Output: 3
+                </p>
+                <h4 id="item-3">Item 3</h4>
+                <p>Given a string, find the length of the longest substring without repeating characters.
+
+                    Example 2:
+                    Input: "bbbbb"
+                    Example 2:
+                    Input: "bbbbb"
+                    Output: 1
+                    Example 2:
+                    Input: "bbbbb"
+                    Output: 1
+                    Output: 1
+                    Explanation: The answer is "b", with the length of 1.</p>
+                <h5 id="item-3-1">Item 3-1</h5>
+                <p>Given a string, find the length of the longest substring without repeating characters.
+
+
+                    Example 2:
+                    Input: "bbbbb"
+                    Output: 1
+                    Example 2:
+                    Input: "bbbbb"
+                    Output: 1
+                    Example 2:
+                    Input: "bbbbb"
+                    Output: 1
+                    Explanation: The answer is "b", with the length of 1.</p>
+                <h5 id="item-3-2">Item 3-2</h5>
+                <p>Given a string, find the length of the longest substring without repeating characters.
+
+
+                    Example 2:
+                    Input: "bbbbb"
+                    Example 2:
+                    Input: "bbbbb"
+                    Output: 1
+                    Example 2:
+                    Input: "bbbbb"
+                    Output: 1
+                    Output: 1
+                    Explanation: The answer is "b", with the length of 1.</p>
+            </div>
+        </div>
+<!--    </div>-->
 </div>
+
+{% include footer.html %}
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#scrollspy').scrollspy({target: '#navbar-scroll'})
+    })
+
+    // $('body').scrollspy({target: '#navbar-scroll'})
+</script>
+</body>
+</html>
+
+
+<!--<div class="container">-->
+<!--    <h1>{{ page.title }}</h1>-->
+<!--    {{ content }}-->
+<!--</div>-->

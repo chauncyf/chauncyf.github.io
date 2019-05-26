@@ -3,10 +3,10 @@ author: Chauncy
 category: code
 ---
 
-# String
+## String
 
-## 3. Longest Substring Without Repeating Characters
-### Problem
+### 3. Longest Substring Without Repeating Characters
+#### Problem
 ```text
 Given a string, find the length of the longest substring without repeating characters.
 
@@ -26,7 +26,7 @@ Output: 3
 Explanation: The answer is "wke", with the length of 3. 
              Note that the answer must be a substring, "pwke" is a subsequence and not a substring.
 ```
-### Solution
+#### Solution
 Basic idea, use `sliding window` to slide through the whole string.   
 Used a low pointer to log where current window starts, and use a map to log where each letters appeared fot the last time.  
 
@@ -47,8 +47,8 @@ class Solution:
 ```
 
 
-## 5. Longest Palindromic Substring
-### Problem
+### 5. Longest Palindromic Substring
+#### Problem
 ```text
 Given a string s, find the longest palindromic substring in s. You may assume that the maximum length of s is 1000.
 
@@ -61,7 +61,7 @@ Example 2:
 Input: "cbbd"
 Output: "bb"
 ```
-### Solution
+#### Solution
 Since a palindrome mirrors around its center, and there are totally `2n - 1` such centers, we could expand around these centers to find the longest palindrome. `Time complexity: O(n^2)`  
 
 **Note**: use `//` in python for floor division.
@@ -86,8 +86,8 @@ class Solution:
 `TODO: DP, Manacher's Algorithm`
 
 
-## 7. Reverse Integer
-### Problem
+### 7. Reverse Integer
+#### Problem
 ```text
 Given a 32-bit signed integer, reverse digits of an integer.
 
@@ -106,7 +106,7 @@ Output: 21
 Note:
 Assume we are dealing with an environment which could only store integers within the 32-bit signed integer range: [−231,  231 − 1]. For the purpose of this problem, assume that your function returns 0 when the reversed integer overflows.
 ```
-### Solution
+#### Solution
 The most challenge part in this problem is not letting the result overflow, so the result has to be checked each time during calculation.
 ```java
 class Solution {
@@ -143,8 +143,8 @@ class Solution {
 ```
 
 
-## 9. Palindrome Number
-### Problem
+### 9. Palindrome Number
+#### Problem
 ```text
 Determine whether an integer is a palindrome. An integer is a palindrome when it reads the same backward as forward.
 
@@ -166,7 +166,7 @@ Follow up:
 
 Coud you solve it without converting the integer to a string?
 ```
-### Solution
+#### Solution
 My first thought, instead of convert it into string, it's to compare the first and last digit continuously.  
 The problem is, how could I know I've compared half of the digits?  
 Thanks to the official solution, they have a very similar approach by reverse the left half of the number, and when the right half is no longer larger than the right half, we know it is the end.
@@ -189,8 +189,8 @@ class Solution {
 ```
 
 
-## 20. Valid Parentheses
-### Problem
+### 20. Valid Parentheses
+#### Problem
 ```text
 Given a string containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
 
@@ -219,7 +219,7 @@ Example 5:
 Input: "{[]}"
 Output: true
 ```
-### Solution
+#### Solution
 ```java
 public class Solution {
     public boolean isValid(String s) {
@@ -242,10 +242,10 @@ public class Solution {
 ```
 
 
-# Array
+## Array
 
-## 15. 3Sum
-### Problem
+### 15. 3Sum
+#### Problem
 ```text
 Given an array nums of n integers, are there elements a, b, c in nums such that a + b + c = 0? Find all unique triplets in the array which gives the sum of zero.
 
@@ -261,7 +261,7 @@ A solution set is:
   [-1, -1, 2]
 ]
 ```
-### Solution
+#### Solution
 A very classical problem.  
 Basic idea is to sort the array and using `two pointer` to find the complementary two sum.  
 ```java
@@ -296,8 +296,8 @@ public class Solution {
 ```
 
 
-## 215. Kth Largest Element in an Array
-### Problem
+### 215. Kth Largest Element in an Array
+#### Problem
 ```text
 Find the kth largest element in an unsorted array. Note that it is the kth largest element in the sorted order, not the kth distinct element.
 
@@ -312,7 +312,7 @@ Output: 4
 Note: 
 You may assume k is always valid, 1 ≤ k ≤ array's length.
 ```
-### Solution
+#### Solution
 Naive approach, simply sort the array. Time complexity: `O(nlogn)`
 ```java
 class Solution {
@@ -347,10 +347,10 @@ class Solution:
 `TODO: Quickselect`
 
 
-# Tree
+## Tree
 
-## 94. Binary Tree Inorder Traversal
-### Problem
+### 94. Binary Tree Inorder Traversal
+#### Problem
 ```text
 Given a binary tree, return the inorder traversal of its nodes' values.
 
@@ -367,7 +367,7 @@ Output: [1,3,2]
 
 Follow up: Recursive solution is trivial, could you do it iteratively?
 ```
-### Solution
+#### Solution
 First start with the recursive approach.
 ```python
 # Definition for a binary tree node.
@@ -405,8 +405,8 @@ class Solution:
 ```
 
 
-## 144. Binary Tree Preorder Traversal
-### Problem
+### 144. Binary Tree Preorder Traversal
+#### Problem
 ```text
 Given a binary tree, return the preorder traversal of its nodes' values.
 
@@ -423,7 +423,7 @@ Output: [1,2,3]
 
 Follow up: Recursive solution is trivial, could you do it iteratively?
 ```
-### Solution
+#### Solution
 Again, start with the trivial recursive approach.
 ```python
 # Definition for a binary tree node.
@@ -461,8 +461,8 @@ class Solution:
 ```
 
 
-## 145. Binary Tree Postorder Traversal
-### Problem
+### 145. Binary Tree Postorder Traversal
+#### Problem
 ```text
 Given a binary tree, return the postorder traversal of its nodes' values.
 
@@ -479,7 +479,7 @@ Output: [3,2,1]
 
 Follow up: Recursive solution is trivial, could you do it iteratively?
 ```
-### Solution
+#### Solution
 Finally comes the postorder, let's straightforwardly go to the iterative approach.
 ```python
 # Definition for a binary tree node.
@@ -504,8 +504,8 @@ class Solution:
 ```
 
 
-## 235. Lowest Common Ancestor of a Binary Search Tree
-### Problem
+### 235. Lowest Common Ancestor of a Binary Search Tree
+#### Problem
 ```text
 Given a binary search tree (BST), find the lowest common ancestor (LCA) of two given nodes in the BST.
 
@@ -525,7 +525,7 @@ Input: root = [6,2,8,0,4,7,9,null,null,3,5], p = 2, q = 4
 Output: 2
 Explanation: The LCA of nodes 2 and 4 is 2, since a node can be a descendant of itself according to the LCA definition.
 ```
-### Solution
+#### Solution
 Since it's a BST, the LCA is the split point of the two nodes, we could easily find it with this property.  
 ```python
 # Definition for a binary tree node.
@@ -551,8 +551,8 @@ class Solution:
 ```
 
 
-## 236. Lowest Common Ancestor of a Binary Tree
-### Problem
+### 236. Lowest Common Ancestor of a Binary Tree
+#### Problem
 ```text
 Given a binary tree, find the lowest common ancestor (LCA) of two given nodes in the tree.
 
@@ -576,7 +576,7 @@ Note:
 All of the nodes' values will be unique.
 p and q are different and both values will exist in the binary tree.
 ```
-### Solution
+#### Solution
 Without the property of BST, we cannot easily find the LCA by a split point.  
 The idea here is to use a map to point each nodes to their parent nodes.   
 1. Iterate down through the root node until p and q was found, then we have all the ancestor nodes of p & q.   
