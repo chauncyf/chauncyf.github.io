@@ -9,7 +9,7 @@ layout: default
             <h5 class="card-subtitle text-center text-muted">{{ page.date | date: "%b %-d, %Y | %a, %I:%M %p" }}</h5>
             <!--            <h5 class="card-subtitle text-center text-muted">{{ page.tags }}</h5>-->
             <hr class="my-4">
-            <div class="card-text mb-4">{{ content }}</div>
+            <div class="card-text">{{ content }}</div>
             {% if page.previous %}
             <a href="{{ page.previous.url }}" class="btn btn-outline-secondary"><i class="fas fa-angle-left"></i> {{page.previous.title}}</a>
             {% endif %}
