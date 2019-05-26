@@ -27,105 +27,20 @@
 {% include nav.html %}
 
 <!--<div class="container">-->
-    <div class="row">
-        <div class="col col-2">
-            <nav class="navbar navbar-light bg-light" id="navbar-scroll">
-                <a class="navbar-brand" href="#">Navbar</a>
-                <nav class="nav nav-pills flex-column">
-                    <a class="nav-link" href="#item-1">Item 1</a>
-                    <nav class="nav nav-pills flex-column">
-                        <a class="nav-link ml-3 my-1" href="#item-1-1">Item 1-1</a>
-                        <a class="nav-link ml-3 my-1" href="#item-1-2">Item 1-2</a>
-                    </nav>
-                    <a class="nav-link" href="#item-2">Item 2</a>
-                    <a class="nav-link" href="#item-3">Item 3</a>
-                    <nav class="nav nav-pills flex-column">
-                        <a class="nav-link ml-3 my-1" href="#item-3-1">Item 3-1</a>
-                        <a class="nav-link ml-3 my-1" href="#item-3-2">Item 3-2</a>
-                    </nav>
-                </nav>
+<div class="row">
+    <div class="col col-4">
+        <nav class="navbar navbar-light bg-light" id="navbar-scroll">
+            <!--                        <a class="navbar-brand" href="#">Navbar</a>-->
+            <nav class="nav nav-pills flex-column" id="navbar-pill">
+
             </nav>
-        </div>
-        <div class="col-4">
-            <div>
-                <h4 id="item-1">Item 1</h4>
-                <p>Given a string, find the length of the longest substring without repeating characters.</p>
-                <h5 id="item-1-1">Item 1-1</h5>
-                <p>Given a string, find the length of the longest substring without repeating characters.</p>
-                <h5 id="item-1-2">Item 1-2</h5>
-                <p>Given a string, find the length of the longest substring without repeating characters.
-
-                    Example 2:
-                    Input: "bbbbb"
-                    Output:
-                    Example 2:
-                    Input: "bbbbb"
-                    Output: 1
-                    Example 2:
-                    Input: "bbbbb"
-                    Output: 1
-                    Example 2:
-                    Input: "bbbbb"
-                    Output: 1
-                    Explanation: The answer is "b", with the length of 1.</p>
-                <h4 id="item-2">Item 2</h4>
-                <p>Given a string, find the length of the longest substring without repeating characters.
-
-                    Example 1:
-                    Example 2:
-                    Input: "bbbbb"
-                    Output: 1
-                    Example 2:
-                    Input: "bbbbb"
-                    Output: 1
-                    Input: "abcabcbb"
-                    Output: 3
-                </p>
-                <h4 id="item-3">Item 3</h4>
-                <p>Given a string, find the length of the longest substring without repeating characters.
-
-                    Example 2:
-                    Input: "bbbbb"
-                    Example 2:
-                    Input: "bbbbb"
-                    Output: 1
-                    Example 2:
-                    Input: "bbbbb"
-                    Output: 1
-                    Output: 1
-                    Explanation: The answer is "b", with the length of 1.</p>
-                <h5 id="item-3-1">Item 3-1</h5>
-                <p>Given a string, find the length of the longest substring without repeating characters.
-
-
-                    Example 2:
-                    Input: "bbbbb"
-                    Output: 1
-                    Example 2:
-                    Input: "bbbbb"
-                    Output: 1
-                    Example 2:
-                    Input: "bbbbb"
-                    Output: 1
-                    Explanation: The answer is "b", with the length of 1.</p>
-                <h5 id="item-3-2">Item 3-2</h5>
-                <p>Given a string, find the length of the longest substring without repeating characters.
-
-
-                    Example 2:
-                    Input: "bbbbb"
-                    Example 2:
-                    Input: "bbbbb"
-                    Output: 1
-                    Example 2:
-                    Input: "bbbbb"
-                    Output: 1
-                    Output: 1
-                    Explanation: The answer is "b", with the length of 1.</p>
-            </div>
-        </div>
-<!--    </div>-->
+        </nav>
+    </div>
+    <div class="col-8">
+        {{ content }}
+    </div>
 </div>
+<!--    </div>-->
 
 {% include footer.html %}
 
@@ -146,11 +61,61 @@
         $('#scrollspy').scrollspy({target: '#navbar-scroll'})
     })
 
-    // $('body').scrollspy({target: '#navbar-scroll'})
+    // $('[data-spy="scroll"]').each(function () {
+    //     var $spy = $(this).scrollspy('refresh')
+    // })
+
+    let preTag;
+    let res = ``;
+    $("h2, h3").each(function () {
+        let curTag = $(this).prop("tagName");
+
+        if (curTag === 'H2') {
+            console.log('yess')
+            if (preTag === 'H3') {
+                res += `</nav> <a class=\"nav-link\" href=\"#${$(this).prop("id")}\">${$(this).text()}</a>`
+            } else {
+                res += `<a class=\"nav-link\" href=\"#${$(this).prop("id")}\">${$(this).text()}</a>`
+            }
+        }
+        if (curTag === 'H3') {
+            if (preTag === 'H2') {
+                console.log('adddd')
+                res += `<nav class="nav nav-pills flex-column"> <a class=\"nav-link ml-3 my-1\" href=\"#${$(this).prop("id")}\">${$(this).text()}</a>`
+            } else {
+                res += `<a class=\"nav-link ml-3 my-1\" href=\"#${$(this).prop("id")}\">${$(this).text()}</a>`
+            }
+        }
+        preTag = curTag;
+
+        // console.log($(this).prop("tagName"));
+        // console.log($(this).attr("id"));
+    });
+
+    if (preTag === 'H3') {
+        res += `</nav>`
+    }
+    $('#navbar-pill').append(res)
+
+
 </script>
+
+<!--<nav class="nav nav-pills flex-column">-->
+<!--    <a class="nav-link" href="#item-1">Item 1</a>-->
+<!--    <nav class="nav nav-pills flex-column">-->
+<!--        <a class="nav-link ml-3 my-1" href="#item-1-1">Item 1-1</a>-->
+<!--        <a class="nav-link ml-3 my-1" href="#item-1-2">Item 1-2</a>-->
+<!--    </nav>-->
+<!--    <a class="nav-link" href="#item-2">Item 2</a>-->
+<!--    <a class="nav-link" href="#item-3">Item 3</a>-->
+<!--    <nav class="nav nav-pills flex-column">-->
+<!--        <a class="nav-link ml-3 my-1" href="#item-3-1">Item 3-1</a>-->
+<!--        <a class="nav-link ml-3 my-1" href="#item-3-2">Item 3-2</a>-->
+<!--    </nav>-->
+<!--</nav>-->
+
 </body>
 </html>
-
 
 <!--<div class="container">-->
 <!--    <h1>{{ page.title }}</h1>-->
