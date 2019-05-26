@@ -21,16 +21,31 @@
 
 <body id="scrollspy" data-spy="scroll" data-target="#navbar-scroll">
 {% include nav.html %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-3">
+                <nav class="navbar navbar-light bg-light" id="navbar-scroll">
+                    <a class="navbar-brand" href="#">{{ page.title }}</a>
+                    <nav class="nav nav-pills flex-column" id="navbar-pill">
 
-<div class="row">
-    <div class="col col-4 position-relative">
-        <nav class="navbar navbar-light bg-light" id="navbar-scroll">
-            <a class="navbar-brand" href="#">{{ page.title }}</a>
-            <nav class="nav nav-pills flex-column" id="navbar-pill"></nav>
-        </nav>
-    </div>
-    <div class="col-8">
-        {{ content }}
+                        <!--                <a class="nav-link" href="#string">string</a>-->
+                        <!--                <nav class="nav nav-pills flex-column">-->
+                        <!--                    <a class="nav-link ml-3 my-1" href="#3-longest-substring-without-repeating-characters">3-longest-substring-without-repeating-characters</a>-->
+                        <!--                    <a class="nav-link ml-3 my-1" href="#5-longest-palindromic-substring">5-longest-palindromic-substring</a>-->
+                        <!--                    <a class="nav-link ml-3 my-1" href="#7-reverse-integer">7-reverse-integer</a>-->
+                        <!--                </nav>-->
+                        <!--                <a class="nav-link" href="#array">array</a>-->
+                        <!--                <nav class="nav nav-pills flex-column">-->
+                        <!--                    <a class="nav-link ml-3 my-1" href="#15-3sum">15-3sum</a>-->
+                        <!--                    <a class="nav-link ml-3 my-1" href="#215-kth-largest-element-in-an-array">215-kth-largest-element-in-an-array</a>-->
+                        <!--                </nav>-->
+
+                    </nav>
+                </nav>
+        </div>
+        <div class="col-9">
+                {{ content }}
+        </div>
     </div>
 </div>
 
@@ -49,39 +64,47 @@
         crossorigin="anonymous"></script>
 <script>
     function generate_nav() {
+        // console.log($(this).prop("tagName"));
+        // console.log($(this).attr("id"));
         let res = ``;
         let preTag;
+
         $("h2, h3").each(function () {
             let curTag = $(this).prop("tagName");
 
             if (curTag === 'H2') {
                 if (preTag === 'H3') {
-                    res += `</nav> <a class=\"nav-link\" href=\"#${$(this).prop("id")}\">${$(this).text()}</a>`
+                    res += `</nav> <a class=\"nav-link\" href=\"#${$(this).prop("id")}\">${$(this).text()}</a>`;
                 } else {
-                    res += `<a class=\"nav-link\" href=\"#${$(this).prop("id")}\">${$(this).text()}</a>`
+                    res += `<a class=\"nav-link\" href=\"#${$(this).prop("id")}\">${$(this).text()}</a>`;
                 }
             }
             if (curTag === 'H3') {
                 if (preTag === 'H2') {
-                    res += `<nav class="nav nav-pills flex-column"> <a class=\"nav-link ml-3 my-1\" href=\"#${$(this).prop("id")}\">${$(this).text()}</a>`
+                    res += `<nav class="nav nav-pills flex-column"> <a class=\"nav-link ml-3 my-1\" href=\"#${$(this).prop("id")}\">${$(this).text()}</a>`;
                 } else {
-                    res += `<a class=\"nav-link ml-3 my-1\" href=\"#${$(this).prop("id")}\">${$(this).text()}</a>`
+                    res += `<a class=\"nav-link ml-3 my-1\" href=\"#${$(this).prop("id")}\">${$(this).text()}</a>`;
                 }
             }
             preTag = curTag;
-            // console.log($(this).prop("tagName"));
-            // console.log($(this).attr("id"));
         });
+
         if (preTag === 'H3') {
-            res += `</nav>`
+            res += `</nav>`;
         }
-        $('#navbar-pill').append(res)
+
+        $('#navbar-pill').append(res);
     }
 
     $(document).ready(function () {
         generate_nav();
-        $('#scrollspy').scrollspy({target: '#navbar-scroll'})
+    }).ready(function () {
+        $('[data-spy="scroll"]').each(function () {
+            var $spy = $(this).scrollspy('refresh')
+        });
     });
+
+    $('#scrollspy').scrollspy({target: '#navbar-scroll'});
 </script>
 </body>
 </html>
