@@ -1,6 +1,6 @@
 ---
 author: Chauncy
-categories: coding
+category: code
 ---
 
 Note for Leetcode

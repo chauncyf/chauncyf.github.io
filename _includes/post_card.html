@@ -1,7 +1,7 @@
 <a class="card button-card mb-3 shadow-sm" href="{{ post.url }}">
     <div class="card-body">
         <h3 class="card-title">{{ post.title }}</h3>
-        <h6 class="card-subtitle text-muted mb-3">{{ post.date | date_to_string }}</h6>
+        <h6 class="card-subtitle text-muted mb-3">{{ post.date | date: "%a, %b %-d, %Y" }}</h6>
         <div class="card-text">{{ post.excerpt }}</div>
     </div>
 </a>

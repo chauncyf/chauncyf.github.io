@@ -1,6 +1,8 @@
 ---
+category: word
+tags: daily, words
 author: Chauncy
-categories: daily
+date: 2019-05-24 23:45:35 -0400
 ---
 
 Why am I building a blog that no one would look at?  
