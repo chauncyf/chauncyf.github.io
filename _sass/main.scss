@@ -106,8 +106,7 @@ hide {
 
 footer {
   border-top: 1px solid #eaeaea;
-
-  margin: 3rem 0 1rem;
+  margin: 2rem 0 0;
 
   small {
     color: #959da5;
@@ -123,7 +122,7 @@ footer {
 
   .row {
     margin: auto;
-    max-width: 90%;
+    //max-width: 90%;
   }
 }
 
@@ -163,9 +162,6 @@ footer {
     .card-body {
       padding: 0 !important;
     }
-  }
-  footer {
-    margin: 1.5rem 0 0 !important;
   }
 }
 
