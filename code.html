@@ -15,8 +15,10 @@ title: Code
     </div>
 </div>
 
-<div class="card-columns my-5">
-    {% for post in site.notes %}
-    {% include post_card.html %}
-    {% endfor %}
+<div class="container-fluid my-4">
+    <div class="card-columns">
+        {% for post in site.notes %}
+        {% include post_card.html %}
+        {% endfor %}
+    </div>
 </div>

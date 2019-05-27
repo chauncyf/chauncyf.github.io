@@ -15,41 +15,44 @@ title: Photo
     </div>
 </div>
 
-<div class="card-columns mt-4">
+<div class="container-fluid my-4">
+    <div class="card-columns">
 
-    {% assign images = site.static_files | where: "image", true | where_exp: "image", "image.basename != 'sanfrancisco'"
-    %}
-    {% for image in images %}
+        {% assign images = site.static_files | where: "image", true | where_exp: "image", "image.basename !=
+        'sanfrancisco'"
+        %}
+        {% for image in images %}
 
-    <div class="card shadow-sm" style="cursor: pointer" data-toggle="modal" data-target="#{{ image.basename }}">
-        <img src="{{ image.path }}" class="card-img-top" alt="{{ image.basename }}">
-        <div class="card-body">
-            <p class="card-text">{{ image.basename }}</p>
+        <div class="card shadow-sm" style="cursor: pointer" data-toggle="modal" data-target="#{{ image.basename }}">
+            <img src="{{ image.path }}" class="card-img-top" alt="{{ image.basename }}">
+            <div class="card-body">
+                <p class="card-text">{{ image.basename }}</p>
+            </div>
         </div>
-    </div>
 
-    <div class="modal fade" id="{{ image.basename }}" tabindex="-1" role="dialog"
-         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
-            <div class="modal-content">
-                <!--                <div class="modal-header">-->
-                <!--                    <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>-->
-                <!--                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
-                <!--                        <span aria-hidden="true">&times;</span>-->
-                <!--                    </button>-->
-                <!--                </div>-->
-                <div class="modal-body p-0">
-                    <img src="{{ image.path }}" class="card-img-top" alt="{{ image.basename }}">
-                </div>
-                <div class="modal-footer">
-                    <p class="card-text">{{ image.basename }}</p>
+        <div class="modal fade" id="{{ image.basename }}" tabindex="-1" role="dialog"
+             aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+                <div class="modal-content">
+                    <!--                <div class="modal-header">-->
+                    <!--                    <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>-->
+                    <!--                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+                    <!--                        <span aria-hidden="true">&times;</span>-->
+                    <!--                    </button>-->
+                    <!--                </div>-->
+                    <div class="modal-body p-0">
+                        <img src="{{ image.path }}" class="card-img-top" alt="{{ image.basename }}">
+                    </div>
+                    <div class="modal-footer">
+                        <p class="card-text">{{ image.basename }}</p>
 
-                    <!--                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
-                    <!--                    <button type="button" class="btn btn-primary">Save changes</button>-->
+                        <!--                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+                        <!--                    <button type="button" class="btn btn-primary">Save changes</button>-->
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    {% endfor %}
+        {% endfor %}
+    </div>
 </div>
