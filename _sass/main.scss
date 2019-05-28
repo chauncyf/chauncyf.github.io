@@ -5,8 +5,9 @@
 
   .card {
     img {
-      border-top-left-radius: 0.5rem !important;
-      border-top-right-radius: 0.5rem !important;
+      border-radius: 0.5rem;
+      //border-top-left-radius: 0.5rem !important;
+      //border-top-right-radius: 0.5rem !important;
     }
 
     border: none;
@@ -95,7 +96,7 @@
   }
 }
 
-hide {
+.hide, hide {
   color: transparent;
 
   &::selection {
