@@ -1,15 +1,8 @@
 
 .card-columns {
   margin: auto;
-  //max-width: 85%;
 
   .card {
-    img {
-      border-radius: 0.5rem;
-      //border-top-left-radius: 0.5rem !important;
-      //border-top-right-radius: 0.5rem !important;
-    }
-
     border: none;
     border-radius: 0.75rem !important;
     box-shadow: 0 .25rem .5rem rgba(0, 0, 0, .075) !important;
@@ -18,8 +11,20 @@
     &:hover {
       box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15) !important;
     }
+
+    & > img {
+      border-top-left-radius: 0.5rem;
+      border-top-right-radius: 0.5rem;
+    }
+
+    .card-text {
+      img, iframe {
+        border-radius: 0.5rem !important;
+      }
+    }
   }
 }
+
 
 @media (min-width: 576px) and (max-width: 992px) {
   .card-columns {

@@ -16,7 +16,7 @@ title: Photo
 </div>
 
 <div class="container-fluid my-4">
-    <div class="card-columns">
+    <div class="card-columns photo-gallery">
 
         {% assign images = site.static_files | where: "image", true | where_exp: "image", "image.basename !=
         'sanfrancisco'"
