@@ -13,14 +13,34 @@
     }
 
     & > img {
-      border-top-left-radius: 0.5rem;
-      border-top-right-radius: 0.5rem;
+      border-radius: 0.5rem !important;
+
+      //border-top-left-radius: 0.5rem;
+      //border-top-right-radius: 0.5rem;
     }
 
     .card-text {
       img, iframe {
         border-radius: 0.5rem !important;
       }
+    }
+
+    .card-img-overlay {
+      & > p {
+        height: 3rem;
+      }
+
+      overflow: auto;
+      height: auto;
+      opacity: 0;
+      color: white;
+      background-color: black;
+      transition: 0.5s ease;
+      border-radius: 0.5rem !important;
+    }
+
+    &:hover .card-img-overlay {
+      opacity: 0.7;
     }
   }
 }
