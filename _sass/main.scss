@@ -42,6 +42,26 @@
 }
 
 
+.modal-content {
+  border: none !important;
+
+  .card-img-overlay {
+    padding: 1rem 20px;
+    height: 3.5rem;
+    position: absolute;
+    bottom: 0;
+    top: auto;
+    opacity: 0;
+    color: white;
+    background-color: black;
+    transition: 0.5s ease;
+  }
+
+  &:hover .card-img-overlay {
+    opacity: 0.6;
+  }
+}
+
 @media (min-width: 576px) and (max-width: 992px) {
   .card-columns {
     column-count: 2 !important;
