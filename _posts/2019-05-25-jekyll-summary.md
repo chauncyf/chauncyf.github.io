@@ -8,15 +8,12 @@ tags:
 image:
 ---
 
-
-
-## Feeling of using Jekyll
-### Praises
+#### Praises
 - Well support for github pages, easy deployment.  
 - Markdown builtin, easy integration of code highlight. 
 - Structure is well designed, everything is well modularized.  
 
-### Complains
+#### Complains
 It's not convenient to create a new post.  
 
 There are no builtin command helping with generate a new post template. In order to have date and time information, I have to manually specific date, hour and minute in the front matter. I cannot believe it : ).  
