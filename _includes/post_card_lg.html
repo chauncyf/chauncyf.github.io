@@ -1,0 +1,8 @@
+<a class="card card-lg button-card w-100 mb-3" href="{{ post.url }}">
+    <div class="card-body">
+        <h3 class="card-title">{{ post.title }}</h3>
+        <h6 class="card-subtitle text-muted mb-3">{{ post.date | date: "%b %-d, %Y" }}</h6>
+<!--        <div class="card-text">{{ post.excerpt | strip_html | strip_newlines | truncate: 512 }}</div>-->
+        <div class="card-text">{{ post.content | truncate: 512 }}</div>
+    </div>
+</a>

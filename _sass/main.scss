@@ -56,6 +56,14 @@
       opacity: 0.6;
     }
   }
+
+  .card-lg {
+    min-width: 100%;
+  }
+}
+
+.single-column {
+  column-count: 1 !important;
 }
 
 
