@@ -6,5 +6,5 @@
   link: /word.html
 - name: Code
   link: /code.html
-#- name: About
-#  link: /about.html
+- name: About
+  link: /about.html
