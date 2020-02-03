@@ -4,7 +4,8 @@ title: Chauncy Fan
 about: <div class="row"><div class="col pr-2"><h5 class="card-subtitle text-right"><a href="mailto:fanc@brandeis.edu" style="color:#6c757d">fanc@brandeis.edu</a></h5></div><div class="col pl-2"><h5 class="card-subtitle"><a href="tel:339-215-9614" style="color:#6c757d">339-215-9614</a></h5></div></div><div class="row"><div class="col pr-2"><h5 class="card-subtitle text-right"><a href="https://www.linkedin.com/in/chenfengf/" style="color:#6c757d">linkedin.com/in/chenfengf</a></h5></div><div class="col pl-2"><h5 href="tel:339-215-9614" class="card-subtitle"><a href="https://github.com/chauncyf" style="color:#6c757d">github.com/chauncyf</a></h5></div></div>
 ---
 
-#### **EDUCATION**
+### **EDUCATION**
+{: .text-center .mt-4}
 
 ##### **Brandeis University**, Waltham, MA  
 {: .mb-0}
@@ -19,13 +20,16 @@ _**B.Eng. in Electronics and Communications Engineering**_, Sep. 2014 - Jun. 201
 _**Coursework**_: Database Technology, Android Development, Java Programming, Fundamentals of Programming (C)
 
 
-#### **SKILLS**
+### **SKILLS**
+{: .text-center .mt-4}
+
 - _**Languages**_: Java, Python, Ruby, JavaScript, HTML, CSS, SQL, MATLAB
 - _**Frameworks and Tools**_: Spring, Rails, Flask, React, Sinatra, Bootstrap, Ajax, jQuery, PostgreSQL, MongoDB, Redis,
 Elasticsearch, RabbitMQ, Scrapy, Maven, Docker, AWS, Heroku, Git
 
 
-#### **WORK EXPERIENCE**
+### **WORK EXPERIENCE**
+{: .text-center .mt-4}
 
 ##### **Brandeis University**, Waltham, MA
 {: .mb-0}
@@ -48,7 +52,8 @@ Java EE model to Spring model, changed container from JBoss to Tomcat, updated J
 - Followed Test Driven Development (TDD) with JUnit and Spring AOP during the agile development process
 
 
-#### **SELECTED COURSE PROJECTS**
+### **SELECTED COURSE PROJECTS**
+{: .text-center .mt-4}
 
 ##### **Nano Twitter Web Application**
 {: .mb-0}
