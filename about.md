@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Chauncy Fan
-about: <div class="row"><div class="col pr-2"><h5 class="card-subtitle text-right text-muted"><a href="mailto:fanc@brandeis.edu">fanc@brandeis.edu</a></h5></div><div class="col pl-2"><h5 href="tel:339-215-9614" class="card-subtitle text-muted"><a href="tel:339-215-9614">339-215-9614</a></h5></div></div><div class="row"><div class="col pr-2"><h5 class="card-subtitle text-right text-muted"><a href="https://www.linkedin.com/in/chenfengf/">linkedin.com/in/chenfengf</a></h5></div><div class="col pl-2"><h5 href="tel:339-215-9614" class="card-subtitle text-muted"><a href="https://github.com/chauncyf">github.com/chauncyf</a></h5></div></div>
+about: <div class="row"><div class="col pr-2"><h5 class="card-subtitle text-right"><a href="mailto:fanc@brandeis.edu" style="color:#6c757d">fanc@brandeis.edu</a></h5></div><div class="col pl-2"><h5 class="card-subtitle"><a href="tel:339-215-9614" style="color:#6c757d">339-215-9614</a></h5></div></div><div class="row"><div class="col pr-2"><h5 class="card-subtitle text-right"><a href="https://www.linkedin.com/in/chenfengf/" style="color:#6c757d">linkedin.com/in/chenfengf</a></h5></div><div class="col pl-2"><h5 href="tel:339-215-9614" class="card-subtitle"><a href="https://github.com/chauncyf" style="color:#6c757d">github.com/chauncyf</a></h5></div></div>
 ---
 
 #### **EDUCATION**
@@ -52,7 +52,7 @@ Java EE model to Spring model, changed container from JBoss to Tomcat, updated J
 
 ##### **Nano Twitter Web Application**
 {: .mb-0}
-_**Software Engineering for Scalability**_, Brandeis Spring 2019
+_**Software Engineering for Scalability**_, Spring 2019
 {: .mb-0}
 - Implemented a MVVM structured Twitter-like web application using Ruby, JavaScript, Sinatra, React, MobX,
 MongoDB, Redis, RabbitMQ, Docker, AWS
@@ -63,9 +63,9 @@ with Redis, implemented asynchronous work queues with RabbitMQ
 more than 9000 successful responses with average response time in 3000ms at 0% error rate during a one-minute test
 {: .mb-2}
 
-##### **Workout TeamUp Social Networking Application** 
+##### **Workout TeamUp Social Networking Application**
 {: .mb-0}
-_**Capstone Project**_, Brandeis Fall 2018
+_**Capstone Project**_, Fall 2018
 {: .mb-0}
 - Implemented a wellness targeted social networking application using Ruby, Rails, PostgreSQL, Bootstrap, Heroku
 - Developed Ajax based, responsive frontend with ERB (HTML&Ruby), JavaScript, jQuery, Bootstrap, Sass
