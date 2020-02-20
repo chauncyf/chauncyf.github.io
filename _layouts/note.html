@@ -26,13 +26,14 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-2">
-            <nav id="navbar-scroll" class="navbar navbar-light bg-light sticky-top">
+        <div class="col-md-2">
+            <nav id="navbar-scroll" class="navbar navbar-light bg-light sticky-top"
+                 style="overflow-x: auto; overflow-y: auto">
                 <a class="navbar-brand" href="#">{{ page.title }}</a>
                 <nav class="nav nav-pills flex-column" id="navbar-pill"></nav>
             </nav>
         </div>
-        <div class="col-10 note">
+        <div class="col-md-10 note">
             <div id="scrollspy" data-spy="scroll" data-target="#navbar-scroll">
                 {{ content }}
             </div>
