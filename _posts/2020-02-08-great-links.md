@@ -9,6 +9,7 @@ image:
 published: true
 ---
 
+Great links for software engineering
 
 ## Web
 - [MVC vs. MVVM: How a Website Communicates With Its Data Models](https://hackernoon.com/mvc-vs-mvvm-how-a-website-communicates-with-its-data-models-18553877bf7d)
@@ -16,6 +17,7 @@ published: true
 - [Distributed Monolith vs. Microservices Architecture: 4 Ways New Relic Can Tell You Which Is Which](https://blog.newrelic.com/engineering/distributed-monolith-vs-microservices/)
 - [Sharding & IDs at Instagram](https://instagram-engineering.com/sharding-ids-at-instagram-1cf5a71e5a5c)
 - [Design Patterns web based applications](https://stackoverflow.com/questions/3541077/design-patterns-web-based-applications/3542297#3542297)
+- [Cookies vs. LocalStorage: What’s the difference?](https://medium.com/swlh/cookies-vs-localstorage-whats-the-difference-d99f0eb09b44)
 
 
 ## Database

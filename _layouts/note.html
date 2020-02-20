@@ -21,26 +21,27 @@
     <title>{{ page.title }}</title>
 </head>
 
-<body id="scrollspy" data-spy="scroll" data-target="#navbar-scroll">
+<body>
 {% include nav.html %}
 
 <div class="container-fluid">
     <div class="row">
         <div class="col-2">
-            <nav class="navbar navbar-light bg-light sticky-top" id="navbar-scroll">
+            <nav id="navbar-scroll" class="navbar navbar-light bg-light sticky-top">
                 <a class="navbar-brand" href="#">{{ page.title }}</a>
                 <nav class="nav nav-pills flex-column" id="navbar-pill"></nav>
             </nav>
         </div>
         <div class="col-10 note">
-            {{ content }}
+            <div id="scrollspy" data-spy="scroll" data-target="#navbar-scroll">
+                {{ content }}
+            </div>
         </div>
     </div>
 </div>
 
 {% include footer.html %}
 
-<!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -51,6 +52,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+
 <script>
     function generate_nav() {
         // console.log($(this).prop("tagName"));
@@ -86,17 +88,10 @@
     }
 
     $(document).ready(function () {
-        // $('body').attr({'id': 'scrollspy', 'data-spy': 'scroll', 'data-target': '#navbar-scroll'});
         generate_nav();
     }).ready(function () {
-        $('[data-spy="scroll"]').each(function () {
-            var $spy = $(this).scrollspy('refresh')
-        });
+        $('body').scrollspy({target: '#navbar-scroll'});
     });
-
-</script>
-<script>
-    $('#scrollspy').scrollspy({target: '#navbar-scroll'});
 </script>
 </body>
 </html>

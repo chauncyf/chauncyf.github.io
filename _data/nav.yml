@@ -1,9 +1,10 @@
-- name: Home
-  link: /
-- name: Photo
-  link: /photo.html
+#- name: Home
+#  link: /
+
 - name: Word
   link: /word.html
+- name: Photo
+  link: /photo.html
 - name: Code
   link: /code.html
 - name: About

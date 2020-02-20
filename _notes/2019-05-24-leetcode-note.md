@@ -5,7 +5,7 @@ category: code
 
 ## String
 
-### 3. Longest Substring Without Repeating Characters
+### Longest Substring Without Repeating Characters - 3  
 #### Problem
 ```text
 Given a string, find the length of the longest substring without repeating characters.
@@ -47,7 +47,7 @@ class Solution:
 ```
 
 
-### 5. Longest Palindromic Substring
+### Longest Palindromic Substring - 5
 #### Problem
 ```text
 Given a string s, find the longest palindromic substring in s. You may assume that the maximum length of s is 1000.
@@ -86,7 +86,7 @@ class Solution:
 `TODO: DP, Manacher's Algorithm`
 
 
-### 7. Reverse Integer
+### Reverse Integer - 7
 #### Problem
 ```text
 Given a 32-bit signed integer, reverse digits of an integer.
@@ -143,7 +143,7 @@ class Solution {
 ```
 
 
-### 9. Palindrome Number
+### Palindrome Number - 9
 #### Problem
 ```text
 Determine whether an integer is a palindrome. An integer is a palindrome when it reads the same backward as forward.
@@ -189,7 +189,7 @@ class Solution {
 ```
 
 
-### 20. Valid Parentheses
+### Valid Parentheses - 20
 #### Problem
 ```text
 Given a string containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
@@ -244,7 +244,7 @@ public class Solution {
 
 ## Array
 
-### 15. 3Sum
+### Three Sum - 15
 #### Problem
 ```text
 Given an array nums of n integers, are there elements a, b, c in nums such that a + b + c = 0? Find all unique triplets in the array which gives the sum of zero.
@@ -296,7 +296,7 @@ public class Solution {
 ```
 
 
-### 215. Kth Largest Element in an Array
+### Kth Largest Element in an Array - 215
 #### Problem
 ```text
 Find the kth largest element in an unsorted array. Note that it is the kth largest element in the sorted order, not the kth distinct element.
@@ -346,7 +346,7 @@ class Solution:
 ```
 `TODO: Quickselect`
 
-### 973. K Closest Points to Origin
+### K Closest Points to Origin - 973
 #### Problem
 ```text
 We have a list of points on the plane.  Find the K closest points to the origin (0, 0).
@@ -515,7 +515,7 @@ java对不起
 
 ## Tree
 
-### 94. Binary Tree Inorder Traversal
+### Binary Tree Inorder Traversal - 94
 #### Problem
 ```text
 Given a binary tree, return the inorder traversal of its nodes' values.
@@ -571,7 +571,7 @@ class Solution:
 ```
 
 
-### 144. Binary Tree Preorder Traversal
+### Binary Tree Preorder Traversal - 144
 #### Problem
 ```text
 Given a binary tree, return the preorder traversal of its nodes' values.
@@ -627,7 +627,7 @@ class Solution:
 ```
 
 
-### 145. Binary Tree Postorder Traversal
+### Binary Tree Postorder Traversal - 145
 #### Problem
 ```text
 Given a binary tree, return the postorder traversal of its nodes' values.
@@ -670,7 +670,7 @@ class Solution:
 ```
 
 
-### 235. Lowest Common Ancestor of a Binary Search Tree
+### Lowest Common Ancestor of a Binary Search Tree - 235
 #### Problem
 ```text
 Given a binary search tree (BST), find the lowest common ancestor (LCA) of two given nodes in the BST.
@@ -717,7 +717,7 @@ class Solution:
 ```
 
 
-### 236. Lowest Common Ancestor of a Binary Tree
+### Lowest Common Ancestor of a Binary Tree - 236
 #### Problem
 ```text
 Given a binary tree, find the lowest common ancestor (LCA) of two given nodes in the tree.
