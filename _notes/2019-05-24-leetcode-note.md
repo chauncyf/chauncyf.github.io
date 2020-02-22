@@ -782,3 +782,309 @@ class Solution:
             q = parent[q]
         return None
 ```
+
+
+### Serialize and Deserialize Binary Tree - 297
+#### Problem
+```text
+Serialization is the process of converting a data structure or object into a
+sequence of bits so that it can be stored in a file or memory buffer, or
+transmitted across a network connection link to be reconstructed later in
+the same or another computer environment.
+
+Design an algorithm to serialize and deserialize a binary tree. There is no
+restriction on how your serialization/deserialization algorithm should work.
+You just need to ensure that a binary tree can be serialized to a string and
+this string can be deserialized to the original tree structure.
+
+Example: 
+You may serialize the following tree:
+
+⁠   1
+⁠  / \
+⁠ 2   3
+⁠    / \
+⁠   4   5
+
+as "[1,2,3,null,null,4,5]"
+
+Clarification: The above format is the same as how LeetCode serializes a
+binary tree. You do not necessarily need to follow this format, so please be
+creative and come up with different approaches yourself.
+
+Note: Do not use class member/global/static variables to store states. Your
+serialize and deserialize algorithms should be stateless.
+```
+#### Solution
+
+``` java
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+ 
+public class Codec {
+
+    // Encodes a tree to a single string.
+    public String serialize(TreeNode root) {
+        StringBuilder res = new StringBuilder();
+        seHelper(root, res);
+        res.deleteCharAt(res.length() - 1);
+        return res.toString();
+    }
+
+    private void seHelper(TreeNode root, StringBuilder res) {
+        if (root == null) {
+            res.append("null,");
+            return;
+        }
+        res.append(root.val).append(",");
+        seHelper(root.left, res);
+        seHelper(root.right, res);
+    }
+    
+    // Decodes your encoded data to tree.
+    public TreeNode deserialize(String data) {        
+        List<String> nodes = Arrays.asList(data.split(","));
+        Iterator<String> iter = nodes.iterator();         
+        return desHelper(iter);
+    }
+    
+    private TreeNode desHelper(Iterator<String> iter) {        
+        String cur = iter.next();
+        if (cur.equals("null")) return null;
+        TreeNode node = new TreeNode(Integer.valueOf(cur));
+        node.left = desHelper(iter);
+        node.right = desHelper(iter);
+        return node;
+    }
+} 
+```
+
+
+
+## LinkedList
+
+### Add Two Numbers - 2  
+#### Problem
+```text
+You are given two non-empty linked lists representing two non-negative
+integers. The digits are stored in reverse order and each of their nodes
+contain a single digit. Add the two numbers and return it as a linked list.
+
+You may assume the two numbers do not contain any leading zero, except the
+number 0 itself.
+
+Example:
+Input: (2 -> 4 -> 3) + (5 -> 6 -> 4)
+Output: 7 -> 0 -> 8
+Explanation: 342 + 465 = 807.
+```
+#### Solution
+``` java
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+ 
+class Solution {
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        ListNode res = new ListNode(0);
+        ListNode cur = res, cur1 = l1, cur2 = l2;
+        int payload = 0;
+        while (cur1 != null || cur2 != null) {
+            int sum = payload;
+            if (cur1 != null) {
+                sum += cur1.val;
+                cur1 = cur1.next;
+            }
+            if (cur2 != null) {
+                sum += cur2.val;
+                cur2 = cur2.next;
+            }
+            cur.next = new ListNode(sum % 10);
+            payload = sum / 10;
+            cur = cur.next;
+        }
+        if (payload != 0) {
+            cur.next = new ListNode(payload);
+        }
+        return res.next;
+    }
+}
+```
+
+
+## Sort
+
+### Merge Intervals - 56
+#### Problem
+```text
+Given a collection of intervals, merge all overlapping intervals.
+
+Example 1:
+Input: [[1,3],[2,6],[8,10],[15,18]]
+Output: [[1,6],[8,10],[15,18]]
+Explanation: Since intervals [1,3] and [2,6] overlaps, merge them into
+[1,6].
+
+Example 2:
+Input: [[1,4],[4,5]]
+Output: [[1,5]]
+Explanation: Intervals [1,4] and [4,5] are considered overlapping.
+
+NOTE: input types have been changed on April 15, 2019. Please reset to
+default code definition to get new method signature.
+```
+#### Solution
+```java
+class Solution {
+    public int[][] merge(int[][] intervals) {
+        Arrays.sort(intervals, (a, b) -> a[0] - b[0]);
+
+        List<Integer[]> res = new ArrayList<>();
+        int index = -1;
+        for (int[] interval : intervals) {
+            if (res.size() == 0 || res.get(index)[1] < interval[0]) {
+                res.add(new Integer[]{interval[0], interval[1]});
+                index++;
+            } else {
+                Integer[] tmp = res.get(index);
+                tmp[0] = Math.min(tmp[0], interval[0]);
+                tmp[1] = Math.max(tmp[1], interval[1]);
+                res.set(index, tmp);
+            }
+        }
+        
+        int[][] ans = new int[res.size()][2];
+        for (int i = 0; i < res.size(); i++) {
+            ans[i][0] = res.get(i)[0];
+            ans[i][1] = res.get(i)[1];
+        }
+        
+        return ans;
+    }
+}
+```
+
+### Meeting Rooms - 252
+#### Problem
+```text
+Given an array of meeting time intervals consisting of start and end times 
+[[s1,e1],[s2,e2],...] (si < ei), determine if a person could attend all meetings.
+
+Example 1:
+Input: [[0,30],[5,10],[15,20]]
+Output: false
+
+Example 2:
+Input: [[7,10],[2,4]]
+Output: true
+```
+#### Solution
+```java
+class Solution {
+    public boolean canAttendMeetings(int[][] intervals) {
+        Arrays.sort(intervals, (a, b) -> a[0] - b[0]);
+        for (int i = 1; i < intervals.length; i++) {
+            if (intervals[i][0] < intervals[i - 1][1]) return false;
+        }   
+        return true;
+    }
+}
+```
+
+### Meeting Rooms II - 253
+#### Problem
+```text
+Given an array of meeting time intervals consisting of start and end times [[s1,e1],[s2,e2],...] (si < ei), 
+find the minimum number of conference rooms required.
+
+Example 1:
+Input: [[0, 30],[5, 10],[15, 20]]
+Output: 2
+
+Example 2:
+Input: [[7,10],[2,4]]
+Output: 1
+```
+#### Solution
+```java
+class Solution {
+    public int minMeetingRooms(int[][] intervals) {
+        if (intervals.length == 0) return 0;
+        
+        Arrays.sort(intervals, (a, b) -> a[0] - b[0]);        
+        PriorityQueue<Integer[]> minQ = new PriorityQueue<>((a, b) -> a[1] - b[1]);
+        
+        for (int[] i : intervals) {
+            // if current interval's start time > smallest end time in the minQ, we know that we can use that room
+            // otherwise, we need a new room
+            if (!minQ.isEmpty() && i[0] >= minQ.peek()[1]) minQ.poll();
+            minQ.offer(new Integer[]{i[0], i[1]});
+        }
+        
+        return minQ.size();
+    }
+}
+```
+
+## Backtrack
+
+### Generate Parentheses - 22
+#### Problem
+```text
+Given n pairs of parentheses, write a function to generate all combinations
+of well-formed parentheses.
+
+For example, given n = 3, a solution set is:
+[
+⁠ "((()))",
+⁠ "(()())",
+⁠ "(())()",
+⁠ "()(())",
+⁠ "()()()"
+]
+```
+#### Solution
+```java
+class Solution {
+    /* runtime / space : O(4^n / sqrt(n)) */
+    public List<String> generateParenthesis(int n) {
+        List<String> res = new ArrayList<>();
+        helper(res, n, 0, new StringBuilder());
+        return res;
+    }
+    
+    private void helper(List<String> list, int r, int l, StringBuilder str) {
+        if (r == 0 && l == 0) {
+            list.add(str.toString());
+            return;
+        }
+        if (r > 0) {
+            helper(list, r - 1, l + 1, str.append("("));
+            str.deleteCharAt(str.length() - 1);
+        }
+        if (l > 0) {
+            helper(list, r, l - 1, str.append(")"));
+            str.deleteCharAt(str.length() - 1);
+        }
+    }
+}
+```
+
+
+## BFS / DFS
+
+## Dynamic Programming
+
+## Design
