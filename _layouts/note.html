@@ -29,7 +29,7 @@
         <div class="col-md-2">
             <nav id="navbar-scroll" class="navbar navbar-light bg-light sticky-top"
                  style="overflow-x: auto; overflow-y: auto">
-                <a class="navbar-brand" href="#">{{ page.title }}</a>
+                <a class="navbar-brand mr-5" href="#">{{ page.title }}</a>
                 <nav class="nav nav-pills flex-column" id="navbar-pill"></nav>
             </nav>
         </div>
@@ -60,28 +60,35 @@
         // console.log($(this).attr("id"));
         let res = ``;
         let preTag;
+        let first = true;
 
         $("h2, h3").each(function () {
-            let curTag = $(this).prop("tagName");
+            let curTag = $(this);
 
-            if (curTag === 'H2') {
-                if (preTag === 'H3') {
-                    res += `</nav> <a class=\"nav-link\" href=\"#${$(this).prop("id")}\">${$(this).text()}</a>`;
-                } else {
-                    res += `<a class=\"nav-link\" href=\"#${$(this).prop("id")}\">${$(this).text()}</a>`;
+            if (curTag.prop("tagName") === 'H2') {
+                if (preTag && preTag.prop("tagName") === 'H3') {
+                    res += `</nav></div> `;
                 }
+                res += `<button class="btn btn-outline-secondary btn-block text-left my-1" data-target="#${$(this).prop("id")}-collapse" data-toggle="collapse">> ${$(this).text()}</button>`;
+
             }
-            if (curTag === 'H3') {
-                if (preTag === 'H2') {
-                    res += `<nav class="nav nav-pills flex-column"> <a class=\"nav-link ml-3 my-1\" href=\"#${$(this).prop("id")}\">${$(this).text()}</a>`;
-                } else {
-                    res += `<a class=\"nav-link ml-3 my-1\" href=\"#${$(this).prop("id")}\">${$(this).text()}</a>`;
+            if (curTag.prop("tagName") === 'H3') {
+                if (preTag && preTag.prop("tagName") === 'H2') {
+                    if (first) {
+                        res += `<div class="collapse show" id="${preTag.prop("id")}-collapse"><nav class="nav nav-pills flex-column"> `;
+                        first = false;
+                    } else {
+                        res += `<div class="collapse" id="${preTag.prop("id")}-collapse"><nav class="nav nav-pills flex-column"> `;
+                    }
+
                 }
+                res += `<a class="nav-link  ml-3 my-1" href="#${$(this).prop("id")}">${$(this).text()}</a>`;
+
             }
             preTag = curTag;
         });
 
-        if (preTag === 'H3') {
+        if (preTag && preTag.prop("tagName") === 'H3') {
             res += `</nav>`;
         }
 

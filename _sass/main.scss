@@ -150,8 +150,22 @@
   }
 }
 
-#scrollspy {
-  position: relative;
+
+.nav-pills {
+  a {
+    color: #6c757d;
+
+    &:hover {
+      color: #494f54;
+    }
+  }
+
+  .nav-link.active {
+    background-color: #6c757d!important;
+    a{
+      color: white!important;
+    }
+  }
 }
 
 .note {
