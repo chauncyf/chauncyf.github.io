@@ -3,6 +3,8 @@ author: Chauncy
 category: code
 ---
 
+# Leetcode Note
+
 ## String
 
 ### Longest Substring Without Repeating Characters - 3  

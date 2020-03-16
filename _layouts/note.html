@@ -1,6 +1,11 @@
 <!doctype html>
 <html lang="en">
 <head>
+    <title>{{ page.title }}</title>
+    <link rel="shortcut icon" type="image/png" href="/assets/favicon.png">
+    {% feed_meta %}
+    {% seo %}
+
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -15,10 +20,12 @@
     <link href="https://fonts.googleapis.com/css?family=Libre+Barcode+128+Text&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:100&display=swap" rel="stylesheet">
 
-    <link rel="shortcut icon" type="image/png" href="/assets/favicon.png">
-    {% feed_meta %}
-    {% seo %}
-    <title>{{ page.title }}</title>
+    <style>
+        h1 {margin: 1.5rem 0 1.25rem 0;}
+        h2 {font-size: 1.75rem;}
+        h3 {font-size: 1.5rem; margin: 1.25rem 0 0.75rem 0;}
+        h4 {font-size: 1.25rem;}
+    </style>
 </head>
 
 <body>
@@ -34,7 +41,7 @@
             </nav>
         </div>
         <div class="col-md-10 note">
-            <div id="scrollspy" data-spy="scroll" data-target="#navbar-scroll">
+            <div class="container-fluid" id="scrollspy" data-spy="scroll" data-target="#navbar-scroll">
                 {{ content }}
             </div>
         </div>
