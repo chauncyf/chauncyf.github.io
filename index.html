@@ -20,7 +20,9 @@ title: Chauncy's Space
     <div class="card-columns">
 
         {% for post in site.posts %}
+        {% if post.category != "note" and post.category != "private" %}
         {% include post_card.html %}
+        {% endif %}
         {% endfor %}
 
         {% assign images = site.static_files | where: "image", true | where_exp: "image", "image.basename !=

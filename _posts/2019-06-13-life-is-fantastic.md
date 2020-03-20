@@ -3,10 +3,10 @@ layout: post
 title: Life is Fantastic
 date: 2019-06-13 21:20 -0400
 author: Chauncy
-category: 
-tags: 
+category: private
+tags: a
 image: 
-published: false
+published: true
 ---
 
 今天不开心没有关系  

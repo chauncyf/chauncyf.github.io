@@ -11,12 +11,34 @@ layout: default
             {{ page.about }}
             <hr class="my-4">
             <div class="card-text">{{ content }}</div>
-            {% if page.previous %}
-            <a href="{{ page.previous.url }}" class="btn btn-outline-secondary"><i class="fas fa-angle-left"></i> {{page.previous.title}}</a>
-            {% endif %}
-            {% if page.next %}
-            <a href="{{ page.next.url }}" class="btn btn-outline-secondary float-right">{{page.next.title}} <i class="fas fa-angle-right"></i></a>
-            {% endif %}
+
+            <p class="text-right text-muted">
+                <small>Updated: {{ page.last_modified_at | date: "%b %-d, %Y | %a, %I:%M %p" }}</small>
+            </p>
+
+            {% assign prev = page.previous %}
+            {% for i in (1..site.posts.size) %}
+                {% if prev == nil %}
+                    {% break %}
+                {% elsif prev.category == "note" or prev.category == "private" %}
+                    {% assign prev = prev.previous %}
+                {% else %}
+                    <a href="{{ prev.url }}" class="btn btn-outline-secondary"><i class="fas fa-angle-left"></i> {{prev.title}}</a>
+                    {% break %}
+                {% endif %}
+            {% endfor %}
+
+            {% assign next = page.next %}
+            {% for i in (1..site.posts.size) %}
+                {% if next == nil %}
+                    {% break %}
+                {% elsif next.category == "note" or next.category == "private" %}
+                    {% assign next = next.next %}
+                {% else %}
+                    <a href="{{ next.url }}" class="btn btn-outline-secondary float-right">{{next.title}} <i class="fas fa-angle-right"></i></a>
+                    {% break %}
+                {% endif %}
+            {% endfor %}
         </div>
     </div>
 </div>

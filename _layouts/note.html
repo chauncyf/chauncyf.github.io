@@ -42,6 +42,7 @@
         </div>
         <div class="col-md-10 note">
             <div class="container-fluid" id="scrollspy" data-spy="scroll" data-target="#navbar-scroll">
+                <small class="badge badge-secondary float-right">Updated: {{ page.last_modified_at | date: "%b %-d, %Y | %a, %I:%M %p" }}</small>
                 {{ content }}
             </div>
         </div>

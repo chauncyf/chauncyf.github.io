@@ -1,6 +1,8 @@
 ---
+layout: note
 author: Chauncy
-category: code
+category: note
+published: true
 ---
 
 # Leetcode Note

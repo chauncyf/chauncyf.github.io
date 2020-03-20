@@ -9,7 +9,6 @@ title: Word
             <img src="assets/DSC03916C.jpg" class="d-block w-100" alt="{{ image.basename }}">
             <div class="carousel-caption">
                 <h1>Word</h1>
-                <!--                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>-->
             </div>
         </div>
     </div>
@@ -18,7 +17,9 @@ title: Word
 <div class="container-fluid my-4">
     <div class="card-columns">
         {% for post in site.posts %}
+        {% if post.category == "word" or post.category == "code" %}
         {% include post_card.html %}
+        {% endif %}
         {% endfor %}
     </div>
 </div>

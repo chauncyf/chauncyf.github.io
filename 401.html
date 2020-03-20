@@ -1,14 +1,14 @@
 ---
 layout: default
-title: Code
+title: Private
 ---
 
 <div class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">
         <div class="carousel-item align-middle align-items-center active">
-            <img src="assets/DSC02213C.jpg" class="d-block w-100" alt="{{ image.basename }}">
+            <img src="assets/DSC03616C.jpg" class="d-block w-100" alt="{{ image.basename }}">
             <div class="carousel-caption">
-                <h1>Code</h1>
+                <h1>Private</h1>
             </div>
         </div>
     </div>
@@ -16,8 +16,8 @@ title: Code
 
 <div class="container-fluid my-4">
     <div class="card-columns">
-        {% for post in site.categories.code %}
-        {% include post_card.html %}
+        {% for post in site.categories.private %}
+            {% include post_card.html %}
         {% endfor %}
     </div>
 </div>

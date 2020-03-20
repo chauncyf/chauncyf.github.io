@@ -36,7 +36,8 @@ Elasticsearch, RabbitMQ, Scrapy, Maven, Docker, AWS, Heroku, Git
 _**Teaching Assistant**_, Jan. 2020 - Present
 {: .mb-0}
 
-- Grading, partnering with 3 project teams (team of 4) in Capstone Project for Software Engineering (COSI 166B, graduate level)
+- Holding office hours and grading for Capstone Project for Software Engineering (COSI 166B, graduate-level)
+- Partnering with 3 project teams (team of 4), holding weekly-meetings to keep track and overcome roadblocks
 {: .mb-2}
 
 ##### **MatrixCare, Inc.**, Bloomington, MN  

@@ -3,7 +3,7 @@ layout: post
 title: Jekyll Summary
 date: 2019-05-25 22:43 -0400
 author: Chauncy
-category: word
+category: code
 tags:
 image:
 ---

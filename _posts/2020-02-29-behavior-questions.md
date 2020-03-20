@@ -1,7 +1,8 @@
 ---
+layout: note
 author: Chauncy
-category: code
-published: false
+category: private
+published: true
 ---
 
 # Behavior Questions
@@ -52,11 +53,11 @@ I’m currently a Master’s student in Computer Science at Brandeis University,
 
 For example, *Capstone Project for Software Engineering*, which told me how to build a complete product from stratch, like database schema design, backend server implement, and frontend design, etc. By the way, I'm the Teaching Assistant for this coures right now.
 
-Of course this is not enough for a good software engineer, so I took another course called *Software Engineering for Scalability*. This course focuses on the scalability problem in software engineering, and tought me how to improve a product to make it able to support millions of users. I learned a lot from this course, like database partitioning, like using Redis to cache frequently queried data and avoid unnecessary database access, also like using RabbitMQ to implement an asynchronized work queue to do some resourse intensive job.
+Of course this is not enough for a good software engineer, so I've taken another course called *Software Engineering for Scalability*. This course focuses on the scalability problem in software engineering, and tought me how to improve a product to make it able to support millions of users. I learned a lot from this course, like database partitioning, like using Redis to cache frequently queried data and avoid unnecessary database access, also like using RabbitMQ to implement an asynchronized work queue to do some resourse intensive job.
 
 Before that, I worked for MatrixCare as a Software Engineer Intern and I worked on a major release of an Electronic Health Record software. During the internship, I helped refactored the application architecture from Java EE model to Spring model, which inculdes code change, JDK update, and bugs fix.
 
-Now that I’m finishing my Master’s degree, I’d love to focus on software engineering and the opportunity to work for Amazom AWS. 
+Now that I’m finishing my Master’s degree, I’d love to focus on software engineering and discover the opportunity to work for Amazom AWS. 
 
 ### Tell me about your internship
 Last summer, I had an internship in MatrixCare, which is a company that provides one stop software solution in the seniors living market, like Electronic Health Record.
@@ -64,9 +65,21 @@ Last summer, I had an internship in MatrixCare, which is a company that provides
 As a Software Engineer Intern, I worked in a special team that directly led by our architect. The goal of our team was to update the architecture of company's flagship software. So I helped refactured the architecture from Java EE model to Spring model, changed application container from JBoss to Tomcat, also updated JDK from 7 to 12.
 
 **Challenge**  
+Because the most important task was to refactor the old stack to a new stack, and the old stack was used like more than 10 years ago, so of course I dont really understand them.
+
+In order to do the work, I have to read a lot of documents of the old stack first, and when I dont understant or I cannot find a doc, I will go to my manager to collegues for help.
+
+The refactor went pretty well, I helped updated several important stuff like database management service as well.
+
 `TODO`
 
+## Why xxx
+### Amazon
+Because I know Amazon is a top internet retailing company with a strong focus on customer experience. And there are a lot of talented people in amazon creating amazing products to make people’s life easier. 
 
+Actually I have a roomate work at amazon, and he always showes a strong ownership to his projects and he always wants to make things perfect. This really touches my heart and reminds me of the time when I was working on the Workout TeampUp social networking applicaiton, I spent days and nights to polish the UI simply because I want to give a perfect user experience.
+
+I believe I have similar spirits with Amazon, that one of the biggest reason why I want to join Amazon.
 
 ## Deadline / Time management
 ### What if you can’t make the deadline  
@@ -77,13 +90,30 @@ When I realized that the deadline was fast approaching, I explained the situatio
 Finally I met the second deadline, and I learned that I need to be honest with myself about the workload I can handle. I also learned that when accepting assignments, I need to include extra time to ensure even there is a roadblock, I can still meet the deadline.
 
 ### Handle multiple task at same time
-we have regular work, also meetings and daily stand up meeting. 
+During my internship at Matrixcare, since we are wollowing the agile development process, we have bi-weekly sprint to list tasks that we have to do in the following 2 weeks. So for myself, I have a TODO list to list all tasks assigned to me from most important to least important, and finish them one by one. Beside the TOOD list, I also uses a calendar app to help me scheduled, because there are meetings, appointments, etc. in the daily work. So that I will never miss an important event. 
 
-Agile development, we have bi-weekly sprint. And there are several tasks with different story point to indicate the difficulty or importance of a task. 
 
-So what I did was to have a todo list of what I have to do next, and have everything in the calendar map, 
+## Mistake
+### Netagive feedback from teammate
+- Tell me about a time when you were wrong
+  
+When I was working on the Workout TeamUp project with other two teammates, one of the teammates complained to me that I was always working alone and didn't paying enough attention to the team. 
 
-`TODO`
+This happened because it's a course project, it's new to all of us, and I have to learn how to do it. I enjoy the process to solve problems by myself, because I found it satisfying, so I rarely discuss with my teammates about any obstacles. 
+
+After the teammate's complain, I realized that I have to make more communication with the team. so we decide to have daily short meetings to talk about any roadblocks, and share experiences with each other. 
+
+It's only a short meeting, but we found that it clearly improved the whole team's efficiency.
+
+
+
+`updating logging framework, go back and forth`
+
+I'm passionate about learing new stuff, but maybe I'm too passionate and sometime this lead to trouble
+
+### Cannot make the commitment
+**Ref to deadline**
+
 
 ##  Ownership
 > Leaders are owners. They think long term and don’t sacrifice long-term value for short-term results. They act on behalf of the entire company, beyond just their own team. They never say “that’s not my job."
@@ -126,12 +156,6 @@ I emailed him the second day to see if he was still having trouble with it, and 
 `TODO` fix the front end 
 
 During my internship at MatrixCare, I was given a task to fix a front-end bug caused by the update of container. 
-
-
-### Tell me about a time when you were wrong.
-***ref to tight deadline***
-
-
 
 
 ## Hire and Develop the Best

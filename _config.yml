@@ -31,6 +31,7 @@ plugins:
   - jekyll-feed
   - jekyll-sitemap
   - jekyll-seo-tag
+  - jekyll-last-modified-at
 
 collections:
   notes:
@@ -46,11 +47,11 @@ defaults:
       type: "posts"
     values:
       layout: "post"
-  - scope:
-      path: "_notes"
-      type: "notes"
-    values:
-      layout: "note"
+  # - scope:
+  #     path: "_note"
+  #     type: "notes"
+  #   values:
+  #     layout: "note"
   - scope:
       path: ""
     values:
@@ -63,6 +64,7 @@ jekyll_compose:
     category:
     tags:
   post_default_front_matter:
+    layout: post
     author: Chauncy
     category:
     tags:

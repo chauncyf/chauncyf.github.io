@@ -3,10 +3,10 @@ layout: post
 title: TripAdvisor VO
 date: 2019-10-23 14:35 -0400
 author: Chauncy
-category: 
+category: private
 tags: 
 image: 
-published: false
+published: true
 ---
 
 `Why R U Soooo Nervous`
