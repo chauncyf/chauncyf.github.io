@@ -4,7 +4,7 @@ title: Life is Fantastic
 date: 2019-06-13 21:20 -0400
 author: Chauncy
 category: private
-tags: a
+tags: 
 image: 
 published: true
 ---

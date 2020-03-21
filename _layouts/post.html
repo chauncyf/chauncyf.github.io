@@ -12,9 +12,11 @@ layout: default
             <hr class="my-4">
             <div class="card-text">{{ content }}</div>
 
+            {% if page.last_modified_at %}
             <p class="text-right text-muted">
                 <small>Updated: {{ page.last_modified_at | date: "%b %-d, %Y | %a, %I:%M %p" }}</small>
             </p>
+            {% endif %}
 
             {% assign prev = page.previous %}
             {% for i in (1..site.posts.size) %}
