@@ -37,6 +37,7 @@
             <nav id="navbar-scroll" class="navbar navbar-light bg-light sticky-top d-block overflow-auto"
                  style="height: 100vh;">
                 <a class="navbar-brand" href="#">{{ page.title }}</a>
+                <button class="btn" onclick="collapse_all()"><i class="fas fa-ellipsis-v"></i></button>
                 <nav class="nav nav-pills flex-column w-100" id="navbar-pill"></nav>
             </nav>
         </div>
@@ -67,8 +68,6 @@
 
 <script>
     function generate_nav() {
-        // console.log($(this).prop("tagName"));
-        // console.log($(this).attr("id"));
         let res = ``;
         let preTag;
         let first = true;
@@ -82,10 +81,19 @@
                     res += `</nav>`;
                 }
 
-                res += `
-                        <a class="btn-collapse" data-target="#${$(this).prop("id")}-collapse" data-toggle="collapse"><i class="fas fa-angle-right"></i></a>
-                        <a class="nav-link" href="#${$(this).prop("id")}">${$(this).text()}</a>
-                        `;
+                // <a class="btn-collapse" data-target="#${$(this).prop("id")}-collapse" data-toggle="collapse"
+                //             onclick="collapse()">
+                //             <i class="fas fa-angle-right"></i>
+                //         </a>
+
+
+                // data-target="#${$(this).prop("id")}-collapse" data-toggle="collapse"
+                res += `<a class="btn-collapse" id="collapse-btn-${$(this).prop("id")}"
+                        
+                        onclick="collapse('${$(this).prop("id")}')">
+                            <i class="fas fa-angle-down"></i>
+                        </a>
+                        <a class="nav-link" href="#${$(this).prop("id")}">${$(this).text()}</a>`;
 
                 // res += `<div class="row">
                 //             <div class="col-auto p-0">
@@ -99,14 +107,16 @@
             }
             if (curTag.prop("tagName") === 'H3') {
                 if (preTag && preTag.prop("tagName") === 'H2') {
-                    if (first) {
-                        // res += `<div class="collapse show" id="${preTag.prop("id")}-collapse"><nav class="nav nav-pills flex-column"> `;
-                        res += `<nav class="nav nav-pills flex-column collapse show" id="${preTag.prop("id")}-collapse"> `;
-                        first = false;
-                    } else {
-                        // res += `<div class="collapse" id="${preTag.prop("id")}-collapse"><nav class="nav nav-pills flex-column"> `;
-                        res += `<nav class="nav nav-pills flex-column collapse" id="${preTag.prop("id")}-collapse"> `;
-                    }
+                    res += `<nav class="nav nav-pills flex-column collapse show" id="collapse-body-${preTag.prop("id")}"> `;
+
+                    // if (first) {
+                    //     // res += `<div class="collapse show" id="${preTag.prop("id")}-collapse"><nav class="nav nav-pills flex-column"> `;
+                    //     res += `<nav class="nav nav-pills flex-column collapse show" id="${preTag.prop("id")}-collapse"> `;
+                    //     first = false;
+                    // } else {
+                    //     // res += `<div class="collapse" id="${preTag.prop("id")}-collapse"><nav class="nav nav-pills flex-column"> `;
+                    //     res += `<nav class="nav nav-pills flex-column collapse" id="${preTag.prop("id")}-collapse"> `;
+                    // }
 
                 }
                 res += `<a class="nav-link ml-3 my-1" href="#${$(this).prop("id")}">${$(this).text()}</a>`;
@@ -127,6 +137,28 @@
     }).ready(function () {
         $('body').scrollspy({target: '#navbar-scroll'});
     });
+</script>
+<script>
+    function collapse(id) {
+        $(`#collapse-body-${id}`).toggle();
+
+        if ($(`#collapse-body-${id}`).css('display') == 'none') {
+            $(`#collapse-btn-${id}`).html(`<i class="fas fa-angle-right"></i>`);
+        } else {
+            $(`#collapse-btn-${id}`).html(`<i class="fas fa-angle-down"></i>`);
+        }
+
+        // $(`#${id}-collapse`).on('show.bs.collapse', function () {
+        //     $(`#${id}-collapse-btn`).html(`<i class="fas fa-angle-down"></i>`);
+        // }).on('hide.bs.collapse', function () {
+        //     $(`#${id}-collapse-btn`).html(`<i class="fas fa-angle-right"></i>`);
+        // });
+    }
+
+    function collapse_all() {
+        $('.collapse').toggle();
+        console.log($("[id^='collapse-body-']"))
+    }
 </script>
 </body>
 </html>
