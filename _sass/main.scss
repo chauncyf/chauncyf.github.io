@@ -159,19 +159,21 @@
     padding: 8px 0 8px 0;
   }
 
-  a {
-    color: #6c757d;
-
-    &:hover {
-      color: #494f54;
-    }
+  .nav-link, .show>.nav-link {
+    color: #6c757d !important;
+    background-color: transparent !important;
   }
 
   .nav-link.active {
-    background-color: #6c757d!important;
-    a{
-      color: white!important;
-    }
+    color: #fff !important;
+    background-color: #6c757d  !important;
+  }
+
+  .btn-collapse {
+    width:8px; 
+    height: 16px;
+    transform: translate(4px, 24px);
+    cursor: pointer;
   }
 }
 
@@ -210,7 +212,6 @@ footer {
 
   .row {
     margin: auto;
-    //max-width: 90%;
   }
 }
 
