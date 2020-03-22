@@ -33,7 +33,7 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-2">
+        <div class="col-md-2 pl-0">
             <nav id="navbar-scroll" class="navbar navbar-light bg-light sticky-top d-block overflow-auto"
                  style="height: 100vh;">
                 <a class="navbar-brand" href="#">{{ page.title }}</a>
@@ -42,7 +42,7 @@
             </nav>
         </div>
         <div class="col-md-10 note">
-            <div class="container-fluid" id="scrollspy" data-spy="scroll" data-target="#navbar-scroll">
+            <div id="scrollspy" data-spy="scroll" data-target="#navbar-scroll">
                 {% if page.last_modified_at %}
                 <small class="badge badge-secondary float-right">Updated: {{ page.last_modified_at | date: "%b %-d, %Y | %a, %I:%M %p" }}</small>
                 {% endif %}

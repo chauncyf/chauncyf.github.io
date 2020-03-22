@@ -87,6 +87,22 @@
   }
 }
 
+.modal-pic {
+  max-width: 95vw !important;
+  
+  .modal-content {
+    width: fit-content;
+    margin: auto;
+  }
+
+  .img-fluid {
+    max-width: 95vw;
+    max-height: 90vh;
+    width: auto;
+    height: auto;
+  }
+}
+
 @media (min-width: 576px) and (max-width: 992px) {
   .card-columns {
     column-count: 2 !important;
