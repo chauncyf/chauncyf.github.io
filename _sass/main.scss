@@ -16,6 +16,10 @@
   }
 }
 
+#navbar-scroll {
+  font-size: 0.9rem;
+}
+
 .card-columns {
   margin: auto;
 
@@ -85,6 +89,10 @@
   &:hover .card-img-overlay {
     opacity: 0.6;
   }
+}
+
+.modal-backdrop.show {
+    opacity:0.8 !important;
 }
 
 .modal-pic {

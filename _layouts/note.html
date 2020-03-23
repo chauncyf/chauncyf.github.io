@@ -37,7 +37,7 @@
             <nav id="navbar-scroll" class="navbar navbar-light bg-light sticky-top d-block overflow-auto"
                  style="height: 100vh;">
                 <a class="navbar-brand" href="#">{{ page.title }}</a>
-                <button class="btn " id="collapse-btn" onclick="collapse_all()"><i class="fas fa-angle-down"></i></button>
+                <button class="btn" id="collapse-btn" onclick="collapse_all()"><i class="fas fa-angle-down"></i></button>
                 <nav class="nav nav-pills flex-column w-100" id="navbar-pill"></nav>
             </nav>
         </div>
@@ -95,7 +95,7 @@
                 //         </a>
                         // <a class="nav-link" href="#${$(this).prop("id")}">${$(this).text()}</a>`;
 
-                res += `<a class="nav-link" href="#${$(this).prop("id")}">${$(this).text()}</a>`;
+                res += `<a class="nav-link mb-1" href="#${$(this).prop("id")}">${$(this).text()}</a>`;
 
                 // res += `<div class="row">
                 //             <div class="col-auto p-0">
@@ -121,7 +121,7 @@
                     // }
 
                 }
-                res += `<a class="nav-link ml-3 my-1" href="#${$(this).prop("id")}">${$(this).text()}</a>`;
+                res += `<a class="nav-link ml-3 mb-1" href="#${$(this).prop("id")}">${$(this).text()}</a>`;
 
             }
             preTag = curTag;
