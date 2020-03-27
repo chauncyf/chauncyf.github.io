@@ -1400,22 +1400,24 @@ class Solution {
     /* runtime / space : O(4^n / sqrt(n)) */
     public List<String> generateParenthesis(int n) {
         List<String> res = new ArrayList<>();
-        helper(res, n, 0, new StringBuilder());
+        helper(n, 0, new StringBuilder(), res);
         return res;
     }
     
-    private void helper(List<String> list, int r, int l, StringBuilder str) {
-        if (r == 0 && l == 0) {
-            list.add(str.toString());
+    private void helper(int l, int r, StringBuilder cur, List<String> res) {
+        if (l == 0 && r == 0) {
+            res.add(cur.toString());
             return;
         }
-        if (r > 0) {
-            helper(list, r - 1, l + 1, str.append("("));
-            str.deleteCharAt(str.length() - 1);
-        }
         if (l > 0) {
-            helper(list, r, l - 1, str.append(")"));
-            str.deleteCharAt(str.length() - 1);
+            cur.append("(");
+            helper(l - 1, r + 1, cur, res);
+            cur.deleteCharAt(cur.length() - 1);
+        }
+        if (r > 0) {
+            cur.append(")");
+            helper(l, r - 1, cur, res);
+            cur.deleteCharAt(cur.length() - 1);
         }
     }
 }
@@ -1555,39 +1557,95 @@ Output:
 #### Solition
 ```java
 class Solution {
-    List<List<Integer>> res = new ArrayList<>();
-    
     public List<List<Integer>> permute(int[] nums) {
-        helper(nums, 0);
+        List<List<Integer>> res = new ArrayList<>();
+        helper(nums, 0, res);
         return res;
     }
     
-    private void helper(int[] nums, int idx) {
-        if (idx == nums.length) {
-            List<Integer> perm = new ArrayList<>();
+    private void helper(int[] nums, int idx, List<List<Integer>> res) {
+        if (idx == nums.length - 1) {
+            List<Integer> cur = new ArrayList<>();
             for (int i : nums) {
-                perm.add(i);
+                cur.add(i);
             }
-            res.add(perm);
+            res.add(cur);            
             return;
         }
+        
         for (int i = idx; i < nums.length; i++) {
             swap(nums, idx, i);
-            helper(nums, idx + 1);
+            helper(nums, idx + 1, res);  // <-- idx
             swap(nums, idx, i);
         }
     }
     
-    private void swap(int[] arr, int i, int j) {
-        int tmp = arr[i];
-        arr[i] = arr[j];
-        arr[j] = tmp;
+    private void swap(int[] nums, int i, int j) {
+        int tmp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = tmp;
+    }
+}
+```
+
+### Permutations II - 47
+#### Problem
+```text
+Given a collection of numbers that might contain duplicates, return all
+possible unique permutations.
+
+Example:
+
+Input: [1,1,2]
+Output:
+[
+⁠ [1,1,2],
+⁠ [1,2,1],
+⁠ [2,1,1]
+]
+```
+#### Solution
+Only need to make sure that the same element will not be permuted twice
+```java
+class Solution {
+    public List<List<Integer>> permuteUnique(int[] nums) {
+        List<List<Integer>> res = new ArrayList<>();
+        helper(nums, 0, res);
+        return res;
+    }
+    
+    private void helper(int[] nums, int idx, List<List<Integer>> res) {
+        if (idx == nums.length - 1) {
+            List<Integer> cur = new ArrayList<>();
+            for (int i : nums) {
+                cur.add(i);
+            }
+            res.add(cur);            
+            return;
+        }
+        
+        Set<Integer> visited = new HashSet<>();  // <--
+        
+        for (int i = idx; i < nums.length; i++) {
+            if (visited.contains(nums[i])) continue;  // <--
+            visited.add(nums[i]);
+            
+            swap(nums, idx, i);
+            helper(nums, idx + 1, res);
+            swap(nums, idx, i);
+        }
+    }
+    
+    private void swap(int[] nums, int i, int j) {
+        int tmp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = tmp;
     }
 }
 ```
 
 ### Subsets - 78
-#### Problems
+#### Problem
 ```text
 Given a set of distinct integers, nums, return all possible subsets 
 (the power set).
@@ -1633,7 +1691,7 @@ class Solution {
 Alternative way for the helper method, can easily be optmized for follow up (with duplicate element)
 ```java
     private void helper(int[] nums, int idx, List<Integer> cur, List<List<Integer>> res) {
-        if (idx <= nums.length) {
+        if (idx <= nums.length) {  <--
             res.add(new ArrayList<>(cur));
         }
         
@@ -2504,3 +2562,193 @@ class Solution {
 
 
 ## Design
+
+### LRU Cache - 146
+#### Problem
+```text
+Design and implement a data structure for Least Recently Used (LRU) cache.
+It should support the following operations: get and put.
+
+get(key) - Get the value (will always be positive) of the key if the key
+exists in the cache, otherwise return -1.
+put(key, value) - Set or insert the value if the key is not already present.
+When the cache reached its capacity, it should invalidate the least recently
+used item before inserting a new item.
+
+The cache is initialized with a positive capacity.
+
+Follow up:
+Could you do both operations in O(1) time complexity?
+
+Example:
+LRUCache cache = new LRUCache(2);  // capacity
+
+cache.put(1, 1);
+cache.put(2, 2);
+cache.get(1);       // returns 1
+cache.put(3, 3);    // evicts key 2
+cache.get(2);       // returns -1 (not found)
+cache.put(4, 4);    // evicts key 1
+cache.get(1);       // returns -1 (not found)
+cache.get(3);       // returns 3
+cache.get(4);       // returns 4
+```
+#### Solution
+```java
+/**
+ * Your LRUCache object will be instantiated and called as such:
+ * LRUCache obj = new LRUCache(capacity);
+ * int param_1 = obj.get(key);
+ * obj.put(key,value);
+ */
+class LRUCache {
+
+    class Node {
+        Integer key;
+        Integer val;
+        Node prev;
+        Node next;
+        
+        public Node(Integer key, Integer val) {
+            this.key = key;
+            this.val = val;
+        }
+        
+        public Node() {
+            this(null, null);
+        }
+    }
+
+    private Map<Integer, Node> map;
+    private Node head, tail;
+    private int capacity;
+
+    public LRUCache(int capacity) {
+        this.map = new HashMap<>();
+        this.capacity = capacity;
+        
+        this.head = new Node();
+        this.tail = new Node();
+        this.head.next = this.tail;
+        this.tail.prev = this.head;
+    }
+    
+    public int get(int key) {
+        if (map.containsKey(key)) {
+            Node node = map.get(key);
+            moveToHead(node);
+            return node.val;
+        }
+        return -1;
+    }
+    
+    public void put(int key, int value) {
+        if (map.containsKey(key)) {
+            Node node = map.get(key);
+            node.val = value;
+            map.put(key, node);
+            moveToHead(node);
+        } else {
+            Node node = new Node(key, value);
+            map.put(key, node);
+            addToHead(node);
+            
+            if (map.size() > capacity) {
+                Node rm = tail.prev;
+                map.remove(rm.key);
+                remove(rm);
+            }
+        }
+    }
+
+    private void addToHead(Node node) {
+        node.prev = head;
+        node.next = head.next;
+        head.next = node;
+        node.next.prev = node;
+    }
+    
+    private void remove(Node node) {
+        node.prev.next = node.next;
+        node.next.prev = node.prev;
+        node.prev = null;
+        node.next = null;
+    }
+    
+    private void moveToHead(Node node) {
+        remove(node);
+        addToHead(node);
+    }
+}
+```
+
+### Min Stack - 155
+#### Problem
+```text
+Design a stack that supports push, pop, top, and retrieving the minimum
+element in constant time.
+
+push(x) -- Push element x onto stack.
+pop() -- Removes the element on top of the stack.
+top() -- Get the top element.
+getMin() -- Retrieve the minimum element in the stack.
+
+Example:
+MinStack minStack = new MinStack();
+minStack.push(-2);
+minStack.push(0);
+minStack.push(-3);
+minStack.getMin();   --> Returns -3.
+minStack.pop();
+minStack.top();      --> Returns 0.
+minStack.getMin();   --> Returns -2.
+```
+#### Solution
+```java
+/**
+ * Your MinStack object will be instantiated and called as such:
+ * MinStack obj = new MinStack();
+ * obj.push(x);
+ * obj.pop();
+ * int param_3 = obj.top();
+ * int param_4 = obj.getMin();
+ */
+class MinStack {
+    private Stack<Integer> stack;
+    private Integer min;
+        
+    /** initialize your data structure here. */
+    public MinStack() {
+        stack = new Stack<>();
+        min = null;
+    }
+    
+    public void push(int x) {
+        if (min == null || x <= min) {
+            stack.push(min);
+            min = x;
+        }
+        stack.push(x);
+    }
+    
+    public void pop() {
+        int val = stack.pop();
+        if (val == min) {
+            min = stack.pop();
+        }
+
+        //why this way will get wrong result
+        // if (stack.pop() == min) {
+            // min = stack.pop();
+        // }
+    }
+    
+    public int top() {
+        return stack.peek();
+    }
+    
+    public int getMin() {
+        return min;
+    }
+}
+```
