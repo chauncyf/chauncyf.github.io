@@ -20,6 +20,17 @@
   font-size: 0.9rem;
 }
 
+.row-center {
+  height: 80vh;
+
+  .jumbotron {
+    background-color: transparent !important;
+    border-radius: 1.5rem !important;
+    box-shadow: 0 1rem 3rem rgba(0,0,0,.175)!important;
+    margin-bottom: 0 !important;
+  }
+}
+
 .card-columns {
   margin: auto;
 

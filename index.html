@@ -1,55 +1,53 @@
----
-layout: default
-title: Chauncy's Space
----
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Chauncy Fan</title>
+    <link rel="shortcut icon" type="image/png" href="/assets/favicon.png">
 
-<!--<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">-->
-<!--    <div class="carousel-inner">-->
-<!--        <div class="carousel-item align-middle align-items-center active">-->
-<!--            <img src="assets/DSC01881P.jpg" class="d-block w-100" alt="{{ image.basename }}">-->
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<!--            <div class="carousel-caption">-->
-<!--                <h1>Welcome</h1>-->
-<!--                &lt;!&ndash;                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>&ndash;&gt;-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+          integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+</head>
 
-<div class="container-fluid my-4" data-spy="scroll" data-target="#list-example" data-offset="0">
-    <div class="card-columns">
+<body>
 
-        {% for post in site.posts %}
-        {% if post.category != "note" and post.category != "private" %}
-        {% include post_card.html %}
-        {% endif %}
-        {% endfor %}
-
-        {% assign images = site.static_files | where: "image", true | where_exp: "image", "image.basename !=
-        'sanfrancisco'" %}
-        {% for image in images limit:10 %}
-
-        <div class="card mb-3 shadow-sm" style="cursor: pointer" data-toggle="modal"
-             data-target="#{{ image.basename }}">
-            <img src="{{ image.path }}" class="card-img" alt="{{ image.basename }}">
-            <div class="card-img-overlay">
-                <p class="card-text">{{ image.basename }}</p>
+<div class="container" >
+    <div class="row align-items-center row-center">
+        <div class="col">
+            <div class="jumbotron text-center">
+                <h1 class="display-5 mb-4">Hello, I'm Chauncy Fan.</h1>
+                <p class="lead">I'm a Master's student in Computer Science and a Full Stack Developer living in Boston.</p>
+                <hr class="my-4">
+                <p>Why not get in touch?</p>
+                <a class="btn btn-outline-secondary" href="https://github.com/chauncyf" role="button"><i
+                        class="fab fa-github"></i> GitHub</a>
+                <a class="btn btn-outline-secondary" href="https://www.linkedin.com/in/chenfengf/" role="button"><i
+                        class="fab fa-linkedin-in"></i> LinkedIn</a>
+                <a class="btn btn-outline-secondary" href="https://www.instagram.com/chauncyfff/" role="button"><i
+                        class="fab fa-instagram"></i> Instagram</a>
+                <a class="btn btn-outline-secondary" href="https://chauncyf.github.io//word.html" role="button"><i
+                        class="fas fa-blog"></i> Blog</a>
             </div>
         </div>
-
-        <div class="modal fade" id="{{ image.basename }}" tabindex="-1" role="dialog"
-             aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
-                <div class="modal-content">
-                    <div class="modal-body p-0">
-                        <img src="{{ image.path }}" class="img-fluid" alt="{{ image.basename }}">
-                        <div class="card-img-overlay">
-                            <p class="card-text">{{ image.basename }}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        {% endfor %}
     </div>
 </div>
+
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+</html>
