@@ -2239,6 +2239,84 @@ class Solution {
 }
 ```
 
+### Number of Closed Islands - 1254
+DFS
+{: .badge .badge-secondary}
+#### Problem
+```text
+Given a 2D grid consists of 0s (land) and 1s (water). 
+An island is a maximal 4-directionally connected group of 0s 
+and a closed island is an island totally (all left, top, right, bottom)
+surrounded by 1s.
+
+Return the number of closed islands.
+
+Example 1:
+Input: grid = [
+    [1,1,1,1,1,1,1,0],
+    [1,0,0,0,0,1,1,0],
+    [1,0,1,0,1,1,1,0],
+    [1,0,0,0,0,1,0,1],
+    [1,1,1,1,1,1,1,0]
+    ]
+Output: 2
+Explanation: 
+Islands in gray are closed because they are completely 
+surrounded by water (group of 1s).
+
+Example 2:
+Input: grid = [
+    [0,0,1,0,0],
+    [0,1,0,1,0],
+    [0,1,1,1,0]
+    ]
+Output: 1
+
+Example 3:
+Input: grid = [
+    [1,1,1,1,1,1,1],
+    [1,0,0,0,0,0,1],
+    [1,0,1,1,1,0,1],
+    [1,0,1,0,1,0,1],
+    [1,0,1,1,1,0,1],
+    [1,0,0,0,0,0,1],
+    [1,1,1,1,1,1,1]
+    ]
+Output: 2
+ 
+Constraints:
+1 <= grid.length, grid[0].length <= 100
+0 <= grid[i][j] <=1
+```
+#### Solution
+Exclude connected group of 0s on the corners because they are not closed island.  
+Return number of connected component of 0s on the grid.
+```java
+class Solution {
+    public int closedIsland(int[][] grid) {
+        int res = 0;
+        for (int r = 0; r < grid.length; r++) {
+            for (int c = 0; c < grid[0].length; c++) {
+                if (grid[r][c] == 0 && isClose(grid, r, c)) {
+                    res++;
+                }
+            }
+        }
+        return res;
+    }
+    
+    private boolean isClose(int[][] grid, int r, int c) {
+        if (r < 0 || r >= grid.length || c < 0 || c >= grid[0].length) return false;
+        if (grid[r][c] == 1) return true;
+        grid[r][c] = 1;
+        // & instead of && !!!
+        // "&" will evaluate both side even the left part is false
+        // "&&" will ignore the right part if the left part is false
+        return isClose(grid, r + 1, c) & isClose(grid, r - 1, c) & isClose(grid, r, c + 1) & isClose(grid, r, c - 1);
+    }
+}
+```
+
 
 ### Course Schedule - 207
 Topological Sort
@@ -2749,6 +2827,50 @@ class MinStack {
     
     public int getMin() {
         return min;
+    }
+}
+```
+
+
+## Bit Manipulation
+### Single Number - 136
+#### Problem
+```text
+Given a non-empty array of integers, every element appears twice except for
+one. Find that single one.
+
+Note:
+Your algorithm should have a linear runtime complexity. Could you implement
+it without using extra memory?
+
+Example 1:
+Input: [2,2,1]
+Output: 1
+
+Example 2:
+Input: [4,1,2,1,2]
+Output: 4
+```
+#### Solution
+Use bitwise XOR to solve this problem
+
+`0 ^ N = N`  
+`N ^ N = 0`
+
+So..... if N is the single number
+
+N1 ^ N1 ^ N2 ^ N2 ^..............^ Nx ^ Nx ^ N  
+= (N1^N1) ^ (N2^N2) ^..............^ (Nx^Nx) ^ N  
+= 0 ^ 0 ^ ..........^ 0 ^ N  
+= N  
+```java
+class Solution {
+    public int singleNumber(int[] nums) {
+        int res = 0;
+        for (int i : nums) {
+            res ^= i;
+        }
+        return res;
     }
 }
 ```
