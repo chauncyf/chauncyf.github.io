@@ -1,35 +1,25 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <title>{{ page.title }}</title>
-    <link rel="shortcut icon" type="image/png" href="/assets/favicon.png">
-    {% feed_meta %}
-    {% seo %}
+---
+layout: default
+---
 
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<style>
+    h1 {
+        margin: 1.5rem 0 1.25rem 0;
+    }
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="/assets/css/styles.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
-          integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    h2 {
+        font-size: 1.75rem;
+    }
 
-    <link href="https://fonts.googleapis.com/css?family=Libre+Barcode+128+Text&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:100&display=swap" rel="stylesheet">
+    h3 {
+        font-size: 1.5rem;
+        margin: 1.25rem 0 0.75rem 0;
+    }
 
-    <style>
-        h1 {margin: 1.5rem 0 1.25rem 0;}
-        h2 {font-size: 1.75rem;}
-        h3 {font-size: 1.5rem; margin: 1.25rem 0 0.75rem 0;}
-        h4 {font-size: 1.25rem;}
-    </style>
-</head>
-
-<body>
-{% include nav.html %}
+    h4 {
+        font-size: 1.25rem;
+    }
+</style>
 
 <div class="container-fluid">
     <div class="row">
@@ -37,103 +27,27 @@
             <nav id="navbar-scroll" class="navbar navbar-light bg-light sticky-top d-block overflow-auto"
                  style="height: 100vh;">
                 <a class="navbar-brand" href="#">{{ page.title }}</a>
-                <button class="btn" id="collapse-btn" onclick="collapse_all()"><i class="fas fa-angle-down"></i></button>
+                <button class="btn" id="collapse-btn" onclick="collapse_all()"><i class="fas fa-angle-down"></i>
+                </button>
                 <nav class="nav nav-pills flex-column w-100" id="navbar-pill"></nav>
             </nav>
         </div>
         <div class="col-md-10 note">
             <div id="scrollspy" data-spy="scroll" data-target="#navbar-scroll">
                 {% if page.last_modified_at %}
-                <small class="badge badge-secondary float-right">Updated: {{ page.last_modified_at | date: "%b %-d, %Y | %a, %I:%M %p" }}</small>
+                <small class="badge badge-secondary float-right">Updated: {{ page.last_modified_at | date: "%b %-d, %Y |
+                    %a, %I:%M %p" }}
+                </small>
                 {% endif %}
-                
+
                 {{ content }}
             </div>
         </div>
     </div>
 </div>
 
-{% include footer.html %}
-
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
-
+<script src="/assets/js/generate_nav.js"></script>
 <script>
-    function generate_nav() {
-        let res = ``;
-        let preTag;
-        let first = true;
-
-        $("h2, h3").each(function () {
-            let curTag = $(this);
-
-            if (curTag.prop("tagName") === 'H2') {
-                if (preTag && preTag.prop("tagName") === 'H3') {
-                    // res += `</nav></div>`;
-                    res += `</nav>`;
-                }
-
-                // <a class="btn-collapse" data-target="#${$(this).prop("id")}-collapse" data-toggle="collapse"
-                //             onclick="collapse()">
-                //             <i class="fas fa-angle-right"></i>
-                //         </a>
-
-
-                // data-target="#${$(this).prop("id")}-collapse" data-toggle="collapse"
-                // res += `<a class="btn-collapse" id="collapse-btn-${$(this).prop("id")}"
-                        
-                //         onclick="collapse('${$(this).prop("id")}')">
-                //             <i class="fas fa-angle-down"></i>
-                //         </a>
-                        // <a class="nav-link" href="#${$(this).prop("id")}">${$(this).text()}</a>`;
-
-                res += `<a class="nav-link mb-1" href="#${$(this).prop("id")}">${$(this).text()}</a>`;
-
-                // res += `<div class="row">
-                //             <div class="col-auto p-0">
-                //                 <button class="btn" data-target="#${$(this).prop("id")}-collapse" data-toggle="collapse"><i class="fas fa-plus"></i></button>
-                //             </div>
-                //             <div class="col p-0">
-                //                 <a class="nav-link" href="#${$(this).prop("id")}">${$(this).text()}</a>
-                //             </div>
-                //         </div>
-                //         `;
-            }
-            if (curTag.prop("tagName") === 'H3') {
-                if (preTag && preTag.prop("tagName") === 'H2') {
-                    res += `<nav class="nav nav-pills flex-column collapse show" id="collapse-body-${preTag.prop("id")}"> `;
-
-                    // if (first) {
-                    //     // res += `<div class="collapse show" id="${preTag.prop("id")}-collapse"><nav class="nav nav-pills flex-column"> `;
-                    //     res += `<nav class="nav nav-pills flex-column collapse show" id="${preTag.prop("id")}-collapse"> `;
-                    //     first = false;
-                    // } else {
-                    //     // res += `<div class="collapse" id="${preTag.prop("id")}-collapse"><nav class="nav nav-pills flex-column"> `;
-                    //     res += `<nav class="nav nav-pills flex-column collapse" id="${preTag.prop("id")}-collapse"> `;
-                    // }
-
-                }
-                res += `<a class="nav-link ml-3 mb-1" href="#${$(this).prop("id")}">${$(this).text()}</a>`;
-
-            }
-            preTag = curTag;
-        });
-
-        if (preTag && preTag.prop("tagName") === 'H3') {
-            res += `</nav>`;
-        }
-
-        $('#navbar-pill').append(res);
-    }
-
     $(document).ready(function () {
         generate_nav();
     }).ready(function () {
@@ -141,24 +55,7 @@
     });
 </script>
 <script>
-    // function collapse(id) {
-    //     $(`#collapse-body-${id}`).toggle();
-
-    //     if ($(`#collapse-body-${id}`).css('display') == 'none') {
-    //         $(`#collapse-btn-${id}`).html(`<i class="fas fa-angle-right"></i>`);
-    //     } else {
-    //         $(`#collapse-btn-${id}`).html(`<i class="fas fa-angle-down"></i>`);
-    //     }
-
-    //     // $(`#${id}-collapse`).on('show.bs.collapse', function () {
-    //     //     $(`#${id}-collapse-btn`).html(`<i class="fas fa-angle-down"></i>`);
-    //     // }).on('hide.bs.collapse', function () {
-    //     //     $(`#${id}-collapse-btn`).html(`<i class="fas fa-angle-right"></i>`);
-    //     // });
-    // }
-
     function collapse_all() {
-        // $('.collapse').toggle();
         $("[id^='collapse-body-']").toggle();
 
         if ($('#collapse-btn').html().trim() === '<i class="fas fa-angle-right"></i>') {
@@ -168,5 +65,3 @@
         }
     }
 </script>
-</body>
-</html>

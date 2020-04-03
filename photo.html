@@ -22,30 +22,36 @@ permalink: /photos
         'sanfrancisco'" %}
         {% for image in images %}
 
-        <div class="card mb-3 shadow-sm" style="cursor: pointer" data-toggle="modal" data-target="#{{ image.basename }}">
+        <div class="card mb-3 shadow-sm" style="cursor: pointer"
+             onclick="openModal('{{ image.basename }}', '{{ image.path }}')">
             <img src="{{ image.path }}" class="card-img" alt="{{ image.basename }}">
             <div class="card-img-overlay">
                 <p class="card-text">{{ image.basename }}</p>
             </div>
         </div>
 
-        <div class="modal fade" id="{{ image.basename }}" tabindex="-1" role="dialog"
-             aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-pic" role="document">
-                <div class="modal-content">
-                    <div class="modal-body p-0">
-                        <img src="{{ image.path }}" class="img-fluid" alt="{{ image.basename }}">
-                        <div class="card-img-overlay">
-                            <p class="card-text">{{ image.basename }}</p>
-                        </div>
-                    </div>
-<!--                    <div class="modal-footer">-->
-<!--                        <p class="card-text">{{ image.basename }}</p>-->
-<!--                    </div>-->
-                </div>
-            </div>
-        </div>
-
         {% endfor %}
     </div>
 </div>
+
+<div class="modal fade" id="image-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-pic" role="document">
+        <div class="modal-content">
+            <div class="modal-body p-0">
+                <img src="" class="img-fluid" alt="">
+                <div class="card-img-overlay">
+                    <p class="card-text"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function openModal(imgName, imgPath) {
+        let $image_modal = $('#image-modal');
+        $image_modal.find('img').attr('src', imgPath).attr('alt', imgName);
+        $image_modal.find('p').text(imgName);
+        $image_modal.modal('show');
+    }
+</script>
