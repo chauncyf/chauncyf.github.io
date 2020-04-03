@@ -1,8 +1,8 @@
 - name: Word
-  link: /word
+  link: /words
 - name: Note
-  link: /note
+  link: /notes
 - name: Photo
-  link: /photo
+  link: /photos
 - name: About
-  link: /
+  link: /about
