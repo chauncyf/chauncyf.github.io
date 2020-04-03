@@ -20,6 +20,11 @@
   font-size: 0.9rem;
 }
 
+.navbar-light {
+  background-color: white !important;
+  box-shadow: 0 .125rem .25rem rgba(0,0,0,.075) !important;
+}
+
 .full-page {
   height: 90vh;
 }
@@ -27,7 +32,7 @@
 .jumbotron {
   background-color: transparent !important;
   border-radius: 1.5rem !important;
-  box-shadow: 0 1rem 3rem rgba(0,0,0,.175)!important;
+  box-shadow: 0 1rem 3rem rgba(0,0,0,.175) !important;
   margin-bottom: 0 !important;
 }
 
@@ -201,7 +206,7 @@
 
   .nav-link.active {
     color: #fff !important;
-    background-color: #6c757d  !important;
+    background-color: #6c757d !important;
   }
 
   // .btn-collapse {
