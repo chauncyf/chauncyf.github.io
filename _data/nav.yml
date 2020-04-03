@@ -1,12 +1,8 @@
-#- name: Home
-#  link: /
 - name: Word
-  link: /word.html
-# - name: Code
-#   link: /code.html
+  link: /word
 - name: Note
-  link: /note.html
+  link: /note
 - name: Photo
-  link: /photo.html
+  link: /photo
 - name: About
-  link: /about.html
+  link: /
