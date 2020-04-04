@@ -28,7 +28,29 @@ permalink: /
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
     <script>
+        $(document).ready(
+            function () {
+                new Typed('#typed1', {
+                    stringsElement: '#typed-strings1',
+                    typeSpeed: 40,
+                    backSpeed: 20,
+                    backDelay: 1000,
+                    smartBackspace: true,
+                    showCursor: false,
+                    onComplete: () => {
+                        new Typed('#typed2', {
+                            strings: ['A Master\'s student in Computer Science and a Full Stack Developer living in Boston.'],
+                            typeSpeed: 20,
+                            startDelay: 1000,
+                            showCursor: false,
+                        })
+                    }
+                });
+            }
+        );
+
         $(document).ready(function () {
             $('body').scrollspy({target: '#scrollspy'})
         });
@@ -55,8 +77,14 @@ permalink: /
     <div class="row align-items-center full-page">
         <div class="col">
             <div class="jumbotron text-center">
-                <h1 class="display-5 mb-4">Hello, I'm Chauncy Fan.</h1>
-                <p class="lead">A Master's student in Computer Science and a Full Stack Developer living in Boston.</p>
+
+                <div id="typed-strings1">
+                    <h1 class="display-5 mb-4" style="display: none">Hi, how are you?</h1>
+                    <h1 class="display-5 mb-4">Hi, I'm Chauncy Fan.</h1>
+                </div>
+                <h1 class="display-5 mb-4" id="typed1"></h1>
+                <p class="lead" id="typed2"></p>
+
                 <hr class="my-4">
                 <p>Why not get in touch?</p>
                 <a class="btn btn-outline-secondary m-1" href="https://github.com/chauncyf" role="button">

@@ -2,30 +2,10 @@
 layout: default
 ---
 
-<style>
-    h1 {
-        margin: 1.5rem 0 1.25rem 0;
-    }
-
-    h2 {
-        font-size: 1.75rem;
-    }
-
-    h3 {
-        font-size: 1.5rem;
-        margin: 1.25rem 0 0.75rem 0;
-    }
-
-    h4 {
-        font-size: 1.25rem;
-    }
-</style>
-
-<div class="container-fluid">
+<div class="container-fluid container-note">
     <div class="row">
         <div class="col-md-2 pl-0">
-            <nav id="navbar-scroll" class="navbar navbar-light bg-light sticky-top d-block overflow-auto"
-                 style="height: 100vh;">
+            <nav id="navbar-scroll" class="navbar navbar-light bg-light sticky-top d-block overflow-auto">
                 <a class="navbar-brand" href="#">{{ page.title }}</a>
                 <button class="btn" id="collapse-btn" onclick="collapse_all()"><i class="fas fa-angle-down"></i>
                 </button>
@@ -58,10 +38,11 @@ layout: default
     function collapse_all() {
         $("[id^='collapse-body-']").toggle();
 
-        if ($('#collapse-btn').html().trim() === '<i class="fas fa-angle-right"></i>') {
-            $('#collapse-btn').html(`<i class="fas fa-angle-down"></i>`)
+        let $collapse_btn = $('#collapse-btn');
+        if ($collapse_btn.html().trim() === '<i class="fas fa-angle-right"></i>') {
+            $collapse_btn.html(`<i class="fas fa-angle-down"></i>`)
         } else {
-            $('#collapse-btn').html(`<i class="fas fa-angle-right"></i>`)
+            $collapse_btn.html(`<i class="fas fa-angle-right"></i>`)
         }
     }
 </script>

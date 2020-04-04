@@ -17,6 +17,7 @@
 }
 
 #navbar-scroll {
+  height: 100vh;
   font-size: 0.9rem;
 }
 
@@ -28,6 +29,25 @@
 .container-about {
   h2 {
     padding: 58px 0 24px 0;
+  }
+}
+
+.container-note {
+  h1 {
+    margin: 1.5rem 0 1.25rem 0;
+  }
+
+  h2 {
+    font-size: 1.75rem;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+    margin: 1.25rem 0 0.75rem 0;
+  }
+
+  h4 {
+    font-size: 1.25rem;
   }
 }
 
