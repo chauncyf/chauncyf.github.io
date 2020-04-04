@@ -33,19 +33,18 @@ permalink: /
         $(document).ready(
             function () {
                 new Typed('#typed1', {
-                    stringsElement: '#typed-strings1',
+                    strings: ['Hi, ^600 how are you?', 'Hi, I\'m Chauncy.'],
                     typeSpeed: 40,
                     backSpeed: 20,
                     backDelay: 1000,
                     smartBackspace: true,
                     showCursor: false,
                     onComplete: () => {
-                        new Typed('#typed2', {
-                            strings: ['A Master\'s student in Computer Science and a Full Stack Developer living in Boston.'],
-                            typeSpeed: 20,
-                            startDelay: 1000,
-                            showCursor: false,
-                        })
+                        $('#typed2').css({
+                            visibility: 'visible',
+                            opacity: 1,
+                            transition: 'opacity 1.5s ease-in-out'
+                        });
                     }
                 });
             }
@@ -78,12 +77,10 @@ permalink: /
         <div class="col">
             <div class="jumbotron text-center">
 
-                <div id="typed-strings1">
-                    <h1 class="display-5 mb-4" style="display: none">Hi, how are you?</h1>
-                    <h1 class="display-5 mb-4">Hi, I'm Chauncy.</h1>
-                </div>
-                <h1 class="display-5 mb-4" id="typed1"></h1>
-                <p class="lead" id="typed2"></p>
+                <h1 class="display-5 mb-4" style="height: 3rem" id="typed1"></h1>
+                <p class="lead" style="visibility: hidden; opacity: 0" id="typed2">
+                    A Master's student in Computer Science and a Full Stack Developer living in Boston.
+                </p>
 
                 <hr class="my-4">
                 <p>Why not get in touch?</p>
