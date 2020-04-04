@@ -15,8 +15,8 @@ layout: default
         <div class="col-md-10 note">
             <div id="scrollspy" data-spy="scroll" data-target="#navbar-scroll">
                 {% if page.last_modified_at %}
-                <small class="badge badge-secondary float-right">Updated: {{ page.last_modified_at | date: "%b %-d, %Y |
-                    %a, %I:%M %p" }}
+                <small class="badge badge-secondary float-right">
+                    Updated: {{ page.last_modified_at | date: "%b %-d, %Y | %a, %I:%M %p" }}
                 </small>
                 {% endif %}
 
@@ -28,21 +28,19 @@ layout: default
 
 <script src="/assets/js/generate_nav.js"></script>
 <script>
-    $(document).ready(function () {
+    (function () {
         generate_nav();
-    }).ready(function () {
         $('body').scrollspy({target: '#navbar-scroll'});
-    });
-</script>
-<script>
+    }());
+
     function collapse_all() {
         $("[id^='collapse-body-']").toggle();
 
         let $collapse_btn = $('#collapse-btn');
         if ($collapse_btn.html().trim() === '<i class="fas fa-angle-right"></i>') {
-            $collapse_btn.html(`<i class="fas fa-angle-down"></i>`)
+            $collapse_btn.html(`<i class="fas fa-angle-down"></i>`);
         } else {
-            $collapse_btn.html(`<i class="fas fa-angle-right"></i>`)
+            $collapse_btn.html(`<i class="fas fa-angle-right"></i>`);
         }
     }
 </script>

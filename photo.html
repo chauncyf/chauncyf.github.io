@@ -67,7 +67,7 @@ permalink: /photos
     let $image_modal = $('#image-modal');
 
     function render_img(img_name, img_path) {
-        $image_modal.find('img').attr('src', img_path).attr('alt', img_name);
+        $image_modal.find('img').attr({'src': img_path, 'alt': img_name});
         $image_modal.find('p').text(img_name);
     }
 

@@ -29,31 +29,6 @@ permalink: /
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
-    <script>
-        $(document).ready(
-            function () {
-                new Typed('#typed1', {
-                    strings: ['Hi, ^600 how are you?', 'Hi, I\'m Chauncy.'],
-                    typeSpeed: 40,
-                    backSpeed: 20,
-                    backDelay: 1000,
-                    smartBackspace: true,
-                    showCursor: false,
-                    onComplete: () => {
-                        $('#typed2').css({
-                            visibility: 'visible',
-                            opacity: 1,
-                            transition: 'opacity 1.5s ease-in-out'
-                        });
-                    }
-                });
-            }
-        );
-
-        $(document).ready(function () {
-            $('body').scrollspy({target: '#scrollspy'})
-        });
-    </script>
 </head>
 
 <body>
@@ -77,13 +52,13 @@ permalink: /
         <div class="col">
             <div class="jumbotron text-center">
 
-                <h1 class="display-5 mb-4" style="height: 3rem" id="typed1"></h1>
+                <h1 class="mb-4" style="height: 3rem" id="typed1"></h1>
                 <p class="lead" style="visibility: hidden; opacity: 0" id="typed2">
                     A Master's student in Computer Science and a Full Stack Developer living in Boston.
                 </p>
 
                 <hr class="my-4">
-                <p>Why not get in touch?</p>
+                <p class="light">Why not get in touch?</p>
                 <a class="btn btn-outline-secondary m-1" href="https://github.com/chauncyf" role="button">
                     <i class="fab fa-github"></i> GitHub</a>
                 <a class="btn btn-outline-secondary m-1" href="https://www.linkedin.com/in/chenfengf/" role="button">
@@ -106,7 +81,7 @@ permalink: /
                     <p class="lead">Master's student in Computer Science at Brandeis University.</p>
                     <p class="lead">Experienced in Full Stack development using Rails, Spring, React, Bootstrap,
                         PostgreSQL, Redis, RabbitMQ, etc.</p>
-                    <a class="text-secondary" href="assets/ChauncyFan Resume.pdf">Resume</a>
+                    <a class="text-secondary light" href="assets/ChauncyFan Resume.pdf">Resume</a>
                 </div>
             </div>
         </div>
@@ -258,7 +233,27 @@ permalink: /
 </div>
 
 {% include footer.html %}
+<script>
+    (function () {
+        new Typed('#typed1', {
+            strings: ['Hi, ^600 how are you?', 'Hi, I\'m Chauncy.'],
+            typeSpeed: 40,
+            backSpeed: 20,
+            backDelay: 1000,
+            smartBackspace: true,
+            showCursor: false,
+            onComplete: () => {
+                $('#typed2').css({
+                    visibility: 'visible',
+                    opacity: 1,
+                    transition: 'opacity 1.5s ease-in-out'
+                });
+            }
+        });
 
+        $('body').scrollspy({target: '#scrollspy'});
+    }());
+</script>
 </body>
 
 </html>

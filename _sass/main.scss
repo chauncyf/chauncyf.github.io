@@ -1,3 +1,7 @@
+html {
+  scroll-behavior: smooth;
+}
+
 .navbar-expand-lg {
   font-family: 'Libre Barcode 128 Text', cursive;
 
@@ -29,6 +33,14 @@
 .container-about {
   h2 {
     padding: 58px 0 24px 0;
+  }
+
+  .light {
+    font-weight: 300;
+  }
+
+  .btn-outline-secondary {
+    //border-color: transparent ;
   }
 }
 
