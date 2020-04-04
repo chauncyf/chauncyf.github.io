@@ -53,15 +53,31 @@ html {
     overflow: hidden;
   }
 
-  .btn-share {
-    color: #6c757d;
-    border-radius: 1rem;
-
-    &:hover {
-      color: #fff;
-      background-color: #6c757d;
-    }
+  .badge {
+    border-radius: .3rem !important;
   }
+}
+
+.btn-share {
+  color: #6c757d !important;
+  border-radius: 1.5rem !important;
+
+  &:hover {
+    color: #fff !important;
+    background-color: #6c757d;
+  }
+
+  &:focus {
+    box-shadow: none !important;
+  }
+}
+
+.btn-outline-secondary {
+  border-radius: 0.5rem !important;
+}
+
+.nav-pills .nav-link {
+  border-radius: .5rem !important;
 }
 
 .container-note {

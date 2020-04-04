@@ -24,7 +24,7 @@ layout: default
                 {% elsif prev.category == "note" or prev.category == "private" %}
                     {% assign prev = prev.previous %}
                 {% else %}
-                    <a href="{{ prev.url }}" class="btn btn-outline-secondary float-right">{{prev.title}} <i class="fas fa-angle-right"></i></a>
+                    <a href="{{ prev.url }}" class="btn btn-share float-right">{{prev.title}} <i class="fas fa-angle-right"></i></a>
                     {% break %}
                 {% endif %}
             {% endfor %}
@@ -36,7 +36,7 @@ layout: default
                 {% elsif next.category == "note" or next.category == "private" %}
                     {% assign next = next.next %}
                 {% else %}
-                    <a href="{{ next.url }}" class="btn btn-outline-secondary"><i class="fas fa-angle-left"></i> {{next.title}}</a>
+                    <a href="{{ next.url }}" class="btn btn-share"><i class="fas fa-angle-left"></i> {{next.title}}</a>
                     {% break %}
                 {% endif %}
             {% endfor %}
