@@ -8,15 +8,17 @@ permalink: /photos
     <div class="carousel-inner">
         <div class="carousel-item align-middle align-items-center active">
             <img src="../assets/DSC01881C.jpg" class="d-block w-100" alt="{{ image.basename }}">
-            <div class="carousel-caption">
-                <h1>Photography</h1>
+            <div class="mask">
+                <div class="carousel-caption">
+                    <h1>Photography</h1>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
 <div class="container-fluid my-4">
-    <div class="card-columns photo-gallery">
+    <div class="card-columns">
 
         {% assign images = site.static_files | where: "image", true | where_exp: "image", "image.basename !=
         'sanfrancisco'" %}
@@ -25,8 +27,10 @@ permalink: /photos
         <div class="card mb-3 shadow-sm" style="cursor: pointer" id="{{ image.basename }}"
              onclick="open_modal('{{ image.basename }}', '{{ image.path }}')">
             <img src="{{ image.path }}" class="card-img" alt="{{ image.basename }}">
-            <div class="card-img-overlay">
-                <p class="card-text">{{ image.basename }}</p>
+            <div class="mask">
+                <div class="card-img-overlay">
+                    <p class="card-text">{{ image.basename }}</p>
+                </div>
             </div>
         </div>
 
@@ -60,7 +64,7 @@ permalink: /photos
 </div>
 
 <script>
-    let $image_modal = $('#image-modal');
+    var $image_modal = $('#image-modal');
 
     function render_img(img_name, img_path) {
         $image_modal.find('img').attr('src', img_path).attr('alt', img_name);

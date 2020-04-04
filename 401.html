@@ -7,8 +7,10 @@ title: Private
     <div class="carousel-inner">
         <div class="carousel-item align-middle align-items-center active">
             <img src="assets/DSC03616C.jpg" class="d-block w-100" alt="{{ image.basename }}">
-            <div class="carousel-caption">
-                <h1>Private</h1>
+            <div class="mask">
+                <div class="carousel-caption">
+                    <h1>Private</h1>
+                </div>
             </div>
         </div>
     </div>
@@ -17,7 +19,7 @@ title: Private
 <div class="container-fluid my-4">
     <div class="card-columns">
         {% for post in site.categories.private %}
-            {% include post_card.html %}
+        {% include post_card.html %}
         {% endfor %}
     </div>
 </div>
