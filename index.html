@@ -50,23 +50,25 @@ permalink: /
 <div class="container container-about" data-spy="scroll" data-target="#scrollspy">
     <div class="row align-items-center full-page">
         <div class="col">
-            <div class="jumbotron text-center">
+            <div class="jumbotron text-center pb-5">
 
-                <h1 class="mb-4" style="height: 3rem" id="typed1"></h1>
-                <p class="lead" style="visibility: hidden; opacity: 0" id="typed2">
+                <h1 class="mb-4" id="typed1"></h1>
+                <p class="lead" id="typed2">
                     A Master's student in Computer Science and a Full Stack Developer living in Boston.
                 </p>
 
-                <hr class="my-4">
-                <p class="light">Why not get in touch?</p>
-                <a class="btn btn-outline-secondary m-1" href="https://github.com/chauncyf" role="button">
-                    <i class="fab fa-github"></i> GitHub</a>
-                <a class="btn btn-outline-secondary m-1" href="https://www.linkedin.com/in/chenfengf/" role="button">
-                    <i class="fab fa-linkedin-in"></i> LinkedIn</a>
-                <a class="btn btn-outline-secondary m-1" href="https://www.instagram.com/chauncyfff/" role="button">
-                    <i class="fab fa-instagram"></i> Instagram</a>
-                <a class="btn btn-outline-secondary m-1" href="https://chauncyf.github.io/words" role="button">
-                    <i class="fas fa-rocket"></i> Blog</a>
+                <div id="drawer">
+                    <hr class="mt-0 mb-3">
+                    <p class="light mb-2">Why not get in touch?</p>
+                    <a class="btn btn-share" href="https://github.com/chauncyf" role="button">
+                        <i class="fab fa-github"></i></a>
+                    <a class="btn btn-share" href="https://www.linkedin.com/in/chenfengf/" role="button">
+                        <i class="fab fa-linkedin-in"></i></a>
+                    <a class="btn btn-share" href="https://www.instagram.com/chauncyfff/" role="button">
+                        <i class="fab fa-instagram"></i></a>
+                    <a class="btn btn-share" href="https://chauncyf.github.io/words" role="button">
+                        <i class="fas fa-rocket"></i></a>
+                </div>
             </div>
         </div>
     </div>
@@ -243,10 +245,17 @@ permalink: /
             smartBackspace: true,
             showCursor: false,
             onComplete: () => {
-                $('#typed2').css({
-                    visibility: 'visible',
-                    opacity: 1,
-                    transition: 'opacity 1.5s ease-in-out'
+                $.when(
+                    $('#typed2').css({
+                        visibility: 'visible',
+                        opacity: 1,
+                        transition: 'opacity 1.5s ease-in-out'
+                    }).delay(1300)
+                ).done(function () {
+                    $('#drawer').css({
+                        'max-height': '100%',
+                        transition: 'max-height 0.8s ease-in-out'
+                    })
                 });
             }
         });

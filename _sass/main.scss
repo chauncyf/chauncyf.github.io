@@ -39,8 +39,28 @@ html {
     font-weight: 300;
   }
 
-  .btn-outline-secondary {
-    //border-color: transparent ;
+  #typed1 {
+    height: 3rem;
+  }
+
+  #typed2 {
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  #drawer {
+    max-height: 0;
+    overflow: hidden;
+  }
+
+  .btn-share {
+    color: #6c757d;
+    border-radius: 1rem;
+
+    &:hover {
+      color: #fff;
+      background-color: #6c757d;
+    }
   }
 }
 
