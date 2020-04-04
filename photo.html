@@ -22,8 +22,8 @@ permalink: /photos
         'sanfrancisco'" %}
         {% for image in images %}
 
-        <div class="card mb-3 shadow-sm" style="cursor: pointer"
-             onclick="openModal('{{ image.basename }}', '{{ image.path }}')">
+        <div class="card mb-3 shadow-sm" style="cursor: pointer" id="{{ image.basename }}"
+             onclick="open_modal('{{ image.basename }}', '{{ image.path }}')">
             <img src="{{ image.path }}" class="card-img" alt="{{ image.basename }}">
             <div class="card-img-overlay">
                 <p class="card-text">{{ image.basename }}</p>
@@ -38,7 +38,19 @@ permalink: /photos
     <div class="modal-dialog modal-dialog-centered modal-pic" role="document">
         <div class="modal-content">
             <div class="modal-body p-0">
-                <img src="" class="img-fluid" alt="">
+                <img class="img-fluid" src="" alt="">
+                <div class="card-img-nav">
+                    <div class="row align-items-center">
+                        <div class="col pl-4">
+                            <button type="button" class="btn" onclick="prev_pic()">
+                                <i class="fas fa-chevron-left"></i></button>
+                        </div>
+                        <div class="col pr-4 text-right">
+                            <button type="button" class="btn" onclick="next_pic()">
+                                <i class="fas fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+                </div>
                 <div class="card-img-overlay">
                     <p class="card-text"></p>
                 </div>
@@ -48,10 +60,25 @@ permalink: /photos
 </div>
 
 <script>
-    function openModal(imgName, imgPath) {
-        let $image_modal = $('#image-modal');
-        $image_modal.find('img').attr('src', imgPath).attr('alt', imgName);
-        $image_modal.find('p').text(imgName);
+    let $image_modal = $('#image-modal');
+
+    function render_img(img_name, img_path) {
+        $image_modal.find('img').attr('src', img_path).attr('alt', img_name);
+        $image_modal.find('p').text(img_name);
+    }
+
+    function open_modal(img_name, img_path) {
         $image_modal.modal('show');
+        render_img(img_name, img_path);
+    }
+
+    function prev_pic() {
+        let $new_image = $('#' + $image_modal.find('img').attr('alt')).prev();
+        render_img($new_image.find('img').attr('alt'), $new_image.find('img').attr('src'));
+    }
+
+    function next_pic() {
+        let $new_image = $('#' + $image_modal.find('img').attr('alt')).next();
+        render_img($new_image.find('img').attr('alt'), $new_image.find('img').attr('src'));
     }
 </script>
