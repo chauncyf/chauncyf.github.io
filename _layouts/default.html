@@ -27,6 +27,19 @@
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
+    <script>
+        $(window).on('load', function () {
+            fade_in('.card-columns');
+        });
+
+        function fade_in(obj) {
+            $(obj).css({
+                visibility: 'visible',
+                opacity: 1,
+                transition: 'opacity 1s ease-in-out'
+            })
+        }
+    </script>
 </head>
 
 <body>

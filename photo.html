@@ -7,7 +7,8 @@ permalink: /photos
 <div class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">
         <div class="carousel-item align-middle align-items-center active">
-            <img src="../assets/DSC01881C.jpg" class="d-block w-100" alt="{{ image.basename }}">
+            <img src="../assets/DSC01881C.jpg" class="d-block w-100 cover"
+                 alt="{{ image.basename }}" onload="fade_in(this)">
             <div class="mask">
                 <div class="carousel-caption">
                     <h1>Photography</h1>
@@ -18,7 +19,7 @@ permalink: /photos
 </div>
 
 <div class="container-fluid my-4">
-    <div class="card-columns" id="photo-gallery">
+    <div class="card-columns">
 
         {% assign images = site.static_files | where: "image", true | where_exp: "image", "image.basename !=
         'sanfrancisco'" %}
@@ -63,15 +64,6 @@ permalink: /photos
     </div>
 </div>
 
-<script>
-    $(window).on('load', function () {
-        $('#photo-gallery').css({
-            visibility: 'visible',
-            opacity: 1,
-            transition: 'opacity 1s ease-in-out'
-        })
-    })
-</script>
 <script>
     let $image_modal = $('#image-modal');
 
