@@ -18,13 +18,13 @@ permalink: /photos
 </div>
 
 <div class="container-fluid my-4">
-    <div class="card-columns">
+    <div class="card-columns" id="photo-gallery">
 
         {% assign images = site.static_files | where: "image", true | where_exp: "image", "image.basename !=
         'sanfrancisco'" %}
         {% for image in images %}
 
-        <div class="card mb-3 shadow-sm" style="cursor: pointer" id="{{ image.basename }}"
+        <div class="card mb-3 shadow-sm" id="{{ image.basename }}"
              onclick="open_modal('{{ image.basename }}', '{{ image.path }}')">
             <img src="{{ image.path }}" class="card-img" alt="{{ image.basename }}">
             <div class="mask">
@@ -63,6 +63,15 @@ permalink: /photos
     </div>
 </div>
 
+<script>
+    $(window).on('load', function () {
+        $('#photo-gallery').css({
+            visibility: 'visible',
+            opacity: 1,
+            transition: 'opacity 1s ease-in-out'
+        })
+    })
+</script>
 <script>
     let $image_modal = $('#image-modal');
 

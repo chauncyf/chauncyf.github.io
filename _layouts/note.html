@@ -6,9 +6,15 @@ layout: default
     <div class="row">
         <div class="col-md-2 pl-0">
             <nav id="navbar-scroll" class="navbar navbar-light bg-light sticky-top d-block overflow-auto">
-                <a class="navbar-brand" href="#">{{ page.title }}</a>
-                <button class="btn" id="collapse-btn" onclick="collapse_all()"><i class="fas fa-angle-down"></i>
-                </button>
+                <div class="row align-items-center">
+                    <div class="col-auto pr-0">
+                        <a class="navbar-brand mr-0" href="#">{{ page.title }} </a>
+                    </div>
+                    <div class="col px-0">
+                        <button class="btn" id="collapse-btn" onclick="collapse_all()">
+                            <i class="fas fa-angle-down"></i></button>
+                    </div>
+                </div>
                 <nav class="nav nav-pills flex-column w-100" id="navbar-pill"></nav>
             </nav>
         </div>
