@@ -19,6 +19,11 @@ permalink: /photos
 </div>
 
 <div class="container-fluid my-4">
+    <div class="text-center" id="loading">
+        <div class="spinner-grow text-secondary m-4" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
     <div class="card-columns">
 
         {% assign images = site.static_files | where: "image", true | where_exp: "image", "image.basename !=

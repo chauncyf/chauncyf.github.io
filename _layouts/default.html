@@ -33,11 +33,13 @@
         });
 
         function fade_in(obj) {
-            $(obj).css({
+            if ($(obj).css({
                 visibility: 'visible',
                 opacity: 1,
                 transition: 'opacity 1s ease-in-out'
-            })
+            }).hasClass('card-columns')) {
+                $('#loading').hide();
+            }
         }
     </script>
 </head>
