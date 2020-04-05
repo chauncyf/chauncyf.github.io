@@ -301,8 +301,16 @@ html {
 
 
 .carousel {
+  max-height: 50vh;
+  overflow: hidden;
+  display: flex;
+
   img {
     filter: brightness(80%);
+  }
+
+  .carousel-item {
+    display: flex;
   }
 
   .carousel-caption {
