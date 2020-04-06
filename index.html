@@ -230,10 +230,12 @@ permalink: /
 {% include footer.html %}
 
 <script>
-    (function () {
+    $(window).on('load', function () {
         $('#board').css('opacity', 1);
         $('body').scrollspy({target: '#nav-about'});
+    });
 
+    (function () {
         new Typed('#typed1', {
             strings: ['Hi, ^600 how are you?', 'Hi, I\'m Chauncy.'],
             typeSpeed: 40,
@@ -252,11 +254,11 @@ permalink: /
                     $('#drawer').css({
                         visibility: 'visible',
                         'max-height': '100%',
-                    }).delay(800).queue(
+                    }).delay(500).queue(
                         function () {
                             $('#jump-link').css({
                                 visibility: 'visible',
-                                animation: 'bounce 1.5s',
+                                animation: 'bounceInUp 1s',
                             }).dequeue();
                         }
                     );
