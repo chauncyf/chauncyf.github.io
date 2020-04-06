@@ -30,6 +30,28 @@ html {
   box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075) !important;
 }
 
+@keyframes bounce {
+  45%, 80%, 100% {
+    transform: translateY(0);
+  }
+
+  0% {
+    transform: translateY(40px);
+  }
+
+  25% {
+    transform: translateY(-30px);
+  }
+
+  60% {
+    transform: translateY(-10px);
+  }
+}
+
+.vh-95 {
+  height: 95vh;
+}
+
 .container-about {
   h2 {
     padding: 58px 0 24px 0;
@@ -39,6 +61,11 @@ html {
     font-weight: 300;
   }
 
+  #board {
+    opacity: 0;
+    transition: opacity 1.5s ease-out;
+  }
+
   #typed1 {
     height: 3rem;
   }
@@ -46,11 +73,24 @@ html {
   #typed2 {
     visibility: hidden;
     opacity: 0;
+    transition: opacity 1.5s ease-in-out;
   }
 
   #drawer {
-    max-height: 0;
+    visibility: hidden;
     overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.8s ease-in;
+  }
+
+  #jump-link.btn {
+    height: 5vh;
+    font-size: 1.5rem;
+    visibility: hidden;
+
+    &:focus {
+      box-shadow: none;
+    }
   }
 
   .badge {
@@ -112,10 +152,6 @@ html {
     height: auto;
     max-height: fit-content;
   }
-}
-
-.full-page {
-  height: 90vh;
 }
 
 .jumbotron {
@@ -280,7 +316,6 @@ html {
   }
 }
 
-
 .button-card:hover {
   text-decoration: none !important;
 }
@@ -298,7 +333,6 @@ html {
     padding: 2.5rem 2.5rem 2rem 2.5rem;
   }
 }
-
 
 .carousel {
   max-height: 50vh;
@@ -331,7 +365,6 @@ html {
     }
   }
 }
-
 
 .nav-pills {
   button {
@@ -378,7 +411,6 @@ html {
     color: #BDBDBD;
   }
 }
-
 
 footer {
   border-top: 1px solid #eaeaea;

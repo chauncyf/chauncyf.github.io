@@ -32,48 +32,40 @@ permalink: /
 </head>
 
 <body>
-<nav class="navbar navbar-light fixed-top" id="scrollspy">
-    <a class="navbar-brand" href="#">Chauncy Fan</a>
-    <ul class="nav nav-pills">
-        <li class="nav-item">
-            <a class="nav-link" href="#about">About</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#work">Experience</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#project">Projects</a>
-        </li>
-    </ul>
-</nav>
-
-<div class="container container-about" data-spy="scroll" data-target="#scrollspy">
-    <div class="row align-items-center full-page">
-        <div class="col">
-            <div class="jumbotron text-center pb-5">
-
-                <h1 class="mb-4" id="typed1"></h1>
-                <p class="lead" id="typed2">
-                    A Master's student in Computer Science and a Full Stack Developer living in Boston.
-                </p>
-
-                <div id="drawer">
-                    <hr class="mt-0 mb-3">
-                    <p class="light mb-2">Why not get in touch?</p>
-                    <a class="btn btn-share" href="https://github.com/chauncyf" role="button">
-                        <i class="fab fa-github"></i></a>
-                    <a class="btn btn-share" href="https://www.linkedin.com/in/chenfengf/" role="button">
-                        <i class="fab fa-linkedin-in"></i></a>
-                    <a class="btn btn-share" href="https://www.instagram.com/chauncyfff/" role="button">
-                        <i class="fab fa-instagram"></i></a>
-                    <a class="btn btn-share" href="https://chauncyf.github.io/words" role="button">
-                        <i class="fas fa-rocket"></i></a>
-                </div>
+<div class="container container-about mt-0 vh-100">
+    <div class="d-flex align-items-center vh-95">
+        <div class="jumbotron text-center w-100 pb-5" id="board">
+            <h1 class="mb-4" id="typed1"></h1>
+            <p class="lead" id="typed2">
+                A Master's student in Computer Science and a Full Stack Developer living in Boston.
+            </p>
+            <div id="drawer">
+                <hr class="mt-0 mb-3">
+                <p class="light mb-2">Why not get in touch?</p>
+                <a class="btn btn-share" href="https://github.com/chauncyf" role="button">
+                    <i class="fab fa-github"></i></a>
+                <a class="btn btn-share" href="https://www.linkedin.com/in/chenfengf/" role="button">
+                    <i class="fab fa-linkedin-in"></i></a>
+                <a class="btn btn-share" href="https://www.instagram.com/chauncyfff/" role="button">
+                    <i class="fab fa-instagram"></i></a>
+                <a class="btn btn-share" href="https://chauncyf.github.io/words" role="button">
+                    <i class="fas fa-rocket"></i></a>
             </div>
         </div>
     </div>
+    <a class="btn btn-block text-secondary py-0" id="jump-link" href="#about"><i class="fas fa-chevron-down"></i></a>
+</div>
 
-    <a class="btn btn-block py-4" href="#about"><i class="fas fa-chevron-down"></i></a>
+<nav class="navbar navbar-light sticky-top" id="nav-about">
+    <a class="navbar-brand" href="#">Chauncy Fan</a>
+    <ul class="nav nav-pills">
+        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#work">Experience</a></li>
+        <li class="nav-item"><a class="nav-link" href="#project">Projects</a></li>
+    </ul>
+</nav>
+
+<div class="container container-about" data-spy="scroll" data-target="#nav-about">
     <div id="about">
         <h2 class="text-center">About Me</h2>
         <div class="row align-items-center">
@@ -236,12 +228,17 @@ permalink: /
 </div>
 
 {% include footer.html %}
+
 <script>
     (function () {
+        $('#board').css('opacity', 1);
+        $('body').scrollspy({target: '#nav-about'});
+
         new Typed('#typed1', {
             strings: ['Hi, ^600 how are you?', 'Hi, I\'m Chauncy.'],
             typeSpeed: 40,
             backSpeed: 20,
+            startDelay: 1500,
             backDelay: 1000,
             smartBackspace: true,
             showCursor: false,
@@ -250,18 +247,22 @@ permalink: /
                     $('#typed2').css({
                         visibility: 'visible',
                         opacity: 1,
-                        transition: 'opacity 1.5s ease-in-out'
                     }).delay(1300)
                 ).done(function () {
                     $('#drawer').css({
+                        visibility: 'visible',
                         'max-height': '100%',
-                        transition: 'max-height 0.8s ease-in-out'
-                    })
+                    }).delay(800).queue(
+                        function () {
+                            $('#jump-link').css({
+                                visibility: 'visible',
+                                animation: 'bounce 1.5s',
+                            }).dequeue();
+                        }
+                    );
                 });
             }
         });
-
-        $('body').scrollspy({target: '#scrollspy'});
     }());
 </script>
 </body>
