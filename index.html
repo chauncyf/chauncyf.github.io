@@ -34,7 +34,7 @@ permalink: /
 </head>
 
 <body>
-<div class="container container-about mt-0 vh-100">
+<div class="container container-about mt-0">
     <div class="d-flex align-items-center vh-90">
         <div class="jumbotron text-center w-100" id="board">
             <h1 class="mb-4" id="typed1"></h1>
@@ -55,7 +55,10 @@ permalink: /
             </div>
         </div>
     </div>
-    <a class="btn btn-block text-secondary py-0" id="jump-link" href="#about"><i class="fas fa-chevron-down"></i></a>
+    <div class="d-flex align-items-center vh-10">
+        <a class="btn btn-block text-secondary py-4" id="jump-link" href="#about">
+            <i class="fas fa-chevron-down"></i></a>
+    </div>
 </div>
 
 <nav class="navbar navbar-light sticky-top" id="nav-about">
@@ -67,7 +70,7 @@ permalink: /
     </ul>
 </nav>
 
-<div class="container container-about" data-spy="scroll" data-target="#nav-about">
+<div class="container container-about" data-target="#nav-about">
     <div id="about">
         <h2 class="text-center">About Me</h2>
         <div class="row align-items-center">

@@ -92,6 +92,10 @@ body {
   height: 90vh;
 }
 
+.vh-10 {
+  height: 10vh;
+}
+
 .container-about, #nav-about {
   font-family: 'Roboto', sans-serif;
 
@@ -124,7 +128,6 @@ body {
   }
 
   #jump-link.btn {
-    height: 10vh;
     font-size: 1.5rem;
     visibility: hidden;
 
