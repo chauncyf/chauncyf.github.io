@@ -1,5 +1,5 @@
 //html {
-  //scroll-behavior: smooth;
+//scroll-behavior: smooth;
 //}
 
 body {
@@ -378,6 +378,11 @@ body {
 }
 
 .carousel {
+  font-family: 'Roboto Slab', serif;
+  font-size: 3rem;
+  letter-spacing: .4rem;
+  color: white;
+
   max-height: 50vh;
   overflow: hidden;
   display: flex;
@@ -388,24 +393,6 @@ body {
 
   .carousel-item {
     display: flex;
-  }
-
-  .carousel-caption {
-    top: 50%;
-    transform: translateY(-50%);
-    bottom: initial;
-
-    h1 {
-      font-family: 'Roboto Slab', serif;
-      letter-spacing: .4rem;
-      font-size: 3rem;
-
-      position: absolute;
-      margin: 0;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-    }
   }
 }
 

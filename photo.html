@@ -4,17 +4,7 @@ title: Photo
 permalink: /photos
 ---
 
-<div class="carousel slide" data-ride="carousel">
-    <div class="carousel-item align-middle align-items-center active">
-        <img src="../assets/DSC01881C.jpg" class="d-block w-100 cover"
-             alt="{{ image.basename }}" onload="fade_in(this)">
-        <div class="mask">
-            <div class="carousel-caption">
-                <h1>Photography</h1>
-            </div>
-        </div>
-    </div>
-</div>
+{% include cover.html title="Photography" img="../assets/DSC01881C.jpg" %}
 
 <div class="container-fluid my-4">
     <div class="d-flex justify-content-center align-items-center my-5" id="loading">
