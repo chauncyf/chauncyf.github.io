@@ -18,6 +18,7 @@ permalink: /
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
           integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
             integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -28,15 +29,16 @@ permalink: /
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
+    <script src="/assets/js/smooth-scroll.polyfills.min.js"></script>
+    <script src="/assets/js/typed.min.js"></script>
 </head>
 
 <body>
 <div class="container container-about mt-0 vh-100">
-    <div class="d-flex align-items-center vh-95">
+    <div class="d-flex align-items-center vh-90">
         <div class="jumbotron text-center w-100" id="board">
             <h1 class="mb-4" id="typed1"></h1>
-            <p class="lead" id="typed2">
+            <p id="typed2">
                 A Master's student in Computer Science and a Full Stack Developer living in Boston.
             </p>
             <div id="drawer">
@@ -71,9 +73,9 @@ permalink: /
         <div class="row align-items-center">
             <div class="col">
                 <div class="jumbotron text-center">
-                    <h1 class="display-5 mb-4">Chauncy Fan</h1>
-                    <p class="lead">Master's student in Computer Science at Brandeis University.</p>
-                    <p class="lead">Experienced in Full Stack development using Rails, Spring, React, Bootstrap,
+                    <h3 class="mb-3">Chauncy Fan</h3>
+                    <p>Master's student in Computer Science at Brandeis University.</p>
+                    <p>Experienced in Full Stack development using Rails, Spring, React, Bootstrap,
                         PostgreSQL, Redis, RabbitMQ, etc.</p>
                     <a class="btn btn-share light" href="assets/ChauncyFan Resume.pdf" target="_blank">
                         <i class="fas fa-cloud-download-alt"></i> Resume</a>
@@ -92,7 +94,7 @@ permalink: /
                     </a>
                 </div>
                 <div class="col">
-                    <h3>Teaching Assistant</h3>
+                    <h3 class="mb-3">Teaching Assistant</h3>
                     <p>Capstone Project for Software Engineering (COSI-166B)</p>
                     <p>Jan. 2020 - Present</p>
                 </div>
@@ -104,7 +106,7 @@ permalink: /
                     </a>
                 </div>
                 <div class="col">
-                    <h3>Software Engineer Intern</h3>
+                    <h3 class="mb-3">Software Engineer Intern</h3>
                     <p>June 2019 - Aug. 2019</p>
                 </div>
             </div>
@@ -235,37 +237,39 @@ permalink: /
         $('body').scrollspy({target: '#nav-about'});
     });
 
-    (function () {
-        new Typed('#typed1', {
-            strings: ['Hi, ^600 how are you?', 'Hi, I\'m Chauncy.'],
-            typeSpeed: 40,
-            backSpeed: 20,
-            startDelay: 1500,
-            backDelay: 1000,
-            smartBackspace: true,
-            showCursor: false,
-            onComplete: () => {
-                $.when(
-                    $('#typed2').css({
-                        visibility: 'visible',
-                        opacity: 1,
-                    }).delay(1300)
-                ).done(function () {
-                    $('#drawer').css({
-                        visibility: 'visible',
-                        'max-height': '100%',
-                    }).delay(500).queue(
-                        function () {
-                            $('#jump-link').css({
-                                visibility: 'visible',
-                                animation: 'bounceInUp 1s',
-                            }).dequeue();
-                        }
-                    );
-                });
-            }
-        });
-    }());
+    var scroll = new SmoothScroll('a[href*="#"]', {
+        speedAsDuration: true,
+    });
+
+    var typed = new Typed('#typed1', {
+        strings: ['Hi, ^600 how are you?', 'Hi, I\'m Chauncy.'],
+        typeSpeed: 40,
+        backSpeed: 20,
+        startDelay: 1500,
+        backDelay: 1000,
+        smartBackspace: true,
+        showCursor: false,
+        onComplete: () => {
+            $.when(
+                $('#typed2').css({
+                    visibility: 'visible',
+                    opacity: 1,
+                }).delay(1300)
+            ).done(function () {
+                $('#drawer').css({
+                    visibility: 'visible',
+                    'max-height': '100%',
+                }).delay(500).queue(
+                    function () {
+                        $('#jump-link').css({
+                            visibility: 'visible',
+                            animation: 'bounceInUp 1s',
+                        }).dequeue();
+                    }
+                );
+            });
+        }
+    });
 </script>
 </body>
 

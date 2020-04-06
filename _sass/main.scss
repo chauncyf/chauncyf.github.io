@@ -1,6 +1,6 @@
-html {
-  scroll-behavior: smooth;
-}
+//html {
+  //scroll-behavior: smooth;
+//}
 
 body {
   a {
@@ -88,22 +88,21 @@ body {
   }
 }
 
-.vh-95 {
-  height: 95vh;
+.vh-90 {
+  height: 90vh;
 }
 
-.container-about {
+.container-about, #nav-about {
+  font-family: 'Roboto', sans-serif;
+
   h2 {
     padding: 58px 0 24px 0;
-  }
-
-  .light {
-    font-weight: 300;
   }
 
   #board {
     opacity: 0;
     transition: opacity 1.5s ease-out;
+    box-shadow: 0 0 3rem rgba(0, 0, 0, .175) !important;
   }
 
   #typed1 {
@@ -111,6 +110,7 @@ body {
   }
 
   #typed2 {
+    font-size: 1.25rem;
     visibility: hidden;
     opacity: 0;
     transition: opacity 1.5s ease-in-out;
@@ -124,7 +124,7 @@ body {
   }
 
   #jump-link.btn {
-    height: 5vh;
+    height: 10vh;
     font-size: 1.5rem;
     visibility: hidden;
 
