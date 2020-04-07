@@ -37,6 +37,8 @@ collections:
   notes:
     output: true
 
+permalink: /:categories/:title
+
 defaults:
   - scope:
       path: "assets/img"

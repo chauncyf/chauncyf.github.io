@@ -1,8 +1,12 @@
 ---
 layout: post
 title: Chauncy Fan
-about: <div class="row"><div class="col pr-2"><h5 class="card-subtitle text-right"><a href="mailto:fanc@brandeis.edu" style="color:#6c757d">fanc@brandeis.edu</a></h5></div><div class="col pl-2"><h5 class="card-subtitle"><a href="tel:339-215-9614" style="color:#6c757d">339-215-9614</a></h5></div></div><div class="row"><div class="col pr-2"><h5 class="card-subtitle text-right"><a href="https://www.linkedin.com/in/chenfengf/" style="color:#6c757d">linkedin.com/in/chenfengf</a></h5></div><div class="col pl-2"><h5 href="tel:339-215-9614" class="card-subtitle"><a href="https://github.com/chauncyf" style="color:#6c757d">github.com/chauncyf</a></h5></div></div>
+about: <div class="row"><div class="col pr-2"><h5 class="card-subtitle text-right"><a href="mailto:fanc@brandeis.edu" style="color:#6c757d">fanc@brandeis.edu</a></h5></div><div class="col pl-2"><h5 class="card-subtitle"><a href="tel:339-215-9614" style="color:#6c757d">339-215-9614</a></h5></div></div><div class="row"><div class="col pr-2"><h5 class="card-subtitle text-right"><a href="https://www.linkedin.com/in/chenfengf/" style="color:#6c757d">linkedin.com/in/chenfengf</a></h5></div><div class="col pl-2"><h5 href="tel:339-215-9614" class="card-subtitle"><a href="http://chauncyf.github.io" style="color:#6c757d">chauncyf.github.io</a></h5></div></div>
 ---
+
+<script> 
+    window.location = "http://chauncyf.github.io"; 
+</script>
 
 ### **EDUCATION**
 {: .text-center .mt-4}
@@ -25,7 +29,7 @@ _**Coursework**_: Database Technology, Android Development, Java Programming, Fu
 
 - _**Languages**_: Java, Python, Ruby, JavaScript, HTML, CSS, SQL, MATLAB
 - _**Frameworks and Tools**_: Spring, Rails, Flask, React, Sinatra, Bootstrap, Ajax, jQuery, PostgreSQL, MongoDB, Redis,
-Elasticsearch, RabbitMQ, Scrapy, Maven, Docker, AWS, Heroku, Git
+MapReduce, Elasticsearch, RabbitMQ, Scrapy, Maven, Docker, AWS, Heroku, Git
 
 
 ### **WORK EXPERIENCE**
@@ -40,7 +44,7 @@ _**Teaching Assistant**_, Jan. 2020 - Present
 - Partnering with 3 project teams (team of 4), holding weekly-meetings to keep track and overcome roadblocks
 {: .mb-2}
 
-##### **MatrixCare, Inc.**, Bloomington, MN  
+##### **MatrixCare, Inc. (by ResMed)**, Bloomington, MN  
 {: .mb-0}
 _**Software Engineer Intern**_, Jun. 2019 - Aug. 2019
 {: .mb-0}
