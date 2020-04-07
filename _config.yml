@@ -16,7 +16,7 @@
 title: Chauncy's Space
 email: chauncyff@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
-  This is Chauncy's Personal Blog. #coding, #photography, #blog, #daily
+  This is Chauncy's Personal Blog. #word, #code, #photography
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  chauncyf
@@ -28,7 +28,6 @@ markdown: kramdown
 highlighter: rouge
 
 plugins:
-  - jekyll-feed
   - jekyll-sitemap
   - jekyll-seo-tag
   - jekyll-last-modified-at
