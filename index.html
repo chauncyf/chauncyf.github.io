@@ -30,6 +30,9 @@ permalink: /
             crossorigin="anonymous"></script>
     <script src="/assets/js/smooth-scroll.polyfills.min.js"></script>
     <script src="/assets/js/typed.min.js"></script>
+    {% if jekyll.environment == 'production' %}
+    {% include gtag.html %}
+    {% endif %}
 </head>
 
 <body>

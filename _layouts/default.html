@@ -50,6 +50,9 @@
             speedAsDuration: true,
         });
     </script>
+    {% if jekyll.environment == 'production' %}
+    {% include gtag.html %}
+    {% endif %}
 </head>
 
 <body>
