@@ -5,11 +5,13 @@ permalink: /
 ---
 
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     {% seo %}
+    {% if jekyll.environment == 'production' %}
+    {% include analytics.html %}
+    {% endif %}
 
     <link rel="shortcut icon" type="image/png" href="/assets/favicon.png">
     <link rel="stylesheet" href="/assets/css/styles.css">
@@ -30,9 +32,6 @@ permalink: /
             crossorigin="anonymous"></script>
     <script src="/assets/js/smooth-scroll.polyfills.min.js"></script>
     <script src="/assets/js/typed.min.js"></script>
-    {% if jekyll.environment == 'production' %}
-    {% include gtag.html %}
-    {% endif %}
 </head>
 
 <body>
@@ -277,5 +276,4 @@ permalink: /
     });
 </script>
 </body>
-
 </html>
