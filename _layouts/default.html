@@ -30,16 +30,22 @@
     <script src="/assets/js/typed.min.js"></script>
     <script>
         $(window).on('load', function () {
-            fade_in('.card-columns');
+            fade_in('.container-fade-in');
         });
 
-        function fade_in(obj) {
-            if ($(obj).css({
+        function fade_in(obj, duration) {
+            $obj = $(obj);
+
+            if ($obj.hasClass('fade-in-fast')) duration = 0.5;
+            else if (!duration) duration = 1;
+
+            console.log(duration);
+            if ($obj.css({
                 visibility: 'visible',
                 opacity: 1,
-                transition: 'opacity 1s ease-in-out'
-            }).hasClass('card-columns')) {
-                $('#loading').remove();
+                transition: `opacity ${duration}s ease-in-out`
+            }).hasClass('spinner')) {
+                $('#spinner').remove();
             }
         }
 

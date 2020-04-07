@@ -6,12 +6,13 @@ permalink: /photos
 
 {% include cover.html title="Photography" img="../assets/DSC01881C.jpg" %}
 
-<div class="container-fluid my-4">
-    <div class="d-flex justify-content-center align-items-center my-5" id="loading">
-        <div class="spinner-grow text-secondary" role="status">
-            <span class="sr-only">Loading...</span>
-        </div>
+<div class="d-flex justify-content-center align-items-center my-5" id="spinner">
+    <div class="spinner-grow text-secondary" role="status">
+        <span class="sr-only">Loading...</span>
     </div>
+</div>
+
+<div class="container-fluid container-fade-in spinner my-4">
     <div class="card-columns">
 
         {% assign images = site.static_files | where: "image", true | where_exp: "image", "image.basename !=
