@@ -18,7 +18,7 @@ Great links for software engineering
 - [Sharding & IDs at Instagram](https://instagram-engineering.com/sharding-ids-at-instagram-1cf5a71e5a5c)
 - [Design Patterns web based applications](https://stackoverflow.com/questions/3541077/design-patterns-web-based-applications/3542297#3542297)
 - [Cookies vs. LocalStorage: What’s the difference?](https://medium.com/swlh/cookies-vs-localstorage-whats-the-difference-d99f0eb09b44)
-
+- [JQuery Promises and Deferreds: I promise this will be short](https://maori.geek.nz/jquery-promises-and-deferreds-i-promise-this-will-be-short-d10275f82717)
 
 ## Database
 - [How does database indexing work?](https://stackoverflow.com/questions/1108/how-does-database-indexing-work)
