@@ -236,16 +236,30 @@ permalink: /
 {% include footer.html %}
 
 <script>
-    $(window).on('load', function () {
+    let $window = $(window);
+    let $navAbout = $('#nav-about');
+    let fromTop = $navAbout.offset().top;
+
+    $window.on('load', function () {
         $('#board').css('opacity', 1);
         $('body').scrollspy({target: '#nav-about'});
     });
 
-    var scroll = new SmoothScroll('a[href*="#"]', {
-        speedAsDuration: true,
+    $window.scroll(function () {
+        if ($window.scrollTop() >= fromTop) {
+            $navAbout.css({
+                'box-shadow': '0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12), 0 2px 4px -1px rgba(0,0,0,0.2)'
+            })
+        } else {
+            $navAbout.css({
+                'box-shadow': ''
+            })
+        }
     });
 
-    var typed = new Typed('#typed1', {
+    let scroll = new SmoothScroll('a[href*="#"]');
+
+    let typed = new Typed('#typed1', {
         strings: ['Hi, ^600 how are you?', 'Hi, I\'m Chauncy.'],
         typeSpeed: 40,
         backSpeed: 20,
