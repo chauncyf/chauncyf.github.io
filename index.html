@@ -249,26 +249,36 @@ permalink: /
         smartBackspace: true,
         showCursor: false,
         onComplete: () => {
-            $.when(
-                $('#typed2').css({
-                    visibility: 'visible',
-                    opacity: 1,
-                }).delay(1300)
-            ).done(function () {
-                $('#drawer').css({
-                    visibility: 'visible',
-                    'max-height': '100%',
-                }).delay(500).queue(
-                    function () {
-                        $('#jump-link').css({
-                            visibility: 'visible',
-                            animation: 'bounceInUp 1s',
-                        }).dequeue();
-                    }
-                );
-            });
+            showTyped().then(showDrawer).then(showLink);
         }
     });
+
+    function showTyped() {
+        $('#typed2').css({
+            'visibility': 'visible',
+            'opacity': 1
+        });
+        let d = $.Deferred();
+        setTimeout(d.resolve, 1100);
+        return d.promise();
+    }
+
+    function showDrawer() {
+        $('#drawer').css({
+            'visibility': 'visible',
+            'max-height': '100%'
+        });
+        let d = $.Deferred();
+        setTimeout(d.resolve, 300);
+        return d.promise();
+    }
+
+    function showLink() {
+        $('#jump-link').css({
+            visibility: 'visible',
+            animation: 'bounceInUp 1s'
+        })
+    }
 </script>
 </body>
 </html>
