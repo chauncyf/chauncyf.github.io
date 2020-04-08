@@ -31,9 +31,17 @@ body {
   font-size: 0.9rem;
 }
 
-.navbar-light {
-  background-color: white !important;
-  transition: box-shadow 0.25s;
+#nav-about {
+  background-color: white;
+  box-shadow: 0 .15rem .25rem rgba(0, 0, 0, .2);
+  opacity: 0;
+  transition: opacity 0.25s;
+
+  @media (max-width: 576px) {
+    .navbar-brand {
+      display: none;
+    }
+  }
 }
 
 @keyframes bounceInUp {
@@ -100,7 +108,7 @@ body {
   font-family: 'Roboto', sans-serif;
 
   h2 {
-    padding: 58px 0 24px 0;
+    padding: 72px 0 24px 0;
   }
 
   #board {

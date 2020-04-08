@@ -66,7 +66,7 @@ permalink: /
     <a class="navbar-brand" href="#">Chauncy Fan</a>
     <ul class="nav nav-pills">
         <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-        <li class="nav-item"><a class="nav-link" href="#work">Experience</a></li>
+        <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
         <li class="nav-item"><a class="nav-link" href="#project">Projects</a></li>
     </ul>
 </nav>
@@ -88,7 +88,7 @@ permalink: /
         </div>
     </div>
 
-    <div id="work">
+    <div id="experience">
         <h2 class="text-center">Work Experience</h2>
         <div class="jumbotron text-center">
             <div class="row align-items-center py-5 text-center">
@@ -247,17 +247,15 @@ permalink: /
 
     $window.scroll(function () {
         if ($window.scrollTop() >= fromTop) {
-            $navAbout.css({
-                'box-shadow': '0 .15rem .25rem rgba(0,0,0,.2)'
-            })
+            $navAbout.css('opacity', 1)
         } else {
-            $navAbout.css({
-                'box-shadow': ''
-            })
+            $navAbout.css('opacity', 0)
         }
     });
 
-    let scroll = new SmoothScroll('a[href*="#"]');
+    let scroll = new SmoothScroll('a[href*="#"]', {
+        updateURL: false
+    });
 
     let typed = new Typed('#typed1', {
         strings: ['Hi, ^600 how are you?', 'Hi, I\'m Chauncy.'],
