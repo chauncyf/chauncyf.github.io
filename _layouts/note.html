@@ -22,7 +22,7 @@ layout: default
             <div id="scrollspy" data-target="#navbar-scroll">
                 {% if page.last_modified_at %}
                 <small class="badge badge-secondary float-right">
-                    Updated: {{ page.last_modified_at | date: "%b %-d, %Y | %a, %I:%M %p" }}
+                    Updated: {{ page.last_modified | date: "%b %-d, %Y | %a, %I:%M %p" }}
                 </small>
                 {% endif %}
 
