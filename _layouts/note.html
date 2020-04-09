@@ -20,7 +20,7 @@ layout: default
         </div>
         <div class="col-md-10 note">
             <div id="scrollspy" data-target="#navbar-scroll">
-                {% if page.last_modified_at %}
+                {% if page.last_modified %}
                 <small class="badge badge-secondary float-right">
                     Updated: {{ page.last_modified | date: "%b %-d, %Y | %a, %I:%M %p" }}
                 </small>
