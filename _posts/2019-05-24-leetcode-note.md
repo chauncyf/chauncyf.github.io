@@ -347,6 +347,45 @@ public class Solution {
 }
 ```
 
+### Group Anagrams - 49
+Other
+{: .badge .badge-secondary}
+#### Problem
+```text
+Given an array of strings, group anagrams together.
+
+Example:
+Input: ["eat", "tea", "tan", "ate", "nat", "bat"],
+Output:
+[
+⁠ ["ate","eat","tea"],
+⁠ ["nat","tan"],
+⁠ ["bat"]
+]
+
+Note:
+All inputs will be in lowercase.
+The order of your output does not matter.
+```
+#### Solution
+```java
+class Solution {
+    public List<List<String>> groupAnagrams(String[] strs) {
+        List<List<String>> res = new ArrayList<>();
+        Map<String, List<String>> map = new HashMap<>();
+        for (String s : strs) {
+            char[] cur = s.toCharArray();
+            Arrays.sort(cur);
+            String key = Arrays.toString(cur);
+            List<String> list = map.getOrDefault(key, new ArrayList<>());
+            list.add(s);
+            map.put(key, list);
+        }
+        return new ArrayList(map.values());  // <--
+    }
+}
+```
+
 ### Basic Calculator - 224
 Other
 {: .badge .badge-secondary}
@@ -495,6 +534,119 @@ public class Solution {
                         hi--;
                     }
                 }
+            }
+        }
+        return res;
+    }
+}
+```
+
+### Best Time to Buy and Sell Stock - 121
+Sell Stock
+{: .badge .badge-secondary}
+#### Problem
+```text
+Say you have an array for which the i^th element is the price of a given
+stock on day i.
+
+If you were only permitted to complete at most one transaction (i.e., buy
+one and sell one share of the stock), design an algorithm to find the
+maximum profit.
+
+Note that you cannot sell a stock before you buy one.
+
+Example 1:
+Input: [7,1,5,3,6,4]
+Output: 5
+Explanation: Buy on day 2 (price = 1) and sell on day 5 (price = 6), profit
+= 6-1 = 5.
+Not 7-1 = 6, as selling price needs to be larger than buying price.
+
+Example 2:
+Input: [7,6,4,3,1]
+Output: 0
+Explanation: In this case, no transaction is done, i.e. max profit = 0.
+```
+#### Solution
+```java
+class Solution {
+    public int maxProfit(int[] prices) {
+        int res = 0;
+        Integer min = null;
+        for (int i : prices) {
+            if (min == null || i < min) min = i;
+            res = Math.max(res, i - min);
+        }
+        return res;
+    }
+}
+```
+
+### Best Time to Buy and Sell Stock II - 122
+Sell Stock
+{: .badge .badge-secondary}
+#### Problem
+```text
+Say you have an array for which the i^th element is the price of a given
+stock on day i.
+
+Design an algorithm to find the maximum profit. You may complete as many
+transactions as you like (i.e., buy one and sell one share of the stock
+multiple times).
+
+Note: You may not engage in multiple transactions at the same time (i.e.,
+you must sell the stock before you buy again).
+
+Example 1:
+Input: [7,1,5,3,6,4]
+Output: 7
+Explanation: Buy on day 2 (price = 1) and sell on day 3 (price = 5), profit
+= 5-1 = 4.
+Then buy on day 4 (price = 3) and sell on day 5 (price = 6), profit = 6-3 =
+3.
+
+Example 2:
+Input: [1,2,3,4,5]
+Output: 4
+Explanation: Buy on day 1 (price = 1) and sell on day 5 (price = 5), profit
+= 5-1 = 4.
+Note that you cannot buy on day 1, buy on day 2 and sell them later, as you
+are
+engaging multiple transactions at the same time. You must sell before buying
+again.
+
+Example 3:
+Input: [7,6,4,3,1]
+Output: 0
+Explanation: In this case, no transaction is done, i.e. max profit = 0.
+```
+#### Solution
+Imagine peak and valley, valley is the point to buy, and peak is the point to sell.
+```java
+class Solution {
+    public int maxProfit(int[] prices) {
+        int res = 0;
+        int valley = 0;
+        int peak = 0;
+        for (int i = 0; i < prices.length; i++) {
+            while (i < prices.length - 1 && prices[i] >= prices[i + 1]) i++;
+            valley = prices[i];
+            while (i < prices.length - 1 && prices[i] <= prices[i + 1]) i++;
+            peak = prices[i];
+            res += peak - valley;
+        }
+        return res;
+    }
+}
+```
+Actually we don't even need to keep track of the peak & valley.
+```java
+class Solution {
+    public int maxProfit(int[] prices) {
+        int res = 0;
+        for (int i = 0; i < prices.length - 1; i++) {
+            if (prices[i + 1] > prices[i]) {
+                res += prices[i + 1] - prices[i];
             }
         }
         return res;
@@ -936,6 +1088,96 @@ class Solution {
 }
 ```
 
+### Reverse Linked List - 206
+#### Problem
+```text
+Reverse a singly linked list.
+
+Example:
+Input: 1->2->3->4->5->NULL
+Output: 5->4->3->2->1->NULL
+
+Follow up:
+A linked list can be reversed either iteratively or recursively. 
+Could you implement both?
+```
+#### Solution
+Iteratively
+```java
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public ListNode reverseList(ListNode head) {
+        ListNode cur = head, pre = null;
+        while (cur != null) {
+            ListNode next = cur.next;
+            cur.next = pre;
+            pre = cur;
+            cur = next;
+        }
+        return pre;
+    }
+}
+```
+Recursively
+```java
+class Solution {
+    public ListNode reverseList(ListNode head) {
+        if (head == null || head.next == null) return head;  // head == null handle null input
+        ListNode res = reverseList(head.next);  // go straight to the tail
+        head.next.next = head;
+        head.next = null;
+        return res;
+    }
+}
+```
+
+
+### Middle of the Linked List - 876
+#### Problem
+```text
+Given a non-empty, singly linked list with head node head, return a middle
+node of linked list.
+
+If there are two middle nodes, return the second middle node.
+
+Example 1:
+Input: [1,2,3,4,5]
+Output: Node 3 from this list (Serialization: [3,4,5])
+The returned node has value 3.  (The judge's serialization of this node is
+[3,4,5]).
+Note that we returned a ListNode object ans, such that:
+ans.val = 3, ans.next.val = 4, ans.next.next.val = 5, and ans.next.next.next
+= NULL.
+
+Example 2:
+Input: [1,2,3,4,5,6]
+Output: Node 4 from this list (Serialization: [4,5,6])
+Since the list has two middle nodes with values 3 and 4, we return the
+second one.
+
+Note:
+The number of nodes in the given list will be between 1 and 100.
+```
+#### Solution
+```java
+class Solution {
+    public ListNode middleNode(ListNode head) {
+        ListNode slow = head, fast = head;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow;
+    }
+}
+```
 
 ## Sort
 
@@ -2720,86 +2962,6 @@ class Solution {
         return n_1;
     }
 }
-```
-
-### Best Time to Buy and Sell Stock - 121
-#### Problem
-```text
-Say you have an array for which the i^th element is the price of a given
-stock on day i.
-
-If you were only permitted to complete at most one transaction (i.e., buy
-one and sell one share of the stock), design an algorithm to find the
-maximum profit.
-
-Note that you cannot sell a stock before you buy one.
-
-Example 1:
-Input: [7,1,5,3,6,4]
-Output: 5
-Explanation: Buy on day 2 (price = 1) and sell on day 5 (price = 6), profit
-= 6-1 = 5.
-Not 7-1 = 6, as selling price needs to be larger than buying price.
-
-Example 2:
-Input: [7,6,4,3,1]
-Output: 0
-Explanation: In this case, no transaction is done, i.e. max profit = 0.
-```
-#### Solution
-```java
-class Solution {
-    public int maxProfit(int[] prices) {
-        int res = 0;
-        Integer min = null;
-        for (int i : prices) {
-            if (min == null || i < min) min = i;
-            res = Math.max(res, i - min);
-        }
-        return res;
-    }
-}
-```
-
-### Best Time to Buy and Sell Stock II - 122
-#### Problem
-```text
-Say you have an array for which the i^th element is the price of a given
-stock on day i.
-
-Design an algorithm to find the maximum profit. You may complete as many
-transactions as you like (i.e., buy one and sell one share of the stock
-multiple times).
-
-Note: You may not engage in multiple transactions at the same time (i.e.,
-you must sell the stock before you buy again).
-
-Example 1:
-Input: [7,1,5,3,6,4]
-Output: 7
-Explanation: Buy on day 2 (price = 1) and sell on day 3 (price = 5), profit
-= 5-1 = 4.
-Then buy on day 4 (price = 3) and sell on day 5 (price = 6), profit = 6-3 =
-3.
-
-Example 2:
-Input: [1,2,3,4,5]
-Output: 4
-Explanation: Buy on day 1 (price = 1) and sell on day 5 (price = 5), profit
-= 5-1 = 4.
-Note that you cannot buy on day 1, buy on day 2 and sell them later, as you
-are
-engaging multiple transactions at the same time. You must sell before buying
-again.
-
-Example 3:
-Input: [7,6,4,3,1]
-Output: 0
-Explanation: In this case, no transaction is done, i.e. max profit = 0.
-```
-#### Problem
-```java
-
 ```
 
 

@@ -194,15 +194,25 @@ blockquote {
 
   h2 {
     font-size: 1.75rem;
+    margin: 1rem 0 0 0;
+    padding: 1.5rem 0 0.5rem 0;
+    border-bottom: 1px solid rgba(0, 0, 0, .1);
   }
 
   h3 {
     font-size: 1.5rem;
-    margin: 1.25rem 0 0.75rem 0;
+    padding: 1.25rem 0.5rem 0.5rem 0;
+    border-bottom: 1px dotted rgba(0, 0, 0, .1);
+    display: inline-block;
   }
 
   h4 {
     font-size: 1.25rem;
+  }
+
+  .badge {
+    margin-top: 1.25rem;
+    vertical-align: top;
   }
 
   .btn:focus {
@@ -448,13 +458,6 @@ blockquote {
 //   transition: height .15s ease !important;
 // }
 
-.note {
-  h2 {
-    margin: 2rem 0 1rem 0;
-    padding-bottom: 0.5rem;
-    border-bottom: 1px solid rgba(0, 0, 0, .1);
-  }
-}
 
 .hide, hide {
   color: transparent;
