@@ -247,7 +247,7 @@ permalink: /
         smartBackspace: true,
         showCursor: false,
         onComplete: () => {
-            showLead().done(showDrawer).done(showLink);
+            showLead().then(showDrawer).then(showLink);
         }
     });
 
@@ -257,17 +257,17 @@ permalink: /
             'opacity': 1
         });
         return $.Deferred(function (d) {
-            setTimeout(() => d.resolve(), 1100);
+            setTimeout(() => d.resolve(), 1200);
         }).promise();
     }
 
-    function showDrawer(a) {
+    function showDrawer() {
         $('#drawer').css({
             'visibility': 'visible',
             'max-height': '100%'
         });
         return $.Deferred(function (d) {
-            setTimeout(() => d.resolve(), 300);
+            setTimeout(() => d.resolve(), 400);
         }).promise();
     }
 
