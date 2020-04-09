@@ -22,8 +22,8 @@ permalink: /
 <div class="container container-about mt-0">
     <div class="d-flex align-items-center vh-90">
         <div class="jumbotron text-center w-100" id="board">
-            <h1 class="mb-3" id="typed1"></h1>
-            <p id="typed2">
+            <h1 class="mb-3" id="typed"></h1>
+            <p id="lead">
                 A Master's student in Computer Science and a Full Stack Developer living in Boston.
             </p>
             <div id="drawer">
@@ -238,7 +238,7 @@ permalink: /
         updateURL: false
     });
 
-    let typed = new Typed('#typed1', {
+    let typed = new Typed('#typed', {
         strings: ['Hi, ^600 how are you?', 'Hi, I\'m Chauncy.'],
         typeSpeed: 40,
         backSpeed: 20,
@@ -247,28 +247,28 @@ permalink: /
         smartBackspace: true,
         showCursor: false,
         onComplete: () => {
-            showTyped().then(showDrawer).then(showLink);
+            showLead().done(showDrawer).done(showLink);
         }
     });
 
-    function showTyped() {
-        $('#typed2').css({
+    function showLead() {
+        $('#lead').css({
             'visibility': 'visible',
             'opacity': 1
         });
-        let d = $.Deferred();
-        setTimeout(d.resolve, 1100);
-        return d.promise();
+        return $.Deferred(function (d) {
+            setTimeout(() => d.resolve(), 1100);
+        }).promise();
     }
 
-    function showDrawer() {
+    function showDrawer(a) {
         $('#drawer').css({
             'visibility': 'visible',
             'max-height': '100%'
         });
-        let d = $.Deferred();
-        setTimeout(d.resolve, 300);
-        return d.promise();
+        return $.Deferred(function (d) {
+            setTimeout(() => d.resolve(), 300);
+        }).promise();
     }
 
     function showLink() {

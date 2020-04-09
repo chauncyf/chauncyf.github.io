@@ -48,38 +48,34 @@ defaults:
       type: "posts"
     values:
       layout: "post"
-  # - scope:
-  #     path: "_note"
-  #     type: "notes"
-  #   values:
-  #     layout: "note"
   - scope:
       path: ""
     values:
       layout: "default"
 
 jekyll_compose:
-  draft_default_front_matter:
-    description:
-    image:
-    category:
-    tags:
-  post_default_front_matter:
-    layout: post
-    author: Chauncy
-    category:
-    tags:
-    image:
-    published: true
+  default_front_matter:
+    drafts:
+      description:
+      image:
+      category:
+      tags:
+    posts:
+      layout: post
+      author: Chauncy
+      category:
+      tags:
+      image:
+      published: true
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
 # to override the default setting.
-# exclude:
-#   - Gemfile
-#   - Gemfile.lock
-#   - node_modules
-#   - vendor/bundle/
-#   - vendor/cache/
-#   - vendor/gems/
-#   - vendor/ruby/
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/

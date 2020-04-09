@@ -133,11 +133,11 @@ blockquote {
     box-shadow: 0 0 3rem rgba(0, 0, 0, .175) !important;
   }
 
-  #typed1 {
+  #typed {
     height: 3rem;
   }
 
-  #typed2 {
+  #lead {
     font-size: 1.25rem;
     visibility: hidden;
     opacity: 0;
@@ -201,7 +201,8 @@ blockquote {
 
   h3 {
     font-size: 1.5rem;
-    padding: 1.25rem 0.5rem 0.5rem 0;
+    margin-right: 0.5rem;
+    padding: 1.25rem 0 0.5rem 0;
     border-bottom: 1px dotted rgba(0, 0, 0, .1);
     display: inline-block;
   }
