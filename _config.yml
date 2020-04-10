@@ -20,12 +20,12 @@ description: >- # this means to ignore newlines until "baseurl:"
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  chauncyf
-
 timezone: America/New_York
 
 # Build settings
 markdown: kramdown
 highlighter: rouge
+permalink: /:categories/:title
 
 plugins:
   - jekyll-sitemap
@@ -35,8 +35,6 @@ plugins:
 collections:
   notes:
     output: true
-
-permalink: /:categories/:title
 
 defaults:
   - scope:

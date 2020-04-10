@@ -367,12 +367,6 @@ blockquote {
   }
 }
 
-@media (min-width: 576px) and (max-width: 992px) {
-  .card-columns {
-    column-count: 2 !important;
-  }
-}
-
 .button-card {
   //color: black !important;
   text-decoration: none;
@@ -488,8 +482,23 @@ footer {
   }
 }
 
-// Extra small devices (portrait phones, less than 576px)
-// No media query for `xs` since this is the default in Bootstrap
+@media (min-width: 0px) {
+  .card-columns {
+    column-count: 1;
+  }
+}
+
+@media (min-width: 1024px) {
+  .card-columns {
+    column-count: 2;
+  }
+}
+
+@media (min-width: 1440px) {
+  .card-columns {
+    column-count: 3;
+  }
+}
 
 // Small devices (landscape phones, 576px and up)
 @media (max-width: 576px) {
