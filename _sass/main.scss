@@ -213,6 +213,23 @@ blockquote {
 
   .badge {
     vertical-align: middle;
+    color: #fff;
+    background-color: #6c757d;
+  }
+
+  .e {
+    @extend .badge;
+    background-color: #28a745;
+  }
+
+  .m {
+    @extend .badge;
+    background-color: #ffc107;
+  }
+
+  .h {
+    @extend .badge;
+    background-color: #dc3545;
   }
 
   .btn:focus {

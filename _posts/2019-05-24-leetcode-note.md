@@ -7,11 +7,14 @@ published: true
 
 # Leetcode Note
 
+
 ## String
 
-### Longest Substring Without Repeating Characters - 3  
+### Longest Substring Without Repeating Characters - 3
+Medium
+{:.badge.m}
 Substring
-{: .badge .badge-secondary}
+{:.badge}
 #### Problem
 ```text
 Given a string, find the length of the longest substring without repeating characters.
@@ -52,10 +55,11 @@ class Solution:
         return res
 ```
 
-
 ### Longest Palindromic Substring - 5
+Medium
+{:.badge.m}
 Palindrome
-{: .badge .badge-secondary}
+{:.badge}
 #### Problem
 ```text
 Given a string s, find the longest palindromic substring in s. You may assume that the maximum length of s is 1000.
@@ -93,10 +97,9 @@ class Solution:
 ```
 `TODO: DP, Manacher's Algorithm`
 
-
 ### Reverse Integer - 7
-Other
-{: .badge .badge-secondary}
+Easy
+{:.badge.e}
 #### Problem
 ```text
 Given a 32-bit signed integer, reverse digits of an integer.
@@ -153,8 +156,8 @@ class Solution {
 ```
 
 ### String to Integer (atoi) - 8 
-Other
-{: .badge .badge-secondary}
+Easy
+{:.badge.e}
 #### Problem
 ```text
 Implement atoi which converts a string to an integer.
@@ -244,8 +247,10 @@ class Solution {
 ```
 
 ### Palindrome Number - 9
+Easy
+{:.badge.e}
 Palindrome
-{: .badge .badge-secondary}
+{:.badge}
 #### Problem
 ```text
 Determine whether an integer is a palindrome. An integer is a palindrome when it reads the same backward as forward.
@@ -290,10 +295,11 @@ class Solution {
 }
 ```
 
-
 ### Valid Parentheses - 20 
+Easy
+{:.badge.e}
 Stack
-{: .badge .badge-secondary}
+{:.badge}
 #### Problem
 ```text
 Given a string containing just the characters '(', ')', '{', '}', 
@@ -348,8 +354,8 @@ public class Solution {
 ```
 
 ### Group Anagrams - 49
-Other
-{: .badge .badge-secondary}
+Medium
+{:.badge.m}
 #### Problem
 ```text
 Given an array of strings, group anagrams together.
@@ -387,8 +393,8 @@ class Solution {
 ```
 
 ### Basic Calculator - 224
-Other
-{: .badge .badge-secondary}
+Hard
+{:.badge.h}
 #### Problem
 ```text
 Implement a basic calculator to evaluate a simple expression string.
@@ -448,12 +454,82 @@ class Solution {
 }
 ```
 
+### Backspace String Compare - 844
+Easy
+{:.badge.e}
+Two Pointer
+{:.badge}
+#### Problem
+```text
+Given two strings S and T, return if they are equal when both are typed into
+empty text editors. # means a backspace character.
+
+Example 1:
+Input: S = "ab#c", T = "ad#c"
+Output: true
+Explanation: Both S and T become "ac".
+
+Example 2:
+Input: S = "ab##", T = "c#d#"
+Output: true
+Explanation: Both S and T become "".
+
+Example 3:
+Input: S = "a##c", T = "#a#c"
+Output: true
+Explanation: Both S and T become "c".
+
+Example 4:
+Input: S = "a#c", T = "b"
+Output: false
+Explanation: S becomes "c" while T becomes "b".
+
+Note:
+1 <= S.length <= 200
+1 <= T.length <= 200
+S and T only contain lowercase letters and '#' characters.
+
+Follow up:
+Can you solve it in O(N) time and O(1) space?
+```
+#### Solution
+```java
+class Solution {
+    public boolean backspaceCompare(String S, String T) {
+        int i = S.length() - 1, j = T.length() - 1;
+        while (i >= 0 || j >= 0) {
+            int back = 0;
+            while (i >= 0 && (S.charAt(i) == '#' || back > 0)) {
+                back += S.charAt(i) == '#' ? 1 : -1;
+                i--;
+            }
+
+            back = 0;
+            while (j >= 0 && (T.charAt(j) == '#' || back > 0)) {
+                back += T.charAt(j) == '#' ? 1 : -1;
+                j--;
+            }
+ 
+            if (i >= 0 && j >= 0 && S.charAt(i) == T.charAt(j)) {
+                i--;
+                j--;
+            } else {
+                break;
+            }
+        }
+        return i == -1 && j == -1;
+    }
+}
+```
+
 
 ## Array
 
 ### Two Sum - 1
+Easy
+{:.badge.e}
 N Sum
-{: .badge .badge-secondary}
+{:.badge}
 #### Problem
 ```text
 Given an array of integers, return indices of the two numbers such that they
@@ -487,8 +563,10 @@ class Solution {
 ```
 
 ### Three Sum - 15
+Medium
+{:.badge.m}
 N Sum
-{: .badge .badge-secondary}
+{:.badge}
 #### Problem
 ```text
  Given an array nums of n integers, are there elements a, b, c in nums such
@@ -542,8 +620,10 @@ public class Solution {
 ```
 
 ### Best Time to Buy and Sell Stock - 121
+Easy
+{:.badge.e}
 Sell Stock
-{: .badge .badge-secondary}
+{:.badge}
 #### Problem
 ```text
 Say you have an array for which the i^th element is the price of a given
@@ -583,8 +663,10 @@ class Solution {
 ```
 
 ### Best Time to Buy and Sell Stock II - 122
+Easy
+{:.badge.e}
 Sell Stock
-{: .badge .badge-secondary}
+{:.badge}
 #### Problem
 ```text
 Say you have an array for which the i^th element is the price of a given
@@ -658,8 +740,10 @@ class Solution {
 ## Tree
 
 ### Binary Tree Inorder Traversal - 94
+Medium
+{:.badge.m}
 Traversal
-{: .badge .badge-secondary}
+{:.badge}
 #### Problem
 ```text
 Given a binary tree, return the inorder traversal of its nodes' values.
@@ -719,10 +803,11 @@ class Solution {
 }
 ```
 
-
 ### Binary Tree Preorder Traversal - 144
+Medium
+{:.badge.m}
 Traversal
-{: .badge .badge-secondary}
+{:.badge}
 #### Problem
 ```text
 Given a binary tree, return the preorder traversal of its nodes' values.
@@ -780,10 +865,11 @@ class Solution {
 }
 ```
 
-
 ### Binary Tree Postorder Traversal - 145
+Medium
+{:.badge.m}
 Traversal
-{: .badge .badge-secondary}
+{:.badge}
 #### Problem
 ```text
 Given a binary tree, return the postorder traversal of its nodes' values.
@@ -823,8 +909,11 @@ class Solution {
 }
 ```
 
-
 ### Lowest Common Ancestor of a Binary Search Tree - 235
+Easy
+{:.badge.e}
+LCA
+{:.badge}
 #### Problem
 ```text
 Given a binary search tree (BST), find the lowest common ancestor (LCA) of
@@ -871,8 +960,11 @@ class Solution {
 }
 ```
 
-
 ### Lowest Common Ancestor of a Binary Tree - 236
+Medium
+{:.badge.m}
+LCA
+{:.badge}
 #### Problem
 ```text
 Given a binary tree, find the lowest common ancestor (LCA) of two given
@@ -950,6 +1042,8 @@ class Solution {
 
 
 ### Serialize and Deserialize Binary Tree - 297
+Hard
+{:.badge.h}
 #### Problem
 ```text
 Serialization is the process of converting a data structure or object into a
@@ -1035,7 +1129,9 @@ public class Codec {
 
 ## LinkedList
 
-### Add Two Numbers - 2  
+### Add Two Numbers - 2
+Medium
+{:.badge.m}
 #### Problem
 ```text
 You are given two non-empty linked lists representing two non-negative
@@ -1089,6 +1185,8 @@ class Solution {
 ```
 
 ### Reverse Linked List - 206
+Easy
+{:.badge.e}
 #### Problem
 ```text
 Reverse a singly linked list.
@@ -1138,8 +1236,9 @@ class Solution {
 }
 ```
 
-
 ### Middle of the Linked List - 876
+Easy
+{:.badge.e}
 #### Problem
 ```text
 Given a non-empty, singly linked list with head node head, return a middle
@@ -1182,8 +1281,10 @@ class Solution {
 ## Sort
 
 ### Merge Intervals - 56
+Medium
+{:.badge.m}
 Merge Intervals
-{: .badge .badge-secondary}
+{:.badge}
 #### Problem
 ```text
 Given a collection of intervals, merge all overlapping intervals.
@@ -1234,8 +1335,10 @@ class Solution {
 ```
 
 ### Meeting Rooms - 252
+Easy
+{:.badge.e}
 Merge Intervals
-{: .badge .badge-secondary}
+{:.badge}
 #### Problem
 ```text
 Given an array of meeting time intervals consisting of start and end times 
@@ -1263,8 +1366,10 @@ class Solution {
 ```
 
 ### Meeting Rooms II - 253
+Medium
+{:.badge.m}
 Merge Intervals
-{: .badge .badge-secondary}
+{:.badge}
 #### Problem
 ```text
 Given an array of meeting time intervals consisting of start and end times [[s1,e1],[s2,e2],...] (si < ei), 
@@ -1300,10 +1405,12 @@ class Solution {
 ```
 
 ### Kth Largest Element in an Array - 215
+Medium
+{:.badge.m}
 Priority Queue
-{: .badge .badge-secondary}
+{:.badge}
 Quick Select
-{: .badge .badge-secondary}
+{:.badge}
 #### Problem
 ```text
 Find the kth largest element in an unsorted array. Note that it is the kth
@@ -1403,10 +1510,12 @@ class Solution {
 ```
 
 ### K Closest Points to Origin - 973
+Medium
+{:.badge.m}
 Priority Queue
-{: .badge .badge-secondary}
+{:.badge}
 Quick Select
-{: .badge .badge-secondary}
+{:.badge}
 #### Problem
 ```text
 We have a list of points on the plane.  Find the K closest points to the
@@ -1622,6 +1731,8 @@ class Solution {
 ## Backtrack
 
 ### Generate Parentheses - 22
+Medium
+{:.badge.m}
 #### Problem
 ```text
 Given n pairs of parentheses, write a function to generate all combinations
@@ -1666,6 +1777,8 @@ class Solution {
 ```
 
 ### Combination Sum - 39
+Medium
+{:.badge.m}
 #### Problem
 ```text
 Given a set of candidate numbers (candidates) (without duplicates) and a
@@ -1721,6 +1834,8 @@ class Solution {
 ```
 
 ### Combination Sum II - 40
+Medium
+{:.badge.m}
 #### Problem
 ```text
 Given a collection of candidate numbers (candidates) and a target number
@@ -1778,8 +1893,9 @@ class Solution {
 }
 ```
 
-
 ### Permutations - 46
+Medium
+{:.badge.m}
 #### Problem
 ```text
 Given a collection of distinct integers, return all possible permutations.
@@ -1831,6 +1947,8 @@ class Solution {
 ```
 
 ### Permutations II - 47
+Medium
+{:.badge.m}
 #### Problem
 ```text
 Given a collection of numbers that might contain duplicates, return all
@@ -1887,6 +2005,8 @@ class Solution {
 ```
 
 ### Subsets - 78
+Medium
+{:.badge.m}
 #### Problem
 ```text
 Given a set of distinct integers, nums, return all possible subsets 
@@ -1947,6 +2067,8 @@ Alternative way for the helper method, can easily be optmized for follow up (wit
 ```
 
 ### Subsets II - 90
+Medium
+{:.badge.m}
 #### Problem
 ```text
 Given a collection of integers that might contain duplicates, nums, return
@@ -1993,10 +2115,11 @@ class Solution {
 }
 ```
 
-
 ### Word Break - 139
+Medium
+{:.badge.m}
 Memoization
-{: .badge .badge-secondary}
+{:.badge}
 #### Problem
 ```text
 Given a non-empty string s and a dictionary wordDict containing a list of
@@ -2127,6 +2250,8 @@ Recursion stack
 ```
 
 ### Word Break II - 140
+Hard
+{:.badge.h}
 #### Problem
 ```text
 Given a non-empty string s and a dictionary wordDict containing a list of
@@ -2171,12 +2296,13 @@ Output:
 `TODO`
 
 
-
 ## BFS / DFS
 
 ### Word Ladder - 127
+Medium
+{:.badge.m}
 BFS
-{: .badge .badge-secondary}
+{:.badge}
 #### Problem
 ```text
 Given two words (beginWord and endWord), and a dictionary's word list, find
@@ -2269,8 +2395,10 @@ class Solution {
 ```
 
 ### Word Ladder II - 126
+Hard
+{:.badge.h}
 BFS
-{: .badge .badge-secondary}
+{:.badge}
 #### Problem
 ```text
 Given two words (beginWord and endWord), and a dictionary's word list, find
@@ -2420,10 +2548,11 @@ class Solution {
 }
 ```
 
-
 ### Number of Islands - 200
+Medium
+{:.badge.m}
 DFS
-{: .badge .badge-secondary}
+{:.badge}
 #### Problem
 ```text
 Given a 2d grid map of '1's (land) and '0's (water), count the number of
@@ -2482,8 +2611,10 @@ class Solution {
 ```
 
 ### Number of Distinct Islands - 694
+Medium
+{:.badge.m}
 DFS
-{: .badge .badge-secondary}
+{:.badge}
 #### Problem
 ```text
 Given a non-empty 2D array grid of 0's and 1's, an island is a group of 
@@ -2564,10 +2695,11 @@ public class Solution {
 }
 ```
 
-
 ### Number of Closed Islands - 1254
+Medium
+{:.badge.m}
 DFS
-{: .badge .badge-secondary}
+{:.badge}
 #### Problem
 ```text
 Given a 2D grid consists of 0s (land) and 1s (water). 
@@ -2643,10 +2775,11 @@ class Solution {
 }
 ```
 
-
 ### Course Schedule - 207
+Medium
+{:.badge.m}
 Topological Sort
-{: .badge .badge-secondary}
+{:.badge}
 #### Problem
 ```text
 There are a total of n courses you have to take, labeled from 0 to n-1.
@@ -2746,8 +2879,10 @@ class Solution {
 ```
 
 ### Course Schedule II - 210
+Medium
+{:.badge.m}
 Topological Sort
-{: .badge .badge-secondary}
+{:.badge}
 #### Problem
 ```text
 There are a total of n courses you have to take, labeled from 0 to n-1.
@@ -2835,6 +2970,8 @@ class Solution {
 ## Dynamic Programming
 
 ### Trapping Rain Water - 42
+Hard
+{:.badge.h}
 #### Problem
 ```text
 Given n non-negative integers representing an elevation map where the width
@@ -2899,6 +3036,8 @@ class Solution {
 ```
 
 ### Climbing Stairs - 70
+Easy
+{:.badge.e}
 #### Problem
 ```text
 You are climbing a stair case. It takes n steps to reach to the top.
@@ -2964,11 +3103,96 @@ class Solution {
 }
 ```
 
+### Ugly Number - 263
+Easy
+{:.badge.e}
+#### Problem
+```text
+Write a program to check whether a given number is an ugly number.
+
+Ugly numbers are positive numbers whose prime factors only include 2, 3, 5.
+
+Example 1:
+Input: 6
+Output: true
+Explanation: 6 = 2 × 3
+
+Example 2:
+Input: 8
+Output: true
+Explanation: 8 = 2 × 2 × 2
+
+Example 3:
+Input: 14
+Output: false 
+Explanation: 14 is not ugly since it includes another prime factor 7.
+
+Note:
+1 is typically treated as an ugly number.
+Input is within the 32-bit signed integer range: [−2^31,  2^31 − 1].
+```
+#### Solution
+```java
+class Solution {
+    public boolean isUgly(int num) {
+        if (num <= 0) return false;
+        while (num != 1) {
+            if (num % 2 == 0) {
+                num /= 2;
+            } else if (num % 3 == 0) {
+                num /= 3;
+            } else if (num % 5 == 0) {
+                num /= 5;
+            } else {
+                return false;
+            }            
+        }
+        return true;
+    }
+}
+```
+
+### Ugly Number II - 264
+Medium
+{:.badge.m}
+#### Problem
+```text
+Write a program to find the n-th ugly number.
+
+Ugly numbers are positive numbers whose prime factors only include 2, 3,
+5. 
+
+Example:
+Input: n = 10
+Output: 12
+Explanation: 1, 2, 3, 4, 5, 6, 8, 9, 10, 12 is the sequence of the first 10
+ugly numbers.
+
+Note:  
+1 is typically treated as an ugly number.
+n does not exceed 1690.
+```
+#### Solution
+The ugly-number sequence is 1, 2, 3, 4, 5, 6, 8, 9, 10, 12, 15, …  
+Because every number can only be divided by 2, 3, 5, one way to look at the sequence is to split the sequence to three groups as below:  
+
+    (1) 1×2, 2×2, 3×2, 4×2, 5×2, …  
+    (2) 1×3, 2×3, 3×3, 4×3, 5×3, …  
+    (3) 1×5, 2×5, 3×5, 4×5, 5×5, …  
+
+We can find that every subsequence is the ugly-sequence itself (1, 2, 3, 4, 5, …) multiply 2, 3, 5.   
+Then we use similar merge method as merge sort, to get every ugly number from the three subsequence.  
+Every step we choose the smallest one, and move one step after.  
+```java
+
+```
 
 
 ## Design
 
 ### LRU Cache - 146
+Medium
+{:.badge.m}
 #### Problem
 ```text
 Design and implement a data structure for Least Recently Used (LRU) cache.
@@ -3088,6 +3312,8 @@ class LRUCache {
 ```
 
 ### Min Stack - 155
+Easy
+{:.badge.e}
 #### Problem
 ```text
 Design a stack that supports push, pop, top, and retrieving the minimum
@@ -3125,7 +3351,6 @@ class MinStack {
     /** initialize your data structure here. */
     public MinStack() {
         stack = new Stack<>();
-        min = null;
     }
     
     public void push(int x) {
@@ -3137,17 +3362,13 @@ class MinStack {
     }
     
     public void pop() {
-        int val = stack.pop();
-        if (val == min) {
+        // the JVM is caching Integer values
+        // == only works for numbers between -128 and 127
+        if (stack.pop().equals(min)) {
             min = stack.pop();
         }
-
-        //why this way will get wrong result
-        // if (stack.pop() == min) {
-            // min = stack.pop();
-        // }
     }
-    
+
     public int top() {
         return stack.peek();
     }
@@ -3157,9 +3378,56 @@ class MinStack {
     }
 }
 ```
+Yet another solution
+```java
+class MinStack {
+    private class Node {
+        int val;
+        int min;
+        Node next;
+
+        private Node(int val, int min, Node next) {
+            this.val = val;
+            this.min = min;
+            this.next = next;
+        }
+    }
+    
+    private Node head;
+    
+    /** initialize your data structure here. */
+    public MinStack() {
+        
+    }
+    
+    public void push(int x) {
+        if (head == null) {
+            head = new Node(x, x, null);
+        } else {
+            head = new Node(x, Math.min(x, head.min), head);
+        }  
+    }
+    
+    public void pop() {
+        head = head.next;
+    }
+    
+    public int top() {
+        return head.val;
+    }
+    
+    public int getMin() {
+        return head.min;
+    }
+}
+```
+
 
 ## Math
+
 ### Count Primes - 204
+Easy
+{:.badge.e}
 #### Problem
 ```text
 Count the number of prime numbers less than a non-negative number, n.
@@ -3190,8 +3458,12 @@ class Solution {
 }
 ```
 
+
 ## Bit Manipulation
+
 ### Single Number - 136
+Easy
+{:.badge.e}
 #### Problem
 ```text
 Given a non-empty array of integers, every element appears twice except for
