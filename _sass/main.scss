@@ -216,7 +216,7 @@ body.fix {
     bottom: 15px;
     left: 265px;
     transition: all 0.3s;
-    z-index: 999;
+    z-index: 998;
 
     &.active {
       left: 15px;
@@ -244,7 +244,7 @@ body.fix {
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.7);
-    z-index: 998;
+    z-index: 997;
     opacity: 0;
     transition: all 0.5s ease-in-out;
 
@@ -268,7 +268,7 @@ body.fix {
       left: 15px;
 
       &.active {
-        left: 265px;
+        //left: 265px;
       }
     }
 
