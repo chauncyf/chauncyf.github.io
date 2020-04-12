@@ -1,47 +1,51 @@
 ---
-layout: default
+layout: without_nav
 ---
 
-<div class="container-fluid container-note container-fade-in fade-in-fast">
-    <div class="row">
-        <div class="col-md-2 pl-0">
-            <nav id="navbar-scroll" class="navbar navbar-light bg-light sticky-top d-block overflow-auto">
-                <div class="row align-items-center">
-                    <div class="col-auto pr-0">
-                        <a class="navbar-brand mr-0" href="#">{{ page.title }} </a>
-                    </div>
-                    <div class="col px-0">
-                        <button class="btn" id="collapse-btn" onclick="collapse_all()">
-                            <i class="fas fa-angle-down"></i></button>
-                    </div>
-                </div>
-                <nav class="nav nav-pills flex-column w-100" id="navbar-pill"></nav>
-            </nav>
-        </div>
-        <div class="col-md-10 note">
-            <div id="scrollspy" data-target="#navbar-scroll">
-                {% if page.last_modified %}
-                <div class="badge badge-secondary float-right">
-                    Updated: {{ page.last_modified | date: "%b %-d, %Y | %a, %I:%M %p" }}
-                </div>
-                <div class="badge h mr-1 float-right" id="hard">Hard </div>
-                <div class="badge m mr-1 float-right" id="medium">Medium </div>
-                <div class="badge e mr-1 float-right" id="easy">Easy </div>
-                <script>
-                    $(document).ready(function () {
-                        $('#easy').append($('.e').length - 1);
-                        $('#medium').append($('.m').length - 1);
-                        $('#hard').append($('.h').length - 1);
-                    });
-                </script>
-                {% endif %}
-
-                {{ content }}
+<div class=" container-note container-fade-in fade-in-fast">
+    <nav id="navbar-scroll" class="navbar navbar-light">
+        <div class="row align-items-center">
+            <div class="col-auto pr-0">
+                <a class="navbar-brand mr-0" href="#">{{ page.title }} </a>
+            </div>
+            <div class="col px-0">
+                <button class="btn" id="collapse-btn" onclick="collapse_all()">
+                    <i class="fas fa-angle-down"></i></button>
             </div>
         </div>
+        <nav class="nav nav-pills flex-column w-100" id="navbar-pill"></nav>
+    </nav>
+
+    <div class="" id="content">
+        {% include nav.html %}
+
+        <button type="button" id="sidebarCollapse" class="btn btn-secondary">
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="container-fluid" id="scrollspy" data-target="#navbar-scroll">
+            {% if page.last_modified %}
+            <div class="badge badge-secondary float-right">
+                Updated: {{ page.last_modified | date: "%b %-d, %Y | %a, %I:%M %p" }}
+            </div>
+            <div class="badge h mr-1 float-right" id="hard">Hard</div>
+            <div class="badge m mr-1 float-right" id="medium">Medium</div>
+            <div class="badge e mr-1 float-right" id="easy">Easy</div>
+            <script>
+                $(document).ready(function () {
+                    $('#easy').append($('.e').length - 1);
+                    $('#medium').append($('.m').length - 1);
+                    $('#hard').append($('.h').length - 1);
+                });
+            </script>
+            {% endif %}
+
+            {{ content }}
+        </div>
+        {% include footer.html %}
     </div>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
 <script src="/assets/js/generate_nav.js"></script>
 <script>
     (function () {
@@ -59,4 +63,17 @@ layout: default
             $collapse_btn.html(`<i class="fas fa-angle-right"></i>`);
         }
     }
+</script>
+<script>
+    $(document).ready(function () {
+        $("#navbar-scroll").mCustomScrollbar({
+            theme: "minimal-dark"
+        });
+
+        $('#sidebarCollapse').on('click', function () {
+            $('#navbar-scroll').toggleClass('active');
+            $('#sidebarCollapse').toggleClass('active');
+            $('#content').toggleClass('active');
+        });
+    });
 </script>

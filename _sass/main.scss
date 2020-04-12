@@ -42,11 +42,6 @@ blockquote {
   }
 }
 
-#navbar-scroll {
-  height: 100vh;
-  font-size: 0.9rem;
-}
-
 #nav-about {
   background-color: white;
   box-shadow: 0 .15rem .25rem rgba(0, 0, 0, .2);
@@ -188,6 +183,79 @@ blockquote {
 }
 
 .container-note {
+  display: flex;
+  width: 100%;
+
+  #navbar-scroll {
+    font-size: 0.9rem;
+    background-color: #f8f9fa;
+    display: block;
+    position: fixed;
+    min-height: 100vh;
+    height: 100vh;
+    width: 250px;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    z-index: 999;
+    transition: all 0.3s;
+
+    &.active {
+      margin-left: -250px;
+    }
+  }
+
+  #sidebarCollapse {
+    position: fixed;
+    bottom: 15px;
+    left: 260px;
+    transition: all 0.3s;
+
+    &.active {
+      left: 15px;
+    }
+  }
+
+  #content {
+    position: absolute;
+    min-height: 100vh;
+    top: 0;
+    right: 0;
+    width: calc(100% - 250px);
+    transition: all 0.3s;
+
+    &.active {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 768px) {
+    #navbar-scroll {
+      margin-left: -250px;
+
+      &.active {
+        margin-left: 0;
+      }
+    }
+
+    #sidebarCollapse {
+      left: 10px;
+
+      &.active {
+        left: 260px;
+      }
+    }
+
+    #content {
+      width: 100%;
+
+      &.active {
+        width: calc(100% - 250px);
+      }
+    }
+  }
+
   h1 {
     margin: 1.5rem 0 1.25rem 0;
   }
