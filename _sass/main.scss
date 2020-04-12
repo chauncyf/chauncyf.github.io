@@ -209,7 +209,7 @@ blockquote {
   #sidebarCollapse {
     position: fixed;
     bottom: 15px;
-    left: 260px;
+    left: 265px;
     transition: all 0.3s;
 
     &.active {
@@ -219,14 +219,15 @@ blockquote {
 
   #content {
     position: absolute;
+    width: 100%;
     min-height: 100vh;
     top: 0;
     right: 0;
-    width: calc(100% - 250px);
+    padding-left: 250px;
     transition: all 0.3s;
 
     &.active {
-      width: 100%;
+      padding-left: 0;
     }
   }
 
@@ -248,11 +249,17 @@ blockquote {
     }
 
     #content {
-      width: 100%;
+      padding-left: 0;
 
       &.active {
-        width: calc(100% - 250px);
+        padding-left: 250px;
       }
+    }
+  }
+
+  @media (min-width: 768px) {
+    .container-fluid {
+      padding: 0 40px 0 40px;
     }
   }
 

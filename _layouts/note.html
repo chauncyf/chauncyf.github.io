@@ -2,7 +2,7 @@
 layout: without_nav
 ---
 
-<div class=" container-note container-fade-in fade-in-fast">
+<div class="container-note container-fade-in fade-in-fast">
     <nav id="navbar-scroll" class="navbar navbar-light">
         <div class="row align-items-center">
             <div class="col-auto pr-0">
@@ -67,7 +67,8 @@ layout: without_nav
 <script>
     $(document).ready(function () {
         $("#navbar-scroll").mCustomScrollbar({
-            theme: "minimal-dark"
+            theme: 'minimal-dark',
+            scrollInertia: 0
         });
 
         $('#sidebarCollapse').on('click', function () {
