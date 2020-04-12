@@ -21,9 +21,19 @@ layout: default
         <div class="col-md-10 note">
             <div id="scrollspy" data-target="#navbar-scroll">
                 {% if page.last_modified %}
-                <small class="badge badge-secondary float-right">
+                <div class="badge badge-secondary float-right">
                     Updated: {{ page.last_modified | date: "%b %-d, %Y | %a, %I:%M %p" }}
-                </small>
+                </div>
+                <div class="badge h mr-1 float-right" id="hard">Hard </div>
+                <div class="badge m mr-1 float-right" id="medium">Medium </div>
+                <div class="badge e mr-1 float-right" id="easy">Easy </div>
+                <script>
+                    $(document).ready(function () {
+                        $('#easy').append($('.e').length - 1);
+                        $('#medium').append($('.m').length - 1);
+                        $('#hard').append($('.h').length - 1);
+                    });
+                </script>
                 {% endif %}
 
                 {{ content }}

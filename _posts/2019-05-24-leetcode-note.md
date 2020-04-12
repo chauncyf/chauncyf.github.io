@@ -736,6 +736,81 @@ class Solution {
 }
 ```
 
+### Rotate Array - 189
+Easy
+{:.badge.e}
+Geometry
+{:.badge}
+#### Problem
+```
+Given an array, rotate the array to the right by k steps, where k is
+non-negative.
+
+Example 1:
+Input: [1,2,3,4,5,6,7] and k = 3
+Output: [5,6,7,1,2,3,4]
+Explanation:
+rotate 1 steps to the right: [7,1,2,3,4,5,6]
+rotate 2 steps to the right: [6,7,1,2,3,4,5]
+rotate 3 steps to the right: [5,6,7,1,2,3,4]
+
+Example 2:
+Input: [-1,-100,3,99] and k = 2
+Output: [3,99,-1,-100]
+Explanation: 
+rotate 1 steps to the right: [99,-1,-100,3]
+rotate 2 steps to the right: [3,99,-1,-100]
+
+Note:
+Try to come up as many solutions as you can, there are at least 3 different
+ways to solve this problem.
+Could you do it in-place with O(1) extra space?
+```
+#### Solution
+Naive O(n) space solution
+```java
+class Solution {
+    public void rotate(int[] nums, int k) {
+        int[] tmp = new int[nums.length];
+        for (int i = 0; i < nums.length; i++) {
+            tmp[(i + k) % nums.length] = nums[i];
+        }
+        for (int i = 0; i < nums.length; i++) {
+            nums[i] = tmp[i];
+        }
+    }
+}
+```
+Genius O(1) sapce solution
+```
+nums = "----->-->"  // k = 3  
+result = "-->----->"  
+
+reverse "----->-->" we can get "<--<-----"  
+reverse "<--" we can get "--><-----"  
+reverse "<-----" we can get "-->----->"  
+```
+```java
+class Solution {
+    public void rotate(int[] nums, int k) {
+        k %= nums.length;
+        reverse(nums, 0, nums.length - 1);
+        reverse(nums, 0, k - 1);
+        reverse(nums, k, nums.length - 1);
+    }
+    
+    public void reverse(int[] arr, int i, int j) {
+        while (i < j) {
+            int tmp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = tmp;
+            i++;
+            j--;
+        }
+    }
+}
+```
+
 
 ## Tree
 
@@ -3159,14 +3234,12 @@ Medium
 ```text
 Write a program to find the n-th ugly number.
 
-Ugly numbers are positive numbers whose prime factors only include 2, 3,
-5. 
+Ugly numbers are positive numbers whose prime factors *only* include 2, 3, 5.
 
 Example:
 Input: n = 10
 Output: 12
-Explanation: 1, 2, 3, 4, 5, 6, 8, 9, 10, 12 is the sequence of the first 10
-ugly numbers.
+Explanation: 1, 2, 3, 4, 5, 6, 8, 9, 10, 12 is the sequence of the first 10 ugly numbers.
 
 Note:  
 1 is typically treated as an ugly number.
@@ -3174,17 +3247,35 @@ n does not exceed 1690.
 ```
 #### Solution
 The ugly-number sequence is 1, 2, 3, 4, 5, 6, 8, 9, 10, 12, 15, …  
-Because every number can only be divided by 2, 3, 5, one way to look at the sequence is to split the sequence to three groups as below:  
-
-    (1) 1×2, 2×2, 3×2, 4×2, 5×2, …  
-    (2) 1×3, 2×3, 3×3, 4×3, 5×3, …  
-    (3) 1×5, 2×5, 3×5, 4×5, 5×5, …  
-
-We can find that every subsequence is the ugly-sequence itself (1, 2, 3, 4, 5, …) multiply 2, 3, 5.   
-Then we use similar merge method as merge sort, to get every ugly number from the three subsequence.  
-Every step we choose the smallest one, and move one step after.  
+Because every number can only be divided by 2, 3, 5  
+We can get three subsequences by multiply the ugly-sequence itself (1, 2, 3, 5, … ) with 2, 3, 5  
+Then we use similar merge method as merge sort, to get every ugly number from the three subsequences  
 ```java
-
+class Solution {
+    public int nthUglyNumber(int n) {        
+        int[] ugly = new int[n];
+        ugly[0] = 1;
+        int idx2 = 0, idx3 = 0, idx5 = 0;
+        int num2 = 2, num3 = 3, num5 = 5;
+        
+        for (int i = 1; i < n; i++) {
+            int min = Math.min(Math.min(num2, num3), num5);
+            ugly[i] = min;
+            // use if to avoid duplicate num
+            if (min == num2) {
+                num2 = ugly[++idx2] * 2;
+            }
+            if (min == num3) {
+                num3 = ugly[++idx3] * 3;
+            } 
+            if (min == num5) {
+                num5 = ugly[++idx5] * 5;
+            }
+        }
+        
+        return ugly[n - 1];
+    }
+}
 ```
 
 
