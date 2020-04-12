@@ -182,6 +182,10 @@ blockquote {
   border-radius: .5rem !important;
 }
 
+body.fix {
+  overflow: hidden;
+}
+
 .container-note {
   display: flex;
   width: 100%;
@@ -207,10 +211,12 @@ blockquote {
   }
 
   #sidebarCollapse {
+    display: none;
     position: fixed;
     bottom: 15px;
     left: 265px;
     transition: all 0.3s;
+    z-index: 999;
 
     &.active {
       left: 15px;
@@ -231,6 +237,23 @@ blockquote {
     }
   }
 
+  .overlay {
+    display: none;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 998;
+    opacity: 0;
+    transition: all 0.5s ease-in-out;
+
+    &.active {
+      display: block;
+      opacity: 1;
+    }
+  }
+
   @media (max-width: 768px) {
     #navbar-scroll {
       margin-left: -250px;
@@ -241,10 +264,18 @@ blockquote {
     }
 
     #sidebarCollapse {
-      left: 10px;
+      display: block;
+      left: 15px;
 
       &.active {
-        left: 260px;
+        left: 265px;
+      }
+    }
+
+    .overlay {
+      &.active {
+        display: block;
+        opacity: 1;
       }
     }
 
@@ -252,7 +283,7 @@ blockquote {
       padding-left: 0;
 
       &.active {
-        padding-left: 250px;
+        //padding-left: 250px;
       }
     }
   }

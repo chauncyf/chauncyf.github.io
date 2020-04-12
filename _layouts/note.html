@@ -41,6 +41,7 @@ layout: without_nav
 
             {{ content }}
         </div>
+        <div class="overlay"></div>
         {% include footer.html %}
     </div>
 </div>
@@ -71,10 +72,11 @@ layout: without_nav
             scrollInertia: 0
         });
 
-        $('#sidebarCollapse').on('click', function () {
-            $('#navbar-scroll').toggleClass('active');
+        $('#sidebarCollapse, .overlay').on('click', function () {
             $('#sidebarCollapse').toggleClass('active');
-            $('#content').toggleClass('active');
+            $('#navbar-scroll').toggleClass('active');
+            $('.overlay').toggleClass('active');
+            $('body').toggleClass('fix');
         });
     });
 </script>
