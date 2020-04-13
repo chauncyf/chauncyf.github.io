@@ -182,10 +182,6 @@ blockquote {
   border-radius: .5rem !important;
 }
 
-body.fix {
-  overflow: hidden;
-}
-
 .container-note {
   display: flex;
   width: 100%;
@@ -211,15 +207,22 @@ body.fix {
   }
 
   #sidebarCollapse {
-    display: none;
     position: fixed;
     bottom: 15px;
-    left: 265px;
+    left: 240px;
+    padding: 6px 10px;
     transition: all 0.3s;
     z-index: 998;
+    font-size: 0.8rem;
+    border-radius: 0.5rem;
+    opacity: 20%;
+
+    &:hover {
+      opacity: 90%;
+    }
 
     &.active {
-      left: 15px;
+      left: -10px;
     }
   }
 
@@ -234,57 +237,6 @@ body.fix {
 
     &.active {
       padding-left: 0;
-    }
-  }
-
-  .overlay {
-    display: none;
-    position: absolute;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    z-index: 997;
-    opacity: 0;
-    transition: all 0.5s ease-in-out;
-
-    &.active {
-      display: block;
-      opacity: 1;
-    }
-  }
-
-  @media (max-width: 768px) {
-    #navbar-scroll {
-      margin-left: -250px;
-
-      &.active {
-        margin-left: 0;
-      }
-    }
-
-    #sidebarCollapse {
-      display: block;
-      left: 15px;
-
-      &.active {
-        //left: 265px;
-      }
-    }
-
-    .overlay {
-      &.active {
-        display: block;
-        opacity: 1;
-      }
-    }
-
-    #content {
-      padding-left: 0;
-
-      &.active {
-        //padding-left: 250px;
-      }
     }
   }
 
@@ -352,6 +304,56 @@ body.fix {
     flex: 1;
     height: auto;
     max-height: fit-content;
+  }
+}
+
+@media (max-width: 768px) {
+  body.fix {
+    overflow: hidden;
+  }
+
+  .container-note {
+
+    #navbar-scroll {
+      margin-left: -250px;
+
+      &.active {
+        margin-left: 0;
+      }
+    }
+
+    #sidebarCollapse {
+      left: -10px;
+
+      &.active {
+        left: 240px;
+      }
+    }
+
+    .overlay {
+      display: none;
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 997;
+      opacity: 0;
+      transition: all 0.5s ease-in-out;
+
+      &.active {
+        display: block;
+        opacity: 1;
+      }
+    }
+
+    #content {
+      padding-left: 0;
+
+      &.active {
+        //padding-left: 250px;
+      }
+    }
   }
 }
 

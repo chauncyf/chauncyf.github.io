@@ -20,7 +20,7 @@ layout: without_nav
         {% include nav.html %}
 
         <button type="button" id="sidebarCollapse" class="btn btn-secondary">
-            <i class="fas fa-bars"></i>
+            <i class="fas fa-grip-lines-vertical"></i>
         </button>
         <div class="container-fluid" id="scrollspy" data-target="#navbar-scroll">
             {% if page.last_modified %}
@@ -75,6 +75,7 @@ layout: without_nav
         $('#sidebarCollapse, .overlay').on('click', function () {
             $('#sidebarCollapse').toggleClass('active');
             $('#navbar-scroll').toggleClass('active');
+            $('#content').toggleClass('active');
             $('.overlay').toggleClass('active');
             $('body').toggleClass('fix');
         });
