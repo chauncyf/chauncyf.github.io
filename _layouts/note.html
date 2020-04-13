@@ -46,7 +46,6 @@ layout: without_nav
     </div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
 <script src="/assets/js/generate_nav.js"></script>
 <script>
     (function () {
@@ -67,11 +66,6 @@ layout: without_nav
 </script>
 <script>
     $(document).ready(function () {
-        $("#navbar-scroll").mCustomScrollbar({
-            theme: 'minimal-dark',
-            scrollInertia: 0
-        });
-
         $('#sidebarCollapse, .overlay').on('click', function () {
             $('#sidebarCollapse').toggleClass('active');
             $('#navbar-scroll').toggleClass('active');

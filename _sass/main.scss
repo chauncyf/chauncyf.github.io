@@ -206,6 +206,19 @@ blockquote {
     }
   }
 
+  #navbar-scroll::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  #navbar-scroll::-webkit-scrollbar-thumb {
+    background: #BDBDBD;
+    border-radius: 1.5rem;
+
+    &:hover {
+      background: #9E9E9E;
+    }
+  }
+
   #sidebarCollapse {
     position: fixed;
     bottom: 15px;
