@@ -186,7 +186,7 @@ blockquote {
   display: flex;
   width: 100%;
 
-  #navbar-scroll {
+  #sidebar {
     font-size: 0.9rem;
     background-color: #f8f9fa;
     display: block;
@@ -206,11 +206,11 @@ blockquote {
     }
   }
 
-  #navbar-scroll::-webkit-scrollbar {
+  #sidebar::-webkit-scrollbar {
     width: 4px;
   }
 
-  #navbar-scroll::-webkit-scrollbar-thumb {
+  #sidebar::-webkit-scrollbar-thumb {
     background: #BDBDBD;
     border-radius: 1.5rem;
 
@@ -219,7 +219,7 @@ blockquote {
     }
   }
 
-  #sidebarCollapse {
+  #sidebar-collapse {
     position: fixed;
     bottom: 15px;
     left: 240px;
@@ -227,8 +227,8 @@ blockquote {
     transition: all 0.3s;
     z-index: 998;
     font-size: 0.8rem;
-    border-radius: 0.5rem;
-    opacity: 20%;
+    border-radius: 0.7rem;
+    opacity: 30%;
 
     &:hover {
       opacity: 90%;
@@ -327,7 +327,7 @@ blockquote {
 
   .container-note {
 
-    #navbar-scroll {
+    #sidebar {
       margin-left: -250px;
 
       &.active {
@@ -335,11 +335,12 @@ blockquote {
       }
     }
 
-    #sidebarCollapse {
+    #sidebar-collapse {
       left: -10px;
 
       &.active {
         left: 240px;
+        opacity: 90%;
       }
     }
 
