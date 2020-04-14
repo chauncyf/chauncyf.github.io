@@ -1,4 +1,4 @@
-function generate_nav() {
+(function () {
     let res = ``;
     let preTag;
 
@@ -25,4 +25,4 @@ function generate_nav() {
     }
 
     $('#navbar-pill').append(res);
-}
+}());

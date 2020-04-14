@@ -10,7 +10,8 @@
     {% endif %}
 
     {% include tags.html %}
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Barcode+128+Text&family=Roboto+Slab:wght@100&display=swap&text='%20ACNPSWabcdeghinoprstuvy">
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Barcode+128+Text&family=Roboto+Slab:wght@100&display=swap&text='%20ACNPSWabcdeghinoprstuvy"
+          rel="stylesheet">
     <script>
         $(window).on('load', function () {
             fade_in('.container-fade-in');
@@ -31,7 +32,7 @@
             }
         }
 
-        var scroll = new SmoothScroll('a[href*="#"]', {
+        let scroll = new SmoothScroll('a[href*="#"]', {
             speedAsDuration: true,
         });
     </script>
