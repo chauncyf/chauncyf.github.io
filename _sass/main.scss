@@ -262,30 +262,28 @@ blockquote {
     transition: all 0.3s;
 
     @media (min-width: 576px) {
-      &.container {
+      &.compress {
         max-width: 540px;
       }
     }
     @media (min-width: 768px) {
-      &.container {
+      & {
+        padding: 0 40px;
+      }
+
+      &.compress {
         max-width: 720px;
       }
     }
     @media (min-width: 992px) {
-      &.container {
+      &.compress {
         max-width: 960px;
       }
     }
     @media (min-width: 1200px) {
-      &.container {
+      &.compress {
         max-width: 1140px;
       }
-    }
-  }
-
-  @media (min-width: 768px) {
-    #scrollspy {
-      padding: 0 40px;
     }
   }
 
@@ -338,15 +336,18 @@ blockquote {
     box-shadow: none !important;
   }
 
-  #collapse-btn {
+  #sidebar-nav-collapse {
     font-size: 1.25rem;
+    transition: all 0.3s;
+
+    &.rotate {
+      transform: rotate(-90deg);
+    }
   }
 
-  .flex-column {
-    transition: flex 0.5s ease-in-out;
-    flex: 1;
-    height: auto;
-    max-height: fit-content;
+  .nav.nav-pills {
+    display: block;
+    flex-wrap: unset;
   }
 }
 

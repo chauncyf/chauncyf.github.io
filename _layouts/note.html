@@ -9,8 +9,7 @@ layout: without_nav
                 <a class="navbar-brand mr-0" href="#">{{ page.title }} </a>
             </div>
             <div class="col px-0">
-                <button class="btn" id="collapse-btn" onclick="collapse_all()">
-                    <i class="fas fa-angle-down"></i></button>
+                <button class="btn" id="sidebar-nav-collapse"><i class="fas fa-angle-down"></i></button>
             </div>
         </div>
         <nav class="nav nav-pills flex-column w-100" id="navbar-pill"></nav>
@@ -19,13 +18,10 @@ layout: without_nav
     <div class="" id="content">
         {% include nav.html %}
 
-        <button type="button" id="sidebar-collapse" class="btn">
-            <i class="fas fa-grip-lines-vertical"></i>
-        </button>
+        <button class="btn" id="sidebar-collapse"><i class="fas fa-grip-lines-vertical"></i></button>
         <div class="container-fluid" id="scrollspy" data-target="#sidebar">
-            <button type="button" class="btn float-right" onclick="$('#scrollspy').toggleClass('container')">
-                <i class="fas fa-expand"></i>
-            </button>
+            <button class="btn float-right" id="compress-btn"><i class="fas fa-compress"></i></button>
+
             {% if page.last_modified %}
             <div class="badge badge-secondary float-right">
                 Updated: {{ page.last_modified | date: "%b %-d, %Y | %a, %I:%M %p" }}
@@ -62,16 +58,17 @@ layout: without_nav
             $('.overlay').toggleClass('active');
             $('body').toggleClass('fix');
         });
+
+        $('#sidebar-nav-collapse').on('click', function () {
+            $(this).toggleClass('rotate');
+            $("[id^='collapse-body-']").slideToggle();
+        });
+
+        $('#compress-btn').on('click', function () {
+            $(this).fadeOut(() => {
+                $(this).html(~$(this).html().indexOf('compress') ? '<i class="fas fa-expand"></i>' : '<i class="fas fa-compress"></i>');
+            }).fadeIn();
+            $('#scrollspy').toggleClass('compress');
+        });
     }());
-
-    function collapse_all() {
-        $("[id^='collapse-body-']").toggle();
-
-        let $collapse_btn = $('#collapse-btn');
-        if ($collapse_btn.html().trim() === '<i class="fas fa-angle-right"></i>') {
-            $collapse_btn.html(`<i class="fas fa-angle-down"></i>`);
-        } else {
-            $collapse_btn.html(`<i class="fas fa-angle-right"></i>`);
-        }
-    }
 </script>
