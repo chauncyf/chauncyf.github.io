@@ -19,10 +19,13 @@ layout: without_nav
     <div class="" id="content">
         {% include nav.html %}
 
-        <button type="button" id="sidebar-collapse" class="btn ">
+        <button type="button" id="sidebar-collapse" class="btn">
             <i class="fas fa-grip-lines-vertical"></i>
         </button>
         <div class="container-fluid" id="scrollspy" data-target="#sidebar">
+            <button type="button" class="btn float-right" onclick="$('#scrollspy').toggleClass('container')">
+                <i class="fas fa-expand"></i>
+            </button>
             {% if page.last_modified %}
             <div class="badge badge-secondary float-right">
                 Updated: {{ page.last_modified | date: "%b %-d, %Y | %a, %I:%M %p" }}
