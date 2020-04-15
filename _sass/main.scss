@@ -138,9 +138,9 @@ blockquote {
   }
 
   #drawer {
-    //visibility: hidden;
-    //overflow: hidden;
-    //max-height: 0;
+    visibility: hidden;
+    overflow: hidden;
+    max-height: 0;
     transition: max-height 0.8s ease-in;
   }
 
