@@ -60,11 +60,19 @@ Before that, I worked for MatrixCare as a Software Engineer Intern and I worked 
 Now that I’m finishing my Master’s degree, I’d love to focus on software engineering and discover the opportunity to work for Amazom AWS. 
 
 ### Tell me about your internship
-Last summer, I had an internship in MatrixCare, which is a company that provides one stop software solution in the seniors living market, like Electronic Health Record.
+> America is heading toward a senior-care crisis, with an aging population that greatly outnumbers potential caregivers. But innovations in technology are helping organizations scale their services to provide better care with fewer staff. And MatrixCare is at the forefront of this innovation.  
+> 
+> Much more than just an electronic health record (EHR), the MatrixCare platform enables active care management across the entire out-of-hospital spectrum. Our **integrated clinical, revenue cycle, operational and financial solutions** help organizations improve quality of care, simplify documentation and streamline business operations.
+> 
+> MatrixCare employees are passionate about creating ways to provide better care for our nation’s aging population, because that includes our parents, grandparents and other loved ones.
 
-As a Software Engineer Intern, I worked in a special team that directly led by our architect. The goal of our team was to update the architecture of company's flagship software. So I helped refactured the architecture from Java EE model to Spring model, changed application container from JBoss to Tomcat, also updated JDK from 7 to 12.
+Last summer, I had an internship at MatrixCare, which is a full subsidiary by ResMed, and MatrixCare provides one stop healthcare solution. 
 
-**Challenge**  
+The product I worked on is called Skilled Nursing, basically it's an Electronic Health Record (EHR). For this product, there are two modals running at the same time: the legacy part is running on the Java EE modal, and the other part is running on the Spring modal.
+
+As a Software Engineer Intern, I workd in a 5 person team that consists of our architect (he is also my manager), a senior engineer, a scrum master (because we are doing agile development) and two interns. The goal of our team was to update the legacy part and get rid of it.
+
+#### Challenge
 Because the most important task was to refactor the old stack to a new stack, and the old stack was used like more than 10 years ago, so of course I dont really understand them.
 
 In order to do the work, I have to read a lot of documents of the old stack first, and when I dont understant or I cannot find a doc, I will go to my manager to collegues for help.
@@ -72,6 +80,71 @@ In order to do the work, I have to read a lot of documents of the old stack firs
 The refactor went pretty well, I helped updated several important stuff like database management service as well.
 
 `TODO`
+
+#### Transaction Mnagement
+It's a little bit hard to describe, but I'll try my best.
+
+Typically, the place where we used Transaction Management is inside the DAO layer. 
+
+We uses DAO to access the database, and do operations like read or write in there. In order to secure the process and have everyting running under transaction, we need the Transaction Management. And the Transaction Management was injected into the DAO through Spring.
+
+In the legacy stack, we uses **JtaTransactionManager** for Transaction Management, JtaTransactionManager implements the **UserTransaction** interface.
+
+In the legacy code, we used the declarative way for the transaction, which is basically explicitly call begin, commit and rollback on the injected TransactionManager.
+
+You see that we will call the commit or rollback method on the injected TransactionManager, this simply means that if we change the TransactionManager, the new TransactionManager should provides the same methods as well, so it should implement the same interface. 
+
+Unfortunately, the PlatformTransactionManager doesn't implement that interface, and actually there's no begin method at all. So in the worst case, in my manager's expectation, we have to rewrite all those DAOs, and that's a huge amount of work.
+
+The good news is that, after read the document and compare the JtaTransactionManager & PlatformTransactionManager, I found out that PlatformTransactionManager indeed have methods doing similar things, even though the name of the methods are quite different.
+
+This means that I could create a new bean that extends the PlatformTransactionManager and implement the JtaTransactionManager's interface, so that the new bean will act just like the old one. For code inside the DAOs, wo don't need any modificatoin at all.
+
+
+
+**PlatformTransactionManager**
+
+[https://docs.spring.io/spring/docs/3.2.x/spring-framework-reference/html/transaction.html](https://docs.spring.io/spring/docs/3.2.x/spring-framework-reference/html/transaction.html)
+```xml
+<bean id="transactionManager" class="org.springframework.transaction.jta.JtaTransactionManager">
+    <constructor-arg ref="userTransaction"/>
+    <constructor-arg ref="jtaTransactionManager"/>
+</bean>
+
+<bean id="txManager" class="org.springframework.transaction.jta.JtaTransactionManager"/>
+
+<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+  <property name="dataSource" ref="dataSource"/>
+</bean>
+```
+
+```java
+public interface PlatformTransactionManager {
+    TransactionStatus getTransaction(TransactionDefinition definition) throws TransactionException;
+
+    void commit(TransactionStatus status) throws TransactionException;
+
+    void rollback(TransactionStatus status) throws TransactionException;
+}
+```
+
+
+legacy initialize with old bean, whilch is an interface
+<!-- if I change  -->
+it's not only about the bean, have to change all code
+have the new stuff inmpement that interface
+
+
+
+#### Log
+J2EE stack to Spring, The Java EE interfaces incorporate JDBC for databases, JNDI for registries, JTA for exchanges, JMS for informing. https://www.educba.com/java-ee-vs-spring/
+
+- Base 64 - Identify all places where sun.misc.Base64 encoding/decoding takes place
+- JSP code no longer compiles under Tomcat
+- JUnit test for xxxDAO
+- Logging Framework Update and Configuration
+- Review and Configure Transaction Mnagement Settings for Tomcat Profile to replace JBoss Tx Mgmt
+
 
 ## Why xxx
 ### Amazon
