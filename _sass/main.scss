@@ -219,43 +219,43 @@ blockquote {
       margin-left: -250px;
     }
 
+    &::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: #BDBDBD;
+      border-radius: 1.5rem;
+
+      &:hover {
+        background: #9E9E9E;
+      }
+    }
+
     .nav-link {
       padding: 0.3rem 0.8rem;
     }
   }
 
-  #sidebar::-webkit-scrollbar {
-    width: 4px;
-  }
-
-  #sidebar::-webkit-scrollbar-thumb {
-    background: #BDBDBD;
-    border-radius: 1.5rem;
-
-    &:hover {
-      background: #9E9E9E;
-    }
-  }
-
-  #sidebar-collapse {
+  #sidebar-toggle {
     position: fixed;
-    bottom: 25px;
-    left: 240px;
-    padding: 6px 10px;
-    transition: all 0.3s;
-    z-index: 998;
-    font-size: 0.8rem;
-    border-radius: 0.8rem;
-    opacity: 60%;
+    bottom: 2rem;
+    left: 245px;
+    padding: 6px 8px;
+    border-radius: 0 0.7rem 0.7rem 0;
+    font-size: 0.9rem;
     color: #6c757d;
     background-color: #f5f5f5;
+    opacity: 60%;
+    transition: all 0.3s;
+    z-index: 998;
 
     &:hover {
       opacity: 100%;
     }
 
     &.active {
-      left: -10px;
+      left: -5px;
     }
   }
 
@@ -382,12 +382,12 @@ blockquote {
       }
     }
 
-    #sidebar-collapse {
-      left: -10px;
+    #sidebar-toggle {
+      left: -5px;
 
       &.active {
-        left: 240px;
-        opacity: 100%;
+        left: 245px;
+        opacity: 1;
       }
     }
 

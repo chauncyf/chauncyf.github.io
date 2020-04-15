@@ -51,11 +51,11 @@
         </div>
         <nav class="nav nav-pills flex-column w-100" id="navbar-pill"></nav>
     </nav>
+    <button class="btn" id="sidebar-toggle"><i class="fas fa-grip-lines-vertical"></i></button>
 
     <div class="" id="content">
         {% include nav.html %}
 
-        <button class="btn" id="sidebar-collapse"><i class="fas fa-grip-lines-vertical"></i></button>
         <div class="container-fluid" id="scrollspy" data-target="#sidebar">
             <button class="btn float-right" id="compress-btn"><i class="fas fa-compress"></i></button>
 
@@ -78,6 +78,7 @@
             {{ content }}
         </div>
         <div class="overlay"></div>
+
         {% include footer.html %}
     </div>
 </div>
@@ -87,11 +88,8 @@
     $(document).ready(function () {
         $('body').scrollspy({target: '#sidebar'});
 
-        $('#sidebar-collapse, .overlay').on('click', function () {
-            $('#sidebar-collapse').toggleClass('active');
-            $('#sidebar').toggleClass('active');
-            $('#content').toggleClass('active');
-            $('.overlay').toggleClass('active');
+        $('#sidebar-toggle, .overlay').on('click', function () {
+            $('#sidebar-toggle, #sidebar, #content, .overlay').toggleClass('active');
             $('body').toggleClass('fix');
         });
 
