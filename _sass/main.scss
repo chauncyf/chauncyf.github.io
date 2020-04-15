@@ -138,9 +138,9 @@ blockquote {
   }
 
   #drawer {
-    visibility: hidden;
-    overflow: hidden;
-    max-height: 0;
+    //visibility: hidden;
+    //overflow: hidden;
+    //max-height: 0;
     transition: max-height 0.8s ease-in;
   }
 
@@ -156,6 +156,22 @@ blockquote {
   .badge {
     border-radius: .3rem !important;
   }
+}
+
+.tooltip-inner {
+  padding: 0.3rem 0.8rem;
+  border-radius: 1.5rem;
+  background-color: #6c757d;
+}
+
+.tooltip.show {
+  opacity: 1;
+}
+
+.bs-tooltip-auto[x-placement^=top] .arrow::before, .bs-tooltip-top .arrow::before {
+  top: 0;
+  border-width: .3rem 0.4rem 0;
+  border-top-color: #6c757d
 }
 
 .btn-share {
@@ -293,7 +309,7 @@ blockquote {
 
   h2 {
     font-size: 1.75rem;
-    margin: 1rem 0 0 0;
+    margin: 1rem 0 0.5rem 0;
     padding: 1.5rem 0 0.5rem 0;
     border-bottom: 1px solid rgba(0, 0, 0, .1);
   }

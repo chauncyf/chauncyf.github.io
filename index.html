@@ -29,13 +29,17 @@ permalink: /
             <div id="drawer">
                 <hr class="mt-0 mb-3">
                 <p class="light mb-2">Why not get in touch?</p>
-                <a class="btn btn-share" href="https://github.com/chauncyf" role="button">
+                <a class="btn btn-share" href="https://github.com/chauncyf" role="button"
+                   data-toggle="tooltip" data-placement="top" title="Github">
                     <i class="fab fa-github"></i></a>
-                <a class="btn btn-share" href="https://www.linkedin.com/in/chenfengf/" role="button">
+                <a class="btn btn-share" href="https://www.linkedin.com/in/chenfengf/" role="button"
+                   data-toggle="tooltip" data-placement="top" title="LinkedIn">
                     <i class="fab fa-linkedin-in"></i></a>
-                <a class="btn btn-share" href="https://www.instagram.com/chauncyfff/" role="button">
+                <a class="btn btn-share" href="https://www.instagram.com/chauncyfff/" role="button"
+                   data-toggle="tooltip" data-placement="top" title="Instagram">
                     <i class="fab fa-instagram"></i></a>
-                <a class="btn btn-share" href="https://chauncyf.github.io/words" role="button">
+                <a class="btn btn-share" href="https://chauncyf.github.io/words" role="button"
+                   data-toggle="tooltip" data-placement="top" title="Blog">
                     <i class="fas fa-rocket"></i></a>
             </div>
         </div>
@@ -224,6 +228,7 @@ permalink: /
     $(window).on('load', function () {
         $('#board').css('opacity', 1);
         $('body').scrollspy({target: '#nav-about'});
+        $('[data-toggle="tooltip"]').tooltip()
     });
 
     let $navAbout = $('#nav-about'),
