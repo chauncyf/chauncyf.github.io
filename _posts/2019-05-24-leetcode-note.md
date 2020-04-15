@@ -454,57 +454,6 @@ class Solution {
 }
 ```
 
-### Contiguous Array - 525
-Medium
-{:.badge.m}
-Prefix Sum
-{:.badge}
-#### Problem
-```
-Given a binary array, find the maximum length of a contiguous subarray with
-equal number of 0 and 1. 
-
-Example 1:
-Input: [0,1]
-Output: 2
-Explanation: [0, 1] is the longest contiguous subarray with equal number of
-0 and 1.
-
-Example 2:
-Input: [0,1,0]
-Output: 2
-Explanation: [0, 1] (or [1, 0]) is a longest contiguous subarray with equal
-number of 0 and 1.
-
-Note:
-The length of the given binary array will not exceed 50,000.
-```
-#### Solution
-```java
-class Solution {
-    public int findMaxLength(int[] nums) {
-        int res = 0;
-        int sum = 0;
-        Map<Integer, Integer> map = new HashMap<>();
-        map.put(0, -1);
-        
-        for (int i = 0; i < nums.length; i++) {
-            if (nums[i] == 0) {
-                sum--;
-            } else {
-                sum++;
-            }
-            if (map.containsKey(sum)) {
-                res = Math.max(res, i - map.get(sum));
-            } else {
-                map.put(sum, i);
-            }
-        }
-        return res;
-    }
-}
-```
-
 ### Backspace String Compare - 844
 Easy
 {:.badge.e}
@@ -858,6 +807,323 @@ class Solution {
             i++;
             j--;
         }
+    }
+}
+```
+
+### Shuffle an Array - 384
+Medium
+{:.badge.m}
+Random
+{:.badge}
+#### Problem
+```
+Shuffle a set of numbers without duplicates.
+
+Example:
+
+// Init an array with set 1, 2, and 3.
+int[] nums = {1,2,3};
+Solution solution = new Solution(nums);
+
+// Shuffle the array [1,2,3] and return its result. Any permutation of
+[1,2,3] must equally likely to be returned.
+solution.shuffle();
+
+// Resets the array back to its original configuration [1,2,3].
+solution.reset();
+
+// Returns the random shuffling of array [1,2,3].
+solution.shuffle();
+```
+#### Solution
+Simple solution is to copy all elements into an arraylist, each time remove a random element from the arraylist, and add it to the output array.  
+We can prove that the overally possibility of an element to be picked at each point is equal.  (just like the order of lottery drawing doesn't matter)  
+Due of the shift of arraylist, overally complexity will be O(n2)
+```java
+/**
+ * Your Solution object will be instantiated and called as such:
+ * Solution obj = new Solution(nums);
+ * int[] param_1 = obj.reset();
+ * int[] param_2 = obj.shuffle();
+ */
+class Solution {
+    private Random random = new Random();
+    private int[] original;
+    private int[] nums;
+    
+    public Solution(int[] nums) {
+        this.original = nums.clone();
+        this.nums = nums;
+    }
+    
+    /** Resets the array to its original configuration and return it. */
+    public int[] reset() {
+        nums = original.clone();
+        return nums;
+    }
+    
+    /** Returns a random shuffling of the array. */
+    public int[] shuffle() {
+        List<Integer> list = getArrayCopy();
+
+        for (int i = 0; i < nums.length; i++) {
+            int idx = random.nextInt(list.size());
+            nums[i] = list.get(idx);
+            list.remove(idx);
+        }
+
+        return nums;
+    }
+    
+    private List<Integer> getArrayCopy() {
+        List<Integer> list = new ArrayList<>();
+        for (int i : nums) {
+            list.add(i);
+        }
+        return list;
+    }
+}
+```
+`Fisher-Yates Algorithm`  
+Similar idea, instead of pick number from another list, during the iteration, pick number from itself, and swap it with current idx. Complexity O(n)
+```java
+class Solution {
+    private Random random = new Random();
+    private int[] original;
+    private int[] nums;
+    
+    public Solution(int[] nums) {
+        this.original = nums.clone();
+        this.nums = nums;
+    }
+    
+    /** Resets the array to its original configuration and return it. */
+    public int[] reset() {
+        nums = original.clone();
+        return nums;
+    }
+    
+    /** Returns a random shuffling of the array. */
+    public int[] shuffle() {
+        for (int i = 0; i < nums.length; i++) {
+            swap(nums, i, i + random.nextInt(nums.length - i));
+        }
+        return nums;
+    }
+    
+    private void swap(int[] arr, int i, int j) {
+        int tmp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = tmp;
+    }
+}
+```
+
+### Contiguous Array - 525
+Medium
+{:.badge.m}
+Prefix Sum
+{:.badge}
+#### Problem
+```
+Given a binary array, find the maximum length of a contiguous subarray with
+equal number of 0 and 1. 
+
+Example 1:
+Input: [0,1]
+Output: 2
+Explanation: [0, 1] is the longest contiguous subarray with equal number of
+0 and 1.
+
+Example 2:
+Input: [0,1,0]
+Output: 2
+Explanation: [0, 1] (or [1, 0]) is a longest contiguous subarray with equal
+number of 0 and 1.
+
+Note:
+The length of the given binary array will not exceed 50,000.
+```
+#### Solution
+sum++ when meet 1, sum-- when meet 0  
+if two index have same sum, the number of 0 and 1 between these two index must be equal  
+
+consider [0, 0, 0, 1, 1, 0], prefix sum = [-1, -2, -3, -2, -1, -2]  
+longest length is between two -1, length = 4 - 0 = 4
+```java
+class Solution {
+    public int findMaxLength(int[] nums) {
+        int res = 0;
+        int sum = 0;
+        Map<Integer, Integer> map = new HashMap<>();
+        map.put(0, -1);
+        
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == 0) {
+                sum--;
+            } else {
+                sum++;
+            }
+            if (map.containsKey(sum)) {
+                res = Math.max(res, i - map.get(sum));
+            } else {
+                map.put(sum, i);
+            }
+        }
+        return res;
+    }
+}
+```
+
+
+## LinkedList
+
+### Add Two Numbers - 2
+Medium
+{:.badge.m}
+#### Problem
+```text
+You are given two non-empty linked lists representing two non-negative
+integers. The digits are stored in reverse order and each of their nodes
+contain a single digit. Add the two numbers and return it as a linked list.
+
+You may assume the two numbers do not contain any leading zero, except the
+number 0 itself.
+
+Example:
+Input: (2 -> 4 -> 3) + (5 -> 6 -> 4)
+Output: 7 -> 0 -> 8
+Explanation: 342 + 465 = 807.
+```
+#### Solution
+``` java
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+ 
+class Solution {
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        ListNode res = new ListNode(0);
+        ListNode cur = res, cur1 = l1, cur2 = l2;
+        int payload = 0;
+        while (cur1 != null || cur2 != null) {
+            int sum = payload;
+            if (cur1 != null) {
+                sum += cur1.val;
+                cur1 = cur1.next;
+            }
+            if (cur2 != null) {
+                sum += cur2.val;
+                cur2 = cur2.next;
+            }
+            cur.next = new ListNode(sum % 10);
+            payload = sum / 10;
+            cur = cur.next;
+        }
+        if (payload != 0) {
+            cur.next = new ListNode(payload);
+        }
+        return res.next;
+    }
+}
+```
+
+### Reverse Linked List - 206
+Easy
+{:.badge.e}
+#### Problem
+```text
+Reverse a singly linked list.
+
+Example:
+Input: 1->2->3->4->5->NULL
+Output: 5->4->3->2->1->NULL
+
+Follow up:
+A linked list can be reversed either iteratively or recursively. 
+Could you implement both?
+```
+#### Solution
+Iteratively
+```java
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public ListNode reverseList(ListNode head) {
+        ListNode cur = head, pre = null;
+        while (cur != null) {
+            ListNode next = cur.next;
+            cur.next = pre;
+            pre = cur;
+            cur = next;
+        }
+        return pre;
+    }
+}
+```
+Recursively
+```java
+class Solution {
+    public ListNode reverseList(ListNode head) {
+        if (head == null || head.next == null) return head;  // head == null handle null input
+        ListNode res = reverseList(head.next);  // go straight to the tail
+        head.next.next = head;
+        head.next = null;
+        return res;
+    }
+}
+```
+
+### Middle of the Linked List - 876
+Easy
+{:.badge.e}
+#### Problem
+```text
+Given a non-empty, singly linked list with head node head, return a middle
+node of linked list.
+
+If there are two middle nodes, return the second middle node.
+
+Example 1:
+Input: [1,2,3,4,5]
+Output: Node 3 from this list (Serialization: [3,4,5])
+The returned node has value 3.  (The judge's serialization of this node is
+[3,4,5]).
+Note that we returned a ListNode object ans, such that:
+ans.val = 3, ans.next.val = 4, ans.next.next.val = 5, and ans.next.next.next
+= NULL.
+
+Example 2:
+Input: [1,2,3,4,5,6]
+Output: Node 4 from this list (Serialization: [4,5,6])
+Since the list has two middle nodes with values 3 and 4, we return the
+second one.
+
+Note:
+The number of nodes in the given list will be between 1 and 100.
+```
+#### Solution
+```java
+class Solution {
+    public ListNode middleNode(ListNode head) {
+        ListNode slow = head, fast = head;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow;
     }
 }
 ```
@@ -1251,158 +1517,6 @@ public class Codec {
 } 
 ```
 
-
-
-## LinkedList
-
-### Add Two Numbers - 2
-Medium
-{:.badge.m}
-#### Problem
-```text
-You are given two non-empty linked lists representing two non-negative
-integers. The digits are stored in reverse order and each of their nodes
-contain a single digit. Add the two numbers and return it as a linked list.
-
-You may assume the two numbers do not contain any leading zero, except the
-number 0 itself.
-
-Example:
-Input: (2 -> 4 -> 3) + (5 -> 6 -> 4)
-Output: 7 -> 0 -> 8
-Explanation: 342 + 465 = 807.
-```
-#### Solution
-``` java
-/**
- * Definition for singly-linked list.
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode(int x) { val = x; }
- * }
- */
- 
-class Solution {
-    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        ListNode res = new ListNode(0);
-        ListNode cur = res, cur1 = l1, cur2 = l2;
-        int payload = 0;
-        while (cur1 != null || cur2 != null) {
-            int sum = payload;
-            if (cur1 != null) {
-                sum += cur1.val;
-                cur1 = cur1.next;
-            }
-            if (cur2 != null) {
-                sum += cur2.val;
-                cur2 = cur2.next;
-            }
-            cur.next = new ListNode(sum % 10);
-            payload = sum / 10;
-            cur = cur.next;
-        }
-        if (payload != 0) {
-            cur.next = new ListNode(payload);
-        }
-        return res.next;
-    }
-}
-```
-
-### Reverse Linked List - 206
-Easy
-{:.badge.e}
-#### Problem
-```text
-Reverse a singly linked list.
-
-Example:
-Input: 1->2->3->4->5->NULL
-Output: 5->4->3->2->1->NULL
-
-Follow up:
-A linked list can be reversed either iteratively or recursively. 
-Could you implement both?
-```
-#### Solution
-Iteratively
-```java
-/**
- * Definition for singly-linked list.
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode(int x) { val = x; }
- * }
- */
-class Solution {
-    public ListNode reverseList(ListNode head) {
-        ListNode cur = head, pre = null;
-        while (cur != null) {
-            ListNode next = cur.next;
-            cur.next = pre;
-            pre = cur;
-            cur = next;
-        }
-        return pre;
-    }
-}
-```
-Recursively
-```java
-class Solution {
-    public ListNode reverseList(ListNode head) {
-        if (head == null || head.next == null) return head;  // head == null handle null input
-        ListNode res = reverseList(head.next);  // go straight to the tail
-        head.next.next = head;
-        head.next = null;
-        return res;
-    }
-}
-```
-
-### Middle of the Linked List - 876
-Easy
-{:.badge.e}
-#### Problem
-```text
-Given a non-empty, singly linked list with head node head, return a middle
-node of linked list.
-
-If there are two middle nodes, return the second middle node.
-
-Example 1:
-Input: [1,2,3,4,5]
-Output: Node 3 from this list (Serialization: [3,4,5])
-The returned node has value 3.  (The judge's serialization of this node is
-[3,4,5]).
-Note that we returned a ListNode object ans, such that:
-ans.val = 3, ans.next.val = 4, ans.next.next.val = 5, and ans.next.next.next
-= NULL.
-
-Example 2:
-Input: [1,2,3,4,5,6]
-Output: Node 4 from this list (Serialization: [4,5,6])
-Since the list has two middle nodes with values 3 and 4, we return the
-second one.
-
-Note:
-The number of nodes in the given list will be between 1 and 100.
-```
-#### Solution
-```java
-class Solution {
-    public ListNode middleNode(ListNode head) {
-        ListNode slow = head, fast = head;
-        while (fast != null && fast.next != null) {
-            slow = slow.next;
-            fast = fast.next.next;
-        }
-        return slow;
-    }
-}
-```
 
 ## Sort
 
