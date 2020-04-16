@@ -59,6 +59,7 @@ permalink: /photos
 </div>
 
 <script>
+    let $modal = $('#modal-img');
     let $modal_img = $('#modal-img img');
 
     function render_img(img_name, img_path, out = 300) {
@@ -77,7 +78,7 @@ permalink: /photos
     function open_modal(img_name, img_path) {
         if ($(window).width() >= 768) {
             render_img(img_name, img_path, 0).done(() => {
-                $('#modal-img').modal('show');
+                $modal.modal('show');
             });
         }
     }
@@ -96,15 +97,15 @@ permalink: /photos
         }
     }
 
-    $(document).keydown(function (e) {
+    $(document).keyup(function (e) {
         switch (e.which) {
             case 37: // left
-                if (($('#modal-img').data('bs.modal') || {})._isShown) {
+                if (($modal.data('bs.modal') || {})._isShown) {
                     prev_pic();
                 }
                 break;
             case 39: // right
-                if (($('#modal-img').data('bs.modal') || {})._isShown) {
+                if (($modal.data('bs.modal') || {})._isShown) {
                     next_pic();
                 }
                 break;
