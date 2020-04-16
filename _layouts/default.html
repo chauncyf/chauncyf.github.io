@@ -17,11 +17,10 @@
             fade_in('.container-fade-in');
         });
 
-        function fade_in(obj, duration) {
+        function fade_in(obj, duration = 1) {
             $obj = $(obj);
 
             if ($obj.hasClass('fade-in-fast')) duration = 0.5;
-            else if (!duration) duration = 1;
 
             if ($obj.css({
                 visibility: 'visible',

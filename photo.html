@@ -33,7 +33,7 @@ permalink: /photos
     </div>
 </div>
 
-<div class="modal fade" id="image-modal" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="modal-img" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-pic" role="document">
         <div class="modal-content">
             <div class="modal-body p-0">
@@ -59,25 +59,38 @@ permalink: /photos
 </div>
 
 <script>
-    let $image_modal = $('#image-modal');
+    let $modal_img = $('#modal-img img');
 
-    function render_img(img_name, img_path) {
-        $image_modal.find('img').attr({'src': img_path, 'alt': img_name});
-        $image_modal.find('p').text(img_name);
+    function render_img(img_name, img_path, out = 300) {
+        $modal_img.fadeOut(out, () => {
+            $modal_img.attr({'src': img_path, 'alt': img_name})
+        }).fadeIn(500);
+        $('#modal-img p').text(img_name);
+
+        return $.Deferred((d) => {
+            $modal_img.on('load', () => {
+                d.resolve()
+            })
+        }).promise();
     }
 
     function open_modal(img_name, img_path) {
-        $image_modal.modal('show');
-        render_img(img_name, img_path);
+        render_img(img_name, img_path, 0).done(() => {
+            $('#modal-img').modal('show');
+        });
     }
 
     function prev_pic() {
-        let $new_image = $('#' + $image_modal.find('img').attr('alt')).prev();
-        render_img($new_image.find('img').attr('alt'), $new_image.find('img').attr('src'));
+        let $new_image = $('#' + $modal_img.attr('alt')).prev().find('img');
+        if ($new_image.length !== 0) {
+            render_img($new_image.attr('alt'), $new_image.attr('src'));
+        }
     }
 
     function next_pic() {
-        let $new_image = $('#' + $image_modal.find('img').attr('alt')).next();
-        render_img($new_image.find('img').attr('alt'), $new_image.find('img').attr('src'));
+        let $new_image = $('#' + $modal_img.attr('alt')).next().find('img');
+        if ($new_image.length !== 0) {
+            render_img($new_image.attr('alt'), $new_image.attr('src'));
+        }
     }
 </script>

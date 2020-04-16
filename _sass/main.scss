@@ -243,7 +243,7 @@ blockquote {
     left: 245px;
     padding: 6px 8px;
     border-radius: 0 0.7rem 0.7rem 0;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     color: #6c757d;
     background-color: #f5f5f5;
     opacity: 60%;
@@ -544,6 +544,10 @@ blockquote {
   .modal-content {
     width: fit-content;
     margin: auto;
+  }
+
+  .modal-body {
+    background: black;
   }
 
   .img-fluid {
