@@ -61,8 +61,10 @@ permalink: /photos
 <script>
     let $modal = $('#modal-img');
     let $modal_img = $('#modal-img img');
+    let img_loaded = false;
 
-    function render_img(img_name, img_path, out = 300) {
+    function render_img(img_name, img_path, out = 200) {
+        img_loaded = false;
         $modal_img.fadeOut(out, () => {
             $modal_img.attr({'src': img_path, 'alt': img_name})
         }).fadeIn(500);
@@ -70,6 +72,7 @@ permalink: /photos
 
         return $.Deferred((d) => {
             $modal_img.on('load', () => {
+                img_loaded = true;
                 d.resolve()
             })
         }).promise();
@@ -97,21 +100,19 @@ permalink: /photos
         }
     }
 
-    $(document).keyup(function (e) {
-        switch (e.which) {
-            case 37: // left
-                if (($modal.data('bs.modal') || {})._isShown) {
+    $(document).keydown(function (e) {
+        if (($modal.data('bs.modal') || {})._isShown && img_loaded) {
+            e.preventDefault();  // prevent the default action (scroll / move caret)
+            switch (e.which) {
+                case 37:  // left
                     prev_pic();
-                }
-                break;
-            case 39: // right
-                if (($modal.data('bs.modal') || {})._isShown) {
+                    break;
+                case 39:  // right
                     next_pic();
-                }
-                break;
-            default:
-                return; // exit this handler for other keys
+                    break;
+                default:
+                    return;  // exit this handler for other keys
+            }
         }
-        e.preventDefault(); // prevent the default action (scroll / move caret)
     });
 </script>
