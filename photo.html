@@ -93,4 +93,22 @@ permalink: /photos
             render_img($new_image.attr('alt'), $new_image.attr('src'));
         }
     }
+
+    $(document).keydown(function (e) {
+        switch (e.which) {
+            case 37: // left
+                if (($('#modal-img').data('bs.modal') || {})._isShown) {
+                    prev_pic();
+                }
+                break;
+            case 39: // right
+                if (($('#modal-img').data('bs.modal') || {})._isShown) {
+                    next_pic();
+                }
+                break;
+            default:
+                return; // exit this handler for other keys
+        }
+        e.preventDefault(); // prevent the default action (scroll / move caret)
+    });
 </script>

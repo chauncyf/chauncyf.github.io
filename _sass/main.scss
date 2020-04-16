@@ -535,7 +535,7 @@ blockquote {
 }
 
 .modal-backdrop.show {
-  opacity: 0.8 !important;
+  opacity: 0.9 !important;
 }
 
 .modal-pic {
@@ -544,10 +544,7 @@ blockquote {
   .modal-content {
     width: fit-content;
     margin: auto;
-  }
-
-  .modal-body {
-    background: black;
+    background: transparent;
   }
 
   .img-fluid {
