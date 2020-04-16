@@ -75,9 +75,11 @@ permalink: /photos
     }
 
     function open_modal(img_name, img_path) {
-        render_img(img_name, img_path, 0).done(() => {
-            $('#modal-img').modal('show');
-        });
+        if ($(window).width() >= 768) {
+            render_img(img_name, img_path, 0).done(() => {
+                $('#modal-img').modal('show');
+            });
+        }
     }
 
     function prev_pic() {
