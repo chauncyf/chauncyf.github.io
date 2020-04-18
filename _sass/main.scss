@@ -483,6 +483,16 @@ blockquote {
   column-count: 1 !important;
 }
 
+.progress {
+  height: 4px;
+  border-radius: 0;
+
+  .progress-bar {
+    width: 1%;
+    background-color: #6c757d;
+  }
+}
+
 .modal-content {
   border: none !important;
 

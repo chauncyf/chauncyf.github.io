@@ -13,7 +13,7 @@ layout: default
 
             {% if page.last_modified_at %}
             <p class="text-right text-muted">
-                <small>Updated: {{ page.last_modified_at | date: "%b %-d, %Y | %a, %I:%M %p" }}</small>
+                <small>Updated: {{ page.last_modified | date: "%b %-d, %Y | %a, %I:%M %p" }}</small>
             </p>
             {% endif %}
 
