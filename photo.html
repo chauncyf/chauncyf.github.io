@@ -5,31 +5,32 @@ permalink: /photos
 ---
 
 <script>
-    let updateProgressbar = (function () {
+    let progressbar = (function () {
         let total;
         let loaded = 0;
         $(() => {
             total = $('.card-columns img').length;
         });
 
-        function update() {
-            $('#progressbar').css('width', `${++loaded * 100 / total}%`);
-        }
+        $(window).on('load', () => {
+            progressbar.hide();
+        });
 
-        return () => {
-            update();
+        return {
+            update: () => {
+                $('#progressbar .progress-bar').css('width', `${++loaded * 100 / total}%`);
+            },
+            hide: () => {
+                $('#progressbar').hide();
+            }
         }
     })();
-
-    $(window).on('load', () => {
-        $('.progress').hide();
-    })
 </script>
 
 {% include cover.html title="Photography" img="../assets/DSC01881C.jpg" %}
 
-<div class="progress">
-    <div class="progress-bar progress-bar-striped progress-bar-animated" id="progressbar" role="progressbar"></div>
+<div class="progress" id="progressbar">
+    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"></div>
 </div>
 
 <div class="container-fluid container-fade-in my-4">
@@ -41,7 +42,7 @@ permalink: /photos
 
         <div class="card mb-3 shadow-sm" id="{{ image.basename }}"
              onclick="open_modal('{{ image.basename }}', '{{ image.path }}')">
-            <img src="{{ image.path }}" class="card-img" alt="{{ image.basename }}" onload="updateProgressbar()">
+            <img src="{{ image.path }}" class="card-img" alt="{{ image.basename }}" onload="progressbar.update()">
             <div class="mask">
                 <div class="card-img-overlay">
                     <p class="card-text">{{ image.basename }}</p>
