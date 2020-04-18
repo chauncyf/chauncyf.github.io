@@ -7,7 +7,7 @@ permalink: /photos
 {% include cover.html title="Photography" img="../assets/DSC01881C.jpg" %}
 
 <div class="progress">
-    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" id="progressbar"></div>
+    <div class="progress-bar progress-bar-striped progress-bar-animated" id="progressbar" role="progressbar"></div>
 </div>
 
 <div class="container-fluid container-fade-in my-4">
@@ -19,7 +19,7 @@ permalink: /photos
 
         <div class="card mb-3 shadow-sm" id="{{ image.basename }}"
              onclick="open_modal('{{ image.basename }}', '{{ image.path }}')">
-            <img src="{{ image.path }}" class="card-img" alt="{{ image.basename }}" onload="updateProgressbar()">
+            <img src="{{ image.path }}" class="card-img" alt="{{ image.basename }}">
             <div class="mask">
                 <div class="card-img-overlay">
                     <p class="card-text">{{ image.basename }}</p>
@@ -114,7 +114,6 @@ permalink: /photos
         }
     });
 
-
     let updateProgressbar = (function () {
         let total = $('.card-columns img').length;
         let loaded = 0;
@@ -127,7 +126,11 @@ permalink: /photos
         }
 
         return () => {
-            update()
+            update();
         }
     })();
+
+    $('.card-columns img').each(function () {
+        $(this).on('load', updateProgressbar());
+    });
 </script>
