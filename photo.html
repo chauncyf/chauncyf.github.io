@@ -4,6 +4,28 @@ title: Photos
 permalink: /photos
 ---
 
+<script>
+    let updateProgressbar = (function () {
+        let total;
+        let loaded = 0;
+        $(() => {
+            total = $('.card-columns img').length;
+        });
+
+        function update() {
+            $('#progressbar').css('width', `${++loaded * 100 / total}%`);
+        }
+
+        return () => {
+            update();
+        }
+    })();
+
+    $(window).on('load', () => {
+        $('.progress').hide();
+    })
+</script>
+
 {% include cover.html title="Photography" img="../assets/DSC01881C.jpg" %}
 
 <div class="progress">
@@ -19,7 +41,7 @@ permalink: /photos
 
         <div class="card mb-3 shadow-sm" id="{{ image.basename }}"
              onclick="open_modal('{{ image.basename }}', '{{ image.path }}')">
-            <img src="{{ image.path }}" class="card-img" alt="{{ image.basename }}">
+            <img src="{{ image.path }}" class="card-img" alt="{{ image.basename }}" onload="updateProgressbar()">
             <div class="mask">
                 <div class="card-img-overlay">
                     <p class="card-text">{{ image.basename }}</p>
@@ -112,25 +134,5 @@ permalink: /photos
                     return;  // exit this handler for other keys
             }
         }
-    });
-
-    let updateProgressbar = (function () {
-        let total = $('.card-columns img').length;
-        let loaded = 0;
-
-        function update() {
-            $('#progressbar').css('width', `${++loaded * 100 / total}%`);
-            if (loaded === total) {
-                $('.progress').hide();
-            }
-        }
-
-        return () => {
-            update();
-        }
-    })();
-
-    $('.card-columns img').each(function () {
-        $(this).on('load', updateProgressbar());
     });
 </script>
