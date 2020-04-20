@@ -21,7 +21,7 @@ permalink: /photos
                 $('#progressbar .progress-bar').css('width', `${++loaded * 100 / total}%`);
             },
             hide: () => {
-                $('#progressbar').hide();
+                $('#progressbar').fadeOut(1000);
             }
         }
     })();
