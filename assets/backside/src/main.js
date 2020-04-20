@@ -291,18 +291,22 @@ load(
             default:
                 D = [];
         }
-        with (new AudioContext)
-            with (G = createGain())
-                for (i in D)
-                    with (createOscillator())
-                        if (D[i])
-                            connect(G),
-                                G.connect(destination),
-                                start(i * .1),
-                                frequency.setValueAtTime(440 * 1.06 ** (13 - D[i]), i * .1),
-                                gain.setValueAtTime(1, i * .1),
-                                gain.setTargetAtTime(.0001, i * .1 + .08, .005),
-                                stop(i * .1 + .09)
+        try {
+            with (new AudioContext)
+                with (G = createGain())
+                    for (i in D)
+                        with (createOscillator())
+                            if (D[i])
+                                connect(G),
+                                    G.connect(destination),
+                                    start(i * .1),
+                                    frequency.setValueAtTime(440 * 1.06 ** (13 - D[i]), i * .1),
+                                    gain.setValueAtTime(1, i * .1),
+                                    gain.setTargetAtTime(.0001, i * .1 + .08, .005),
+                                    stop(i * .1 + .09)
+        } catch (e) {
+            console.log(e);
+        }
     }
 
     /**
