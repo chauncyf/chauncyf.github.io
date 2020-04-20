@@ -811,6 +811,99 @@ class Solution {
 }
 ```
 
+### Product of Array Except Self - 238
+Medium
+{:.badge.m}
+#### Problem
+```
+Given an array nums of n integers where n > 1,  return an array output such
+that output[i] is equal to the product of all the elements of nums except
+nums[i].
+
+Example:
+Input:  [1,2,3,4]
+Output: [24,12,8,6]
+
+Note: Please solve it without division and in O(n).
+
+Follow up:
+Could you solve it with constant space complexity? (The output array does
+not count as extra space for the purpose of space complexity analysis.)
+```
+#### Solution
+Prefix product with extra space
+```java
+class Solution {
+    public int[] productExceptSelf(int[] nums) {
+        if (nums.length <= 1) return nums;
+        
+        int[] preLeft = new int[nums.length];        
+        preLeft[0] = 1;
+        for (int i = 1; i < nums.length; i++) {
+            preLeft[i] = preLeft[i - 1] * nums[i - 1];
+        }
+        
+        int[] preRight = new int[nums.length];
+        preRight[nums.length - 1] = 1;
+        for (int i = nums.length - 2; i >= 0; i--) {
+            preRight[i] = preRight[i + 1] * nums[i + 1];
+        }
+        
+        int[] res = new int[nums.length];
+        for (int i = 0; i < nums.length; i++) {
+            res[i] = preLeft[i] * preRight[i];
+        }
+        
+        return res;
+    }
+}
+```
+So-called O(1) solution, calc the prefix right on the fly
+```java
+class Solution {
+    public int[] productExceptSelf(int[] nums) {
+        if (nums.length <= 1) return nums;
+        
+        int[] res = new int[nums.length];
+        res[0] = 1;
+        for (int i = 1; i < nums.length; i++) {
+            res[i] = res[i - 1] * nums[i - 1];
+        }
+        
+        int right = 1;
+        for (int i = nums.length - 1; i >= 0; i--) {
+            res[i] *= right;
+            right *= nums[i];
+        }
+        
+        return res;
+    }
+}
+```
+Bonus, real O(1) space w/ division
+```java
+class Solution {
+    public int[] productExceptSelf(int[] nums) {
+        int prod = 1;
+        int zero = 0;
+        for (int i : nums) {
+            if (i != 0) prod *= i;
+            else zero++;
+        }
+        for (int i = 0; i < nums.length; i++) {
+            if (zero == 0) {
+                nums[i] = prod / nums[i];
+            } else if (zero == 1 && nums[i] == 0) {  // this is that zero
+                nums[i] = prod;
+            } else {  // if more than one zero, then prod except itself will always be 0
+                nums[i] = 0;
+            }
+        }
+        return nums;
+    }
+}
+```
+
 ### Shuffle an Array - 384
 Medium
 {:.badge.m}
@@ -2537,6 +2630,87 @@ Output:
 
 
 ## BFS / DFS
+
+### Minimum Path Sum - 64
+Medium
+{:.badge.m}
+DFS
+{:.badge}
+Memoization
+{:.badge}
+#### Problem
+```
+Given a m x n grid filled with non-negative numbers, find a path from top
+left to bottom right which minimizes the sum of all numbers along its path.
+
+Note: You can only move either down or right at any point in time.
+
+Example:
+
+Input:
+[
+[1,3,1],
+⁠ [1,5,1],
+⁠ [4,2,1]
+]
+Output: 7
+Explanation: Because the path 1→3→1→1→1 minimizes the sum.
+```
+#### Solution
+Since for each step, we can only choose to go down or right, the grapth itself can be treat as a kind of binary tree.  
+The difference with regular tree traversal is that, we cannot simply return at a random null node, because we just want the bottom right node.  
+So at the null node, instead of return 0, we return Integer.MAX_VALUE, this will ensure the the returnd route will always pass the bottom right node.  
+```java
+class Solution {    
+    public int minPathSum(int[][] grid) {
+        if (grid.length == 0) return 0;
+        return dfs(grid, 0, 0);
+    }
+    
+    // it's a kind of binary tree
+    // how to ensure reach the bottom right note?
+    private int dfs(int[][] grid, int r, int c) {
+        if (r >= grid.length || c >= grid[0].length) return Integer.MAX_VALUE;
+        
+        if (r == grid.length - 1 && c == grid[0].length - 1) {      
+            return grid[r][c];
+        }
+            
+        return Math.min(dfs(grid, r + 1, c), dfs(grid, r, c + 1)) + grid[r][c];
+    }
+}
+```
+With can avoid access a node twice with memoization
+```java
+class Solution {    
+    private int[][] memo;
+    
+    public int minPathSum(int[][] grid) {
+        if (grid.length == 0) return 0;
+        
+        memo = new int[grid.length][grid[0].length];        
+        return dfs(grid, 0, 0);
+    }
+    
+    private int dfs(int[][] grid, int r, int c) {
+        if (r >= grid.length || c >= grid[0].length) {
+            return Integer.MAX_VALUE;
+        }
+        
+        if (r == grid.length - 1 && c == grid[0].length - 1) {      
+            return grid[r][c];
+        }
+        
+        if (memo[r][c] != 0) {
+            return memo[r][c];
+        }
+            
+        memo[r][c] = Math.min(dfs(grid, r + 1, c), dfs(grid, r, c + 1)) + grid[r][c];
+        
+        return memo[r][c];        
+    }
+}
+```
 
 ### Word Ladder - 127
 Medium
