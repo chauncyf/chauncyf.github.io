@@ -619,119 +619,57 @@ public class Solution {
 }
 ```
 
-### Best Time to Buy and Sell Stock - 121
-Easy
-{:.badge.e}
-Sell Stock
+### Search in Rotated Sorted Array - 33
+Medium
+{:.badge.m}
+Binary Search
 {:.badge}
 #### Problem
-```text
-Say you have an array for which the i^th element is the price of a given
-stock on day i.
+```
+Suppose an array sorted in ascending order is rotated at some pivot unknown
+to you beforehand.
 
-If you were only permitted to complete at most one transaction (i.e., buy
-one and sell one share of the stock), design an algorithm to find the
-maximum profit.
+(i.e., [0,1,2,4,5,6,7] might become [4,5,6,7,0,1,2]).
 
-Note that you cannot sell a stock before you buy one.
+You are given a target value to search. If found in the array return its
+index, otherwise return -1.
+
+You may assume no duplicate exists in the array.
+
+Your algorithm's runtime complexity must be in the order of O(log n).
 
 Example 1:
-Input: [7,1,5,3,6,4]
-Output: 5
-Explanation: Buy on day 2 (price = 1) and sell on day 5 (price = 6), profit
-= 6-1 = 5.
-Not 7-1 = 6, as selling price needs to be larger than buying price.
-
-Example 2:
-Input: [7,6,4,3,1]
-Output: 0
-Explanation: In this case, no transaction is done, i.e. max profit = 0.
-```
-#### Solution
-```java
-class Solution {
-    public int maxProfit(int[] prices) {
-        int res = 0;
-        Integer min = null;
-        for (int i : prices) {
-            if (min == null || i < min) min = i;
-            res = Math.max(res, i - min);
-        }
-        return res;
-    }
-}
-```
-
-### Best Time to Buy and Sell Stock II - 122
-Easy
-{:.badge.e}
-Sell Stock
-{:.badge}
-#### Problem
-```text
-Say you have an array for which the i^th element is the price of a given
-stock on day i.
-
-Design an algorithm to find the maximum profit. You may complete as many
-transactions as you like (i.e., buy one and sell one share of the stock
-multiple times).
-
-Note: You may not engage in multiple transactions at the same time (i.e.,
-you must sell the stock before you buy again).
-
-Example 1:
-Input: [7,1,5,3,6,4]
-Output: 7
-Explanation: Buy on day 2 (price = 1) and sell on day 3 (price = 5), profit
-= 5-1 = 4.
-Then buy on day 4 (price = 3) and sell on day 5 (price = 6), profit = 6-3 =
-3.
-
-Example 2:
-Input: [1,2,3,4,5]
+Input: nums = [4,5,6,7,0,1,2], target = 0
 Output: 4
-Explanation: Buy on day 1 (price = 1) and sell on day 5 (price = 5), profit
-= 5-1 = 4.
-Note that you cannot buy on day 1, buy on day 2 and sell them later, as you
-are
-engaging multiple transactions at the same time. You must sell before buying
-again.
 
-Example 3:
-Input: [7,6,4,3,1]
-Output: 0
-Explanation: In this case, no transaction is done, i.e. max profit = 0.
+Example 2:
+Input: nums = [4,5,6,7,0,1,2], target = 3
+Output: -1
 ```
 #### Solution
-Imagine peak and valley, valley is the point to buy, and peak is the point to sell.
 ```java
 class Solution {
-    public int maxProfit(int[] prices) {
-        int res = 0;
-        int valley = 0;
-        int peak = 0;
-        for (int i = 0; i < prices.length; i++) {
-            while (i < prices.length - 1 && prices[i] >= prices[i + 1]) i++;
-            valley = prices[i];
-            while (i < prices.length - 1 && prices[i] <= prices[i + 1]) i++;
-            peak = prices[i];
-            res += peak - valley;
-        }
-        return res;
-    }
-}
-```
-Actually we don't even need to keep track of the peak & valley.
-```java
-class Solution {
-    public int maxProfit(int[] prices) {
-        int res = 0;
-        for (int i = 0; i < prices.length - 1; i++) {
-            if (prices[i + 1] > prices[i]) {
-                res += prices[i + 1] - prices[i];
+    public int search(int[] nums, int target) {
+        int lo = 0, hi = nums.length - 1;
+        while (lo <= hi) {
+            int mid = lo + (hi - lo) / 2;  // prevent overflow if lo + hi is too big
+            if (nums[mid] == target) return mid;
+            
+            if (nums[lo] <= nums[mid]) { // left is sorted
+                if (target < nums[mid] && target >= nums[lo]) {
+                    hi = mid - 1;
+                } else {
+                    lo = mid + 1;
+                }
+            } else { // right is sorted
+                if (target > nums[mid] && target <= nums[hi]) {
+                    lo = mid + 1;
+                } else {
+                    hi = mid - 1;
+                }
             }
         }
-        return res;
+        return -1;
     }
 }
 ```
@@ -814,6 +752,8 @@ class Solution {
 ### Product of Array Except Self - 238
 Medium
 {:.badge.m}
+Prefix Sum
+{:.badge}
 #### Problem
 ```
 Given an array nums of n integers where n > 1,  return an array output such
@@ -1069,6 +1009,122 @@ class Solution {
 }
 ```
 
+### Best Time to Buy and Sell Stock - 121
+Easy
+{:.badge.e}
+Sell Stock
+{:.badge}
+#### Problem
+```text
+Say you have an array for which the i^th element is the price of a given
+stock on day i.
+
+If you were only permitted to complete at most one transaction (i.e., buy
+one and sell one share of the stock), design an algorithm to find the
+maximum profit.
+
+Note that you cannot sell a stock before you buy one.
+
+Example 1:
+Input: [7,1,5,3,6,4]
+Output: 5
+Explanation: Buy on day 2 (price = 1) and sell on day 5 (price = 6), profit
+= 6-1 = 5.
+Not 7-1 = 6, as selling price needs to be larger than buying price.
+
+Example 2:
+Input: [7,6,4,3,1]
+Output: 0
+Explanation: In this case, no transaction is done, i.e. max profit = 0.
+```
+#### Solution
+```java
+class Solution {
+    public int maxProfit(int[] prices) {
+        int res = 0;
+        Integer min = null;
+        for (int i : prices) {
+            if (min == null || i < min) min = i;
+            res = Math.max(res, i - min);
+        }
+        return res;
+    }
+}
+```
+
+### Best Time to Buy and Sell Stock II - 122
+Easy
+{:.badge.e}
+Sell Stock
+{:.badge}
+#### Problem
+```text
+Say you have an array for which the i^th element is the price of a given
+stock on day i.
+
+Design an algorithm to find the maximum profit. You may complete as many
+transactions as you like (i.e., buy one and sell one share of the stock
+multiple times).
+
+Note: You may not engage in multiple transactions at the same time (i.e.,
+you must sell the stock before you buy again).
+
+Example 1:
+Input: [7,1,5,3,6,4]
+Output: 7
+Explanation: Buy on day 2 (price = 1) and sell on day 3 (price = 5), profit
+= 5-1 = 4.
+Then buy on day 4 (price = 3) and sell on day 5 (price = 6), profit = 6-3 =
+3.
+
+Example 2:
+Input: [1,2,3,4,5]
+Output: 4
+Explanation: Buy on day 1 (price = 1) and sell on day 5 (price = 5), profit
+= 5-1 = 4.
+Note that you cannot buy on day 1, buy on day 2 and sell them later, as you
+are
+engaging multiple transactions at the same time. You must sell before buying
+again.
+
+Example 3:
+Input: [7,6,4,3,1]
+Output: 0
+Explanation: In this case, no transaction is done, i.e. max profit = 0.
+```
+#### Solution
+Imagine peak and valley, valley is the point to buy, and peak is the point to sell.
+```java
+class Solution {
+    public int maxProfit(int[] prices) {
+        int res = 0;
+        int valley = 0;
+        int peak = 0;
+        for (int i = 0; i < prices.length; i++) {
+            while (i < prices.length - 1 && prices[i] >= prices[i + 1]) i++;
+            valley = prices[i];
+            while (i < prices.length - 1 && prices[i] <= prices[i + 1]) i++;
+            peak = prices[i];
+            res += peak - valley;
+        }
+        return res;
+    }
+}
+```
+Actually we don't even need to keep track of the peak & valley.
+```java
+class Solution {
+    public int maxProfit(int[] prices) {
+        int res = 0;
+        for (int i = 0; i < prices.length - 1; i++) {
+            if (prices[i + 1] > prices[i]) {
+                res += prices[i + 1] - prices[i];
+            }
+        }
+        return res;
+    }
+}
+```
 
 ## LinkedList
 
@@ -1529,6 +1585,8 @@ class Solution {
 ### Serialize and Deserialize Binary Tree - 297
 Hard
 {:.badge.h}
+Serialization
+{:.badge}
 #### Problem
 ```text
 Serialization is the process of converting a data structure or object into a
@@ -1610,6 +1668,77 @@ public class Codec {
 } 
 ```
 
+### Construct Binary Search Tree from Preorder Traversal - 1008
+Medium
+{:.badge.m}
+Serialization
+{:.badge}
+#### Problem
+```
+Return the root node of a binary search tree that matches the given preorder
+traversal.
+
+(Recall that a binary search tree is a binary tree where for every node, any
+descendant of node.left has a value < node.val, and any descendant of
+node.right has a value > node.val.  Also recall that a preorder traversal
+displays the value of the node first, then traverses node.left, then
+traverses node.right.)
+
+Example 1:
+Input: [8,5,1,7,10,12]
+Output: [8,5,10,1,7,null,12]
+
+Note: 
+1 <= preorder.length <= 100
+The values of preorder are distinct.
+```
+#### Solution
+The tricky part is to define the upper bound for subtrees
+```java
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    private int idx = 0;
+    
+    public TreeNode bstFromPreorder(int[] preorder) {
+        return helper(preorder, Integer.MAX_VALUE);
+    }
+    
+    private TreeNode helper(int[] preorder, int upperBound) {
+        if (idx >= preorder.length) return null;
+        
+        TreeNode cur = new TreeNode(preorder[idx++]);
+        
+        if (idx < preorder.length && preorder[idx] < cur.val) {
+            cur.left = helper(preorder, cur.val);
+        } 
+        if (idx < preorder.length && preorder[idx] > cur.val && preorder[idx] < upperBound) {
+            cur.right = helper(preorder, upperBound);
+        }
+   
+        return cur;
+    }
+
+    /* equals to */
+    // private TreeNode helper(int[] preorder, int upperBound) {
+    //     if (idx >= preorder.length || preorder[idx] > upperBound) return null;
+        
+    //     TreeNode cur = new TreeNode(preorder[idx++]);
+        
+    //     cur.left = helper(preorder, cur.val);
+    //     cur.right = helper(preorder, upperBound);
+   
+    //     return cur;
+    // }
+}
+```
 
 ## Sort
 
@@ -1733,6 +1862,65 @@ class Solution {
         }
         
         return minQ.size();
+    }
+}
+```
+
+### Sort an Array - 912
+Medium
+{:.badge.m}
+Quick Sort
+{:.badge}
+#### Problem
+```
+Given an array of integers nums, sort the array in ascending order.
+
+Example 1:
+Input: [5,2,3,1]
+Output: [1,2,3,5]
+
+Example 2:
+Input: [5,1,1,2,0,0]
+Output: [0,0,1,1,2,5]
+
+Note:
+1 <= A.length <= 10000
+-50000 <= A[i] <= 50000
+```
+#### Solution
+```java
+class Solution {
+    public int[] sortArray(int[] nums) {
+        quickSort(nums, 0, nums.length - 1);
+        return nums;
+    }
+    
+    public void quickSort(int[] nums, int lo, int hi) {
+        if (lo < hi) {
+            int pivotIdx = partition(nums, lo, hi);
+            quickSort(nums, lo, pivotIdx - 1);
+            quickSort(nums, pivotIdx + 1, hi);
+        }
+    }
+    
+    private int partition(int[] nums, int lo, int hi) {
+        int pivot = nums[hi];
+        int idx = lo;  // idx that element < pivot
+        
+        for (int i = lo; i < hi; i++) {
+            if (nums[i] <= pivot) {
+                swap(nums, i, idx++);
+            }
+        }
+        swap(nums, hi, idx);
+        
+        return idx;
+    }
+    
+    private void swap(int[] nums, int i, int j) {
+        int tmp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = tmp;
     }
 }
 ```
