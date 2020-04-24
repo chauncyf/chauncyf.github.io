@@ -619,6 +619,83 @@ public class Solution {
 }
 ```
 
+### Binary Search - 704
+Easy
+{:.badge.e}
+Binary Search
+{:.badge}
+#### Problem
+```
+Given a sorted (in ascending order) integer array nums of n elements and a
+target value, write a function to search target in nums. If target exists,
+then return its index, otherwise return -1.
+
+Example 1:
+Input: nums = [-1,0,3,5,9,12], target = 9
+Output: 4
+Explanation: 9 exists in nums and its index is 4
+
+Example 2:
+Input: nums = [-1,0,3,5,9,12], target = 2
+Output: -1
+Explanation: 2 does not exist in nums so return -1
+
+Note:
+You may assume that all elements in nums are unique.
+n will be in the range [1, 10000].
+The value of each element in nums will be in the range [-9999, 9999].
+```
+#### Solution
+```
+What is log2(8) mean?
+It means that, my base is 2, what should I power 2 by, to get 8?
+The answer is 3 = log2(8)
+
+log2(8) => 2^3 = 8
+log10(100) => 10^2 = 100
+
+8 -> 4 -> 2 -> 1
+```
+Why is the complexity log(n)?  
+Assume there are n elements in total, each time we cut the array in half.  
+How many times in total do we need to cut the array?  
+So we need to know, what should I power 2 by, to get n. The answer is `log(n)`
+```java
+class Solution {
+    public int search(int[] nums, int target) {
+        int lo = 0, hi = nums.length - 1;
+        while (lo <= hi) {
+            int mid = (lo + hi) / 2;
+            if (nums[mid] == target) return mid;
+            if (nums[mid] < target) lo = mid + 1;
+            else hi = mid - 1;
+        }
+        return -1;
+    }
+}
+```
+Recursively
+```java
+class Solution {
+    public int search(int[] nums, int target) {
+        return binarySearch(nums, target, 0, nums.length - 1);
+    }
+    
+    public int binarySearch(int[] nums, int target, int lo, int hi) {
+        if (lo > hi) return -1;
+        
+        int mid = (lo + hi) / 2;
+        if (nums[mid] == target) return mid;
+        
+        if (nums[mid] < target) {
+            return binarySearch(nums, target, mid + 1, hi);
+        } else {
+            return binarySearch(nums, target, lo, mid - 1);
+        }
+    }
+}
+```
+
 ### Search in Rotated Sorted Array - 33
 Medium
 {:.badge.m}
@@ -1004,6 +1081,54 @@ class Solution {
                 map.put(sum, i);
             }
         }
+        return res;
+    }
+}
+```
+
+### Subarray Sum Equals K - 560
+Medium
+{:.badge.m}
+Prefix Sum
+{:.badge}
+N Sum
+{:.badge}
+#### Problem
+```
+Given an array of integers and an integer k, you need to find the total
+number of continuous subarrays whose sum equals to k.
+
+Example 1:
+Input:nums = [1,1,1], k = 2
+Output: 2
+
+Note:
+The length of the array is in range [1, 20,000].
+The range of numbers in the array is [-1000, 1000] and the range of the
+integer k is [-1e7, 1e7].
+```
+#### Solution
+When subarray occured, we can think about prefix sum `sum(0, i)`  
+Find out that `k = sum(0, j) - sum(0, i)`, isn't this familiar? It's two sum!  
+We can solve this problem with prefix sum + two sum  
+```java
+class Solution {
+    public int subarraySum(int[] nums, int k) {
+        Map<Integer, Integer> map = new HashMap<>();  // prefix sum -> freq
+        map.put(0, 1);  // handle nums[i] == k
+        int sum = 0;
+        int res = 0;
+        
+        for (int i = 0; i < nums.length; i++) {
+            sum += nums[i];  // prefix sum
+            
+            if (map.containsKey(sum - k)) {  // two sum
+                res += map.get(sum - k);
+            }
+            
+            map.put(sum, map.getOrDefault(sum, 0) + 1);  // update prefix sum later, in case k = 0 (don't want to count sum itself)
+        }
+    
         return res;
     }
 }
@@ -4056,21 +4181,57 @@ Output: 4
 Explanation: There are 4 prime numbers less than 10, they are 2, 3, 5, 7.
 ```
 #### Solution
+Prime is a number only divisable by 1 and itself (2 is the smallest prime).  
+So if the number is a multiple of a number smaller than itself, then it's not a prime number.  
+
+Follow this idea, we can calculate non-primes on the fly during iterations.  
+For example, when iterate to 2, mark all multiples of 2 as non-prime, then mark multiples of 3 as non-prime ..  
+
+This is called *Sieve of Eratosthenes*  
+![Sieve of Eratosthenes](https://assets.leetcode.com/static_assets/public/images/solutions/Sieve_of_Eratosthenes_animation.gif)
 ```java
 class Solution {
-    /* nlog(n) */
+    /* nlog(log(n)) */
     public int countPrimes(int n) {
-        boolean[] notPrime = new boolean[n];
         int count = 0;
-        for (int i = 2; i < n; i++) {
+        boolean[] notPrime = new boolean[n];
+        for (int i = 2; i < n; i++) {  // O(n)
             if (!notPrime[i]) {
                 count++;
                 // all multiples of i are not prime 
-                for (int j = 2; i * j < n; j++) {
+                for (int j = 2; i * j < n; j++) {  // O(log(log(n))) => O(n/2 + n/3 + n/5 + ..)
                     notPrime[i * j] = true;
+                }
+
+                // Or we can mark multiples of i starting at i
+                // because i × (num < i) was already marked off by multiple of (num < i)
+                // for (int j = i; j <= (n - 1) / i; j++) {
+                //     notPrime[i * j] = true;
+                // }
+            }
+        }
+        return count;
+    }
+}
+```
+We can cut the space in half by storing only odd numbers
+```java
+class Solution {
+    public int countPrimes(int n) {
+        if (n <= 2) return 0;  // we want prime less than n
+        
+        int count = 1;  // 2
+        boolean[] notPrime = new boolean[n / 2];  // store odd numbers starting from 3
+        
+        for (int i = 3; i < n; i += 2) {
+            if (!notPrime[i / 2 - 1]) {
+                count++;                
+                for (int j = 3; i * j < n; j += 2) {
+                    notPrime[i * j / 2 - 1] = true;
                 }
             }
         }
+        
         return count;
     }
 }
@@ -4119,6 +4280,115 @@ class Solution {
             res ^= i;
         }
         return res;
+    }
+}
+```
+
+### Bitwise AND of Numbers Range - 201
+Medium
+{:.badge.m}
+#### Problem
+```
+Given a range [m, n] where 0 <= m <= n <= 2147483647, 
+return the bitwise AND of all numbers in this range, inclusive.
+
+Example 1:
+Input: [5,7]
+Output: 4
+
+Example 2:
+Input: [0,1]
+Output: 0
+```
+#### Solution
+First let's think what does bitwise AND do to two numbers, for example ( 0b means base 2)
+```
+4 & 7 = 0b100 & 0b111 = 0b100
+5 & 7 = 0b101 & 0b111 = 0b101
+5 & 6 = 0b101 & 0b110 = 0b100
+```
+The operator & is keeping those bits which is set in both number.
+
+For several numbers, the operator & is keeping those bits which is 1 in every number.
+
+In one word, this problem is asking us to find the common prefix of m and n 's binary code.
+```java
+class Solution {
+    public int rangeBitwiseAnd(int m, int n) {
+        int i = 0;
+        while (m != n) {
+            m >>= 1;
+            n >>= 1;
+            i++;
+        }
+        return m << i;
+    }
+}
+```
+
+### Prime Number of Set Bits in Binary Representation - 762
+Easy
+{:.badge.e}
+#### Problem
+```
+Given two integers L and R, find the count of numbers in the range [L, R]
+(inclusive) having a prime number of set bits in their binary
+representation.
+
+(Recall that the number of set bits an integer has is the number of 1s
+present when written in binary.  For example, 21 written in binary is 10101
+which has 3 set bits.  Also, 1 is not a prime.)
+
+Example 1:
+Input: L = 6, R = 10
+Output: 4
+Explanation:
+6 -> 110 (2 set bits, 2 is prime)
+7 -> 111 (3 set bits, 3 is prime)
+9 -> 1001 (2 set bits , 2 is prime)
+10->1010 (2 set bits , 2 is prime)
+
+Example 2:
+Input: L = 10, R = 15
+Output: 5
+Explanation:
+10 -> 1010 (2 set bits, 2 is prime)
+11 -> 1011 (3 set bits, 3 is prime)
+12 -> 1100 (2 set bits, 2 is prime)
+13 -> 1101 (3 set bits, 3 is prime)
+14 -> 1110 (3 set bits, 3 is prime)
+15 -> 1111 (4 set bits, 4 is not prime)
+
+Note:
+L, R will be integers L  in the range [1, 10^6].
+R - L will be at most 10000.
+```
+#### Solution
+```java
+class Solution {
+    public int countPrimeSetBits(int L, int R) {
+        int res = 0;
+        for (int i = L; i <= R; i++) {
+            if (isPrime(getSetBits(i))) res++;
+        }
+        return res;
+    }
+    
+    public int getSetBits(int num) {
+        int res = 0;
+        while (num > 0) {
+            if ((num & 1) == 1) res++;
+            num >>= 1;
+        }
+        return res;
+    }
+    
+    public boolean isPrime(int num) {
+        if (num < 2) return false;
+        for (int i = 2; i < num; i++) {
+            if (num % i == 0) return false;
+        }
+        return true;
     }
 }
 ```
