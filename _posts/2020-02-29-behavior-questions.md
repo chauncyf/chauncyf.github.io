@@ -146,6 +146,41 @@ J2EE stack to Spring, The Java EE interfaces incorporate JDBC for databases, JN
 - Review and Configure Transaction Mnagement Settings for Tomcat Profile to replace JBoss Tx Mgmt
 
 
+### Nano Twitter
+
+It’s a twitter-like application that supports features like tweet, retweet, comment and like. Since it's a scalability course, implementing cool features is not the first priority, all we want is to make the product scalable.
+
+#### Timeline
+
+We want a scalable timeline.
+
+The most challenging part in this project, you might not believe, it's actuallyt the timline feature. Basically, in the home page, we want to display the timeline of a user. Timeline is all recent tweets sent from users followed by current user, sort by date.
+
+Imagine you only followed one user, it's simple to display the timeline, because all you need is simply display all that user's tweets. But what if you followed 1000 users? The server have to get all recent tweets sent by that 1000 users, and merge those tweets together. 
+
+Even this it's not the worst case. What if a user with a million followers send a new tweet, everyone wants to see that new tweet in their timeline and they are refreshing the page. Either they will wait for minutes to refresh the page, or even worse, the server was killed. 
+
+How can we improve this? Now here comes the trade off in software engineering, if we want speed, we must pay for the space. And the space we paied here is Redis. That is, for every single user, we cached the timeline for them. The form of the cache is the user's id point to an array, in that array, it's all tweets' id that need to be displayed in the timeline. So all we need is take that array and do a batch query in database.
+
+
+#### MongoDB
+
+Let's consider the most important thing in Twitter, the tweet.
+
+Assume we already have the user's timeline stored in Redis, in the form of an sorted tweet_id array. Now we want to retrive all related data to display that a tweet.
+
+If use SQL databse, first we will go the Tweet table and use the tweet_id to retrive that row, in that row, there may contains columns like user_id, content of the tweet, and likes. Clearly that's not all about this tweet, instead of user_id, we need the username, so we have join the User table to get the username. Also, besides content and likes, there are also comments and attachement like pictures for a tweet, those are one to many relation. So we have to join the Comment table and Picture table as well to get all comments and pictures. In this simple case, there are already Tweet table, User table, Comment table and Picture table involved. The cost to join these tables are really expensive. 
+
+And that's the cost to get a single tweet, there are hundreds or even more tweets in a user's timeline. We don't want a user to wait for a minute to see the timeline.
+
+Instead, if we use NoSQL databse, in the Tweet table, or say collection, we can simply store username, tweet content, likes, comments and pictures in a nested fashion, we can put all of them together, that means no join operation needed at all. It's clearly faster to retrive a Tweet.
+
+This is only a simple scenario about the advantage to choose NoSQL. Also, if we want to horiziontally scale the database to have multiple database nodes running, it's far easier to scale with a NoSQL database.
+
+#### React
+The reason to choose React is simple, biggest reason is that we want to learn it. Also, by using React, we can separate Frontend from Backend, so for the backend we can simply make it an API server, there's no need to render and transmit the whole HTML to clients.
+
+
 ## Why xxx
 ### Amazon
 Because I know Amazon is a top internet retailing company with a strong focus on customer experience. And there are a lot of talented people in amazon creating amazing products to make people’s life easier. 
@@ -153,6 +188,11 @@ Because I know Amazon is a top internet retailing company with a strong focus on
 Actually I have a roomate work at amazon, and he always showes a strong ownership to his projects and he always wants to make things perfect. This really touches my heart and reminds me of the time when I was working on the Workout TeampUp social networking applicaiton, I spent days and nights to polish the UI simply because I want to give a perfect user experience.
 
 I believe I have similar spirits with Amazon, that one of the biggest reason why I want to join Amazon.
+
+### Vecna
+- I know it's a self patient health care product, can you tell a bit more about this product
+- how did you came up with the idea to make this non-profit?
+- future plan, you have robot, what's else
 
 ## Deadline / Time management
 ### What if you can’t make the deadline  
