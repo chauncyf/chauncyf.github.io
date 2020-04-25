@@ -95,9 +95,9 @@
         });
 
         $('#compress-btn').on('click', function () {
-            $(this).fadeOut(() => {
+            $(this).fadeOut(100, () => {
                 $(this).html(~$(this).html().indexOf('compress') ? '<i class="fas fa-expand"></i>' : '<i class="fas fa-compress"></i>');
-            }).fadeIn();
+            }).fadeIn(100);
             $('#scrollspy').toggleClass('compress');
         });
     })

@@ -367,6 +367,15 @@ blockquote {
   }
 }
 
+#compress-btn {
+  font-size: 1.3rem;
+  transition: transform 1s ease-in-out;
+  
+  &:hover {
+    transform: rotate(720deg);
+  }
+}
+
 @media (max-width: 768px) {
   body.fix {
     overflow: hidden;
