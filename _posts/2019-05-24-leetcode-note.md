@@ -4188,7 +4188,7 @@ Follow this idea, we can calculate non-primes on the fly during iterations.
 For example, when iterate to 2, mark all multiples of 2 as non-prime, then mark multiples of 3 as non-prime ..  
 
 This is called *Sieve of Eratosthenes*  
-![Sieve of Eratosthenes](https://assets.leetcode.com/static_assets/public/images/solutions/Sieve_of_Eratosthenes_animation.gif)
+![Sieve of Eratosthenes](https://assets.leetcode.com/static_assets/public/images/solutions/Sieve_of_Eratosthenes_animation.gif){:.img-fluid}
 ```java
 class Solution {
     /* nlog(log(n)) */
