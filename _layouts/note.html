@@ -94,10 +94,13 @@
             $('.nav-pills-collapse').slideToggle();
         });
 
+        let angle = 360;
         $('#compress-btn').on('click', function () {
-            $(this).fadeOut(100, () => {
+            $(this).css('transform', `rotate(${angle}deg)`);
+            angle += 360;
+            setTimeout(() => {
                 $(this).html(~$(this).html().indexOf('compress') ? '<i class="fas fa-expand"></i>' : '<i class="fas fa-compress"></i>');
-            }).fadeIn(100);
+            }, 500);
             $('#scrollspy').toggleClass('compress');
         });
     })
