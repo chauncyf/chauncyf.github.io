@@ -94,15 +94,26 @@
             $('.nav-pills-collapse').slideToggle();
         });
 
-        let angle = 360;
+        let angle = 0;
         $('#compress-btn').on('click', function () {
-            $(this).css('transform', `rotate(${angle}deg)`);
-            angle += 360;
+            $(this).css('transform', `rotate(${angle += 360}deg)`);
             setTimeout(() => {
                 $(this).html(~$(this).html().indexOf('compress') ? '<i class="fas fa-expand"></i>' : '<i class="fas fa-compress"></i>');
             }, 500);
             $('#scrollspy').toggleClass('compress');
         });
+
+        $(window).scroll(function() {
+            scrollToNav();
+        });
+
+        var scrollToNav = (function f() {
+            $('.nav-link.active')[0].scrollIntoView({
+                    offsetTop: 50,
+                    behavior: 'smooth'
+            })
+            return f;
+        })();
     })
 </script>
 </body>
