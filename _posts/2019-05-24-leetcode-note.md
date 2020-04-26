@@ -3973,6 +3973,160 @@ class Solution {
 }
 ```
 
+### Longest Increasing Subsequence - 300
+Medium
+{:.badge.m}
+Subsequence
+{:.badge}
+#### Problem
+```
+Given an unsorted array of integers, find the length of longest increasing
+subsequence.
+
+Example:
+Input: [10,9,2,5,3,7,101,18]
+Output: 4 
+Explanation: The longest increasing subsequence is [2,3,7,101], therefore
+the length is 4. 
+
+Note: 
+There may be more than one LIS combination, it is only necessary for you to
+return the length.
+Your algorithm should run in O(n^2) complexity.
+
+Follow up: Could you improve it to O(n log n) time complexity?
+```
+#### Solution
+```java
+class Solution {
+    public int lengthOfLIS(int[] nums) {
+        int[] maxTill = new int[nums.length];
+        int max = 0;
+        for (int i = 0; i < nums.length; i++) {
+            maxTill[i] = 1;  // sequence with only itself
+            for (int j = 0; j < i; j++) {
+                if (nums[i] > nums[j] && maxTill[i] < maxTill[j] + 1) {  // if num @i > num @j && length of seq @j + 1 (1 is i itself) > seq @i
+                    maxTill[i] = maxTill[j] + 1;
+                }
+            }
+            max = Math.max(max, maxTill[i]);
+        }
+        return max;
+    }
+}
+```
+
+### Longest Palindromic Subsequence - 516
+Medium
+{:.badge.m}
+Memoization
+{:.badge}
+Subsequence
+{:.badge}
+#### Problem
+```
+Given a string s, find the longest palindromic subsequence's length in s.
+You may assume that the maximum length of s is 1000.
+
+Example 1:
+Input: 
+"bbbab"
+Output: 
+4
+One possible longest palindromic subsequence is "bbbb".
+
+Example 2:
+Input:
+"cbbd"
+Output:
+2
+One possible longest palindromic subsequence is "bb".
+```
+#### Solution
+```java
+public class Solution {
+    public int longestPalindromeSubseq(String s) {
+        int[][] dp = new int[s.length()][s.length()];
+        
+        for (int i = s.length() - 1; i >= 0; i--) {
+            dp[i][i] = 1;
+            for (int j = i+1; j < s.length(); j++) {
+                if (s.charAt(i) == s.charAt(j)) {
+                    dp[i][j] = Math.max(dp[i+1][j-1] + 2, Math.max(dp[i+1][j], dp[i][j-1]));
+                } else {
+                    dp[i][j] = Math.max(dp[i+1][j], dp[i][j-1]);
+                }
+            }
+        }
+        return dp[0][s.length()-1];
+    }
+}
+```
+
+### Longest Common Subsequence - 1143
+Medium
+{:.badge.m}
+Memoization
+{:.badge}
+Subsequence
+{:.badge}
+#### Problem
+```
+Given two strings text1 and text2, return the length of their longest common
+subsequence.
+
+A subsequence of a string is a new string generated from the original string
+with some characters(can be none) deleted without changing the relative order of
+the remaining characters. (eg, "ace" is a subsequence of "abcde" while "aec" is
+not). A common subsequence of two strings is a subsequence that is common to
+both strings.
+
+If there is no common subsequence, return 0.
+
+Example 1:
+Input: text1 = "abcde", text2 = "ace" 
+Output: 3  
+Explanation: The longest common subsequence is "ace" and its length is 3.
+
+Example 2:
+Input: text1 = "abc", text2 = "abc"
+Output: 3
+Explanation: The longest common subsequence is "abc" and its length is 3.
+
+Example 3:
+Input: text1 = "abc", text2 = "def"
+Output: 0
+Explanation: There is no such common subsequence, so the result is 0.
+
+Constraints:
+1 <= text1.length <= 1000
+1 <= text2.length <= 1000
+The input strings consist of lowercase English characters only.
+```
+#### Solution
+Found out that `the assignment operator in Java returns the assigned value` ..
+```java
+class Solution {
+    private Integer[][] memo;
+    
+    public int longestCommonSubsequence(String text1, String text2) {
+        this.memo = new Integer[text1.length()][text2.length()];
+        return helper(text1, text2, 0, 0);
+    }
+    
+    private int helper(String text1, String text2, int i, int j) {
+        if (i == text1.length() || j == text2.length()) return 0;
+        
+        if (memo[i][j] != null) return memo[i][j];
+        
+        if (text1.charAt(i) == text2.charAt(j)) {
+            return memo[i][j] = helper(text1, text2, i + 1, j + 1) + 1;
+        }
+        return memo[i][j] = Math.max(helper(text1, text2, i + 1, j), helper(text1, text2, i, j + 1));
+    }
+}
+```
+
 
 ## Design
 
