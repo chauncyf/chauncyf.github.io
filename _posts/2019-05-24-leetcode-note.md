@@ -921,6 +921,443 @@ class Solution {
 }
 ```
 
+### Contiguous Array - 525
+Medium
+{:.badge.m}
+Prefix Sum
+{:.badge}
+#### Problem
+```
+Given a binary array, find the maximum length of a contiguous subarray with
+equal number of 0 and 1. 
+
+Example 1:
+Input: [0,1]
+Output: 2
+Explanation: [0, 1] is the longest contiguous subarray with equal number of
+0 and 1.
+
+Example 2:
+Input: [0,1,0]
+Output: 2
+Explanation: [0, 1] (or [1, 0]) is a longest contiguous subarray with equal
+number of 0 and 1.
+
+Note:
+The length of the given binary array will not exceed 50,000.
+```
+#### Solution
+sum++ when meet 1, sum-- when meet 0  
+if two index have same sum, the number of 0 and 1 between these two index must be equal  
+
+consider [0, 0, 0, 1, 1, 0], prefix sum = [-1, -2, -3, -2, -1, -2]  
+longest length is between two -1, length = 4 - 0 = 4
+```java
+class Solution {
+    public int findMaxLength(int[] nums) {
+        int res = 0;
+        int sum = 0;
+        Map<Integer, Integer> map = new HashMap<>();
+        map.put(0, -1);
+        
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == 0) {
+                sum--;
+            } else {
+                sum++;
+            }
+            if (map.containsKey(sum)) {
+                res = Math.max(res, i - map.get(sum));
+            } else {
+                map.put(sum, i);
+            }
+        }
+        return res;
+    }
+}
+```
+
+### Subarray Sum Equals K - 560
+Medium
+{:.badge.m}
+Prefix Sum
+{:.badge}
+N Sum
+{:.badge}
+#### Problem
+```
+Given an array of integers and an integer k, you need to find the total
+number of continuous subarrays whose sum equals to k.
+
+Example 1:
+Input:nums = [1,1,1], k = 2
+Output: 2
+
+Note:
+The length of the array is in range [1, 20,000].
+The range of numbers in the array is [-1000, 1000] and the range of the
+integer k is [-1e7, 1e7].
+```
+#### Solution
+When subarray occured, we can think about prefix sum `sum(0, i)`  
+Find out that `k = sum(0, j) - sum(0, i)`, isn't this familiar? It's two sum!  
+We can solve this problem with prefix sum + two sum  
+```java
+class Solution {
+    public int subarraySum(int[] nums, int k) {
+        Map<Integer, Integer> map = new HashMap<>();  // prefix sum -> freq
+        map.put(0, 1);  // handle nums[i] == k
+        int sum = 0;
+        int res = 0;
+        
+        for (int i = 0; i < nums.length; i++) {
+            sum += nums[i];  // prefix sum
+            
+            if (map.containsKey(sum - k)) {  // two sum
+                res += map.get(sum - k);
+            }
+            
+            map.put(sum, map.getOrDefault(sum, 0) + 1);  // update prefix sum later, in case k = 0 (don't want to count sum itself)
+        }
+    
+        return res;
+    }
+}
+```
+
+### Merge Intervals - 56
+Medium
+{:.badge.m}
+Interval
+{:.badge}
+#### Problem
+```
+ * Given a collection of intervals, merge all overlapping intervals.
+ * 
+ * Example 1:
+ * Input: [[1,3],[2,6],[8,10],[15,18]]
+ * Output: [[1,6],[8,10],[15,18]]
+ * Explanation: Since intervals [1,3] and [2,6] overlaps, merge them into
+ * [1,6].
+ * 
+ * Example 2:
+ * Input: [[1,4],[4,5]]
+ * Output: [[1,5]]
+ * Explanation: Intervals [1,4] and [4,5] are considered overlapping.
+```
+#### Solution
+```java
+class Solution {
+    public int[][] merge(int[][] intervals) {
+        if (intervals.length == 0) return intervals;
+        
+        Arrays.sort(intervals, (a, b) -> a[0] - b[0]);
+        // Arrays.sort(intervals, (a, b) -> Integer.compare(a[0], b[0]));
+        // Arrays.sort(intervals, new Comparator<int[]>() {
+        //     public int compare(int[] a, int[] b) {
+        //         return a[0] - b[0];
+        //     }
+        // });
+        
+        int[][] res = new int[intervals.length][2];
+        res[0] = intervals[0];
+        int idx = 0;
+        for (int i = 1; i < intervals.length; i++) {
+            if (intervals[i][0] <= res[idx][1]) {
+                res[idx][1] = Math.max(res[idx][1], intervals[i][1]);
+            } else {
+                res[++idx] = intervals[i];
+            }
+        }
+        
+        return Arrays.copyOf(res, idx + 1);
+    }
+}
+```
+
+### Meeting Rooms - 252
+Easy
+{:.badge.e}
+Interval
+{:.badge}
+#### Problem
+```
+Given an array of meeting time intervals consisting of start and end times 
+[[s1,e1],[s2,e2],...] (si < ei), determine if a person could attend all meetings.
+
+Example 1:
+Input: [[0,30],[5,10],[15,20]]
+Output: false
+
+Example 2:
+Input: [[7,10],[2,4]]
+Output: true
+```
+#### Solution
+```java
+class Solution {
+    public boolean canAttendMeetings(int[][] intervals) {
+        Arrays.sort(intervals, (a, b) -> a[0] - b[0]);
+        for (int i = 1; i < intervals.length; i++) {
+            if (intervals[i][0] < intervals[i - 1][1]) return false;
+        }   
+        return true;
+    }
+}
+```
+
+### Meeting Rooms II - 253
+Medium
+{:.badge.m}
+Interval
+{:.badge}
+Priority Queue
+{:.badge}
+#### Problem
+```
+Given an array of meeting time intervals consisting of start and end times
+[[s1,e1],[s2,e2],...] (si < ei), find the minimum number of conference rooms required.
+  
+Example 1:
+Input: [[0, 30],[5, 10],[15, 20]]
+Output: 2
+
+Example 2:
+Input: [[7,10],[2,4]]
+Output: 1
+```
+#### Solution
+It's a good one.
+```
+original:
+-----
+    -----
+  -----
+       -----
+
+sort by start time:
+-----
+  -----
+    -----
+       -----
+```
+we want to know if next interval's start is bigger than someone before, if it's we can reuse that room.  
+The point is how to find the room that earlest ending room.
+```java
+class Solution {
+    public int minMeetingRooms(int[][] intervals) {
+        if (intervals.length == 0) return 0;
+        
+        Arrays.sort(intervals, (a, b) -> a[0] - b[0]);        
+        PriorityQueue<Integer[]> minQ = new PriorityQueue<>((a, b) -> a[1] - b[1]);
+        
+        for (int[] i : intervals) {
+            // if current interval's start time > smallest end time in the minQ, then we know we can use that room
+            // otherwise, we need a new room
+            if (!minQ.isEmpty() && i[0] >= minQ.peek()[1]) minQ.poll();
+            minQ.offer(new Integer[]{i[0], i[1]});
+        }
+        
+        return minQ.size();
+    }
+}
+```
+
+### Intersection of Two Arrays - 349
+Easy
+{:.badge.e}
+Intersect
+{:.badge}
+Two Pointer
+{:.badge}
+#### Problem
+```
+Given two arrays, write a function to compute their intersection.
+
+Example 1:
+Input: nums1 = [1,2,2,1], nums2 = [2,2]
+Output: [2]
+
+Example 2:
+Input: nums1 = [4,9,5], nums2 = [9,4,9,8,4]
+Output: [9,4]
+
+Note:
+Each element in the result must be unique.
+The result can be in any order.
+```
+#### Solution
+```java
+class Solution {
+    public int[] intersection(int[] nums1, int[] nums2) {
+        Set<Integer> set = new HashSet<>();
+        for (int i : nums1) {
+            set.add(i);
+        }
+
+        int[] res = new int[set.size()];
+        int idx = 0;
+        for (int i : nums2) {
+            if (set.contains(i)) {
+                res[idx++] = i;
+                set.remove(i);
+            }
+        }
+        
+        return Arrays.copyOf(res, idx);
+    }
+}
+```
+
+### Intersection of Two Arrays II - 350
+Easy
+{:.badge.e}
+Intersect
+{:.badge}
+Two Pointer
+{:.badge}
+#### Problem
+```
+Given two arrays, write a function to compute their intersection.
+
+Example 1:
+Input: nums1 = [1,2,2,1], nums2 = [2,2]
+Output: [2,2]
+
+Example 2:
+Input: nums1 = [4,9,5], nums2 = [9,4,9,8,4]
+Output: [4,9]
+
+Note:
+Each element in the result should appear as many times as it shows in both
+arrays.
+The result can be in any order.
+
+Follow up:
+What if the given array is already sorted? How would you optimize your
+algorithm?
+What if nums1's size is small compared to nums2's size? Which algorithm is
+better?
+What if elements of nums2 are stored on disk, and the memory is limited such
+that you cannot load all elements into the memory at once?
+```
+#### Solution
+```java
+class Solution {
+    public int[] intersect(int[] nums1, int[] nums2) {
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i : nums1) {
+            map.put(i, map.getOrDefault(i, 0) + 1);
+        }
+
+        List<Integer> list = new ArrayList<>();
+        for (int i : nums2) {
+            if (map.getOrDefault(i, 0) > 0) {
+                list.add(i);
+                map.put(i, map.get(i) - 1);
+            }
+        }
+
+        int[] res = new int[list.size()];
+        for (int i = 0; i < list.size(); i++) {
+            res[i] = list.get(i);
+        }
+        return res;
+    }
+}
+```
+If sorted
+```java
+class Solution {
+    public int[] intersect(int[] nums1, int[] nums2) {
+        Arrays.sort(nums1);
+        Arrays.sort(nums2);
+        
+        List<Integer> list = new ArrayList<>();
+        int i1 = 0, i2 = 0;
+        while (i1 < nums1.length && i2 < nums2.length) {
+            if (nums1[i1] == nums2[i2]) {
+                list.add(nums1[i1]);
+                i1++;
+                i2++;
+            } else if (nums1[i1] < nums2[i2]) {
+                i1++;
+            } else {
+                i2++;
+            }
+        }
+        
+        int[] res = new int[list.size()];
+        for (int i = 0; i < list.size(); i++) {
+            res[i] = list.get(i);
+        }
+        return res;
+    }
+}
+```
+
+### Intersection of Three Sorted Arrays - 1213
+Easy
+{:.badge.e}
+Intersect
+{:.badge}
+Two Pointer
+{:.badge}
+#### Problem
+```
+Given three integer arrays arr1, arr2 and arr3 sorted in strictly 
+increasing order, return a sorted array of only the integers that 
+appeared in all three arrays.
+
+Example 1:
+
+Input: arr1 = [1,2,3,4,5], arr2 = [1,2,5,7,9], arr3 = [1,3,4,5,8]
+Output: [1,5]
+Explanation: Only 1 and 5 appeared in the three arrays.
+
+Constraints:
+
+1 <= arr1.length, arr2.length, arr3.length <= 1000
+1 <= arr1[i], arr2[i], arr3[i] <= 2000
+```
+#### Solution
+```java
+class Solution {
+    public List<Integer> arraysIntersection(int[] arr1, int[] arr2, int[] arr3) {
+        List<Integer> res = new LinkedList<>();
+        
+        int idx1 = 0, idx2 = 0, idx3 = 0;
+        while (idx1 < arr1.length && idx2 < arr2.length && idx3 < arr3.length) {
+            if (arr1[idx1] == arr2[idx2] && arr1[idx1] == arr3[idx3]) {
+                res.add(arr1[idx1]);
+                while (idx1 + 1 < arr1.length && arr1[idx1] == arr1[idx1 + 1]) idx1++;
+                while (idx2 + 1 < arr2.length && arr2[idx2] == arr2[idx2 + 1]) idx2++;
+                while (idx3 + 1 < arr3.length && arr3[idx3] == arr3[idx3 + 1]) idx3++;
+                idx1++;
+                idx2++;
+                idx3++;
+            } else {
+                if (arr1[idx1] == arr2[idx2]) {
+                    if (arr1[idx1] > arr3[idx3]) idx3++;
+                    else {
+                        idx1++;
+                        idx2++;
+                    }
+                } else if (arr1[idx1] < arr2[idx2]) {
+                    idx1++;
+                    if (arr3[idx3] < arr2[idx2]) idx3++;
+                } else {
+                    idx2++;
+                    if (arr3[idx3] < arr1[idx1]) idx3++;
+                }
+            }
+        }
+        
+        return res;
+    }
+}
+```
+
 ### Shuffle an Array - 384
 Medium
 {:.badge.m}
@@ -1026,110 +1463,6 @@ class Solution {
         int tmp = arr[i];
         arr[i] = arr[j];
         arr[j] = tmp;
-    }
-}
-```
-
-### Contiguous Array - 525
-Medium
-{:.badge.m}
-Prefix Sum
-{:.badge}
-#### Problem
-```
-Given a binary array, find the maximum length of a contiguous subarray with
-equal number of 0 and 1. 
-
-Example 1:
-Input: [0,1]
-Output: 2
-Explanation: [0, 1] is the longest contiguous subarray with equal number of
-0 and 1.
-
-Example 2:
-Input: [0,1,0]
-Output: 2
-Explanation: [0, 1] (or [1, 0]) is a longest contiguous subarray with equal
-number of 0 and 1.
-
-Note:
-The length of the given binary array will not exceed 50,000.
-```
-#### Solution
-sum++ when meet 1, sum-- when meet 0  
-if two index have same sum, the number of 0 and 1 between these two index must be equal  
-
-consider [0, 0, 0, 1, 1, 0], prefix sum = [-1, -2, -3, -2, -1, -2]  
-longest length is between two -1, length = 4 - 0 = 4
-```java
-class Solution {
-    public int findMaxLength(int[] nums) {
-        int res = 0;
-        int sum = 0;
-        Map<Integer, Integer> map = new HashMap<>();
-        map.put(0, -1);
-        
-        for (int i = 0; i < nums.length; i++) {
-            if (nums[i] == 0) {
-                sum--;
-            } else {
-                sum++;
-            }
-            if (map.containsKey(sum)) {
-                res = Math.max(res, i - map.get(sum));
-            } else {
-                map.put(sum, i);
-            }
-        }
-        return res;
-    }
-}
-```
-
-### Subarray Sum Equals K - 560
-Medium
-{:.badge.m}
-Prefix Sum
-{:.badge}
-N Sum
-{:.badge}
-#### Problem
-```
-Given an array of integers and an integer k, you need to find the total
-number of continuous subarrays whose sum equals to k.
-
-Example 1:
-Input:nums = [1,1,1], k = 2
-Output: 2
-
-Note:
-The length of the array is in range [1, 20,000].
-The range of numbers in the array is [-1000, 1000] and the range of the
-integer k is [-1e7, 1e7].
-```
-#### Solution
-When subarray occured, we can think about prefix sum `sum(0, i)`  
-Find out that `k = sum(0, j) - sum(0, i)`, isn't this familiar? It's two sum!  
-We can solve this problem with prefix sum + two sum  
-```java
-class Solution {
-    public int subarraySum(int[] nums, int k) {
-        Map<Integer, Integer> map = new HashMap<>();  // prefix sum -> freq
-        map.put(0, 1);  // handle nums[i] == k
-        int sum = 0;
-        int res = 0;
-        
-        for (int i = 0; i < nums.length; i++) {
-            sum += nums[i];  // prefix sum
-            
-            if (map.containsKey(sum - k)) {  // two sum
-                res += map.get(sum - k);
-            }
-            
-            map.put(sum, map.getOrDefault(sum, 0) + 1);  // update prefix sum later, in case k = 0 (don't want to count sum itself)
-        }
-    
-        return res;
     }
 }
 ```
