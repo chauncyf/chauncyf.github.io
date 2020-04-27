@@ -103,14 +103,14 @@
             $('#scrollspy').toggleClass('compress');
         });
 
-        $(window).scroll(function() {
-            scrollToNav();
-        });
+        // $(window).scroll(function() {
+        //     scrollToNav();
+        // });
 
         var scrollToNav = (function f() {
-            $('.nav-link.active')[0].scrollIntoView({
-                    offsetTop: 50,
-                    behavior: 'smooth'
+            $('.nav-link.active')[1].scrollIntoView({
+                block: 'center',
+                behavior: 'smooth'
             })
             return f;
         })();

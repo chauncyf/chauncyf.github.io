@@ -3873,6 +3873,49 @@ class Solution {
 }
 ```
 
+### Maximal Square - 221
+Medium
+{:.badge.m}
+#### Problem
+```
+Given a 2D binary matrix filled with 0's and 1's, find the largest square
+containing only 1's and return its area.
+
+Example:
+
+Input: 
+
+1 0 1 0 0
+1 0 1 1 1
+1 1 1 1 1
+1 0 0 1 0
+
+Output: 4
+```
+#### Solution
+```
+dp(i, j) = min(dp(i − 1, j), dp(i − 1, j − 1), dp(i, j − 1)) + 1
+```
+Use dp[r][c] to represent the state of matrix[r - 1][c - 1] could save us from handling boundaries
+```java
+class Solution {
+    public int maximalSquare(char[][] matrix) {
+        if (matrix.length == 0) return 0;
+        int[][] dp = new int[matrix.length + 1][matrix[0].length + 1];
+        int max = 0;
+        for (int r = 1; r <= matrix.length; r++) {
+            for (int c = 1; c <= matrix[0].length; c++) {
+                if (matrix[r - 1][c - 1] == '1') {
+                    dp[r][c] = Math.min(Math.min(dp[r - 1][c], dp[r][c - 1]), dp[r - 1][c - 1]) + 1;
+                    max = Math.max(max, dp[r][c]);
+                }
+            }
+        }
+        return max * max;
+    }
+}
+```
+
 ### Ugly Number - 263
 Easy
 {:.badge.e}
