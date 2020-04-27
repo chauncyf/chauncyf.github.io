@@ -3,6 +3,7 @@ layout: note
 author: Chauncy
 category: private
 published: true
+sitemap: false
 ---
 
 # Behavior Questions
@@ -59,7 +60,7 @@ Before that, I worked for MatrixCare as a Software Engineer Intern and I worked 
 
 Now that I’m finishing my Master’s degree, I’d love to focus on software engineering and discover the opportunity to work for Amazom AWS. 
 
-### Tell me about your internship
+### MatrixCare
 > America is heading toward a senior-care crisis, with an aging population that greatly outnumbers potential caregivers. But innovations in technology are helping organizations scale their services to provide better care with fewer staff. And MatrixCare is at the forefront of this innovation.  
 > 
 > Much more than just an electronic health record (EHR), the MatrixCare platform enables active care management across the entire out-of-hospital spectrum. Our **integrated clinical, revenue cycle, operational and financial solutions** help organizations improve quality of care, simplify documentation and streamline business operations.
@@ -148,19 +149,21 @@ J2EE stack to Spring, The Java EE interfaces incorporate JDBC for databases, JN
 
 ### Nano Twitter
 
-It’s a twitter-like application that supports features like tweet, retweet, comment and like. Since it's a scalability course, implementing cool features is not the first priority, all we want is to make the product scalable.
+It’s a twitter-like application that supports features like tweet, retweet, comment and like. Since it's a scalability course, implementing cool features are not the first priority, all we want is to make the product scalable.
 
 #### Timeline
 
 We want a scalable timeline.
 
-The most challenging part in this project, you might not believe, it's actuallyt the timline feature. Basically, in the home page, we want to display the timeline of a user. Timeline is all recent tweets sent from users followed by current user, sort by date.
+The most challenging part in this project, you might not believe, it's actually the timline feature. Basically, in the home page, we want to display the timeline of a user. Timeline is all recent tweets sent from users followed by current user, sort by date.
 
-Imagine you only followed one user, it's simple to display the timeline, because all you need is simply display all that user's tweets. But what if you followed 1000 users? The server have to get all recent tweets sent by that 1000 users, and merge those tweets together. 
+Imagine you only followed one user, it's simple to display the timeline, because all you need is simply display all that user's tweets. But what if you followed 1000 users? The server have to get all recent tweets sent by that 1000 users, and merge them together. If we take the naive approach, we may first go to the User table and get that 1000 users' id, and then go to the Tweet table use that 1000 id to get their recent tweets, and finally merge those tweets together. As you can imagine, this is a pretty expensive operation if the database gets too big. So how can we improve this?
 
-Even this it's not the worst case. What if a user with a million followers send a new tweet, everyone wants to see that new tweet in their timeline and they are refreshing the page. Either they will wait for minutes to refresh the page, or even worse, the server was killed. 
+Now here comes the trade off in software engineering, if we want speed, we can pay for the space. And the space we paied here is Redis. That is, for every single user, we cached the timeline for them. The form of the cache is the user's id point to an array, in that array, it's all tweets' id that need to be displayed in the timeline. So when a user wants to checkout his timeline, all we need to do is take that array and do a batch query in the database.
 
-How can we improve this? Now here comes the trade off in software engineering, if we want speed, we must pay for the space. And the space we paied here is Redis. That is, for every single user, we cached the timeline for them. The form of the cache is the user's id point to an array, in that array, it's all tweets' id that need to be displayed in the timeline. So all we need is take that array and do a batch query in database.
+Sounds good, right? But that's not all. That's when a user wants to checkout his timeline, there's only read operation involved. What if a user with a million followers wants to send a new tweet? 
+
+Well, now we have the Redis timeline cache for each single, we just insert the new tweet into that million users' Redis timeline instance. But that's a million user, we can't have this guy waiting there for the Redis to update. Why not make the update Redis process happen asynchronously? This is where RabbitMQ get introduced. We used RabbitMQ to implemented an asynchronous working queue. So after a user pressed the button to send a new tweet, that tweet will be stored in the database first, then it will be send to the RabbitMQ. When Redis service is idle, it will pop out a job from the queue and update the timeline cache.
 
 
 #### MongoDB
