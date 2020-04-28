@@ -225,45 +225,57 @@ permalink: /
 {% include footer.html %}
 
 <script>
-    $(window).on('load', function () {
-        $('#board').css('opacity', 1);
+    $(() => {
+        showBoard().then(showTyped).then(showLead).then(showDrawer).then(showLink);
+
+        $('[data-toggle="tooltip"]').tooltip();
         $('body').scrollspy({target: '#nav-about'});
-        $('[data-toggle="tooltip"]').tooltip()
+
+        let $navAbout = $('#nav-about'),
+            observer = new IntersectionObserver(function (entries) {
+                if (entries[0].intersectionRatio === 0) $navAbout.css('opacity', 1);
+                else if (entries[0].intersectionRatio === 1) $navAbout.css('opacity', 0);
+            }, {threshold: [0, 1]});
+
+        observer.observe($('#nav-about-top')[0]);
+
+        new SmoothScroll('a[href*="#"]', {
+            updateURL: false
+        });
     });
 
-    let $navAbout = $('#nav-about'),
-        observer = new IntersectionObserver(function (entries) {
-            if (entries[0].intersectionRatio === 0) $navAbout.css('opacity', 1);
-            else if (entries[0].intersectionRatio === 1) $navAbout.css('opacity', 0);
-        }, {threshold: [0, 1]});
+    function sleep(time) {
+        return $.Deferred(function (d) {
+            setTimeout(() => d.resolve(), time);
+        }).promise();
+    }
 
-    observer.observe($('#nav-about-top')[0]);
+    function showBoard() {
+        $('#board').css('opacity', 1);
+        return sleep(1500);
+    }
 
-    let scroll = new SmoothScroll('a[href*="#"]', {
-        updateURL: false
-    });
-
-    let typed = new Typed('#typed', {
-        strings: ['Hi, ^600 how are you?', 'Hi, I\'m Chauncy.'],
-        typeSpeed: 40,
-        backSpeed: 20,
-        startDelay: 1500,
-        backDelay: 1000,
-        smartBackspace: true,
-        showCursor: false,
-        onComplete: () => {
-            showLead().then(showDrawer).then(showLink);
-        }
-    });
+    function showTyped() {
+        let d = $.Deferred();
+        new Typed('#typed', {
+            strings: ['Hi, ^600 how are you?', 'Hi, I\'m Chauncy.'],
+            typeSpeed: 40,
+            backSpeed: 20,
+            startDelay: 0,
+            backDelay: 1000,
+            smartBackspace: true,
+            showCursor: false,
+            onComplete: () => d.resolve()
+        });
+        return d.promise();
+    }
 
     function showLead() {
         $('#lead').css({
             'visibility': 'visible',
             'opacity': 1
         });
-        return $.Deferred(function (d) {
-            setTimeout(() => d.resolve(), 1200);
-        }).promise();
+        return sleep(1200);
     }
 
     function showDrawer() {
@@ -271,9 +283,7 @@ permalink: /
             'visibility': 'visible',
             'max-height': '100%'
         });
-        return $.Deferred(function (d) {
-            setTimeout(() => d.resolve(), 400);
-        }).promise();
+        return sleep(400);
     }
 
     function showLink() {
