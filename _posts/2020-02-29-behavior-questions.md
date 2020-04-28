@@ -74,9 +74,15 @@ The product I worked on is called Skilled Nursing, basically it's an Electronic 
 As a Software Engineer Intern, I workd in a 5 person team that consists of our architect (he is also my manager), a senior engineer, a scrum master (because we are doing agile development) and two interns. The goal of our team was to update the legacy part and get rid of it.
 
 #### Challenge
+I have to be a fast learner. I'm not familiar with the stack at all, not to mention the legacy stack that were developed more than 10 years ago. It's really important for me to figure out how they worked, a 3 month internship is not a long time, right?
+
+Ask my manager for help, what documents should I read, my past experience helped a lot.
+
 Because the most important task was to refactor the old stack to a new stack, and the old stack was used like more than 10 years ago, so of course I dont really understand them.
 
-In order to do the work, I have to read a lot of documents of the old stack first, and when I dont understant or I cannot find a doc, I will go to my manager to collegues for help.
+In order to do the work, I have to be a fast learner, because it's important that I understand how they works. 
+
+I have to read a lot of documents of the old stack first, and when I dont understant or I cannot find a doc, I will go to my manager to collegues for help.
 
 The refactor went pretty well, I helped updated several important stuff like database management service as well.
 
@@ -91,7 +97,7 @@ We uses DAO to access the database, and do operations like read or write in ther
 
 In the legacy stack, we uses **JtaTransactionManager** for Transaction Management, JtaTransactionManager implements the **UserTransaction** interface.
 
-In the legacy code, we used the declarative way for the transaction, which is basically explicitly call begin, commit and rollback on the injected TransactionManager.
+In the legacy code, we used the programmatic way for the transaction, which is basically explicitly call begin, commit and rollback on the injected TransactionManager.
 
 You see that we will call the commit or rollback method on the injected TransactionManager, this simply means that if we change the TransactionManager, the new TransactionManager should provides the same methods as well, so it should implement the same interface. 
 
@@ -206,7 +212,7 @@ When I realized that the deadline was fast approaching, I explained the situatio
 Finally I met the second deadline, and I learned that I need to be honest with myself about the workload I can handle. I also learned that when accepting assignments, I need to include extra time to ensure even there is a roadblock, I can still meet the deadline.
 
 ### Handle multiple task at same time
-During my internship at Matrixcare, since we are wollowing the agile development process, we have bi-weekly sprint to list tasks that we have to do in the following 2 weeks. So for myself, I have a TODO list to list all tasks assigned to me from most important to least important, and finish them one by one. Beside the TOOD list, I also uses a calendar app to help me scheduled, because there are meetings, appointments, etc. in the daily work. So that I will never miss an important event. 
+During my internship at Matrixcare, since we are following the agile development process, we have bi-weekly sprint to list tasks that we have to do in the following 2 weeks. So for myself, I have a TODO list to list all tasks assigned to me from most important to least important, and finish them one by one. Beside the TOOD list, I also uses a calendar app to help me be organized, because there are meetings, appointments, etc. With the help of TODO list and calendar, I will never missing any important events.
 
 
 ## Mistake
