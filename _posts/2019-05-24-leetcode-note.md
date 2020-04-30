@@ -1025,144 +1025,6 @@ class Solution {
 }
 ```
 
-### Merge Intervals - 56
-Medium
-{:.badge.m}
-Interval
-{:.badge}
-#### Problem
-```
- * Given a collection of intervals, merge all overlapping intervals.
- * 
- * Example 1:
- * Input: [[1,3],[2,6],[8,10],[15,18]]
- * Output: [[1,6],[8,10],[15,18]]
- * Explanation: Since intervals [1,3] and [2,6] overlaps, merge them into
- * [1,6].
- * 
- * Example 2:
- * Input: [[1,4],[4,5]]
- * Output: [[1,5]]
- * Explanation: Intervals [1,4] and [4,5] are considered overlapping.
-```
-#### Solution
-```java
-class Solution {
-    public int[][] merge(int[][] intervals) {
-        if (intervals.length == 0) return intervals;
-        
-        Arrays.sort(intervals, (a, b) -> a[0] - b[0]);
-        // Arrays.sort(intervals, (a, b) -> Integer.compare(a[0], b[0]));
-        // Arrays.sort(intervals, new Comparator<int[]>() {
-        //     public int compare(int[] a, int[] b) {
-        //         return a[0] - b[0];
-        //     }
-        // });
-        
-        int[][] res = new int[intervals.length][2];
-        res[0] = intervals[0];
-        int idx = 0;
-        for (int i = 1; i < intervals.length; i++) {
-            if (intervals[i][0] <= res[idx][1]) {
-                res[idx][1] = Math.max(res[idx][1], intervals[i][1]);
-            } else {
-                res[++idx] = intervals[i];
-            }
-        }
-        
-        return Arrays.copyOf(res, idx + 1);
-    }
-}
-```
-
-### Meeting Rooms - 252
-Easy
-{:.badge.e}
-Interval
-{:.badge}
-#### Problem
-```
-Given an array of meeting time intervals consisting of start and end times 
-[[s1,e1],[s2,e2],...] (si < ei), determine if a person could attend all meetings.
-
-Example 1:
-Input: [[0,30],[5,10],[15,20]]
-Output: false
-
-Example 2:
-Input: [[7,10],[2,4]]
-Output: true
-```
-#### Solution
-```java
-class Solution {
-    public boolean canAttendMeetings(int[][] intervals) {
-        Arrays.sort(intervals, (a, b) -> a[0] - b[0]);
-        for (int i = 1; i < intervals.length; i++) {
-            if (intervals[i][0] < intervals[i - 1][1]) return false;
-        }   
-        return true;
-    }
-}
-```
-
-### Meeting Rooms II - 253
-Medium
-{:.badge.m}
-Interval
-{:.badge}
-Priority Queue
-{:.badge}
-#### Problem
-```
-Given an array of meeting time intervals consisting of start and end times
-[[s1,e1],[s2,e2],...] (si < ei), find the minimum number of conference rooms required.
-  
-Example 1:
-Input: [[0, 30],[5, 10],[15, 20]]
-Output: 2
-
-Example 2:
-Input: [[7,10],[2,4]]
-Output: 1
-```
-#### Solution
-It's a good one.
-```
-original:
------
-    -----
-  -----
-       -----
-
-sort by start time:
------
-  -----
-    -----
-       -----
-```
-we want to know if next interval's start is bigger than someone before, if it's we can reuse that room.  
-The point is how to find the room that earlest ending room.
-```java
-class Solution {
-    public int minMeetingRooms(int[][] intervals) {
-        if (intervals.length == 0) return 0;
-        
-        Arrays.sort(intervals, (a, b) -> a[0] - b[0]);        
-        PriorityQueue<Integer[]> minQ = new PriorityQueue<>((a, b) -> a[1] - b[1]);
-        
-        for (int[] i : intervals) {
-            // if current interval's start time > smallest end time in the minQ, then we know we can use that room
-            // otherwise, we need a new room
-            if (!minQ.isEmpty() && i[0] >= minQ.peek()[1]) minQ.poll();
-            minQ.offer(new Integer[]{i[0], i[1]});
-        }
-        
-        return minQ.size();
-    }
-}
-```
-
 ### Intersection of Two Arrays - 349
 Easy
 {:.badge.e}
@@ -2203,53 +2065,49 @@ class Solution {
 ### Merge Intervals - 56
 Medium
 {:.badge.m}
-Merge Intervals
+Interval
 {:.badge}
 #### Problem
-```text
-Given a collection of intervals, merge all overlapping intervals.
-
-Example 1:
-Input: [[1,3],[2,6],[8,10],[15,18]]
-Output: [[1,6],[8,10],[15,18]]
-Explanation: Since intervals [1,3] and [2,6] overlaps, merge them into
-[1,6].
-
-Example 2:
-Input: [[1,4],[4,5]]
-Output: [[1,5]]
-Explanation: Intervals [1,4] and [4,5] are considered overlapping.
-
-NOTE: input types have been changed on April 15, 2019. Please reset to
-default code definition to get new method signature.
+```
+ * Given a collection of intervals, merge all overlapping intervals.
+ * 
+ * Example 1:
+ * Input: [[1,3],[2,6],[8,10],[15,18]]
+ * Output: [[1,6],[8,10],[15,18]]
+ * Explanation: Since intervals [1,3] and [2,6] overlaps, merge them into
+ * [1,6].
+ * 
+ * Example 2:
+ * Input: [[1,4],[4,5]]
+ * Output: [[1,5]]
+ * Explanation: Intervals [1,4] and [4,5] are considered overlapping.
 ```
 #### Solution
 ```java
 class Solution {
     public int[][] merge(int[][] intervals) {
+        if (intervals.length == 0) return intervals;
+        
         Arrays.sort(intervals, (a, b) -> a[0] - b[0]);
-
-        List<Integer[]> res = new ArrayList<>();
-        int index = -1;
-        for (int[] interval : intervals) {
-            if (res.size() == 0 || res.get(index)[1] < interval[0]) {
-                res.add(new Integer[]{interval[0], interval[1]});
-                index++;
+        // Arrays.sort(intervals, (a, b) -> Integer.compare(a[0], b[0]));
+        // Arrays.sort(intervals, new Comparator<int[]>() {
+        //     public int compare(int[] a, int[] b) {
+        //         return a[0] - b[0];
+        //     }
+        // });
+        
+        int[][] res = new int[intervals.length][2];
+        res[0] = intervals[0];
+        int idx = 0;
+        for (int i = 1; i < intervals.length; i++) {
+            if (intervals[i][0] <= res[idx][1]) {
+                res[idx][1] = Math.max(res[idx][1], intervals[i][1]);
             } else {
-                Integer[] tmp = res.get(index);
-                tmp[0] = Math.min(tmp[0], interval[0]);
-                tmp[1] = Math.max(tmp[1], interval[1]);
-                res.set(index, tmp);
+                res[++idx] = intervals[i];
             }
         }
         
-        int[][] ans = new int[res.size()][2];
-        for (int i = 0; i < res.size(); i++) {
-            ans[i][0] = res.get(i)[0];
-            ans[i][1] = res.get(i)[1];
-        }
-        
-        return ans;
+        return Arrays.copyOf(res, idx + 1);
     }
 }
 ```
@@ -2257,10 +2115,10 @@ class Solution {
 ### Meeting Rooms - 252
 Easy
 {:.badge.e}
-Merge Intervals
+Interval
 {:.badge}
 #### Problem
-```text
+```
 Given an array of meeting time intervals consisting of start and end times 
 [[s1,e1],[s2,e2],...] (si < ei), determine if a person could attend all meetings.
 
@@ -2288,13 +2146,15 @@ class Solution {
 ### Meeting Rooms II - 253
 Medium
 {:.badge.m}
-Merge Intervals
+Interval
+{:.badge}
+Priority Queue
 {:.badge}
 #### Problem
-```text
-Given an array of meeting time intervals consisting of start and end times [[s1,e1],[s2,e2],...] (si < ei), 
-find the minimum number of conference rooms required.
-
+```
+Given an array of meeting time intervals consisting of start and end times
+[[s1,e1],[s2,e2],...] (si < ei), find the minimum number of conference rooms required.
+  
 Example 1:
 Input: [[0, 30],[5, 10],[15, 20]]
 Output: 2
@@ -2304,6 +2164,22 @@ Input: [[7,10],[2,4]]
 Output: 1
 ```
 #### Solution
+It's a good one.
+```
+original:
+-----
+    -----
+  -----
+       -----
+
+sort by start time:
+-----
+  -----
+    -----
+       -----
+```
+we want to know if next interval's start is bigger than someone before, if it's we can reuse that room.  
+The point is how to find the room that earlest ending room.
 ```java
 class Solution {
     public int minMeetingRooms(int[][] intervals) {
@@ -2313,7 +2189,7 @@ class Solution {
         PriorityQueue<Integer[]> minQ = new PriorityQueue<>((a, b) -> a[1] - b[1]);
         
         for (int[] i : intervals) {
-            // if current interval's start time > smallest end time in the minQ, we know that we can use that room
+            // if current interval's start time > smallest end time in the minQ, then we know we can use that room
             // otherwise, we need a new room
             if (!minQ.isEmpty() && i[0] >= minQ.peek()[1]) minQ.poll();
             minQ.offer(new Integer[]{i[0], i[1]});
