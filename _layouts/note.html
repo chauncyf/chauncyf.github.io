@@ -38,9 +38,9 @@
             <div class="col-auto pr-0">
                 <a class="navbar-brand nav-link mr-0" href="#">{{ page.title }}</a>
             </div>
-<!--            <div class="col px-0">-->
-<!--                <button class="btn" id="sidebar-nav-collapse"><i class="fas fa-angle-down"></i></button>-->
-<!--            </div>-->
+            <!--            <div class="col px-0">-->
+            <!--                <button class="btn" id="sidebar-nav-collapse"><i class="fas fa-angle-down"></i></button>-->
+            <!--            </div>-->
         </div>
         <nav class="nav nav-pills flex-column w-100" id="navbar-pill"></nav>
     </nav>
@@ -56,16 +56,6 @@
             <div class="badge badge-secondary float-right">
                 Updated: {{ page.last_modified | date: "%b %-d, %Y | %a, %I:%M %p" }}
             </div>
-            <div class="badge h mr-1 float-right" id="hard">Hard&nbsp</div>
-            <div class="badge m mr-1 float-right" id="medium">Medium&nbsp</div>
-            <div class="badge e mr-1 float-right" id="easy">Easy&nbsp</div>
-            <script>
-                $(document).ready(function () {
-                    $('#easy').append($('.e').length - 1);
-                    $('#medium').append($('.m').length - 1);
-                    $('#hard').append($('.h').length - 1);
-                });
-            </script>
             {% endif %}
 
             {{ content }}

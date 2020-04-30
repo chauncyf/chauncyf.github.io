@@ -4841,3 +4841,11 @@ class Solution {
     }
 }
 ```
+
+<script>
+    $(() => {
+        $('h1').first().before(`<div class="badge h mr-1 float-right" id="hard">Hard&nbsp${$('.e').length}</div>
+                                <div class="badge m mr-1 float-right" id="medium">Medium&nbsp${$('.m').length}</div>
+                                <div class="badge e mr-1 float-right" id="easy">Easy&nbsp${$('.h').length}</div>`);
+    });
+</script>
