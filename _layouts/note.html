@@ -34,17 +34,17 @@
     </script>
 </head>
 
-<body>
+<body data-spy="scroll">
 <div class="container-note container-fade-in fade-in-fast">
     <nav id="sidebar" class="navbar navbar-light">
-        <div class="row align-items-center">
-            <div class="col-auto pr-0">
+<!--        <div class="row align-items-center">-->
+<!--            <div class="col-auto pr-0">-->
                 <a class="navbar-brand mr-0" href="#">{{ page.title }} </a>
-            </div>
-            <div class="col px-0">
-                <button class="btn" id="sidebar-nav-collapse"><i class="fas fa-angle-down"></i></button>
-            </div>
-        </div>
+<!--            </div>-->
+<!--            <div class="col px-0">-->
+<!--                <button class="btn" id="sidebar-nav-collapse"><i class="fas fa-angle-down"></i></button>-->
+<!--            </div>-->
+<!--        </div>-->
         <nav class="nav nav-pills flex-column w-100" id="navbar-pill"></nav>
     </nav>
     <button class="btn" id="sidebar-toggle"><i class="fas fa-grip-lines-vertical"></i></button>
@@ -82,6 +82,7 @@
 <script src="/assets/js/generate_nav.js"></script>
 <script>
     $(document).ready(function () {
+        $('#navbar-pill').generateNav();
         $('body').scrollspy({target: '#sidebar'});
 
         $('#sidebar-toggle, .overlay').on('click', function () {
@@ -89,10 +90,10 @@
             $('body').toggleClass('fix');
         });
 
-        $('#sidebar-nav-collapse').on('click', function () {
-            $(this).toggleClass('rotate');
-            $('.nav-pills-collapse').slideToggle();
-        });
+        // $('#sidebar-nav-collapse').on('click', function () {
+        //     $(this).toggleClass('rotate');
+        //     $('.nav-pills-collapse').slideToggle();
+        // });
 
         let angle = 0;
         $('#compress-btn').on('click', function () {
@@ -102,18 +103,6 @@
             }, 500);
             $('#scrollspy').toggleClass('compress');
         });
-
-        // $(window).scroll(function() {
-        //     scrollToNav();
-        // });
-
-        var scrollToNav = (function f() {
-            $('.nav-link.active')[1].scrollIntoView({
-                block: 'center',
-                behavior: 'smooth'
-            })
-            return f;
-        })();
     })
 </script>
 </body>

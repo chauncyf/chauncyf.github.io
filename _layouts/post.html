@@ -11,12 +11,6 @@ layout: default
             <hr class="my-4">
             <div class="card-text">{{ content }}</div>
 
-            {% if page.last_modified_at %}
-            <p class="text-right text-muted">
-                <small>Updated: {{ page.last_modified | date: "%b %-d, %Y | %a, %I:%M %p" }}</small>
-            </p>
-            {% endif %}
-
             {% assign prev = page.previous %}
             {% for i in (1..site.posts.size) %}
                 {% if prev == nil %}
@@ -41,5 +35,10 @@ layout: default
                 {% endif %}
             {% endfor %}
         </div>
+        {% if page.last_modified %}
+        <div class="card-footer text-right text-muted">
+            Edited: {{ page.last_modified | date: "%b %-d, %Y | %a, %I:%M %p" }}
+        </div>
+        {% endif %}
     </div>
 </div>

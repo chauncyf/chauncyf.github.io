@@ -1,4 +1,4 @@
-(function () {
+$.fn.generateNav = function () {
     let res = ``;
     let preTag;
 
@@ -9,7 +9,7 @@
             if (preTag && preTag.prop("tagName") === 'H3') {
                 res += `</nav>`;
             }
-            res += `<a class="nav-link mb-1" href="#${$(this).prop("id")}">${$(this).text()}</a>`;
+            res += `<a class="nav-link nav-link-parent mb-1" href="#${$(this).prop("id")}">${$(this).text()}</a>`;
         } else if (curTag.prop("tagName") === 'H3') {
             if (preTag && preTag.prop("tagName") === 'H2') {
                 res += `<nav class="nav nav-pills flex-column nav-pills-collapse">`;
@@ -24,5 +24,32 @@
         res += `</nav>`;
     }
 
-    $('#navbar-pill').append(res);
-}());
+    $(this).append(res);
+
+    $('.nav-link-parent').not('.active').next('.nav-pills-collapse').hide();
+    updateNav();
+    scrollToNav();
+};
+
+function updateNav() {
+    $(window).on('activate.bs.scrollspy', function (e, obj) {
+        $('.nav-link-parent').not('.active').next('.nav-pills-collapse').slideUp(300);
+        let cur = $(`a[href*="${obj.relatedTarget}"]`);
+        if (cur.hasClass('nav-link-parent')) {
+            cur.next('.nav-pills-collapse').slideDown(300);
+        } else {
+            if (!cur.parent().hasClass('active')) {
+                cur.parent().slideDown(300)
+            }
+        }
+    });
+}
+
+function scrollToNav() {
+    if ($('.nav-link.active').length > 0) {
+        $('.nav-link.active').last()[0].scrollIntoView({
+            block: 'center',
+            behavior: 'smooth'
+        });
+    }
+}

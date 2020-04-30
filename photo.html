@@ -6,10 +6,10 @@ permalink: /photos
 
 <script>
     let progressbar = (function () {
-        let total;
         let loaded = 0;
+        let total;
         $(() => {
-            total = $('.card-columns img').length;
+            total = $('.card-columns img').length || 1;
         });
 
         $(window).on('load', () => {

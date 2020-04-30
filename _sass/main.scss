@@ -1,5 +1,5 @@
 //html {
-//scroll-behavior: smooth;
+//  scroll-behavior: smooth;
 //}
 
 body {
@@ -7,6 +7,13 @@ body {
     color: #1E88E5;
   }
 }
+
+//hr {
+//  height: 2px;
+//  border: none;
+//  background-color: #ddd;
+//  background-image: repeating-linear-gradient(-45deg, #fff, #fff 4px, transparent 4px, transparent 8px);
+//}
 
 .highlighter-rouge {
   word-wrap: normal;
@@ -607,6 +614,12 @@ blockquote {
 
   .card-body {
     padding: 2.5rem 2.5rem 2rem 2.5rem;
+  }
+
+  .card-footer {
+    font-size: 0.8rem;
+    border-top: none;
+    border-radius: 0 0 0.85rem 0.85rem;
   }
 }
 
