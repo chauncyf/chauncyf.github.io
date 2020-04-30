@@ -653,25 +653,14 @@ blockquote {
   .nav-link, .show > .nav-link {
     color: #6c757d !important;
     background-color: transparent !important;
+    transition: all 0.2s ease;
   }
 
   .nav-link.active {
     color: #fff !important;
     background-color: #6c757d !important;
   }
-
-  // .btn-collapse {
-  //   width:8px; 
-  //   height: 16px;
-  //   transform: translate(4px, 24px);
-  //   cursor: pointer;
-  // }
 }
-
-// .collapsing {
-//   transition: height .15s ease !important;
-// }
-
 
 .hide, hide {
   color: transparent;

@@ -2,7 +2,7 @@ $.fn.generateNav = function () {
     let res = ``;
     let preTag;
 
-    $('.navbar-brand').prop('href', `#${$('h1').prop('id')}`);
+    $('.navbar-brand').prop('href', `#${$('h1').first().prop('id')}`);
 
     $('h2, h3').each(function () {
         let curTag = $(this);
@@ -48,8 +48,9 @@ function updateNav() {
 }
 
 function scrollToNav() {
-    if ($('.nav-link.active').length > 0) {
-        $('.nav-link.active').last()[0].scrollIntoView({
+    let active = $('.nav-link.active').last();
+    if (active.length > 0) {
+        active[0].scrollIntoView({
             block: 'center',
             behavior: 'smooth'
         });
