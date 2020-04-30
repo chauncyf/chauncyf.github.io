@@ -12,6 +12,7 @@
     {% include tags.html %}
     <link href="https://fonts.googleapis.com/css2?family=Libre+Barcode+128+Text&family=Roboto+Slab:wght@100&display=swap&text='%20ACNPSWabcdeghinoprstuvy"
           rel="stylesheet">
+    <script src="/assets/js/generate_nav.js"></script>
     <script>
         $(window).on('load', function () {
             fade_in('.container-fade-in');
@@ -27,10 +28,6 @@
                 transition: `opacity ${duration}s ease-in-out`
             })
         }
-
-        let scroll = new SmoothScroll('a[href*="#"]', {
-            speedAsDuration: true,
-        });
     </script>
 </head>
 
@@ -39,7 +36,7 @@
     <nav id="sidebar" class="navbar navbar-light">
 <!--        <div class="row align-items-center">-->
 <!--            <div class="col-auto pr-0">-->
-                <a class="navbar-brand mr-0" href="#">{{ page.title }} </a>
+                <a class="navbar-brand nav-link mr-0" href="#">{{ page.title }}</a>
 <!--            </div>-->
 <!--            <div class="col px-0">-->
 <!--                <button class="btn" id="sidebar-nav-collapse"><i class="fas fa-angle-down"></i></button>-->
@@ -79,11 +76,14 @@
     </div>
 </div>
 
-<script src="/assets/js/generate_nav.js"></script>
 <script>
-    $(document).ready(function () {
+    $(() => {
         $('#navbar-pill').generateNav();
         $('body').scrollspy({target: '#sidebar'});
+
+        new SmoothScroll('a[href*="#"]', {
+            speedAsDuration: true,
+        });
 
         $('#sidebar-toggle, .overlay').on('click', function () {
             $('#sidebar-toggle, #sidebar, #content, .overlay').toggleClass('active');
