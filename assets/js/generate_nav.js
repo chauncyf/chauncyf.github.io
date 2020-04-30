@@ -2,7 +2,7 @@ $.fn.generateNav = function () {
     let res = ``;
     let preTag;
 
-    $('.navbar-brand').prop('href', `#${$('h1').first().prop('id')}`);
+    $('.navbar-brand.nav-link').prop('href', `#${$('h1').first().prop('id')}`);
 
     $('h2, h3').each(function () {
         let curTag = $(this);
