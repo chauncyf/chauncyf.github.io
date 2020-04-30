@@ -4846,9 +4846,9 @@ class Solution {
     $(() => {
         $('h1').first()
             .after(`<div style="display: inline-block; vertical-align: top; margin-top: 1.5rem">
-                    <div class="badge e">Easy&nbsp${$('.h').length}</div>
+                    <div class="badge e">Easy&nbsp${$('.e').length}</div>
                     <div class="badge m">Medium&nbsp${$('.m').length}</div>
-                    <div class="badge h">Hard&nbsp${$('.e').length}</div>
+                    <div class="badge h">Hard&nbsp${$('.h').length}</div>
                     </div>`);
     });
 </script>
