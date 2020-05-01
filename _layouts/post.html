@@ -13,32 +13,54 @@ layout: default
 
             {% assign prev = page.previous %}
             {% for i in (1..site.posts.size) %}
-                {% if prev == nil %}
-                    {% break %}
-                {% elsif prev.category == "note" or prev.category == "private" %}
-                    {% assign prev = prev.previous %}
-                {% else %}
-                    <a href="{{ prev.url }}" class="btn btn-share float-right">{{prev.title}} <i class="fas fa-angle-right"></i></a>
-                    {% break %}
-                {% endif %}
+            {% if prev == nil %}
+            {% break %}
+            {% elsif prev.category == "note" or prev.category == "private" %}
+            {% assign prev = prev.previous %}
+            {% else %}
+            <a href="{{ prev.url }}" class="btn btn-share float-right">{{prev.title}} <i class="fas fa-angle-right"></i></a>
+            {% break %}
+            {% endif %}
             {% endfor %}
 
             {% assign next = page.next %}
             {% for i in (1..site.posts.size) %}
-                {% if next == nil %}
-                    {% break %}
-                {% elsif next.category == "note" or next.category == "private" %}
-                    {% assign next = next.next %}
-                {% else %}
-                    <a href="{{ next.url }}" class="btn btn-share"><i class="fas fa-angle-left"></i> {{next.title}}</a>
-                    {% break %}
-                {% endif %}
+            {% if next == nil %}
+            {% break %}
+            {% elsif next.category == "note" or next.category == "private" %}
+            {% assign next = next.next %}
+            {% else %}
+            <a href="{{ next.url }}" class="btn btn-share"><i class="fas fa-angle-left"></i> {{next.title}}</a>
+            {% break %}
+            {% endif %}
             {% endfor %}
         </div>
-        {% if page.last_modified %}
         <div class="card-footer text-right text-muted">
-            Edited: {{ page.last_modified | date: "%b %-d, %Y | %a, %I:%M %p" }}
+            <div id="vcomments"></div>
+            <!--            {% if page.last_modified %}-->
+            <!--                Updated: {{ page.last_modified | date: "%b %-d, %Y | %a, %I:%M %p" }}-->
+            <!--            {% endif %}-->
+            <!--            <span id="{{ page.url }}" class="leancloud_visitors" data-flag-title="{{ page.title }}">-->
+            <!--                <span class="post-meta-item-text text-muted"><i class="far fa-eye"></i> </span>-->
+            <!--                <span class="leancloud-visitors-count text-muted">0</span>-->
+            <!--            </span>-->
         </div>
-        {% endif %}
     </div>
 </div>
+
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 'shYNpoTLJKomYXlbSVytcGDC-MdYXbMMI',
+        appKey: 'iRv8NvaESqtxKsiDuAYzSw0v',
+        lang: 'en',
+        visitor: true
+    });
+
+    $(() => {
+        $('.vpower').prepend(`<span id="{{ page.url }}" class="leancloud_visitors" data-flag-title="{{ page.title }}">
+                                  <span class="post-meta-item-text"><i class="fas fa-glasses"></i> </span>
+                                  <span class="leancloud-visitors-count">∞</span>
+                              </span>`).find('br')[0].nextSibling.remove();
+    });
+</script>
