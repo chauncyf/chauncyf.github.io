@@ -636,6 +636,12 @@ blockquote {
     padding: 2.5rem;
   }
 
+  .card-header {
+    font-size: 0.8rem;
+    border-bottom: none;
+    border-radius: 0.85rem 0.85rem 0 0;
+  }
+
   .card-footer {
     font-size: 0.8rem;
     border-top: none;
@@ -650,6 +656,10 @@ blockquote {
 
     .card-body {
       padding: 0 0 1rem 0;
+    }
+
+    .card-header {
+      border-radius: 0.85rem;
     }
 
     .card-footer {

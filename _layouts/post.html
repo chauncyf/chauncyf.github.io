@@ -4,6 +4,11 @@ layout: default
 
 <div class="container container-fade-in fade-in-fast">
     <div class="card">
+        {% if page.last_modified %}
+        <div class="card-header text-center text-muted">
+            Updated: {{ page.last_modified | date: "%b %-d, %Y | %a, %I:%M %p" }}
+        </div>
+        {% endif %}
         <div class="card-body">
             <h1 class="card-title text-center mb-3">{{ page.title }}</h1>
             <h5 class="card-subtitle text-center text-muted">{{ page.date | date: "%b %-d, %Y | %a, %I:%M %p" }}</h5>
@@ -35,11 +40,8 @@ layout: default
             {% endif %}
             {% endfor %}
         </div>
-        <div class="card-footer text-right text-muted">
+        <div class="card-footer">
             <div id="vcomments"></div>
-            {% if page.last_modified %}
-            Updated: {{ page.last_modified | date: "%b %-d, %Y | %a, %I:%M %p" }}
-            {% endif %}
         </div>
     </div>
 </div>
