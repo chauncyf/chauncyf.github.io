@@ -40,81 +40,85 @@ layout: default
             {% endif %}
             {% endfor %}
         </div>
+        {% if jekyll.environment == 'production' %}
         <div class="card-footer">
             <div id="vcomments"></div>
         </div>
+        {% endif %}
     </div>
 </div>
 
+{% if jekyll.environment == 'production' %}
 <script>
-    new Valine({
-        el: '#vcomments',
-        appId: 'shYNpoTLJKomYXlbSVytcGDC-MdYXbMMI',
-        appKey: 'iRv8NvaESqtxKsiDuAYzSw0v',
-        lang: 'en',
-        meta: ['nick', 'mail'],
-        placeholder: 'Say hi~',
-        visitor: true,
-        recordIP: true,
-        emojiCDN: 'https://valinecdn.bili33.top/',
-        emojiMaps: {
-            "tv_doge": "bilibilitv/[tv_doge].png",
-            "tv_亲亲": "bilibilitv/[tv_亲亲].png",
-            "tv_偷笑": "bilibilitv/[tv_偷笑].png",
-            "tv_再见": "bilibilitv/[tv_再见].png",
-            "tv_冷漠": "bilibilitv/[tv_冷漠].png",
-            "tv_发怒": "bilibilitv/[tv_发怒].png",
-            "tv_发财": "bilibilitv/[tv_发财].png",
-            "tv_可爱": "bilibilitv/[tv_可爱].png",
-            "tv_吐血": "bilibilitv/[tv_吐血].png",
-            "tv_呆": "bilibilitv/[tv_呆].png",
-            "tv_呕吐": "bilibilitv/[tv_呕吐].png",
-            "tv_困": "bilibilitv/[tv_困].png",
-            "tv_坏笑": "bilibilitv/[tv_坏笑].png",
-            "tv_大佬": "bilibilitv/[tv_大佬].png",
-            "tv_大哭": "bilibilitv/[tv_大哭].png",
-            "tv_委屈": "bilibilitv/[tv_委屈].png",
-            "tv_害羞": "bilibilitv/[tv_害羞].png",
-            "tv_尴尬": "bilibilitv/[tv_尴尬].png",
-            "tv_微笑": "bilibilitv/[tv_微笑].png",
-            "tv_思考": "bilibilitv/[tv_思考].png",
-            "tv_惊吓": "bilibilitv/[tv_惊吓].png",
-            "tv_打脸": "bilibilitv/[tv_打脸].png",
-            "tv_抓狂": "bilibilitv/[tv_抓狂].png",
-            "tv_抠鼻": "bilibilitv/[tv_抠鼻].png",
-            "tv_斜眼笑": "bilibilitv/[tv_斜眼笑].png",
-            "tv_无奈": "bilibilitv/[tv_无奈].png",
-            "tv_晕": "bilibilitv/[tv_晕].png",
-            "tv_流汗": "bilibilitv/[tv_流汗].png",
-            "tv_流泪": "bilibilitv/[tv_流泪].png",
-            "tv_流鼻血": "bilibilitv/[tv_流鼻血].png",
-            "tv_点赞": "bilibilitv/[tv_点赞].png",
-            "tv_生气": "bilibilitv/[tv_生气].png",
-            "tv_生病": "bilibilitv/[tv_生病].png",
-            "tv_疑问": "bilibilitv/[tv_疑问].png",
-            "tv_白眼": "bilibilitv/[tv_白眼].png",
-            "tv_皱眉": "bilibilitv/[tv_皱眉].png",
-            "tv_目瞪口呆": "bilibilitv/[tv_目瞪口呆].png",
-            "tv_睡着": "bilibilitv/[tv_睡着].png",
-            "tv_笑哭": "bilibilitv/[tv_笑哭].png",
-            "tv_腼腆": "bilibilitv/[tv_腼腆].png",
-            "tv_色": "bilibilitv/[tv_色].png",
-            "tv_调侃": "bilibilitv/[tv_调侃].png",
-            "tv_调皮": "bilibilitv/[tv_调皮].png",
-            "tv_鄙视": "bilibilitv/[tv_鄙视].png",
-            "tv_闭嘴": "bilibilitv/[tv_闭嘴].png",
-            "tv_难过": "bilibilitv/[tv_难过].png",
-            "tv_馋": "bilibilitv/[tv_馋].png",
-            "tv_鬼脸": "bilibilitv/[tv_鬼脸].png",
-            "tv_黑人问号": "bilibilitv/[tv_黑人问号].png",
-            "tv_鼓掌": "bilibilitv/[tv_鼓掌].png"
-        }
-    });
-
     $(() => {
+        new Valine({
+            el: '#vcomments',
+            appId: 'shYNpoTLJKomYXlbSVytcGDC-MdYXbMMI',
+            appKey: 'iRv8NvaESqtxKsiDuAYzSw0v',
+            lang: 'en',
+            meta: ['nick', 'mail'],
+            placeholder: 'Say hi~',
+            visitor: true,
+            recordIP: true,
+            emojiCDN: 'https://valinecdn.bili33.top/',
+            emojiMaps: {
+                "tv_doge": "bilibilitv/[tv_doge].png",
+                "tv_亲亲": "bilibilitv/[tv_亲亲].png",
+                "tv_偷笑": "bilibilitv/[tv_偷笑].png",
+                "tv_再见": "bilibilitv/[tv_再见].png",
+                "tv_冷漠": "bilibilitv/[tv_冷漠].png",
+                "tv_发怒": "bilibilitv/[tv_发怒].png",
+                "tv_发财": "bilibilitv/[tv_发财].png",
+                "tv_可爱": "bilibilitv/[tv_可爱].png",
+                "tv_吐血": "bilibilitv/[tv_吐血].png",
+                "tv_呆": "bilibilitv/[tv_呆].png",
+                "tv_呕吐": "bilibilitv/[tv_呕吐].png",
+                "tv_困": "bilibilitv/[tv_困].png",
+                "tv_坏笑": "bilibilitv/[tv_坏笑].png",
+                "tv_大佬": "bilibilitv/[tv_大佬].png",
+                "tv_大哭": "bilibilitv/[tv_大哭].png",
+                "tv_委屈": "bilibilitv/[tv_委屈].png",
+                "tv_害羞": "bilibilitv/[tv_害羞].png",
+                "tv_尴尬": "bilibilitv/[tv_尴尬].png",
+                "tv_微笑": "bilibilitv/[tv_微笑].png",
+                "tv_思考": "bilibilitv/[tv_思考].png",
+                "tv_惊吓": "bilibilitv/[tv_惊吓].png",
+                "tv_打脸": "bilibilitv/[tv_打脸].png",
+                "tv_抓狂": "bilibilitv/[tv_抓狂].png",
+                "tv_抠鼻": "bilibilitv/[tv_抠鼻].png",
+                "tv_斜眼笑": "bilibilitv/[tv_斜眼笑].png",
+                "tv_无奈": "bilibilitv/[tv_无奈].png",
+                "tv_晕": "bilibilitv/[tv_晕].png",
+                "tv_流汗": "bilibilitv/[tv_流汗].png",
+                "tv_流泪": "bilibilitv/[tv_流泪].png",
+                "tv_流鼻血": "bilibilitv/[tv_流鼻血].png",
+                "tv_点赞": "bilibilitv/[tv_点赞].png",
+                "tv_生气": "bilibilitv/[tv_生气].png",
+                "tv_生病": "bilibilitv/[tv_生病].png",
+                "tv_疑问": "bilibilitv/[tv_疑问].png",
+                "tv_白眼": "bilibilitv/[tv_白眼].png",
+                "tv_皱眉": "bilibilitv/[tv_皱眉].png",
+                "tv_目瞪口呆": "bilibilitv/[tv_目瞪口呆].png",
+                "tv_睡着": "bilibilitv/[tv_睡着].png",
+                "tv_笑哭": "bilibilitv/[tv_笑哭].png",
+                "tv_腼腆": "bilibilitv/[tv_腼腆].png",
+                "tv_色": "bilibilitv/[tv_色].png",
+                "tv_调侃": "bilibilitv/[tv_调侃].png",
+                "tv_调皮": "bilibilitv/[tv_调皮].png",
+                "tv_鄙视": "bilibilitv/[tv_鄙视].png",
+                "tv_闭嘴": "bilibilitv/[tv_闭嘴].png",
+                "tv_难过": "bilibilitv/[tv_难过].png",
+                "tv_馋": "bilibilitv/[tv_馋].png",
+                "tv_鬼脸": "bilibilitv/[tv_鬼脸].png",
+                "tv_黑人问号": "bilibilitv/[tv_黑人问号].png",
+                "tv_鼓掌": "bilibilitv/[tv_鼓掌].png"
+            }
+        });
+    
         $('.vpower').prepend(`<span id="{{ page.url }}" class="leancloud_visitors" data-flag-title="{{ page.title }}">
                                   <span class="post-meta-item-text"><i class="fas fa-glasses"></i> </span>
                                   <span class="leancloud-visitors-count">∞</span>
                               </span>`).css('padding-bottom', '0').find('br')[0].nextSibling.remove();
     });
 </script>
+{% endif %}
