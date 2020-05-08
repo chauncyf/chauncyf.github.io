@@ -619,6 +619,58 @@ public class Solution {
 }
 ```
 
+### Majority Element - 169
+Easy
+{:.badge.e}
+#### Problem
+```
+Given an array of size n, find the majority element. The majority element is
+the element that appears more than ⌊ n/2 ⌋ times.
+
+You may assume that the array is non-empty and the majority element always
+exist in the array.
+
+Example 1:
+Input: [3,2,3]
+Output: 3
+
+Example 2:
+Input: [2,2,1,1,1,2,2]
+Output: 2
+```
+#### Solution
+```java
+class Solution {
+    public int majorityElement(int[] nums) {
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i : nums) {
+            int count = map.getOrDefault(i, 0);
+            if (count + 1 > nums.length / 2) return i;
+            map.put(i, count + 1);
+        }
+        return -1;
+    }
+}
+```
+[Boyer-Moore Voting Algorithm](http://www.cs.utexas.edu/~moore/best-ideas/mjrty/index.html)
+```java
+class Solution {
+    public int majorityElement(int[] nums) {
+        int count = 0;
+        Integer candidate = null;
+
+        for (int num : nums) {
+            if (count == 0) {
+                candidate = num;
+            }
+            count += (num == candidate) ? 1 : -1;
+        }
+
+        return candidate;
+    }
+}
+```
+
 ### Binary Search - 704
 Easy
 {:.badge.e}
@@ -1766,6 +1818,308 @@ class Solution {
         }
 
         return res;
+    }
+}
+```
+
+### Maximum Depth of Binary Tree - 104
+Easy
+{:.badge.e}
+#### Problem
+```
+Given a binary tree, find its maximum depth.
+
+The maximum depth is the number of nodes along the longest path from the
+root node down to the farthest leaf node.
+
+Note: A leaf is a node with no children.
+
+Example:
+Given binary tree [3,9,20,null,null,15,7],
+
+⁠   3
+⁠  / \
+⁠ 9  20
+⁠   /  \
+⁠  15   7
+
+return its depth = 3.
+```
+#### Solution
+```java
+/**
+ * Definition for a binary tree node.˙˙
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public int maxDepth(TreeNode root) {
+        if (root == null) return 0;
+        return Math.max(maxDepth(root.left), maxDepth(root.right)) + 1;
+    }
+}
+```
+
+### Binary Tree Maximum Path Sum - 124
+Hard
+{:.badge.h}
+#### Problem
+```
+Given a non-empty binary tree, find the maximum path sum.
+
+For this problem, a path is defined as any sequence of nodes from some
+starting node to any node in the tree along the parent-child connections.
+The path must contain at least one node and does not need to go through the
+root.
+
+Example 1:
+
+Input: [1,2,3]
+
+⁠      1
+⁠     / \
+⁠    2   3
+
+Output: 6
+
+
+Example 2:
+
+Input: [-10,9,20,null,null,15,7]
+
+      -10
+      / \
+     9  20
+    /     \
+   15      7
+
+Output: 42
+```
+#### Solution
+The tricky part is, when returning current value, return value of current node + max(left, right)
+```java
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    int max = Integer.MIN_VALUE;
+    
+    public int maxPathSum(TreeNode root) {
+        pathSum(root);
+        return max;
+    }
+    
+    private int pathSum(TreeNode node) {
+        if (node == null) return 0;
+        int maxLeft = Math.max(pathSum(node.left), 0);
+        int maxRight = Math.max(pathSum(node.right), 0);
+        max = Math.max(max, node.val + maxLeft + maxRight);
+        return node.val + Math.max(maxLeft, maxRight);
+    }
+}
+```
+
+### Maximum Width of Binary Tree - 662
+Medium
+{:.badge.m}
+#### Problem
+```
+Given a binary tree, write a function to get the maximum width of the given
+tree. The width of a tree is the maximum width among all levels. The binary
+tree has the same structure as a full binary tree, but some nodes are null.
+
+The width of one level is defined as the length between the end-nodes (the
+leftmost and right most non-null nodes in the level, where the null nodes
+between the end-nodes are also counted into the length calculation.
+
+Example 1:
+Input: 
+
+⁠          1
+⁠        /   \
+⁠       3     2
+⁠      / \     \  
+⁠     5   3     9 
+
+Output: 4
+Explanation: The maximum width existing in the third level with the length 4
+(5,3,null,9).
+
+
+Example 2:
+Input: 
+
+⁠         1
+⁠        /  
+⁠       3    
+⁠      / \       
+⁠     5   3     
+
+Output: 2
+Explanation: The maximum width existing in the third level with the length 2
+(5,3).
+
+
+Example 3:
+Input: 
+
+⁠         1
+⁠        / \
+⁠       3   2 
+⁠      /        
+⁠     5      
+
+Output: 2
+Explanation: The maximum width existing in the second level with the length
+2 (3,2).
+
+
+Example 4:
+Input: 
+
+⁠         1
+⁠        / \
+⁠       3   2
+⁠      /     \  
+⁠     5       9 
+⁠    /         \
+⁠   6           7
+Output: 8
+Explanation:The maximum width existing in the fourth level with the length 8
+(6,null,null,null,null,null,null,7).
+
+Note: Answer will in the range of 32-bit signed integer.
+```
+#### Solution
+Use a HashMap to keep track of index of each node  
+If index of current node is n, index of left child is 2n, index of right child is 2n + 1
+```java
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public int widthOfBinaryTree(TreeNode root) {
+        if (root == null) return 0;
+        
+        Queue<TreeNode> queue = new LinkedList<>();
+        Map<TreeNode, Integer> map = new HashMap<>();
+        queue.offer(root);
+        map.put(root, 1);
+        int maxWidth = 0;
+        
+        while (!queue.isEmpty()) {
+            int curSize = queue.size();
+            int curMin = 0, curMax = 0;
+            for (int i = 0; i < curSize; i++) {
+                TreeNode curNode = queue.poll();
+                int curIdx = map.get(curNode);
+                if (curNode.left != null) {
+                    map.put(curNode.left, curIdx * 2);
+                    queue.offer(curNode.left);
+                }
+                if (curNode.right != null) {
+                    map.put(curNode.right, curIdx * 2 + 1);
+                    queue.offer(curNode.right);
+                }
+                if (i == 0) curMin = curIdx;
+                if (i == curSize - 1) curMax = curIdx;
+            }
+            maxWidth = Math.max(maxWidth, curMax - curMin + 1);
+        }
+        
+        return maxWidth;
+    }
+}
+```
+
+### Invert Binary Tree - 226
+Easy
+{:.badge.e}
+#### Problem
+```
+Invert a binary tree.
+
+Example:
+
+Input:
+
+     4
+   /   \
+  2     7
+ / \   / \
+1   3 6   9
+
+Output:
+
+     4
+   /   \
+  7     2
+ / \   / \
+9   6 3   1
+
+Trivia:
+This problem was inspired by this original tweet by Max Howell:
+    Google: 90% of our engineers use the software you wrote (Homebrew), 
+            but you can’t invert a binary tree on a whiteboard so f*** off.
+```
+#### Solution
+```java
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public TreeNode invertTree(TreeNode root) {
+        invert(root);
+        return root;
+    }
+    
+    private void invert(TreeNode node) {
+        if (node == null) return;
+        TreeNode left = node.left;
+        node.left = node.right;
+        node.right = left;
+        invert(node.left);
+        invert(node.right);
     }
 }
 ```
@@ -3816,7 +4170,7 @@ class Solution {
 
 ### Course Schedule II - 210
 Medium
-{:.badge.m}
+{:.badge.m} 
 Topological Sort
 {:.badge}
 #### Problem
