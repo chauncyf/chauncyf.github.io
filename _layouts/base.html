@@ -17,12 +17,12 @@
             fadeIn('.container-fade-in');
 
             new SmoothScroll('a[href*="#"]', {
-                speedAsDuration: true,
+                speedAsDuration: true
             });
         });
 
         function fadeIn(obj, duration = 1) {
-            $obj = $(obj);
+            let $obj = $(obj);
             if ($obj.hasClass('fade-in-fast')) duration = 0.5;
 
             $obj.css({
