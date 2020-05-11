@@ -39,6 +39,8 @@
     }
 </script>
 
+{% if jekyll.environment == 'production' %}
 {% include valine.html %}
+{% endif %}
 </body>
 </html>

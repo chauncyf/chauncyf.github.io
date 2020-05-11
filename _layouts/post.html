@@ -42,9 +42,11 @@ layout: base
             {% endif %}
             {% endfor %}
         </div>
+        {% if jekyll.environment == 'production' %}
         <div class="card-footer">
             <div id="vcomments"></div>
         </div>
+        {% endif %}
     </div>
 </div>
 
