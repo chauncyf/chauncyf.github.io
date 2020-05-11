@@ -16,7 +16,6 @@ permalink: /
 
     {% include tags.html %}
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&display=swap">
-    <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
 </head>
 
 <body>
@@ -227,6 +226,7 @@ permalink: /
 
 {% include footer.html %}
 
+<script src="/assets/js/typed.min.js"></script>
 <script>
     $(() => {
         showBoard().then(showTyped).then(showLead).then(showDrawer).then(showLink);
@@ -297,25 +297,7 @@ permalink: /
     }
 </script>
 {% if jekyll.environment == 'production' %}
-<script>
-    $(() => {
-        new Valine({
-            el: '#vcomments',
-            appId: 'shYNpoTLJKomYXlbSVytcGDC-MdYXbMMI',
-            appKey: 'iRv8NvaESqtxKsiDuAYzSw0v',
-            lang: 'en',
-            meta: ['nick', 'mail'],
-            placeholder: 'Say hi~',
-            visitor: true,
-            recordIP: true,
-        });
-    
-        $('.vpower').prepend(`<span id="{{ page.url }}" class="leancloud_visitors" data-flag-title="{{ page.title }}">
-                                  <span class="post-meta-item-text"><i class="fas fa-glasses"></i> </span>
-                                  <span class="leancloud-visitors-count">∞</span>
-                              </span>`).css('padding-bottom', '0').find('br')[0].nextSibling.remove();
-    });
-</script>
+{% include valine.html %}
 {% endif %}
 </body>
 </html>

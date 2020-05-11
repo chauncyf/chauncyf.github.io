@@ -1,37 +1,7 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    {% seo %}
+---
+layout: base
+---
 
-    {% if jekyll.environment == 'production' %}
-    {% include analytics.html %}
-    {% endif %}
-
-    {% include tags.html %}
-    <link href="https://fonts.googleapis.com/css2?family=Libre+Barcode+128+Text&family=Roboto+Slab:wght@100&display=swap&text='%20ACNPSWabcdeghinoprstuvy"
-          rel="stylesheet">
-    <script src="/assets/js/generate_nav.js"></script>
-    <script>
-        $(window).on('load', function () {
-            fade_in('.container-fade-in');
-        });
-
-        function fade_in(obj, duration = 1) {
-            $obj = $(obj);
-            if ($obj.hasClass('fade-in-fast')) duration = 0.5;
-
-            $obj.css({
-                visibility: 'visible',
-                opacity: 1,
-                transition: `opacity ${duration}s ease-in-out`
-            })
-        }
-    </script>
-</head>
-
-<body data-spy="scroll">
 <div class="container-note container-fade-in fade-in-fast">
     <nav id="sidebar" class="navbar navbar-light">
         <div class="row align-items-center">
@@ -66,14 +36,11 @@
     </div>
 </div>
 
+<script src="/assets/js/generate_nav.js"></script>
 <script>
     $(() => {
         $('#navbar-pill').generateNav();
         $('body').scrollspy({target: '#sidebar'});
-
-        new SmoothScroll('a[href*="#"]', {
-            speedAsDuration: true,
-        });
 
         $('#sidebar-toggle, .overlay').on('click', function () {
             $('#sidebar-toggle, #sidebar, #content, .overlay').toggleClass('active');
@@ -95,5 +62,3 @@
         });
     })
 </script>
-</body>
-</html>

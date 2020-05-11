@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {% seo %}
+
+    {% if jekyll.environment == 'production' %}
+    {% include analytics.html %}
+    {% endif %}
+
+    {% include tags.html %}
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Barcode+128+Text&family=Roboto+Slab:wght@100&display=auto&text='%20ACNPSWabcdeghinoprstuvy">
+</head>
+
+<body>
+{{ content }}
+
+<script>
+    $(() => {
+        new SmoothScroll('a[href*="#"]', {
+            speedAsDuration: true,
+        });
+    });
+
+    $(window).on('load', function () {
+        fade_in('.container-fade-in');
+    });
+
+    function fade_in(obj, duration = 1) {
+        $obj = $(obj);
+        if ($obj.hasClass('fade-in-fast')) duration = 0.5;
+
+        $obj.css({
+            visibility: 'visible',
+            opacity: 1,
+            transition: `opacity ${duration}s ease-in-out`
+        })
+    }
+</script>
+
+{% include valine.html %}
+</body>
+</html>
