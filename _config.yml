@@ -32,6 +32,13 @@ plugins:
   - jekyll-seo-tag
   - jekyll-last-modified-at
 
+sass:
+  style: compressed
+
+webrick:
+  headers:
+    Access-Control-Allow-Origin: "*"
+
 collections:
   notes:
     output: true
@@ -55,15 +62,12 @@ jekyll_compose:
   default_front_matter:
     drafts:
       description:
-      image:
       category:
       tags:
     posts:
-      layout: post
       author: Chauncy
-      category:
+      category: blog
       tags:
-      image:
       published: true
 
 # Exclude from processing.

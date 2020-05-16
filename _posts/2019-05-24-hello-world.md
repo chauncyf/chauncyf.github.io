@@ -3,9 +3,9 @@ layout: post
 title: Hello World
 date: 2019-05-24 23:45 -0400
 author: Chauncy
-category: word
-tags: daily, words
-image: 
+category: blog
+tags: diary
+published: true
 ---
 
 Why am I building a blog that no one would look at?  

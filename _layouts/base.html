@@ -11,15 +11,24 @@
 
     {% include tags.html %}
     <link rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Libre+Barcode+128+Text&family=Roboto+Slab:wght@100&display=auto&text='%20ACNPSWabcdeghinoprstuvy">
+          href="https://fonts.googleapis.com/css2?family=Libre+Barcode+128+Text&family=Roboto+Slab:wght@100&display=auto&text='%20ABCNPSTWabcdeghilnoprstuvy">
     <script>
         $(window).on('load', function () {
-            fadeIn('.container-fade-in');
+            (function () {
+                let i = 0;
+                $('.animate').each(function () {
+                    setTimeout(() => animate($(this)), i += 10);
+                });
+            })();
 
             new SmoothScroll('a[href*="#"]', {
                 speedAsDuration: true
             });
         });
+
+        function animate(obj) {
+            obj.addClass('animated').addClass(obj.data('animation'));
+        }
 
         function fadeIn(obj, duration = 1) {
             let $obj = $(obj);

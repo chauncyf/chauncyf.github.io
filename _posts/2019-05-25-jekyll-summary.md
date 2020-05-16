@@ -3,9 +3,9 @@ layout: post
 title: Jekyll Summary
 date: 2019-05-25 22:43 -0400
 author: Chauncy
-category: code
-tags:
-image:
+category: blog
+tags: tech
+published: true
 ---
 
 #### Praises

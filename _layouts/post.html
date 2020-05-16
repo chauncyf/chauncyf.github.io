@@ -4,17 +4,28 @@ layout: base
 
 {% include nav.html %}
 
-<div class="container container-fade-in fade-in-fast">
+<!--<div class="container container-fade-in fade-in-fast">-->
+<div class="container container-post animate" data-animation="animate-fadeInDown animate-fast">
     <div class="card">
-        {% if page.last_modified %}
-        <div class="card-header text-center text-muted">
-            Updated: {{ page.last_modified | date: "%b %-d, %Y | %a, %I:%M %p" }}
-        </div>
-        {% endif %}
         <div class="card-body">
             <h1 class="card-title text-center mb-3">{{ page.title }}</h1>
-            <h5 class="card-subtitle text-center text-muted">{{ page.date | date: "%b %-d, %Y | %a, %I:%M %p" }}</h5>
-            {{ page.about }}
+            <ul class="card-subtitle text-center text-muted list-inline my-1">
+                <li class="list-inline-item">
+                    <!--                    <i class="fas fa-calendar-alt"></i> {{ page.date | date: "%b %-d, %Y | %a, %I:%M %p" }}-->
+                    <i class="fas fa-calendar"></i> {{ page.date | date: "%b %-d, %Y" }}
+                </li>
+                <li class="list-inline-item">
+                    <i class="fas fa-clock"></i> {{ page.date | date: "%I:%M %p, %a" }}
+                </li>
+                {% for tag in page.tags %}
+                <li class="list-inline-item"><i class="fas fa-hashtag"></i> {{ tag }}</li>
+                {% endfor %}
+            </ul>
+            <!--            <ul class="card-subtitle text-center text-muted list-inline my-1">-->
+            <!--                {% for tag in page.tags %}-->
+            <!--                <li class="list-inline-item"><i class="fas fa-hashtag"></i> {{ tag }}</li>-->
+            <!--                {% endfor %}-->
+            <!--            </ul>-->
             <hr class="my-4">
             <div class="card-text">{{ content }}</div>
 
@@ -45,6 +56,10 @@ layout: base
         {% if jekyll.environment == 'production' %}
         <div class="card-footer">
             <div id="vcomments"></div>
+        </div>
+        {% else %}
+        <div class="card-footer text-center text-muted">
+            Updated: {{ page.last_modified | date: "%b %-d, %Y | %a, %I:%M %p" }}
         </div>
         {% endif %}
     </div>

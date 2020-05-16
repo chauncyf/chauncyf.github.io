@@ -1,9 +1,15 @@
 ---
 layout: note
+title: LeetCode Note
+date: 2019-05-24 23:45 -0400
 author: Chauncy
-category: note
+category: blog
+tags: [algorithm, leetcode]
 published: true
+excerpt_separator: <!--more-->
 ---
+
+<!--more-->
 
 # Leetcode Note
 

@@ -3,9 +3,8 @@ layout: post
 title: JavaScript & Closure
 date: 2020-04-18 14:37 -0400
 author: Chauncy
-category: code
-tags: 
-image: 
+category: blog
+tags: [coding, frontend, javascript]
 published: true
 ---
 

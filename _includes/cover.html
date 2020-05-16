@@ -1,6 +1,7 @@
 <div class="carousel">
     <div class="carousel-item align-middle align-items-center">
-        <img src="{{ include.img }}" class="d-block w-100 container-fade-in" onload="fadeIn(this)">
+        <img src="{{ include.img }}" class="d-block w-100 animate" data-animation="animate-fadeIn"
+             onload="animate($(this))">
         <div class="d-flex justify-content-center align-items-center mask">
             <h1>{{ include.title }}</h1>
         </div>

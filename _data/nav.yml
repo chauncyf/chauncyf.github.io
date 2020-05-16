@@ -1,6 +1,4 @@
-- name: Word
-  link: /words
-- name: Note
-  link: /notes
+- name: Blog
+  link: /blog
 - name: Photo
-  link: /photos
+  link: /photo

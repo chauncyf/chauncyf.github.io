@@ -3,9 +3,8 @@ layout: post
 title: CSS Animation
 date: 2020-04-04 23:02 -0400
 author: Chauncy
-category: code
-tags: 
-image: 
+category: blog
+tags: [coding, frontend, css]
 published: true
 ---
 

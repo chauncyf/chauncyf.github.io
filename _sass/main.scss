@@ -1,10 +1,17 @@
+$primary-color: #1E88E5;
+$text-color: #555;
+
 //html {
 //  scroll-behavior: smooth;
 //}
 
 body {
+  //font-family: 'Roboto', sans-serif;
+
+  color: $text-color;
+
   a {
-    color: #1E88E5;
+    color: $primary-color;
   }
 }
 
@@ -64,55 +71,11 @@ blockquote {
   }
 }
 
-@keyframes bounceInUp {
-  from,
-  60%,
-  75%,
-  90%,
-  to {
-    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-  }
-
-  from {
-    opacity: 0;
-    -webkit-transform: translate3d(0, 3000px, 0);
-    transform: translate3d(0, 3000px, 0);
-  }
-
-  60% {
-    opacity: 1;
-    -webkit-transform: translate3d(0, -20px, 0);
-    transform: translate3d(0, -20px, 0);
-  }
-
-  75% {
-    -webkit-transform: translate3d(0, 10px, 0);
-    transform: translate3d(0, 10px, 0);
-  }
-
-  90% {
-    -webkit-transform: translate3d(0, -5px, 0);
-    transform: translate3d(0, -5px, 0);
-  }
-
-  to {
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-  }
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    -webkit-transform: translate3d(0, 100%, 0);
-    transform: translate3d(0, 100%, 0);
-  }
-
-  to {
-    opacity: 1;
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
+.container {
+  @media (max-width: 1199px) {
+    & {
+      max-width: 100%;
+    }
   }
 }
 
@@ -457,11 +420,11 @@ blockquote {
     cursor: pointer;
     border: none;
     border-radius: 0.75rem !important;
-    box-shadow: 0 .25rem 0.5rem rgba(0, 0, 0, .15) !important;
-    transition: all 0.5s;
+    box-shadow: 0 .25rem 0.5rem rgba(0, 0, 0, .15);
+    transition: all 0.5s ease;
 
     &:hover {
-      box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.3) !important;
+      box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.3);
     }
 
     & > img {
@@ -602,28 +565,45 @@ blockquote {
 }
 
 .button-card {
-  //color: black !important;
+  color: $text-color;
   text-decoration: none;
+  //box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1) !important;
+  box-shadow: none !important;
+
+  &:hover {
+    color: $text-color;
+    text-decoration: none;
+    box-shadow: 0 0 1.5rem rgba(0, 0, 0, 0.3) !important;
+  }
+
+  .card-title {
+    color: $primary-color;
+    transition: color 0.3s ease-in-out;
+  }
+
+  .card-subtitle {
+    font-size: 0.9rem;
+  }
+
+  @media (min-width: 768px) {
+    .card-body {
+      padding: 1.5rem 2rem;
+    }
+  }
 
   .card-text {
-    color: #212529;
-
-    p {
+    p, ul {
       margin: 0;
     }
   }
 }
 
-.button-card:hover {
-  text-decoration: none !important;
-}
-
 .container-fade-in {
   visibility: hidden;
-  opacity: 0;
+  //opacity: 0;
 }
 
-.container {
+.container-post {
   margin-top: 1.5rem;
 
   .card {
@@ -649,7 +629,7 @@ blockquote {
     border-radius: 0 0 0.85rem 0.85rem;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 1199px) {
     .card {
       box-shadow: none;
     }
@@ -717,8 +697,9 @@ blockquote {
 }
 
 footer {
-  border-top: 1px solid #eaeaea;
+  background-color: rgba(0, 0, 0, .03);
   margin: 2rem 0 0;
+  padding: 0.8rem 0;
 
   small {
     color: #959da5;
