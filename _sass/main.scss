@@ -170,6 +170,20 @@ blockquote {
   border-radius: .5rem !important;
 }
 
+.tag-list {
+  .list-inline-item {
+    font-size: 1rem;
+    margin: 0;
+    padding: 0.1rem 0.2rem 0.1rem 0.5rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+
+    &.active {
+      background-color: rgba(0, 0, 0, 0.3);
+    }
+  }
+}
+
 .container-blog {
   .list-group-item {
     border: none;
@@ -189,9 +203,9 @@ blockquote {
   //  max-width: 100%;
   //}
 
-  @media (min-width: 1200px) {
-    max-width: 1200px;
-  }
+  //@media (min-width: 1200px) {
+  //  max-width: 1200px;
+  //}
 }
 
 .container-note {
@@ -677,19 +691,43 @@ blockquote {
 .carousel {
   font-family: 'Roboto Slab', serif;
   font-size: 3rem;
-  letter-spacing: .4rem;
   color: white;
 
-  max-height: 50vh;
+  max-height: 40vh;
   overflow: hidden;
   display: flex;
 
+  h1 {
+    letter-spacing: .4rem;
+  }
+
   img {
-    filter: brightness(80%);
+    filter: brightness(70%);
   }
 
   .carousel-item {
     display: flex;
+  }
+
+  .tag-list {
+    letter-spacing: .2rem;
+  }
+
+  .navbar {
+    //font-family: 'Roboto Slab', serif;
+    //letter-spacing: .2rem;
+    padding: 1rem;
+    width: 100%;
+    background-color: transparent !important;
+
+
+    //.navbar-brand {
+    //  font-size: 1.5rem;
+    //}
+
+    //.nav-link {
+    //  font-size: 1.2rem;
+    //}
   }
 }
 
