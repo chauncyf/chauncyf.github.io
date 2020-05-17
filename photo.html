@@ -14,6 +14,13 @@ permalink: /photo
 
         $(window).on('load', () => {
             progressbar.hide();
+
+            (function () {
+                let i = -10;
+                $('.animate').each(function () {
+                    setTimeout(() => animate($(this)), i += 10);
+                });
+            })();
         });
 
         return {

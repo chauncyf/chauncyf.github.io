@@ -573,7 +573,7 @@ blockquote {
   &:hover {
     color: $text-color;
     text-decoration: none;
-    box-shadow: 0 0 1.5rem rgba(0, 0, 0, 0.3) !important;
+    box-shadow: 0 0 1.5rem rgba(0, 0, 0, 0.2) !important;
   }
 
   .card-title {
@@ -598,18 +598,13 @@ blockquote {
   }
 }
 
-.container-fade-in {
-  visibility: hidden;
-  //opacity: 0;
-}
-
 .container-post {
   margin-top: 1.5rem;
 
   .card {
     border: none;
     border-radius: 0.85rem !important;
-    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15);
+    box-shadow: 0 0 2rem rgba(0, 0, 0, .15);
   }
 
   .card-body {
@@ -629,10 +624,10 @@ blockquote {
     border-radius: 0 0 0.85rem 0.85rem;
   }
 
-  @media (max-width: 1199px) {
-    .card {
-      box-shadow: none;
-    }
+  @media (max-width: 767px) {
+    //.card {
+    //  box-shadow: none;
+    //}
 
     .card-body {
       padding: 0 0 1rem 0;
@@ -645,6 +640,12 @@ blockquote {
     .card-footer {
       padding: 1rem;
       border-radius: 0.85rem;
+    }
+  }
+
+  @media (max-width: 1199px) {
+    .card {
+      box-shadow: none;
     }
   }
 }

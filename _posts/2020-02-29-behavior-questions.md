@@ -2,7 +2,7 @@
 layout: note
 author: Chauncy
 category: private
-tags: interview
+tags: 
 published: true
 sitemap: false
 ---

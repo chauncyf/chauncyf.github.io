@@ -11,13 +11,13 @@
 
     {% include tags.html %}
     <link rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Libre+Barcode+128+Text&family=Roboto+Slab:wght@100&display=auto&text='%20ABCNPSTWabcdeghilnoprstuvy">
+          href="https://fonts.googleapis.com/css2?family=Libre+Barcode+128+Text&family=Roboto+Slab:wght@100&display=auto">
     <script>
         $(window).on('load', function () {
             (function () {
-                let i = 0;
+                let i = -100;
                 $('.animate').each(function () {
-                    setTimeout(() => animate($(this)), i += 10);
+                    setTimeout(() => animate($(this)), i += 100);
                 });
             })();
 
@@ -28,17 +28,6 @@
 
         function animate(obj) {
             obj.addClass('animated').addClass(obj.data('animation'));
-        }
-
-        function fadeIn(obj, duration = 1) {
-            let $obj = $(obj);
-            if ($obj.hasClass('fade-in-fast')) duration = 0.5;
-
-            $obj.css({
-                visibility: 'visible',
-                opacity: 1,
-                transition: `opacity ${duration}s ease-in-out`
-            })
         }
     </script>
 </head>

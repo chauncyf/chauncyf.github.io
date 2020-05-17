@@ -1,0 +1,21 @@
+---
+layout: default
+title: Archive
+permalink: /archive
+---
+
+<div class="container my-4">
+    {% for tag in site.tags %}
+    <h3><a href="/archive/tag/{{ tag[0] }}"><i class="fas fa-hashtag"></i> {{ tag[0] }}</a></h3>
+    <ul>
+        {% for post in tag[1] %}
+        <li>
+            <span class="post-date">{{ post.date | date: "%b %-d, %Y" }}</span>
+            <a href="{{ post.url }}">{{ post.title }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+    {% endfor %}
+
+    <div id="vcomments" style="display: none;"></div>
+</div>

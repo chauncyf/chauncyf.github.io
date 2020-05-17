@@ -31,6 +31,7 @@ plugins:
   - jekyll-sitemap
   - jekyll-seo-tag
   - jekyll-last-modified-at
+  - jekyll-archives
 
 sass:
   style: compressed
@@ -69,6 +70,13 @@ jekyll_compose:
       category: blog
       tags:
       published: true
+
+jekyll-archives:
+  layout: archive
+  enabled: ['year', 'tags']
+  permalinks:
+    tag: '/archive/tag/:name/'
+    year: '/archive/year/:year/'
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list

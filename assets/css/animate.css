@@ -76,7 +76,7 @@
 @keyframes fadeInDown {
     from {
         opacity: 0;
-        transform: translate3d(0, -1rem, 0);
+        transform: translate3d(0, -1.5rem, 0);
     }
 
     to {
@@ -167,4 +167,19 @@
 
 .animate-slideInRight {
     animation-name: slideInRight;
+}
+
+@keyframes zoomIn {
+    from {
+        opacity: 0;
+        transform: scale3d(0.3, 0.3, 0.3);
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+.animate-zoomIn {
+    animation-name: zoomIn;
 }
