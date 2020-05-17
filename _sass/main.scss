@@ -42,6 +42,7 @@ blockquote {
 
 .navbar-expand-md {
   font-family: 'Libre Barcode 128 Text', cursive;
+  //padding: 1rem;
 
   .navbar-brand {
     font-size: 1.8rem;
@@ -73,9 +74,11 @@ blockquote {
 
 .container {
   @media (max-width: 1199px) {
-    & {
-      max-width: 100%;
-    }
+    max-width: 100%;
+  }
+
+  @media (min-width: 1200px) {
+    max-width: 1200px;
   }
 }
 
@@ -171,7 +174,7 @@ blockquote {
 }
 
 .tag-list {
-  .list-inline-item {
+  .tag-list-item {
     font-size: 1rem;
     margin: 0;
     padding: 0.1rem 0.2rem 0.1rem 0.5rem;
@@ -698,11 +701,19 @@ blockquote {
   display: flex;
 
   h1 {
+    margin: 0;
+    padding: 0.5rem 0;
     letter-spacing: .4rem;
   }
 
+  h5 {
+    margin: 0;
+    padding: 1rem;
+    letter-spacing: .2rem;
+  }
+
   img {
-    filter: brightness(70%);
+    filter: brightness(65%);
   }
 
   .carousel-item {
@@ -710,7 +721,15 @@ blockquote {
   }
 
   .tag-list {
+    margin-bottom: 1rem;
+    padding: 0 1rem;
     letter-spacing: .2rem;
+    overflow: auto;
+
+    @media (max-width: 425px) {
+      margin-bottom: 0;
+      padding: 0;
+    }
   }
 
   .navbar {
@@ -720,6 +739,9 @@ blockquote {
     width: 100%;
     background-color: transparent !important;
 
+    @media (max-width: 425px) {
+      padding: 0.5rem 1rem;
+    }
 
     //.navbar-brand {
     //  font-size: 1.5rem;

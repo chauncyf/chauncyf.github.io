@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: base
 title: Photography
 permalink: /photo
 ---
@@ -34,7 +34,19 @@ permalink: /photo
     })();
 </script>
 
-{% include cover.html title="Photography" img="../assets/DSC01881C.jpg" %}
+<div class="carousel">
+    <div class="carousel-item align-middle align-items-center">
+        <img src="../assets/DSC01881C.jpg" class="d-block w-100 animate" data-animation="animate-fadeIn"
+             onload="animate($(this))">
+        <div class="d-flex flex-column justify-content-between align-items-center mask">
+            {% include nav.html %}
+
+            <h1>Photography</h1>
+
+            <h5 class="align-self-end" style="visibility: hidden">In search of the true self</h5>
+        </div>
+    </div>
+</div>
 
 <div class="progress" id="progressbar">
     <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"></div>
@@ -59,8 +71,6 @@ permalink: /photo
 
         {% endfor %}
     </div>
-
-    <div id="vcomments" style="display: none;"></div>
 </div>
 
 <div class="modal fade" id="modal-img" tabindex="-1" role="dialog" aria-hidden="true">
@@ -87,6 +97,9 @@ permalink: /photo
         </div>
     </div>
 </div>
+
+<div id="vcomments" style="display: none"></div>
+{% include footer.html %}
 
 <script>
     let $modal = $('#modal-img');

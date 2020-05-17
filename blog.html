@@ -4,39 +4,29 @@ title: Blog
 permalink: /blog
 ---
 
-
 <div class="carousel">
-    <div class="carousel-item align-middle align-items-center">
-        <img src="../assets/DSC04786C.jpg" class="d-block w-100 animate" data-animation="animate-fadeIn"
-             onload="animate($(this))">
+    <div class="carousel-item align-middle align-items-center animate" data-animation="animate-fadeIn">
+        <img src="../assets/DSC04786C.jpg" class="d-block w-100" onload="animate($(this).parent())">
         <div class="d-flex flex-column justify-content-between align-items-center mask">
-            <!--            <h1 style="visibility: hidden">xxx</h1>-->
             {% include nav.html %}
 
-            <h1 class="">Blog</h1>
+            <h1>Blog</h1>
 
-            <ul class="list-inline tag-list">
+            <div class="d-flex flex-wrap justify-content-center align-items-baseline tag-list">
                 {% assign total = site.posts.size | times: 1.0 %}
-                <li class="list-inline-item active" style="font-size: 1rem">#All</li>
+                <div class="tag-list-item active" style="font-size: 1rem">#All</div>
                 {% for tag in site.tags %}
-                {% assign font_size = tag[1].size | divided_by: total | times: 3 | plus: 0.7 %}
-                <li class="list-inline-item" data-tag="{{ tag[0] }}" style="font-size: {{ font_size }}rem">
+                {% assign font_size = tag[1].size | divided_by: total | times: 3 | plus: 0.8 %}
+                <div class="tag-list-item" data-tag="{{ tag[0] }}" style="font-size: {{ font_size }}rem">
                     #{{ tag[0] }}
-                </li>
+                </div>
                 {% endfor %}
-            </ul>
+            </div>
         </div>
     </div>
 </div>
 
 <div class="container container-blog my-4">
-    <!--    <div class="row align-items-start">-->
-    <!--        <ul class="list-group list-group-flush col-auto sticky-top py-5">-->
-    <!--            <a class="list-group-item list-group-item-action mb-1 active">All</a>-->
-    <!--            {% for tag in site.tags %}-->
-    <!--            <a data-tag="{{ tag[0] }}" class="list-group-item list-group-item-action mb-1"># {{ tag[0] }}</a>-->
-    <!--            {% endfor %}-->
-    <!--        </ul>-->
     <div class="card-columns single-column col">
         <div id="all">
             {% for post in site.categories.blog %}
@@ -45,19 +35,18 @@ permalink: /blog
         </div>
         <div id="tag" style="display: none;"></div>
     </div>
-    <!--    </div>-->
 </div>
 
-<div id="vcomments" style="display: none;"></div>
+<div id="vcomments" style="display: none"></div>
 {% include footer.html %}
 
 <script>
 
-    $('.list-inline-item').each(function () {
+    $('.tag-list-item').each(function () {
         $(this).on('click', function (e) {
             if (!$(this).hasClass('active')) {
 
-                $('.list-inline-item').removeClass('active');
+                $('.tag-list-item').removeClass('active');
                 $(this).addClass('active');
 
                 let tag = $(this).data('tag');
