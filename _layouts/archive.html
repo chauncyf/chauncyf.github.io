@@ -1,19 +1,19 @@
 ---
-layout: default
+layout: none
 ---
 
-{% capture hashtag %}
-# {{ page.title }}
-{% endcapture %}
-{% include cover.html title=hashtag img="/assets/DSC08365C.jpg" %}
+<!--{% capture hashtag %}-->
+<!--# {{ page.title }}-->
+<!--{% endcapture %}-->
+<!--{% include cover.html title=hashtag img="/assets/DSC08365C.jpg" %}-->
 
-<div class="container my-4">
+<!--<div class="container my-4">-->
 
-    <div class="card-columns single-column">
+<!--    <div class="card-columns single-column">-->
         {% for post in page.posts %}
         {% include post_card.html %}
         {% endfor %}
-    </div>
+<!--    </div>-->
 
-    <div id="vcomments" style="display: none;"></div>
-</div>
+<!--    <div id="vcomments" style="display: none;"></div>-->
+<!--</div>-->

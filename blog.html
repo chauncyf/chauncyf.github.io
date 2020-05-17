@@ -6,12 +6,55 @@ permalink: /blog
 
 {% include cover.html title="Blog" img="../assets/DSC04786C.jpg" %}
 
-<div class="container my-4">
-    <div class="card-columns single-column">
-        {% for post in site.categories.blog %}
-        {% include post_card.html %}
-        {% endfor %}
+<div class="container container-blog my-4">
+    <div class="row align-items-start">
+        <ul class="list-group list-group-flush col-auto sticky-top py-5">
+            <a class="list-group-item list-group-item-action mb-1 active">All</a>
+            {% for tag in site.tags %}
+            <a data-tag="{{ tag[0] }}" class="list-group-item list-group-item-action mb-1"># {{ tag[0] }}</a>
+            {% endfor %}
+        </ul>
+        <div class="card-columns single-column col">
+            <div id="all">
+                {% for post in site.categories.blog %}
+                {% include post_card.html %}
+                {% endfor %}
+            </div>
+            <div id="tag" style="display: none;"></div>
+        </div>
     </div>
-
-    <div id="vcomments" style="display: none;"></div>
 </div>
+
+<div id="vcomments" style="display: none;"></div>
+
+<script>
+    $('.list-group-item').each(function () {
+        $(this).on('click', function (e) {
+            if (!$(this).hasClass('active')) {
+
+                $('.list-group-item').removeClass('active');
+                $(this).addClass('active');
+
+                let tag = $(this).data('tag');
+                if (tag) {
+                    $('#all').hide();
+                    $.get(`/archive/tag/${tag}`, function (html) {
+                        $('#tag').show().html(html);
+
+                        (function () {
+                            let i = -1000;
+                            console.log(i);
+                            $('.animate').each(function () {
+                                console.log(i);
+                                setTimeout(() => animate($(this)), i += 100);
+                            });
+                        })();
+                    })
+                } else {
+                    $('#all').show();
+                    $('#tag').hide();
+                }
+            }
+        })
+    })
+</script>

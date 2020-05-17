@@ -170,6 +170,30 @@ blockquote {
   border-radius: .5rem !important;
 }
 
+.container-blog {
+  .list-group-item {
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+
+    &.active {
+      background-color: rgba(0, 0, 0, 0.03);
+    }
+  }
+
+  .card-columns {
+    margin: unset;
+  }
+
+  //@media (max-width: 1440px) {
+  //  max-width: 100%;
+  //}
+
+  @media (min-width: 1200px) {
+    max-width: 1200px;
+  }
+}
+
 .container-note {
   display: flex;
   width: 100%;
@@ -567,8 +591,8 @@ blockquote {
 .button-card {
   color: $text-color;
   text-decoration: none;
-  //box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1) !important;
-  box-shadow: none !important;
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1) !important;
+  //box-shadow: none !important;
 
   &:hover {
     color: $text-color;
