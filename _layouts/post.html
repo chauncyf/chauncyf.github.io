@@ -17,7 +17,7 @@ layout: base
                 </li>
                 {% for tag in page.tags %}
                 <li class="list-inline-item">
-                    <a href="/archive/tag/{{ tag }}"><i class="fas fa-hashtag"></i> {{ tag }}</a>
+                    <a href="/blog/?tag={{ tag }}"><i class="fas fa-hashtag"></i> {{ tag }}</a>
                 </li>
                 {% endfor %}
             </ul>

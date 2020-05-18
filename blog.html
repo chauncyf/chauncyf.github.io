@@ -41,29 +41,45 @@ permalink: /blog/
 <div id="vcomments" style="display: none"></div>
 
 <script>
-    $('.tag-list-item').each(function () {
-        $(this).on('click', function (e) {
-            if ($(this).hasClass('active')) return;
+    (function () {
+        if (location.search.length !== 0) {
+            let params = location.search.slice(1).split('&');
+            let paramsHash = {};
+            params.forEach((param) => {
+                let tmp = param.split('=');
+                paramsHash[tmp[0]] = tmp[1];
+            });
 
-            let $footer = $('footer');
-            $footer.removeClass('animated').removeClass($footer.data('animation'));
-
-            $('.tag-list-item').removeClass('active');
-            let tag = $(this).addClass('active').data('tag');
-
-            if (tag) {
-                $('#all').hide().find('a').each(function () {
-                    $(this).removeClass('animated').removeClass($(this).data('animation'));
-                });
-                // $('#all').hide().find('a').removeClass('animated');
-                // $.get(`https://chauncyf.github.io/test/archive/tag/${tag}/`, function (result) {
-                $.get(`/archive/tag/${tag}/`, function (result) {
-                    $('#tag').html(result).show().find('.animate').showAnimate(100).then(() => $footer.showAnimate(0));
-                })
-            } else {
-                $('#tag').hide();
-                $('#all').show().find('.animate').showAnimate(100).then(() => $footer.showAnimate(0));
+            if (paramsHash['tag']) {
+                $(window).on('load', () => $(`.tag-list-item[data-tag=${paramsHash['tag']}]`).click());
             }
+        }
+    })();
+
+    (function () {
+        $('.tag-list-item').each(function () {
+            $(this).on('click', function (e) {
+                if ($(this).hasClass('active')) return;
+
+                let $footer = $('footer');
+                $footer.removeClass('animated').removeClass($footer.data('animation'));
+
+                $('.tag-list-item').removeClass('active');
+                let tag = $(this).addClass('active').data('tag');
+
+                if (tag) {
+                    $('#all').hide().find('a').each(function () {
+                        $(this).removeClass('animated').removeClass($(this).data('animation'));
+                    });
+                    // $('#all').hide().find('a').removeClass('animated');
+                    $.get(`/archive/tag/${tag}/`, function (result) {
+                        $('#tag').html(result).show().find('.animate').showAnimate(100).then(() => $footer.showAnimate(0));
+                    })
+                } else {
+                    $('#tag').hide();
+                    $('#all').show().find('.animate').showAnimate(100).then(() => $footer.showAnimate(0));
+                }
+            });
         });
-    });
+    })();
 </script>
