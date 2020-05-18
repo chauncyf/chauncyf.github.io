@@ -178,7 +178,7 @@ blockquote {
   padding: 0 1rem;
   letter-spacing: .2rem;
   overflow: auto;
-  max-height: 33%;
+  //max-height: 33%;
 
   @media (max-width: 425px) {
     margin-bottom: 0;
@@ -212,6 +212,7 @@ blockquote {
 
   .card-columns {
     margin: unset;
+    padding: 0;
   }
 
   //@media (max-width: 1440px) {
@@ -738,6 +739,7 @@ blockquote {
   .navbar {
     //font-family: 'Roboto Slab', serif;
     //letter-spacing: .2rem;
+    display: block;
     padding: 1rem;
     width: 100%;
     background-color: transparent !important;
