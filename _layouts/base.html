@@ -14,20 +14,28 @@
           href="https://fonts.googleapis.com/css2?family=Libre+Barcode+128+Text&family=Roboto+Slab:wght@100&display=auto">
     <script>
         $(window).on('load', function () {
-            (function () {
-                let i = -100;
-                $('.animate').each(function () {
-                    setTimeout(() => animate($(this)), i += 100);
-                });
-            })();
+            $('.animate').showAnimate(100);
 
             new SmoothScroll('a[href*="#"]', {
                 speedAsDuration: true
             });
         });
 
+        $.fn.showAnimate = function (interval) {
+            let i = -interval;
+            $(this).each(function () {
+                setTimeout(() => animate($(this)).then((animationName) => {
+                    $(this).removeClass(animationName);
+                }), i += interval);
+            });
+        };
+
         function animate(obj) {
-            obj.addClass('animated').addClass(obj.data('animation'));
+            return $.Deferred(function (d) {
+                const animationName = obj.data('animation');
+                obj.addClass('animated').addClass(animationName);
+                // setTimeout(() => d.resolve(animationName), 1000);
+            }).promise();
         }
     </script>
 </head>

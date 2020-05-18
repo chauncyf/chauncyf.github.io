@@ -41,34 +41,25 @@ permalink: /blog
 {% include footer.html %}
 
 <script>
-
     $('.tag-list-item').each(function () {
         $(this).on('click', function (e) {
-            if (!$(this).hasClass('active')) {
+            if ($(this).hasClass('active')) return;
 
-                $('.tag-list-item').removeClass('active');
-                $(this).addClass('active');
+            $('.tag-list-item').removeClass('active');
+            let tag = $(this).addClass('active').data('tag');
 
-                let tag = $(this).data('tag');
-                if (tag) {
-                    $('#all').hide();
-                    $.get(`/archive/tag/${tag}`, function (html) {
-                        $('#tag').show().html(html);
-
-                        (function () {
-                            let i = -1000;
-                            console.log(i);
-                            $('.animate').each(function () {
-                                console.log(i);
-                                setTimeout(() => animate($(this)), i += 100);
-                            });
-                        })();
-                    })
-                } else {
-                    $('#all').show();
-                    $('#tag').hide();
-                }
+            if (tag) {
+                $('#all').hide().find('a').each(function () {
+                    $(this).removeClass('animated').removeClass($(this).data('animation'));
+                });
+                // $('#all').hide().find('a').removeClass('animated');
+                $.get(`/archive/tag/${tag}`, function (result) {
+                    $('#tag').html(result).show().find('.animate').showAnimate(100);
+                })
+            } else {
+                $('#tag').hide();
+                $('#all').show().find('.animate').showAnimate(100);
             }
-        })
-    })
+        });
+    });
 </script>

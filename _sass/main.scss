@@ -710,6 +710,10 @@ blockquote {
     margin: 0;
     padding: 1rem;
     letter-spacing: .2rem;
+
+    @media (max-width: 425px) {
+      padding: 0.5rem 1rem;
+    }
   }
 
   img {

@@ -54,7 +54,7 @@ layout: base
         </div>
         {% else %}
         <div class="card-footer text-center text-muted">
-            Updated: {{ page.last_modified | date: "%b %-d, %Y | %a, %I:%M %p" }}
+            Updated: {{ page.last_modified_at | date: "%b %-d, %Y | %a, %I:%M %p" }}
         </div>
         {% endif %}
     </div>

@@ -14,13 +14,7 @@ permalink: /photo
 
         $(window).on('load', () => {
             progressbar.hide();
-
-            (function () {
-                let i = -10;
-                $('.animate').each(function () {
-                    setTimeout(() => animate($(this)), i += 10);
-                });
-            })();
+            $('.animate').showAnimate(10);
         });
 
         return {
@@ -43,7 +37,7 @@ permalink: /photo
 
             <h1>Photography</h1>
 
-            <h5 class="align-self-end" style="visibility: hidden">In search of the true self</h5>
+            <h5 class="align-self-end">In search of the true self</h5>
         </div>
     </div>
 </div>
