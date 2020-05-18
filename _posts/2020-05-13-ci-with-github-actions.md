@@ -5,15 +5,14 @@ date: 2020-05-13 21:04 -0400
 author: Chauncy
 category: blog
 tags: [coding, diary]
-published: true
+published: false
 ---
 
 
-- Animate.css
+- ~~Animate.css~~
 - Progressive page
 - Img lazy load with dominant color
-
 - GitHub Actions
-- Category
+- ~~Category~~
 - Search
 - Optional nav

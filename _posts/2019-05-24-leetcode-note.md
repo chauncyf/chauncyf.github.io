@@ -4,7 +4,7 @@ title: LeetCode Note
 date: 2019-05-24 23:45 -0400
 author: Chauncy
 category: blog
-tags: [algorithm, leetcode]
+tags: [algorithm, note]
 published: true
 excerpt_separator: <!--more-->
 ---
