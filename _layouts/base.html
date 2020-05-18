@@ -22,12 +22,16 @@
         });
 
         $.fn.showAnimate = function (interval) {
-            let i = -interval;
+            let i = -interval, count = 1;
             $(this).each(function () {
                 setTimeout(() => animate($(this)).then((animationName) => {
                     $(this).removeClass(animationName);
                 }), i += interval);
+                count += 1;
             });
+            return $.Deferred(function (d) {
+                setTimeout(() => d.resolve(), interval * count)
+            }).promise();
         };
 
         function animate(obj) {

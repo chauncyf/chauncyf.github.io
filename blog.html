@@ -37,13 +37,16 @@ permalink: /blog/
     </div>
 </div>
 
-<div id="vcomments" style="display: none"></div>
 {% include footer.html %}
+<div id="vcomments" style="display: none"></div>
 
 <script>
     $('.tag-list-item').each(function () {
         $(this).on('click', function (e) {
             if ($(this).hasClass('active')) return;
+
+            let $footer = $('footer');
+            $footer.removeClass('animated').removeClass($footer.data('animation'));
 
             $('.tag-list-item').removeClass('active');
             let tag = $(this).addClass('active').data('tag');
@@ -53,12 +56,13 @@ permalink: /blog/
                     $(this).removeClass('animated').removeClass($(this).data('animation'));
                 });
                 // $('#all').hide().find('a').removeClass('animated');
-                $.get(`https://chauncyf.github.io/test/archive/tag/${tag}/`, function (result) {
-                    $('#tag').html(result).show().find('.animate').showAnimate(100);
+                // $.get(`https://chauncyf.github.io/test/archive/tag/${tag}/`, function (result) {
+                $.get(`/archive/tag/${tag}/`, function (result) {
+                    $('#tag').html(result).show().find('.animate').showAnimate(100).then(() => $footer.showAnimate(0));
                 })
             } else {
                 $('#tag').hide();
-                $('#all').show().find('.animate').showAnimate(100);
+                $('#all').show().find('.animate').showAnimate(100).then(() => $footer.showAnimate(0));
             }
         });
     });
