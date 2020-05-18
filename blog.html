@@ -53,7 +53,7 @@ permalink: /blog
                     $(this).removeClass('animated').removeClass($(this).data('animation'));
                 });
                 // $('#all').hide().find('a').removeClass('animated');
-                $.get(`/archive/tag/${tag}`, function (result) {
+                $.get(`https://chauncyf.github.io/test/archive/tag/${tag}/`, function (result) {
                     $('#tag').html(result).show().find('.animate').showAnimate(100);
                 })
             } else {
