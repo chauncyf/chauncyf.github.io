@@ -1,11 +1,15 @@
 ---
 layout: note
+title: Behavior Questions
+date: 2020-03-16 18:29 -0400
 author: Chauncy
 category: private
 tags: 
 published: true
-sitemap: false
+excerpt_separator: <!--more-->
 ---
+
+<!--more-->
 
 # Behavior Questions
 
