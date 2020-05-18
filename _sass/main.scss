@@ -174,12 +174,24 @@ blockquote {
 }
 
 .tag-list {
+  margin-bottom: 1rem;
+  padding: 0 1rem;
+  letter-spacing: .2rem;
+  overflow: auto;
+  max-height: 33%;
+
+  @media (max-width: 425px) {
+    margin-bottom: 0;
+    padding: 0;
+  }
+
   .tag-list-item {
     font-size: 1rem;
     margin: 0;
     padding: 0.1rem 0.2rem 0.1rem 0.5rem;
     border-radius: 0.5rem;
     cursor: pointer;
+    transition: all .15s ease-in-out;
 
     &.active {
       background-color: rgba(0, 0, 0, 0.3);
@@ -524,8 +536,8 @@ blockquote {
 }
 
 .progress {
-  height: 4px;
-  margin-bottom: -4px;
+  height: 3px;
+  margin-bottom: -3px;
   background-color: transparent;
   border-radius: 0;
 
@@ -608,13 +620,12 @@ blockquote {
 .button-card {
   color: $text-color;
   text-decoration: none;
-  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1) !important;
-  //box-shadow: none !important;
+  box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.15) !important;
 
   &:hover {
     color: $text-color;
     text-decoration: none;
-    box-shadow: 0 0 1.5rem rgba(0, 0, 0, 0.2) !important;
+    box-shadow: 0 0.4rem 1.5rem rgba(0, 0, 0, 0.3) !important;
   }
 
   .card-title {
@@ -722,18 +733,6 @@ blockquote {
 
   .carousel-item {
     display: flex;
-  }
-
-  .tag-list {
-    margin-bottom: 1rem;
-    padding: 0 1rem;
-    letter-spacing: .2rem;
-    overflow: auto;
-
-    @media (max-width: 425px) {
-      margin-bottom: 0;
-      padding: 0;
-    }
   }
 
   .navbar {
