@@ -22,10 +22,10 @@ _Implementing a series of chained operations_
 ```javascript
 function promiseDemo() {
     let d = $.Deferred();  // create a Deferred object with jQuery
-
     console.log(d.state());  // 'pending'
 
-    if ('success') {
+    const number = Math.random() * 2;  // generate a random number between 0 - 2
+    if (number > 1) {
         d.resolve();
         console.log(d.state());  // 'resolved'
     } else {
@@ -35,6 +35,14 @@ function promiseDemo() {
 
     return d.promise();  // return a Promise object for future operations
 }
+
+promiseDemo()
+    .done(function () {  // if number > 1
+        console.log('succeed');
+    })
+    .fail(function () {  // if number < 1
+        console.log('failed');
+    });
 ```
 
 ## How to use them?

@@ -42,28 +42,6 @@
             }).promise();
         }
     </script>
-    <script>
-
-        function sleep(time) {
-            let d = $.Deferred();
-            setTimeout(() => d.resolve(`Sleep for ${time}ms`), time);
-            return d.promise();
-        }
-
-
-        (() => {
-            console.log('Start sleeping');
-            return sleep(100);
-        })()
-            .then((msg) => {
-                console.log(msg);
-                return sleep(200);
-            })
-            .then((msg) => {
-                console.log(msg);
-            });
-
-    </script>
 </head>
 
 <body>
