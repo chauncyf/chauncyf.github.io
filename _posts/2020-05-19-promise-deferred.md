@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Promise & Deferred
-date: 2020-04-09 15:48 -0400
+date: 2020-05-19 18:14 -0400
 author: Chauncy
 category: blog
 tags: [coding, frontend, javascript]

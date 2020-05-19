@@ -12,7 +12,7 @@ published: false
 - ~~Animate.css~~
 - Progressive page
 - Img lazy load with dominant color
-- GitHub Actions
+- ~~GitHub Actions~~
 - ~~Category~~
 - Search
 - Optional nav
