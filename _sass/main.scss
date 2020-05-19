@@ -94,7 +94,7 @@ blockquote {
   font-family: 'Roboto', sans-serif;
 
   h2 {
-    padding: 72px 0 24px 0;
+    padding: 5rem 0 2rem 0;
   }
 
   #board {
@@ -692,13 +692,17 @@ blockquote {
 
     .card-footer {
       padding: 1rem;
-      border-radius: 0.85rem;
+      //border-radius: 0.85rem;
     }
   }
 
   @media (max-width: 1199px) {
     .card {
       box-shadow: none;
+    }
+
+    .card-footer {
+      border-radius: 0.85rem;
     }
   }
 }
@@ -721,7 +725,7 @@ blockquote {
   h5 {
     margin: 0;
     padding: 1rem;
-    letter-spacing: .2rem;
+    letter-spacing: .15rem;
 
     @media (max-width: 425px) {
       padding: 0.5rem 1rem;

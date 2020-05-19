@@ -261,6 +261,7 @@ permalink: /
     $(() => {
         showBoard().then(showTyped).then(showLead).then(showDrawer).then(showLink).then(animateRocket);
 
+        $('footer').removeClass('animate');
         $('[data-toggle="tooltip"]').tooltip();
         $('body').scrollspy({target: '#nav-about'});
 
@@ -324,7 +325,7 @@ permalink: /
             visibility: 'visible',
             animation: 'bounceInUp 1s'
         });
-        return sleep(1200);
+        return sleep(1300);
     }
 
     function animateRocket() {

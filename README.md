@@ -1,8 +1,29 @@
-## Local Server
+# Chauncy's Space
+Personal blog, build from scratch with Jekyll & JavaScript  
+[https://chauncyf.github.io/blog/](https://chauncyf.github.io/blog/)
+
+
+## Stack
+
+### Development
+- HTML, Sass, JavaScript, jQuery, AJAX
+- [Jekyll](https://jekyllrb.com/)
+- [Bootstrap](https://getbootstrap.com/)
+- [Animate.css](https://animate.style/)
+- [Valine](https://valine.js.org/)
+
+### CI / Deployment
+- GitHub Actions
+- GitHub Pages
+
+
+## Useful Commands
+
+### Local Server
 
     $ bundle exec jekyll serve
 
-## Jekyll::Compose
+### Jekyll::Compose
 
 Create new page using:
 
