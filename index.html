@@ -38,8 +38,8 @@ permalink: /
                 <a class="btn btn-share" href="https://www.instagram.com/chauncyfff/" role="button"
                    data-toggle="tooltip" data-placement="top" title="Instagram">
                     <i class="fab fa-instagram"></i></a>
-                <a class="btn btn-share" href="{% link blog.html %}" role="button"
-                   data-toggle="tooltip" data-placement="top" title="Blog">
+                <a class="btn btn-share" href="{% link blog.html %}" role="button" id="rocket"
+                   data-animate="animate-swing animate-fast" data-toggle="tooltip" data-placement="top" title="Blog">
                     <i class="fas fa-rocket"></i></a>
             </div>
         </div>
@@ -259,7 +259,7 @@ permalink: /
 <script src="/assets/js/typed.min.js"></script>
 <script>
     $(() => {
-        showBoard().then(showTyped).then(showLead).then(showDrawer).then(showLink);
+        showBoard().then(showTyped).then(showLead).then(showDrawer).then(showLink).then(animateRocket);
 
         $('[data-toggle="tooltip"]').tooltip();
         $('body').scrollspy({target: '#nav-about'});
@@ -323,7 +323,13 @@ permalink: /
         $('#jump-link').css({
             visibility: 'visible',
             animation: 'bounceInUp 1s'
-        })
+        });
+        return sleep(1200);
+    }
+
+    function animateRocket() {
+        const $rocket = $('#rocket');
+        $rocket.addClass('animated').addClass($rocket.data('animate'));
     }
 </script>
 {% if jekyll.environment == 'production' %}
