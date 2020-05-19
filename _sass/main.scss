@@ -654,6 +654,10 @@ blockquote {
 .container-post {
   margin-top: 1.5rem;
 
+  h2 {
+    padding: 1.5rem 0 0.5rem 0;
+  }
+
   .card {
     border: none;
     border-radius: 0.85rem !important;
@@ -692,7 +696,6 @@ blockquote {
 
     .card-footer {
       padding: 1rem;
-      //border-radius: 0.85rem;
     }
   }
 
@@ -797,6 +800,7 @@ footer {
 
   small {
     color: #959da5;
+    vertical-align: text-top;
   }
 
   a {
