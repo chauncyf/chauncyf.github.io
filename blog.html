@@ -13,9 +13,10 @@ permalink: /blog/
             <h1>Blog</h1>
 
             <div class="d-flex flex-wrap justify-content-center align-items-baseline tag-list">
-                {% assign total = site.posts.size | times: 1.0 %}
                 <div class="tag-list-item active" style="font-size: 1rem">#All</div>
-                {% for tag in site.tags %}
+                {% assign total = site.posts.size | times: 1.0 %}
+                {% assign tags = site.tags | sort %}
+                {% for tag in tags %}
                 {% assign font_size = tag[1].size | divided_by: total | times: 3 | plus: 0.8 %}
                 <div class="tag-list-item" data-tag="{{ tag[0] }}" style="font-size: {{ font_size }}rem">
                     #{{ tag[0] }}
