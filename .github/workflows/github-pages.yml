@@ -9,10 +9,8 @@ jobs:
   github-pages:
     runs-on: ubuntu-16.04
     steps:
-      - uses: zcong1993/setup-timezone@master
-        with:
-          timezone: America/New_York
       - uses: actions/checkout@v2
       - uses: helaili/jekyll-action@2.0.2
         env:
           JEKYLL_PAT: ${{ secrets.JEKYLL_PAT }}
+          TZ: America/New_York
