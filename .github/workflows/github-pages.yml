@@ -17,5 +17,5 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gems-
       - uses: ./
-          env:
-            JEKYLL_PAT: ${{ secrets.JEKYLL_PAT }}
+        env:
+          JEKYLL_PAT: ${{ secrets.JEKYLL_PAT }}
