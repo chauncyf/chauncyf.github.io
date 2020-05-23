@@ -1,7 +1,7 @@
 # Chauncy's Space
-Personal blog, build from scratch with Jekyll & JavaScript  
-[https://chauncyf.github.io/blog/](https://chauncyf.github.io/blog/)
+![](https://github.com/chauncyf/chauncyf.github.io/workflows/GitHub%20Pages/badge.svg)
 
+Personal blog, build from scratch with Jekyll & JavaScript  
 
 ## Stack
 
