@@ -1,5 +1,5 @@
 # Chauncy's Space
-![](https://github.com/chauncyf/chauncyf.github.io/workflows/GitHub%20Pages/badge.svg)
+![](https://github.com/chauncyf/chauncyf.github.io/workflows/GitHub%20Pages%20Build/badge.svg)
 
 Personal blog, build from scratch with Jekyll & JavaScript  
 
