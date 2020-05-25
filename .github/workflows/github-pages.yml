@@ -16,9 +16,6 @@ jobs:
           key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
           restore-keys: |
             ${{ runner.os }}-gems-
-#      - uses: ./
-#        env:
-#          JEKYLL_PAT: ${{ secrets.JEKYLL_PAT }}
-      - uses:  helaili/jekyll-action@8061d41
+      - uses: ./
         env:
           JEKYLL_PAT: ${{ secrets.JEKYLL_PAT }}
