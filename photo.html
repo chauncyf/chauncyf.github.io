@@ -52,8 +52,10 @@ permalink: /photo/
         {% for image in site.data.gallery %}
 
         <div class="card mb-3 shadow-sm animate" data-animation="animate-fadeIn" id="{{ image.basename }}"
+             style="background-color: rgb({{ image.dominant_color }})"
              onclick="open_modal('{{ image.basename }}', '{{ image.path }}')">
-            <img src="{{ image.base64 }}" data-src="{{ image.path }}" class="card-img" alt="{{ image.basename }}"
+            <img src='data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {{ image.width }} {{ image.height }}"%3E%3C/svg%3E'
+                 data-src="{{ image.path }}" alt="{{ image.basename }}" class="card-img" style="opacity: 0"
                  onload="progressbar.update()">
             <div class="mask">
                 <div class="card-img-overlay">
@@ -104,7 +106,10 @@ permalink: /photo/
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const src = $(entry.target).data('src');
-                setTimeout(() => $(entry.target).prop('src', src), 500);
+                $(entry.target).prop('src', src).css({
+                    opacity: 1,
+                    transition: 'all 0.5s ease-in-out'
+                });
                 self.unobserve(entry.target);
             }
         });
@@ -113,11 +118,8 @@ permalink: /photo/
     $(function () {
         $('.card-img').each(function () {
             observer.observe(this);
-            // const src = $(this).prop('src').replace('/thumbnail', '');
-            // setTimeout(() => $(this).prop('src', src), i += 100);
         });
-
-    })
+    });
 </script>
 <script>
     let $modal = $('#modal-img');
@@ -177,22 +179,3 @@ permalink: /photo/
         }
     });
 </script>
-<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.0/color-thief.umd.js"></script>-->
-<!--<script>-->
-<!--    const colorThief = new ColorThief();-->
-<!--    -->
-<!--    $(window).on('load', function () {-->
-<!--        $('.card-img').each(function () {-->
-<!--            // console.log(obj.target)-->
-
-<!--            const color = colorThief.getColor(this).toString();-->
-<!--            //-->
-<!--            $(this)-->
-<!--                .parent().css({-->
-<!--                // 'background-image': `url(data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${this.naturalWidth} ${this.naturalHeight}"%3E%3C/svg%3E)`,-->
-<!--                'background-color': `rgb(${color})`,-->
-<!--            })-->
-
-<!--        })-->
-<!--    })-->
-<!--</script>-->
