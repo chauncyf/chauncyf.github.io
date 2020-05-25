@@ -15,8 +15,8 @@ Jekyll::Hooks.register :site, :post_read do |site|
     gallery_data = []
     Miro.options[:color_count] = 1
 
-    Dir.each_child(gallery_path) do |img|
-      puts 'Processing: ' + img
+    Dir.children(gallery_path).sort.each do |img|
+      puts "\t> processing image: #{img}"
 
       img_path = File.join('.', gallery_path, img)
       img_base64_prefix = "data:image/png;base64,"
@@ -44,6 +44,6 @@ Jekyll::Hooks.register :site, :post_read do |site|
                         })
     end
 
-    File.open(data_file_path, 'w') { |f| f.write(gallery_data.sort_by { |hash| hash['basename'] }.to_json) }
+    File.open(data_file_path, 'w') { |f| f.write(gallery_data.to_json) }
   end
 end
