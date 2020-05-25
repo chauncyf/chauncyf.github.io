@@ -46,9 +46,13 @@ collections:
 
 defaults:
   - scope:
-      path: "assets/img"
+      path: "assets/gallery"
     values:
-      image: true
+      gallery: true
+  - scope:
+      path: "assets/gallery/thumbnail"
+    values:
+      thumbnail: true
   - scope:
       path: "_posts"
       type: "posts"
