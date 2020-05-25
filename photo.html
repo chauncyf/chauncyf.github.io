@@ -14,7 +14,6 @@ permalink: /photo/
 
         $(window).on('load', () => {
             progressbar.hide();
-            $('.animate').showAnimate(10);
         });
 
         return {
@@ -97,35 +96,24 @@ permalink: /photo/
 {% include footer.html %}
 
 <script>
-    const observerConfig = {
-        rootMargin: '0px 0px 50px 0px',
-        threshold: 0
-    };
-
-    let observer = new IntersectionObserver(function (entries, self) {
+    let intersectionObserver = new IntersectionObserver(function (entries, observer) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-
-                const $entry = $(entry.target);
-                $entry
-                    .prop('src', $entry.data('src'))
-                    .on('load', function () {
-                        $entry.css({
-                            opacity: 1,
-                            transition: 'all 0.5s ease-in-out'
-                        });
-                    });
-
-                self.unobserve(entry.target);
+                let element = entry.target;
+                element.setAttribute('src', element.dataset.src);
+                element.onload = function () {
+                    element.style.cssText = 'opacity: 1; transition: all 0.5s ease-in-out;';
+                };
+                observer.unobserve(element);
             }
         });
-    }, observerConfig);
-
-    $(function () {
-        $('.card-img').each(function () {
-            observer.observe(this);
-        });
     });
+
+    window.onload = function () {
+        document.querySelectorAll('.card-img').forEach(img => {
+            intersectionObserver.observe(img);
+        });
+    };
 </script>
 <script>
     let $modal = $('#modal-img');
