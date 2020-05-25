@@ -49,12 +49,11 @@ permalink: /photo/
 <div class="container-fluid my-4">
     <div class="card-columns">
 
-        {% assign gallery = site.static_files | where: "thumbnail", true %}
-        {% for image in gallery %}
+        {% for image in site.data.gallery %}
 
         <div class="card mb-3 shadow-sm animate" data-animation="animate-fadeIn" id="{{ image.basename }}"
              onclick="open_modal('{{ image.basename }}', '{{ image.path }}')">
-            <img src="{{ image.path }}" class="card-img" alt="{{ image.basename }}"
+            <img src="{{ image.base64 }}" data-src="{{ image.path }}" class="card-img" alt="{{ image.basename }}"
                  onload="progressbar.update()">
             <div class="mask">
                 <div class="card-img-overlay">
@@ -104,7 +103,7 @@ permalink: /photo/
     let observer = new IntersectionObserver(function (entries, self) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                const src = $(entry.target).prop('src').replace('/thumbnail', '');
+                const src = $(entry.target).data('src');
                 setTimeout(() => $(entry.target).prop('src', src), 500);
                 self.unobserve(entry.target);
             }
