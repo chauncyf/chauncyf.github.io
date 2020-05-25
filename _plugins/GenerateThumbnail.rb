@@ -4,7 +4,7 @@ require 'miro'
 require 'image_size'
 # require 'chunky_png'
 
-Jekyll::Hooks.register :site, :post_read do |site|
+Jekyll::Hooks.register :site, :after_init do |site|
   data_file_path = File.join('.', '_data', 'gallery.json')
 
   unless File.exist?(data_file_path)
@@ -45,5 +45,10 @@ Jekyll::Hooks.register :site, :post_read do |site|
     end
 
     File.open(data_file_path, 'w') { |f| f.write(gallery_data.to_json) }
+  end
+
+  until File.exist?(data_file_path)
+    puts "Writing data to disk.."
+    sleep(1)
   end
 end
