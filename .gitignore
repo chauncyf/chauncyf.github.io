@@ -5,3 +5,4 @@ vendor
 .idea
 .DS_Store
 node_modules
+assets/gallery/thumbnail
