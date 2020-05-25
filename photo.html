@@ -152,14 +152,14 @@ permalink: /photo/
     function prev_pic() {
         let $new_image = $('#' + $modal_img.attr('alt')).prev().find('img');
         if ($new_image.length !== 0) {
-            render_img($new_image.attr('alt'), $new_image.attr('src'));
+            render_img($new_image.attr('alt'), $new_image.data('src'));
         }
     }
 
     function next_pic() {
         let $new_image = $('#' + $modal_img.attr('alt')).next().find('img');
         if ($new_image.length !== 0) {
-            render_img($new_image.attr('alt'), $new_image.attr('src'));
+            render_img($new_image.attr('alt'), $new_image.data('src'));
         }
     }
 

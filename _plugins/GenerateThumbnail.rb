@@ -1,9 +1,8 @@
 require 'json'
 require 'base64'
 require 'miro'
-require 'chunky_png'
-
-require "mini_magick"
+require 'image_size'
+# require 'chunky_png'
 
 Jekyll::Hooks.register :site, :post_read do |site|
   data_file_path = File.join('.', '_data', 'gallery.json')
@@ -20,7 +19,7 @@ Jekyll::Hooks.register :site, :post_read do |site|
 
       img_path = File.join('.', gallery_path, img)
       img_base64_prefix = "data:image/png;base64,"
-      img_dimensions = MiniMagick::Image.open(img_path).dimensions
+      img_dimensions = ImageSize.path(img_path).size
       img_aspect_ratio = img_dimensions.map { |dimension| dimension / img_dimensions[0].gcd(img_dimensions[1]) }
       img_dominant_color = Miro::DominantColors.new(img_path).to_rgb[0]
 

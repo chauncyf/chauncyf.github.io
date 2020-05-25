@@ -34,6 +34,6 @@ gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # Performance-booster for watching directories on Windows
 gem "wdm", "~> 0.1.0" if Gem.win_platform?
 
-gem "mini_magick"
 gem 'miro', '~> 0.4.0'
-gem 'chunky_png', '~> 1.3', '>= 1.3.11'
+gem 'image_size', '~> 2.0', '>= 2.0.2'
+# gem 'chunky_png', '~> 1.3', '>= 1.3.11'

@@ -19,6 +19,7 @@ GEM
     http_parser.rb (0.6.0)
     i18n (0.9.5)
       concurrent-ruby (~> 1.0)
+    image_size (2.0.2)
     jekyll (3.8.6)
       addressable (~> 2.4)
       colorator (~> 1.0)
@@ -53,7 +54,6 @@ GEM
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
     mercenary (0.3.6)
-    mini_magick (4.10.1)
     miro (0.4.0)
       chunky_png
       cocaine
@@ -82,14 +82,13 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  chunky_png (~> 1.3, >= 1.3.11)
+  image_size (~> 2.0, >= 2.0.2)
   jekyll (~> 3.8.5)
   jekyll-archives
   jekyll-compose
   jekyll-last-modified-at
   jekyll-seo-tag
   jekyll-sitemap
-  mini_magick
   miro (~> 0.4.0)
   rouge
   tzinfo-data
