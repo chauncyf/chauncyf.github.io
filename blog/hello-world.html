@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Hello World | Chauncy’s Space</title>
+<meta name="generator" content="Jekyll v3.8.6" />
+<meta property="og:title" content="Hello World" />
+<meta name="author" content="Chauncy" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Why am I building a blog that no one would look at? I dont know." />
+<meta property="og:description" content="Why am I building a blog that no one would look at? I dont know." />
+<link rel="canonical" href="/blog/hello-world" />
+<meta property="og:url" content="/blog/hello-world" />
+<meta property="og:site_name" content="Chauncy’s Space" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-05-24T23:45:00-04:00" />
+<script type="application/ld+json">
+{"mainEntityOfPage":{"@type":"WebPage","@id":"/blog/hello-world"},"author":{"@type":"Person","name":"Chauncy"},"headline":"Hello World","url":"/blog/hello-world","description":"Why am I building a blog that no one would look at? I dont know.","dateModified":"2020-05-26T02:56:05-04:00","datePublished":"2019-05-24T23:45:00-04:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+    
+    <script>
+    window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+    ga('create', 'UA-163037422-1', 'auto');
+    ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+    
+
+    <link rel="shortcut icon" type="image/png" href="/assets/favicon.png">
+<link rel="stylesheet" href="/assets/css/styles.css">
+<script src="/assets/js/jquery-3.4.1.min.js"></script>
+<script src="/assets/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/js/smooth-scroll.polyfills.min.js"></script>
+<script src="https://kit.fontawesome.com/33f1182444.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Libre+Barcode+128+Text&family=Roboto+Slab:wght@100&display=auto">
+    <script>
+        $(window).on('load', function () {
+            $('.animate').showAnimate(100);
+
+            new SmoothScroll('a[href*="#"]', {
+                speedAsDuration: true
+            });
+        });
+
+        $.fn.showAnimate = function (interval) {
+            let i = -interval, count = 1;
+            $(this).each(function () {
+                setTimeout(() => animate($(this)).then((animationName) => {
+                    $(this).removeClass(animationName);
+                }), i += interval);
+                count += 1;
+            });
+            return $.Deferred(function (d) {
+                setTimeout(() => d.resolve(), interval * count)
+            }).promise();
+        };
+
+        function animate(obj) {
+            return $.Deferred(function (d) {
+                const animationName = obj.data('animation');
+                obj.addClass('animated').addClass(animationName);
+                // setTimeout(() => d.resolve(animationName), 1000);
+            }).promise();
+        }
+    </script>
+</head>
+
+<body>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/blog/">Chauncy's Space</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">Blog</a>
+                </li>
+                
+                <li class="nav-item ">
+                    <a class="nav-link" href="/photo/">Photo</a>
+                </li>
+                
+            </ul>
+            <ul class="navbar-nav">
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" href="/archive/">Archive</a>-->
+<!--                </li>-->
+                <li class="nav-item">
+                    <a class="nav-link" href="/">About</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container container-post animate" data-animation="animate-fadeInDown animate-fast">
+    <div class="card">
+        <div class="card-body">
+            <h1 class="card-title text-center mb-3">Hello World</h1>
+            <ul class="card-subtitle text-center text-muted list-inline my-1">
+                <li class="list-inline-item">
+                    <i class="fas fa-calendar"></i> May 24, 2019
+                </li>
+                <li class="list-inline-item">
+                    <i class="fas fa-clock"></i> 11:45 PM, Fri
+                </li>
+                
+                <li class="list-inline-item">
+                    <a href="/blog/?tag=diary"><i class="fas fa-hashtag"></i> diary</a>
+                </li>
+                
+            </ul>
+            <hr class="my-4">
+            <div class="card-text"><p>Why am I building a blog that no one would look at?<br />
+I dont know.</p>
+
+<p>昨天刚面完两个试，下个星期还有一个面试，今天就开始摸鱼了: )</p>
+
+<p>其实很早之前就有弄一个自己的博客的想法了，一直都没时间弄也懒得弄，毕竟社交软件已经那么多了，再费力气搭一个自己的意义也不大<br />
+今天应该是因为起床的时候看到杰哥在朋友圈发了自己的博客链接，看完心痒痒，就冲动开工了</p>
+
+<p>其实之前的想法是在heroku上弄一个，今天研究了一下发现直接用github page就行，都不用部署，非常方便</p>
+
+<p>除了普通的html之外，github page还特地支持了<code class="highlighter-rouge">jekyll</code>给大家建博客，太感人了8<br />
+jekyll是用ruby写的一个专门用来生成静态网站的框架，跟着教程走了一圈，网站差不多也就搭起来了<br />
+本来还找了半天模版，后来没发现很满意的，就还是手动用bootstrap搭了个大概的样子<br />
+bootstrap嘛，轻车熟路</p>
+
+<p>还是先去刷题了，以后有时间再研究一下怎么让markdown显示出github那样的效果</p>
+
+<p>（每句话说完打句号看起来太严肃，不打看起来又太乱，难受</p>
+
+<p>whatever，先让我们用四种语言庆祝一下这一刻</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pp</span> <span class="s1">'Hello world, this is my blog!'</span>
+</code></pre></div></div>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="s">'Hello world, this is my blog!'</span><span class="p">)</span>
+</code></pre></div></div>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Hello world, this is my blog!</span><span class="dl">'</span><span class="p">)</span>
+</code></pre></div></div>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Hello world, this is my blog!"</span><span class="o">)</span>
+</code></pre></div></div>
+<p><del>wow, awesome</del></p>
+
+</div>
+
+            
+            
+            
+            
+
+            
+            
+            
+            <a href="/blog/leetcode-note" class="btn btn-share"><i class="fas fa-angle-left"></i> LeetCode Note</a>
+            
+        </div>
+        
+        <div class="card-footer">
+            <div id="vcomments"></div>
+        </div>
+        
+    </div>
+</div>
+
+<footer class="footer animate" data-animation="animate-fadeInDown animate-fast">
+    <div class="container-fluid">
+        <div class="row align-items-center">
+            <div class="col">
+                <small class="copyright">&copy; Chauncy's Space 2019-2020</small>
+            </div>
+            <div class="col-auto ml-auto">
+                <ul class="list-inline social-buttons my-0">
+                    <li class="list-inline-item">
+                        <a href="https://www.linkedin.com/in/chenfengf/">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="https://github.com/chauncyf">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="https://www.instagram.com/chauncyfff/">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script>
+    $(() => {
+        new Valine({
+            el: '#vcomments',
+            appId: 'shYNpoTLJKomYXlbSVytcGDC-MdYXbMMI',
+            appKey: 'iRv8NvaESqtxKsiDuAYzSw0v',
+            lang: 'en',
+            meta: ['nick', 'mail'],
+            placeholder: 'Say hi~',
+            visitor: true,
+            recordIP: true,
+            emojiCDN: 'https://valinecdn.bili33.top/',
+            emojiMaps: {
+                "tv_doge": "bilibilitv/[tv_doge].png",
+                "tv_亲亲": "bilibilitv/[tv_亲亲].png",
+                "tv_偷笑": "bilibilitv/[tv_偷笑].png",
+                "tv_再见": "bilibilitv/[tv_再见].png",
+                "tv_冷漠": "bilibilitv/[tv_冷漠].png",
+                "tv_发怒": "bilibilitv/[tv_发怒].png",
+                "tv_发财": "bilibilitv/[tv_发财].png",
+                "tv_可爱": "bilibilitv/[tv_可爱].png",
+                "tv_吐血": "bilibilitv/[tv_吐血].png",
+                "tv_呆": "bilibilitv/[tv_呆].png",
+                "tv_呕吐": "bilibilitv/[tv_呕吐].png",
+                "tv_困": "bilibilitv/[tv_困].png",
+                "tv_坏笑": "bilibilitv/[tv_坏笑].png",
+                "tv_大佬": "bilibilitv/[tv_大佬].png",
+                "tv_大哭": "bilibilitv/[tv_大哭].png",
+                "tv_委屈": "bilibilitv/[tv_委屈].png",
+                "tv_害羞": "bilibilitv/[tv_害羞].png",
+                "tv_尴尬": "bilibilitv/[tv_尴尬].png",
+                "tv_微笑": "bilibilitv/[tv_微笑].png",
+                "tv_思考": "bilibilitv/[tv_思考].png",
+                "tv_惊吓": "bilibilitv/[tv_惊吓].png",
+                "tv_打脸": "bilibilitv/[tv_打脸].png",
+                "tv_抓狂": "bilibilitv/[tv_抓狂].png",
+                "tv_抠鼻": "bilibilitv/[tv_抠鼻].png",
+                "tv_斜眼笑": "bilibilitv/[tv_斜眼笑].png",
+                "tv_无奈": "bilibilitv/[tv_无奈].png",
+                "tv_晕": "bilibilitv/[tv_晕].png",
+                "tv_流汗": "bilibilitv/[tv_流汗].png",
+                "tv_流泪": "bilibilitv/[tv_流泪].png",
+                "tv_流鼻血": "bilibilitv/[tv_流鼻血].png",
+                "tv_点赞": "bilibilitv/[tv_点赞].png",
+                "tv_生气": "bilibilitv/[tv_生气].png",
+                "tv_生病": "bilibilitv/[tv_生病].png",
+                "tv_疑问": "bilibilitv/[tv_疑问].png",
+                "tv_白眼": "bilibilitv/[tv_白眼].png",
+                "tv_皱眉": "bilibilitv/[tv_皱眉].png",
+                "tv_目瞪口呆": "bilibilitv/[tv_目瞪口呆].png",
+                "tv_睡着": "bilibilitv/[tv_睡着].png",
+                "tv_笑哭": "bilibilitv/[tv_笑哭].png",
+                "tv_腼腆": "bilibilitv/[tv_腼腆].png",
+                "tv_色": "bilibilitv/[tv_色].png",
+                "tv_调侃": "bilibilitv/[tv_调侃].png",
+                "tv_调皮": "bilibilitv/[tv_调皮].png",
+                "tv_鄙视": "bilibilitv/[tv_鄙视].png",
+                "tv_闭嘴": "bilibilitv/[tv_闭嘴].png",
+                "tv_难过": "bilibilitv/[tv_难过].png",
+                "tv_馋": "bilibilitv/[tv_馋].png",
+                "tv_鬼脸": "bilibilitv/[tv_鬼脸].png",
+                "tv_黑人问号": "bilibilitv/[tv_黑人问号].png",
+                "tv_鼓掌": "bilibilitv/[tv_鼓掌].png"
+            }
+        });
+
+        $('.vpower').prepend(`<span id="/blog/hello-world" class="leancloud_visitors" data-flag-title="Hello World">
+                                  <span class="post-meta-item-text"><i class="fas fa-glasses"></i> </span>
+                                  <span class="leancloud-visitors-count">∞</span>
+                              </span>`).css('padding-bottom', '0').find('br')[0].nextSibling.remove();
+    });
+</script>
+
+</body>
+</html>

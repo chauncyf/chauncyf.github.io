@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Play with Scrollspy | Chauncy’s Space</title>
+<meta name="generator" content="Jekyll v3.8.6" />
+<meta property="og:title" content="Play with Scrollspy" />
+<meta name="author" content="Chauncy" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="人的本质是摸鱼" />
+<meta property="og:description" content="人的本质是摸鱼" />
+<link rel="canonical" href="/blog/play-with-scrollspy" />
+<meta property="og:url" content="/blog/play-with-scrollspy" />
+<meta property="og:site_name" content="Chauncy’s Space" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-05-26T04:12:00-04:00" />
+<script type="application/ld+json">
+{"mainEntityOfPage":{"@type":"WebPage","@id":"/blog/play-with-scrollspy"},"author":{"@type":"Person","name":"Chauncy"},"headline":"Play with Scrollspy","url":"/blog/play-with-scrollspy","description":"人的本质是摸鱼","dateModified":"2020-05-26T02:56:05-04:00","datePublished":"2019-05-26T04:12:00-04:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+    
+    <script>
+    window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+    ga('create', 'UA-163037422-1', 'auto');
+    ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+    
+
+    <link rel="shortcut icon" type="image/png" href="/assets/favicon.png">
+<link rel="stylesheet" href="/assets/css/styles.css">
+<script src="/assets/js/jquery-3.4.1.min.js"></script>
+<script src="/assets/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/js/smooth-scroll.polyfills.min.js"></script>
+<script src="https://kit.fontawesome.com/33f1182444.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Libre+Barcode+128+Text&family=Roboto+Slab:wght@100&display=auto">
+    <script>
+        $(window).on('load', function () {
+            $('.animate').showAnimate(100);
+
+            new SmoothScroll('a[href*="#"]', {
+                speedAsDuration: true
+            });
+        });
+
+        $.fn.showAnimate = function (interval) {
+            let i = -interval, count = 1;
+            $(this).each(function () {
+                setTimeout(() => animate($(this)).then((animationName) => {
+                    $(this).removeClass(animationName);
+                }), i += interval);
+                count += 1;
+            });
+            return $.Deferred(function (d) {
+                setTimeout(() => d.resolve(), interval * count)
+            }).promise();
+        };
+
+        function animate(obj) {
+            return $.Deferred(function (d) {
+                const animationName = obj.data('animation');
+                obj.addClass('animated').addClass(animationName);
+                // setTimeout(() => d.resolve(animationName), 1000);
+            }).promise();
+        }
+    </script>
+</head>
+
+<body>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/blog/">Chauncy's Space</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">Blog</a>
+                </li>
+                
+                <li class="nav-item ">
+                    <a class="nav-link" href="/photo/">Photo</a>
+                </li>
+                
+            </ul>
+            <ul class="navbar-nav">
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" href="/archive/">Archive</a>-->
+<!--                </li>-->
+                <li class="nav-item">
+                    <a class="nav-link" href="/">About</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container container-post animate" data-animation="animate-fadeInDown animate-fast">
+    <div class="card">
+        <div class="card-body">
+            <h1 class="card-title text-center mb-3">Play with Scrollspy</h1>
+            <ul class="card-subtitle text-center text-muted list-inline my-1">
+                <li class="list-inline-item">
+                    <i class="fas fa-calendar"></i> May 26, 2019
+                </li>
+                <li class="list-inline-item">
+                    <i class="fas fa-clock"></i> 04:12 AM, Sun
+                </li>
+                
+                <li class="list-inline-item">
+                    <a href="/blog/?tag=tech"><i class="fas fa-hashtag"></i> tech</a>
+                </li>
+                
+            </ul>
+            <hr class="my-4">
+            <div class="card-text"><p><code class="highlighter-rouge">人的本质是摸鱼</code></p>
+
+<p>果然搭博客一旦开工就停不下来了，仿佛回到了小时候折腾QQ空间的时光</p>
+
+<p>最近最想要的功能是做一个页面来看leetcode的笔记，github自带的markdown虽然看起来效果很好，但是很关键的是缺了左边的目录，看起来没那么方便，所以自己的网站上一定要加上这个功能<br />
+白天把相册弄出来了，然后晚上本来准备刷题的，最后还是没忍住来弄笔记页面的左侧导航栏</p>
+
+<p>bootstrap带了一个scrollspy可以完美实现我的想法，然而做起来坑太多了<br />
+研究了好久才好不容易让提供的example正确显示，心累</p>
+
+<p>scrollspy的nested pills目前不能正常显示，还没找到原因</p>
+
+<p>bootstrap里面的提供的position只有fixed top, fixed bottom, sticky top。从名字上来看，并没有我想要的fixed left或者sticky left<br />
+然后试了好久，比如在css里把左边的col设成<code class="highlighter-rouge">position: fixed</code>，但是这样的话整个row就完全乱了，col里的nav会overflow出来<br />
+最后还是万能的stack overflow救了我，<a href="https://stackoverflow.com/a/33187655/10308485">Make column fixed position in bootstrap</a><br />
+折腾这么久，没想到<code class="highlighter-rouge">sticky-top</code>其实就是我想要的效果…能不能好好取名了<br />
+<code class="highlighter-rouge">There are only two hard things in Computer Science</code> : )</p>
+</div>
+
+            
+            
+            
+            <a href="/blog/jekyll-summary" class="btn btn-share float-right">Jekyll Summary <i class="fas fa-angle-right"></i></a>
+            
+
+            
+            
+            
+            <a href="/blog/%E8%BF%91%E6%9C%9F%E9%9D%A2%E8%AF%95%E5%B0%8F%E8%AE%B0" class="btn btn-share"><i class="fas fa-angle-left"></i> 近期面试小记</a>
+            
+        </div>
+        
+        <div class="card-footer">
+            <div id="vcomments"></div>
+        </div>
+        
+    </div>
+</div>
+
+<footer class="footer animate" data-animation="animate-fadeInDown animate-fast">
+    <div class="container-fluid">
+        <div class="row align-items-center">
+            <div class="col">
+                <small class="copyright">&copy; Chauncy's Space 2019-2020</small>
+            </div>
+            <div class="col-auto ml-auto">
+                <ul class="list-inline social-buttons my-0">
+                    <li class="list-inline-item">
+                        <a href="https://www.linkedin.com/in/chenfengf/">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="https://github.com/chauncyf">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="https://www.instagram.com/chauncyfff/">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script>
+    $(() => {
+        new Valine({
+            el: '#vcomments',
+            appId: 'shYNpoTLJKomYXlbSVytcGDC-MdYXbMMI',
+            appKey: 'iRv8NvaESqtxKsiDuAYzSw0v',
+            lang: 'en',
+            meta: ['nick', 'mail'],
+            placeholder: 'Say hi~',
+            visitor: true,
+            recordIP: true,
+            emojiCDN: 'https://valinecdn.bili33.top/',
+            emojiMaps: {
+                "tv_doge": "bilibilitv/[tv_doge].png",
+                "tv_亲亲": "bilibilitv/[tv_亲亲].png",
+                "tv_偷笑": "bilibilitv/[tv_偷笑].png",
+                "tv_再见": "bilibilitv/[tv_再见].png",
+                "tv_冷漠": "bilibilitv/[tv_冷漠].png",
+                "tv_发怒": "bilibilitv/[tv_发怒].png",
+                "tv_发财": "bilibilitv/[tv_发财].png",
+                "tv_可爱": "bilibilitv/[tv_可爱].png",
+                "tv_吐血": "bilibilitv/[tv_吐血].png",
+                "tv_呆": "bilibilitv/[tv_呆].png",
+                "tv_呕吐": "bilibilitv/[tv_呕吐].png",
+                "tv_困": "bilibilitv/[tv_困].png",
+                "tv_坏笑": "bilibilitv/[tv_坏笑].png",
+                "tv_大佬": "bilibilitv/[tv_大佬].png",
+                "tv_大哭": "bilibilitv/[tv_大哭].png",
+                "tv_委屈": "bilibilitv/[tv_委屈].png",
+                "tv_害羞": "bilibilitv/[tv_害羞].png",
+                "tv_尴尬": "bilibilitv/[tv_尴尬].png",
+                "tv_微笑": "bilibilitv/[tv_微笑].png",
+                "tv_思考": "bilibilitv/[tv_思考].png",
+                "tv_惊吓": "bilibilitv/[tv_惊吓].png",
+                "tv_打脸": "bilibilitv/[tv_打脸].png",
+                "tv_抓狂": "bilibilitv/[tv_抓狂].png",
+                "tv_抠鼻": "bilibilitv/[tv_抠鼻].png",
+                "tv_斜眼笑": "bilibilitv/[tv_斜眼笑].png",
+                "tv_无奈": "bilibilitv/[tv_无奈].png",
+                "tv_晕": "bilibilitv/[tv_晕].png",
+                "tv_流汗": "bilibilitv/[tv_流汗].png",
+                "tv_流泪": "bilibilitv/[tv_流泪].png",
+                "tv_流鼻血": "bilibilitv/[tv_流鼻血].png",
+                "tv_点赞": "bilibilitv/[tv_点赞].png",
+                "tv_生气": "bilibilitv/[tv_生气].png",
+                "tv_生病": "bilibilitv/[tv_生病].png",
+                "tv_疑问": "bilibilitv/[tv_疑问].png",
+                "tv_白眼": "bilibilitv/[tv_白眼].png",
+                "tv_皱眉": "bilibilitv/[tv_皱眉].png",
+                "tv_目瞪口呆": "bilibilitv/[tv_目瞪口呆].png",
+                "tv_睡着": "bilibilitv/[tv_睡着].png",
+                "tv_笑哭": "bilibilitv/[tv_笑哭].png",
+                "tv_腼腆": "bilibilitv/[tv_腼腆].png",
+                "tv_色": "bilibilitv/[tv_色].png",
+                "tv_调侃": "bilibilitv/[tv_调侃].png",
+                "tv_调皮": "bilibilitv/[tv_调皮].png",
+                "tv_鄙视": "bilibilitv/[tv_鄙视].png",
+                "tv_闭嘴": "bilibilitv/[tv_闭嘴].png",
+                "tv_难过": "bilibilitv/[tv_难过].png",
+                "tv_馋": "bilibilitv/[tv_馋].png",
+                "tv_鬼脸": "bilibilitv/[tv_鬼脸].png",
+                "tv_黑人问号": "bilibilitv/[tv_黑人问号].png",
+                "tv_鼓掌": "bilibilitv/[tv_鼓掌].png"
+            }
+        });
+
+        $('.vpower').prepend(`<span id="/blog/play-with-scrollspy" class="leancloud_visitors" data-flag-title="Play with Scrollspy">
+                                  <span class="post-meta-item-text"><i class="fas fa-glasses"></i> </span>
+                                  <span class="leancloud-visitors-count">∞</span>
+                              </span>`).css('padding-bottom', '0').find('br')[0].nextSibling.remove();
+    });
+</script>
+
+</body>
+</html>

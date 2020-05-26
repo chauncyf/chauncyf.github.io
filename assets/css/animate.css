@@ -1,0 +1,231 @@
+/*!
+ * animate.css - https://animate.style/
+ * Version - 4.1.0
+ * Licensed under the MIT license - http://opensource.org/licenses/MIT
+ *
+ * Copyright (c) 2020 Animate.css
+ */
+
+:root {
+    --animate-duration: 2s;
+}
+
+.animate {
+    visibility: hidden;
+}
+
+.animated {
+    visibility: visible;
+    animation-duration: var(--animate-duration);
+}
+
+.animate-fast {
+    animation-duration: calc(var(--animate-duration) / 2);
+}
+
+@keyframes pulse {
+    from {
+        transform: scale3d(1, 1, 1);
+    }
+
+    50% {
+        transform: scale3d(1.5, 1.5, 1.5);
+    }
+
+    to {
+        transform: scale3d(1, 1, 1);
+    }
+}
+
+.animate-pulse {
+    animation-name: pulse;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes swing {
+    20% {
+        transform: rotate3d(0, 0, 1, 15deg);
+    }
+
+    40% {
+        transform: rotate3d(0, 0, 1, -10deg);
+    }
+
+    60% {
+        transform: rotate3d(0, 0, 1, 5deg);
+    }
+
+    80% {
+        transform: rotate3d(0, 0, 1, -5deg);
+    }
+
+    to {
+        transform: rotate3d(0, 0, 1, 0deg);
+    }
+}
+
+.animate-swing {
+    transform-origin: top center;
+    animation-name: swing;
+}
+
+@keyframes bounceInUp {
+    from,
+    60%,
+    75%,
+    90%,
+    to {
+        animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+
+    from {
+        opacity: 0;
+        transform: translate3d(0, 3000px, 0) scaleY(5);
+    }
+
+    60% {
+        opacity: 1;
+        transform: translate3d(0, -20px, 0) scaleY(0.9);
+    }
+
+    75% {
+        transform: translate3d(0, 10px, 0) scaleY(0.95);
+    }
+
+    90% {
+        transform: translate3d(0, -5px, 0) scaleY(0.985);
+    }
+
+    to {
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.animate-bounceInUp {
+    animation-name: bounceInUp;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.animate-fadeIn {
+    animation-name: fadeIn;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translate3d(0, -1.5rem, 0);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.animate-fadeInDown {
+    animation-name: fadeInDown;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translate3d(0, 1rem, 0);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.animate-fadeInUp {
+    animation-name: fadeInUp;
+}
+
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translate3d(-100%, 0, 0);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.animate-fadeInLeft {
+    animation-name: fadeInLeft;
+}
+
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translate3d(100%, 0, 0);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.animate-fadeInRight {
+    animation-name: fadeInRight;
+}
+
+@keyframes slideInLeft {
+    from {
+        transform: translate3d(-100%, 0, 0);
+        visibility: visible;
+    }
+
+    to {
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.animate-slideInLeft {
+    animation-name: slideInLeft;
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translate3d(100%, 0, 0);
+        visibility: visible;
+    }
+
+    to {
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.animate-slideInRight {
+    animation-name: slideInRight;
+}
+
+@keyframes zoomIn {
+    from {
+        opacity: 0;
+        transform: scale3d(0.3, 0.3, 0.3);
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+.animate-zoomIn {
+    animation-name: zoomIn;
+}

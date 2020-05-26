@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Lazy img loading with dominant color | Chauncy’s Space</title>
+<meta name="generator" content="Jekyll v3.8.6" />
+<meta property="og:title" content="Lazy img loading with dominant color" />
+<meta name="author" content="Chauncy" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A pure static site just makes everything far more complicated" />
+<meta property="og:description" content="A pure static site just makes everything far more complicated" />
+<link rel="canonical" href="/blog/lazy-img-loading-with-dominant-color" />
+<meta property="og:url" content="/blog/lazy-img-loading-with-dominant-color" />
+<meta property="og:site_name" content="Chauncy’s Space" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-05-25T19:00:00-04:00" />
+<script type="application/ld+json">
+{"mainEntityOfPage":{"@type":"WebPage","@id":"/blog/lazy-img-loading-with-dominant-color"},"author":{"@type":"Person","name":"Chauncy"},"headline":"Lazy img loading with dominant color","url":"/blog/lazy-img-loading-with-dominant-color","description":"A pure static site just makes everything far more complicated","dateModified":"2020-05-26T02:56:05-04:00","datePublished":"2020-05-25T19:00:00-04:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+    
+    <script>
+    window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+    ga('create', 'UA-163037422-1', 'auto');
+    ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+    
+
+    <link rel="shortcut icon" type="image/png" href="/assets/favicon.png">
+<link rel="stylesheet" href="/assets/css/styles.css">
+<script src="/assets/js/jquery-3.4.1.min.js"></script>
+<script src="/assets/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/js/smooth-scroll.polyfills.min.js"></script>
+<script src="https://kit.fontawesome.com/33f1182444.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Libre+Barcode+128+Text&family=Roboto+Slab:wght@100&display=auto">
+    <script>
+        $(window).on('load', function () {
+            $('.animate').showAnimate(100);
+
+            new SmoothScroll('a[href*="#"]', {
+                speedAsDuration: true
+            });
+        });
+
+        $.fn.showAnimate = function (interval) {
+            let i = -interval, count = 1;
+            $(this).each(function () {
+                setTimeout(() => animate($(this)).then((animationName) => {
+                    $(this).removeClass(animationName);
+                }), i += interval);
+                count += 1;
+            });
+            return $.Deferred(function (d) {
+                setTimeout(() => d.resolve(), interval * count)
+            }).promise();
+        };
+
+        function animate(obj) {
+            return $.Deferred(function (d) {
+                const animationName = obj.data('animation');
+                obj.addClass('animated').addClass(animationName);
+                // setTimeout(() => d.resolve(animationName), 1000);
+            }).promise();
+        }
+    </script>
+</head>
+
+<body>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/blog/">Chauncy's Space</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog/">Blog</a>
+                </li>
+                
+                <li class="nav-item ">
+                    <a class="nav-link" href="/photo/">Photo</a>
+                </li>
+                
+            </ul>
+            <ul class="navbar-nav">
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" href="/archive/">Archive</a>-->
+<!--                </li>-->
+                <li class="nav-item">
+                    <a class="nav-link" href="/">About</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container container-post animate" data-animation="animate-fadeInDown animate-fast">
+    <div class="card">
+        <div class="card-body">
+            <h1 class="card-title text-center mb-3">Lazy img loading with dominant color</h1>
+            <ul class="card-subtitle text-center text-muted list-inline my-1">
+                <li class="list-inline-item">
+                    <i class="fas fa-calendar"></i> May 25, 2020
+                </li>
+                <li class="list-inline-item">
+                    <i class="fas fa-clock"></i> 07:00 PM, Mon
+                </li>
+                
+                <li class="list-inline-item">
+                    <a href="/blog/?tag=coding"><i class="fas fa-hashtag"></i> coding</a>
+                </li>
+                
+                <li class="list-inline-item">
+                    <a href="/blog/?tag=frontend"><i class="fas fa-hashtag"></i> frontend</a>
+                </li>
+                
+                <li class="list-inline-item">
+                    <a href="/blog/?tag=javascript"><i class="fas fa-hashtag"></i> javascript</a>
+                </li>
+                
+                <li class="list-inline-item">
+                    <a href="/blog/?tag=ruby"><i class="fas fa-hashtag"></i> ruby</a>
+                </li>
+                
+            </ul>
+            <hr class="my-4">
+            <div class="card-text"><p class="lead">A pure static site just makes everything far more complicated</p>
+
+<h2 id="idea">Idea</h2>
+
+<p>The idea of lazy image loading is simple - the image wont be loaded until it become visible in the browser (i.e. viewport).</p>
+
+<p>Actually, modern browsers support <a href="https://developer.mozilla.org/en-US/docs/Web/Performance/Lazy_loading">native lazy loading</a>, simple add <code class="highlighter-rouge">loading="lazy"</code> to the img tag, and, that’s it.</p>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"image.jpg"</span> <span class="na">loading=</span><span class="s">"lazy"</span> <span class="na">alt=</span><span class="s">"..."</span> <span class="nt">/&gt;</span>
+</code></pre></div></div>
+
+<p>This simple approach works. However, since height of the &lt;img/&gt; element is 0 before load, this will cause content reflow.<br />
+To prevent content reflow, we can use “placeholders”. For example, low resolution thumbnails.</p>
+
+<p>Here, I’ll take the dominant color from an image, and generate a tiny pixel thumbnail based on that color (just like Twitter did).</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">before load</th>
+      <th style="text-align: center">after load</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="/assets/img/dominant_color_pre.jpg" alt="before" class="img-fluid" /></td>
+      <td style="text-align: center"><img src="/assets/img/dominant_color_post.jpg" alt="after" class="img-fluid" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br /></p>
+
+<h2 id="preparation">Preparation</h2>
+
+<p>Jekyll is a static site generator, which means the whole website will be static. There are no controllers, no databases, only static files.</p>
+
+<p>The only thing we can do is to store required data in the HTML itself and have JavaScript to do the work:</p>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"thumbnail.jpg"</span> <span class="na">data-src=</span><span class="s">"fullSize.jpg"</span> <span class="na">alt=</span><span class="s">"..."</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+<p>When the img was scrolled into view (using <a href="https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API">IntersectionObserver</a>), replace the value of src attribute with value of data-src attribute:</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">img</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">'</span><span class="s1">img</span><span class="dl">'</span><span class="p">);</span>
+<span class="nx">img</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="dl">'</span><span class="s1">src</span><span class="dl">'</span><span class="p">,</span> <span class="nx">img</span><span class="p">.</span><span class="nx">dataset</span><span class="p">.</span><span class="nx">src</span><span class="p">);</span>  <span class="c1">// when scrolled into view</span>
+</code></pre></div></div>
+
+<p>That’s all needed for frontend part.</p>
+
+<p>For “backend”, we can create a <a href="https://jekyllrb.com/docs/plugins/hooks/">Hooks</a> to process images and use gem <a href="https://github.com/jonbuda/miro">Miro</a> find dominant colors.</p>
+
+<h2 id="solution">Solution</h2>
+<p>As discussed <a href="https://css-tricks.com/preventing-content-reflow-from-lazy-loaded-images/">here</a>, I’ll use URL-encoded SVG as placeholder.</p>
+
+<p>In the hooks <em>GenerateThumbnail.rb</em>:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">require</span> <span class="s1">'json'</span>
+<span class="nb">require</span> <span class="s1">'miro'</span>
+<span class="nb">require</span> <span class="s1">'image_size'</span>
+
+<span class="no">Jekyll</span><span class="o">::</span><span class="no">Hooks</span><span class="p">.</span><span class="nf">register</span> <span class="ss">:site</span><span class="p">,</span> <span class="ss">:after_init</span> <span class="k">do</span> <span class="o">|</span><span class="n">site</span><span class="o">|</span>  <span class="c1"># just after the site initializes</span>
+  <span class="n">data_file_path</span> <span class="o">=</span> <span class="no">File</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="s1">'.'</span><span class="p">,</span> <span class="s1">'_data'</span><span class="p">,</span> <span class="s1">'gallery.json'</span><span class="p">)</span>
+
+  <span class="k">unless</span> <span class="no">File</span><span class="p">.</span><span class="nf">exist?</span><span class="p">(</span><span class="n">data_file_path</span><span class="p">)</span>
+    <span class="nb">puts</span> <span class="s1">'Hooks: finding image dominant color..'</span>
+
+    <span class="n">gallery_path</span> <span class="o">=</span> <span class="no">File</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="s1">'assets'</span><span class="p">,</span> <span class="s1">'gallery'</span><span class="p">)</span>
+    <span class="n">gallery_data</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="no">Miro</span><span class="p">.</span><span class="nf">options</span><span class="p">[</span><span class="ss">:color_count</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># only take one dominant color</span>
+
+    <span class="no">Dir</span><span class="p">.</span><span class="nf">children</span><span class="p">(</span><span class="n">gallery_path</span><span class="p">).</span><span class="nf">sort</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">img</span><span class="o">|</span>
+      <span class="nb">puts</span> <span class="s2">"</span><span class="se">\t</span><span class="s2">&gt; processing image: </span><span class="si">#{</span><span class="n">img</span><span class="si">}</span><span class="s2">"</span>
+
+      <span class="n">img_path</span> <span class="o">=</span> <span class="no">File</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="s1">'.'</span><span class="p">,</span> <span class="n">gallery_path</span><span class="p">,</span> <span class="n">img</span><span class="p">)</span>
+      <span class="n">img_dimensions</span> <span class="o">=</span> <span class="no">ImageSize</span><span class="p">.</span><span class="nf">path</span><span class="p">(</span><span class="n">img_path</span><span class="p">).</span><span class="nf">size</span>  <span class="c1"># get dimensions of image</span>
+      <span class="n">img_dominant_color</span> <span class="o">=</span> <span class="no">Miro</span><span class="o">::</span><span class="no">DominantColors</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">img_path</span><span class="p">).</span><span class="nf">to_rgb</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># get dominant color of image</span>
+
+      <span class="c1"># store data as array of hashes</span>
+      <span class="n">gallery_data</span><span class="p">.</span><span class="nf">push</span><span class="p">({</span>
+                            <span class="s1">'name'</span><span class="p">:</span> <span class="n">img</span><span class="p">,</span>
+                            <span class="s1">'basename'</span><span class="p">:</span> <span class="n">img</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="s1">'.'</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span>
+                            <span class="s1">'path'</span><span class="p">:</span> <span class="no">File</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="s1">''</span><span class="p">,</span> <span class="n">gallery_path</span><span class="p">,</span> <span class="n">img</span><span class="p">),</span>
+                            <span class="s1">'width'</span><span class="p">:</span> <span class="n">img_dimensions</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                            <span class="s1">'height'</span><span class="p">:</span> <span class="n">img_dimensions</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                            <span class="s1">'dominant_color'</span><span class="p">:</span> <span class="n">img_dominant_color</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="s1">','</span><span class="p">)</span>  <span class="c1"># rgb value</span>
+                        <span class="p">})</span>
+    <span class="k">end</span>
+
+    <span class="no">File</span><span class="p">.</span><span class="nf">open</span><span class="p">(</span><span class="n">data_file_path</span><span class="p">,</span> <span class="s1">'w'</span><span class="p">)</span> <span class="p">{</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span> <span class="n">f</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="n">gallery_data</span><span class="p">.</span><span class="nf">to_json</span><span class="p">)</span> <span class="p">}</span>  <span class="c1"># save as json</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>The generated json file will looks like this:</p>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DSC01881W.jpg"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"basename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DSC01881W"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/assets/gallery/DSC01881W.jpg"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"width"</span><span class="p">:</span><span class="w"> </span><span class="mi">1920</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"height"</span><span class="p">:</span><span class="w"> </span><span class="mi">1280</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"dominant_color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"72,57,53"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DSC03916W.jpg"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"basename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DSC03916W"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/assets/gallery/DSC03916W.jpg"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"width"</span><span class="p">:</span><span class="w"> </span><span class="mi">1920</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"height"</span><span class="p">:</span><span class="w"> </span><span class="mi">817</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"dominant_color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"147,166,92"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre></div></div>
+
+<p>The HTML:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- this is liquid syntax, it will iterate through the json file generated above --&gt;</span>
+{% for image in site.data.gallery %}
+
+    <span class="c">&lt;!-- set background color of parent container as dominant color --&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card"</span> <span class="na">style=</span><span class="s">"background-color: rgb({{ image.dominant_color }})"</span><span class="nt">&gt;</span>  
+        
+        <span class="c">&lt;!-- here src is URL-encoded SVG, we need to specify the width and height --&gt;</span>
+        <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {{ image.width }} {{ image.height }}"%3E%3C/svg%3E'</span>
+             <span class="na">data-src=</span><span class="s">"{{ image.path }}"</span> <span class="na">alt=</span><span class="s">"{{ image.basename }}"</span> <span class="na">class=</span><span class="s">"card-img"</span> <span class="na">style=</span><span class="s">"opacity: 0"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+
+{% endfor %}
+</code></pre></div></div>
+
+<p>And JavaScript:</p>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;script&gt;</span>
+    <span class="kd">let</span> <span class="nx">intersectionObserver</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">IntersectionObserver</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">entries</span><span class="p">,</span> <span class="nx">observer</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">entries</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">entry</span> <span class="o">=&gt;</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">entry</span><span class="p">.</span><span class="nx">isIntersecting</span><span class="p">)</span> <span class="p">{</span>
+                <span class="kd">let</span> <span class="nx">element</span> <span class="o">=</span> <span class="nx">entry</span><span class="p">.</span><span class="nx">target</span><span class="p">;</span>
+                <span class="nx">element</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="dl">'</span><span class="s1">src</span><span class="dl">'</span><span class="p">,</span> <span class="nx">element</span><span class="p">.</span><span class="nx">dataset</span><span class="p">.</span><span class="nx">src</span><span class="p">);</span>
+                <span class="nx">element</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+                    <span class="nx">element</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">cssText</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">opacity: 1; transition: all 0.5s ease-in-out;</span><span class="dl">'</span><span class="p">;</span>
+                <span class="p">};</span>
+                <span class="nx">observer</span><span class="p">.</span><span class="nx">unobserve</span><span class="p">(</span><span class="nx">element</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">});</span>
+    <span class="p">});</span>
+
+    <span class="nb">window</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="dl">'</span><span class="s1">.card-img</span><span class="dl">'</span><span class="p">).</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">img</span> <span class="o">=&gt;</span> <span class="p">{</span>
+            <span class="nx">intersectionObserver</span><span class="p">.</span><span class="nx">observe</span><span class="p">(</span><span class="nx">img</span><span class="p">);</span>
+        <span class="p">});</span>
+    <span class="p">};</span>
+<span class="nt">&lt;/script&gt;</span>
+</code></pre></div></div>
+
+<p><br />
+Checkout the <a href="/photo/">final result</a>!</p>
+
+<h2 id="references">References</h2>
+<ul>
+  <li><a href="https://css-tricks.com/preventing-content-reflow-from-lazy-loaded-images/">https://css-tricks.com/preventing-content-reflow-from-lazy-loaded-images/</a></li>
+  <li><a href="https://www.sitepoint.com/five-techniques-lazy-load-images-website-performance/">https://www.sitepoint.com/five-techniques-lazy-load-images-website-performance/</a></li>
+  <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API">https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API</a></li>
+</ul>
+</div>
+
+            
+            
+            
+            <a href="/blog/rainbow" class="btn btn-share float-right">Rainbow <i class="fas fa-angle-right"></i></a>
+            
+
+            
+            
+            
+            
+        </div>
+        
+        <div class="card-footer">
+            <div id="vcomments"></div>
+        </div>
+        
+    </div>
+</div>
+
+<footer class="footer animate" data-animation="animate-fadeInDown animate-fast">
+    <div class="container-fluid">
+        <div class="row align-items-center">
+            <div class="col">
+                <small class="copyright">&copy; Chauncy's Space 2019-2020</small>
+            </div>
+            <div class="col-auto ml-auto">
+                <ul class="list-inline social-buttons my-0">
+                    <li class="list-inline-item">
+                        <a href="https://www.linkedin.com/in/chenfengf/">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="https://github.com/chauncyf">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="https://www.instagram.com/chauncyfff/">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script>
+    $(() => {
+        new Valine({
+            el: '#vcomments',
+            appId: 'shYNpoTLJKomYXlbSVytcGDC-MdYXbMMI',
+            appKey: 'iRv8NvaESqtxKsiDuAYzSw0v',
+            lang: 'en',
+            meta: ['nick', 'mail'],
+            placeholder: 'Say hi~',
+            visitor: true,
+            recordIP: true,
+            emojiCDN: 'https://valinecdn.bili33.top/',
+            emojiMaps: {
+                "tv_doge": "bilibilitv/[tv_doge].png",
+                "tv_亲亲": "bilibilitv/[tv_亲亲].png",
+                "tv_偷笑": "bilibilitv/[tv_偷笑].png",
+                "tv_再见": "bilibilitv/[tv_再见].png",
+                "tv_冷漠": "bilibilitv/[tv_冷漠].png",
+                "tv_发怒": "bilibilitv/[tv_发怒].png",
+                "tv_发财": "bilibilitv/[tv_发财].png",
+                "tv_可爱": "bilibilitv/[tv_可爱].png",
+                "tv_吐血": "bilibilitv/[tv_吐血].png",
+                "tv_呆": "bilibilitv/[tv_呆].png",
+                "tv_呕吐": "bilibilitv/[tv_呕吐].png",
+                "tv_困": "bilibilitv/[tv_困].png",
+                "tv_坏笑": "bilibilitv/[tv_坏笑].png",
+                "tv_大佬": "bilibilitv/[tv_大佬].png",
+                "tv_大哭": "bilibilitv/[tv_大哭].png",
+                "tv_委屈": "bilibilitv/[tv_委屈].png",
+                "tv_害羞": "bilibilitv/[tv_害羞].png",
+                "tv_尴尬": "bilibilitv/[tv_尴尬].png",
+                "tv_微笑": "bilibilitv/[tv_微笑].png",
+                "tv_思考": "bilibilitv/[tv_思考].png",
+                "tv_惊吓": "bilibilitv/[tv_惊吓].png",
+                "tv_打脸": "bilibilitv/[tv_打脸].png",
+                "tv_抓狂": "bilibilitv/[tv_抓狂].png",
+                "tv_抠鼻": "bilibilitv/[tv_抠鼻].png",
+                "tv_斜眼笑": "bilibilitv/[tv_斜眼笑].png",
+                "tv_无奈": "bilibilitv/[tv_无奈].png",
+                "tv_晕": "bilibilitv/[tv_晕].png",
+                "tv_流汗": "bilibilitv/[tv_流汗].png",
+                "tv_流泪": "bilibilitv/[tv_流泪].png",
+                "tv_流鼻血": "bilibilitv/[tv_流鼻血].png",
+                "tv_点赞": "bilibilitv/[tv_点赞].png",
+                "tv_生气": "bilibilitv/[tv_生气].png",
+                "tv_生病": "bilibilitv/[tv_生病].png",
+                "tv_疑问": "bilibilitv/[tv_疑问].png",
+                "tv_白眼": "bilibilitv/[tv_白眼].png",
+                "tv_皱眉": "bilibilitv/[tv_皱眉].png",
+                "tv_目瞪口呆": "bilibilitv/[tv_目瞪口呆].png",
+                "tv_睡着": "bilibilitv/[tv_睡着].png",
+                "tv_笑哭": "bilibilitv/[tv_笑哭].png",
+                "tv_腼腆": "bilibilitv/[tv_腼腆].png",
+                "tv_色": "bilibilitv/[tv_色].png",
+                "tv_调侃": "bilibilitv/[tv_调侃].png",
+                "tv_调皮": "bilibilitv/[tv_调皮].png",
+                "tv_鄙视": "bilibilitv/[tv_鄙视].png",
+                "tv_闭嘴": "bilibilitv/[tv_闭嘴].png",
+                "tv_难过": "bilibilitv/[tv_难过].png",
+                "tv_馋": "bilibilitv/[tv_馋].png",
+                "tv_鬼脸": "bilibilitv/[tv_鬼脸].png",
+                "tv_黑人问号": "bilibilitv/[tv_黑人问号].png",
+                "tv_鼓掌": "bilibilitv/[tv_鼓掌].png"
+            }
+        });
+
+        $('.vpower').prepend(`<span id="/blog/lazy-img-loading-with-dominant-color" class="leancloud_visitors" data-flag-title="Lazy img loading with dominant color">
+                                  <span class="post-meta-item-text"><i class="fas fa-glasses"></i> </span>
+                                  <span class="leancloud-visitors-count">∞</span>
+                              </span>`).css('padding-bottom', '0').find('br')[0].nextSibling.remove();
+    });
+</script>
+
+</body>
+</html>
