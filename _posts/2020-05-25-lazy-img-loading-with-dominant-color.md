@@ -32,8 +32,6 @@ Here, I'll take the dominant color from an image, and generate a tiny pixel thum
 
 <br>
 
-Checkout the [final result]({% link photo.html %})
-
 
 ## Preparation
 
@@ -60,11 +58,10 @@ As discussed [here](https://css-tricks.com/preventing-content-reflow-from-lazy-l
 In the hooks _GenerateThumbnail.rb_:
 ```ruby
 require 'json'
-require 'base64'
 require 'miro'
 require 'image_size'
 
-Jekyll::Hooks.register :site, :after_init do |site|
+Jekyll::Hooks.register :site, :after_init do |site|  # just after the site initializes
   data_file_path = File.join('.', '_data', 'gallery.json')
 
   unless File.exist?(data_file_path)
@@ -88,7 +85,7 @@ Jekyll::Hooks.register :site, :after_init do |site|
                             'path': File.join('', gallery_path, img),
                             'width': img_dimensions[0],
                             'height': img_dimensions[1],
-                            'dominant_color': img_dominant_color.join(','),
+                            'dominant_color': img_dominant_color.join(',')  # rgb value
                         })
     end
 
@@ -109,42 +106,60 @@ The generated json file will looks like this:
     "dominant_color": "72,57,53"
   },
   {
-    "name": "DSC01902W.jpg",
-    "basename": "DSC01902W",
-    "path": "/assets/gallery/DSC01902W.jpg",
+    "name": "DSC03916W.jpg",
+    "basename": "DSC03916W",
+    "path": "/assets/gallery/DSC03916W.jpg",
     "width": 1920,
-    "height": 1280,
-    "dominant_color": "50,50,50"
-  },
-  {
-    "name": "DSC01912W.jpg",
-    "basename": "DSC01912W",
-    "path": "/assets/gallery/DSC01912W.jpg",
-    "width": 1920,
-    "height": 1280,
-    "dominant_color": "54,47,48"
+    "height": 817,
+    "dominant_color": "147,166,92"
   }
 ]
 ```
 
-In the HTML:
-```html
+The HTML:
 {% raw %}
-<!-- the syntax is liquid -->
+```html
+<!-- this is liquid syntax, it will iterate through the json file generated above -->
 {% for image in site.data.gallery %}
 
     <!-- set background color of parent container as dominant color -->
-    <div class="card shadow-sm" id="{{ image.basename }}"
-         style="background-color: rgb({{ image.dominant_color }})">  
+    <div class="card" style="background-color: rgb({{ image.dominant_color }})">  
         
-        <!-- here src is URL-encoded SVG, we need to specify width and height of svg -->
+        <!-- here src is URL-encoded SVG, we need to specify the width and height -->
         <img src='data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {{ image.width }} {{ image.height }}"%3E%3C/svg%3E'
-             data-src="{{ image.path }}" alt="{{ image.basename }}" class="card-img">
+             data-src="{{ image.path }}" alt="{{ image.basename }}" class="card-img" style="opacity: 0">
     </div>
 
 {% endfor %}
-{% endraw %}
 ```
+{% endraw %}
+
+And JavaScript:
+```html
+<script>
+    let intersectionObserver = new IntersectionObserver(function (entries, observer) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                let element = entry.target;
+                element.setAttribute('src', element.dataset.src);
+                element.onload = function () {
+                    element.style.cssText = 'opacity: 1; transition: all 0.5s ease-in-out;';
+                };
+                observer.unobserve(element);
+            }
+        });
+    });
+
+    window.onload = function () {
+        document.querySelectorAll('.card-img').forEach(img => {
+            intersectionObserver.observe(img);
+        });
+    };
+</script>
+```
+
+<br>
+Checkout the [final result]({% link photo.html %})!
 
 
 ## References
